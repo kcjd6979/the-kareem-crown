@@ -28,7 +28,7 @@ export const HeroSection = () => {
         >
           <Image
             src="/architect-logo.svg" // Placeholder - we will add the actual file
-            alt="The Architect's Personal Logo"
+            alt="The personal brand logo of Kareem Daniel."
             width={150}
             height={150}
             priority
