@@ -17,8 +17,9 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  title: "The Kareem Crown: An Arsenal of Proof",
-  description: "The pre-portfolio of Kareem Daniel, an AI Systems Architect who orchestrates proprietary, automated systems.",
+  title: "Kareem Daniel | AI Systems Architect & Founder of Midas Touch Media",
+  description: "Kareem (KC) Daniel helps SMEs achieve unstoppable growth by architecting AI systems that automate leads, boost revenue, and streamline operations. Explore the portfolio of a forward-thinking AI strategist.",
+  keywords: "Kareem Daniel, AI Systems Architect, Midas Touch Media, SME Growth, AI Automation, Lead Generation, Revenue Operations",
 };
 
 export default function RootLayout({
