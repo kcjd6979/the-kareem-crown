@@ -2,7 +2,7 @@ import { ArchitectSection } from "@/components/ArchitectSection";
 import { ArsenalSection } from "@/components/ArsenalSection";
 import { ConnectionSection } from "@/components/ConnectionSection";
 import { Footer } from "@/components/Footer";
-import { HeroSection } from "@/components/HeroSection";
+import HeroSection from "@/components/HeroSection";
 
 export default function Home( ) {
   return (
