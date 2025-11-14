@@ -18,6 +18,7 @@ const HeroSection = () => {
           width={150} // Adjust size as needed
           height={150} // Adjust size as needed
           priority // Tells Next.js to load this image first
+          className="filter invert" //
         />
 
         <h1 className="text-6xl md:text-8xl font-bold mt-6">
