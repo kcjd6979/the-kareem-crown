@@ -11,15 +11,14 @@ const HeroSection = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="flex flex-col items-center"
       >
-        {/* Static Logo Image */}
-        <Image
-          src="/2-mtm-shield-black-_1_.svg" // The path to your logo in the public folder
-          alt="The personal brand logo of Kareem Daniel"
-          width={150} // Adjust size as needed
-          height={150} // Adjust size as needed
-          priority // Tells Next.js to load this image first
-          className="filter invert" //
-        />
+{/* Full-Color Logo Image */}
+<Image
+  src="/kareem-logo.webp"
+  alt="The personal brand logo of Kareem Daniel"
+  width={400}
+  height={500}
+  priority
+/>
 
         <h1 className="text-6xl md:text-8xl font-bold mt-6">
           The Kareem Crown
