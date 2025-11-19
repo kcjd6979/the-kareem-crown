@@ -2,21 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  /* MTM Gold Standard: Operation "Atmosphere" */
-  background-color: #000000; /* Fallback color */
-  background-image: 
-    /* Layer 1: The Faux Spotlight */
-    radial-gradient(
-      ellipse 50% 40% at 50% 40%,
-      rgba(255, 255, 255, 0.06),
-      transparent
-    ),
-    /* Layer 2: The Seamless Background Gradient */
-    radial-gradient(
-      ellipse 80% 100% at 50% 100%,
-      #1a1a1a,
-      #000000
-    );
-  color: #ffffff; /* Default text color */
-}

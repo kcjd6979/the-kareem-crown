@@ -1,25 +1,12 @@
-"layout.tsx"
-
 import type { Metadata } from "next";
-import { Playfair_Display_SC, Merriweather } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display_SC({
-  subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  variable: '--font-playfair',
-});
-
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: '--font-merriweather',
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Kareem Daniel | AI Systems Architect & Founder of Midas Touch Media",
-  description: "Kareem (KC) Daniel helps SMEs achieve unstoppable growth by architecting AI systems that automate leads, boost revenue, and streamline operations. Explore the portfolio of a forward-thinking AI strategist.",
-  keywords: "Kareem Daniel, AI Systems Architect, Midas Touch Media, SME Growth, AI Automation, Lead Generation, Revenue Operations",
+  title: "The Kareem Crown",
+  description: "An Arsenal of Proof",
 };
 
 export default function RootLayout({
@@ -29,8 +16,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${playfair.variable} ${merriweather.variable} font-merriweather`}>
-        {children}
+      <body className={inter.className}>
+        {/* === START: SCORCHED EARTH FIX === */}
+        {/* This div applies the background directly to the root, bypassing all conflicts. */}
+        <div
+          className="relative w-full min-h-screen"
+          style={{
+            backgroundColor: "#000000",
+            backgroundImage: `
+              radial-gradient(ellipse 50% 40% at 50% 40%, rgba(255, 255, 255, 0.06), transparent),
+              radial-gradient(ellipse 80% 100% at 50% 100%, #1a1a1a, #000000)
+            `,
+          }}
+        >
+          {children}
+        </div>
+        {/* === END: SCORCHED EARTH FIX === */}
       </body>
     </html>
   );
