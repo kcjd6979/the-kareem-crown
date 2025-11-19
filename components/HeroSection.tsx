@@ -5,16 +5,17 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <section className="w-full h-screen flex flex-col justify-center items-center">
+    // The main container, centered on the screen.
+    <div className="relative flex flex-col items-center justify-center w-full h-screen overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col items-center"
+        className="z-10 flex flex-col items-center justify-center"
       >
-        {/* === START: RESPONSIVE LOGO === */}
-        {/* This container makes the logo responsive. */}
-        <div className="relative w-1/2 md:w-1/3 lg:w-1/4">
+        {/* === START: AGGRESSIVE LOGO SIZING === */}
+        {/* Using more direct width control to ensure size */}
+        <div className="relative w-[40vw] max-w-xs md:w-[30vw] md:max-w-sm lg:w-[20vw] lg:max-w-md">
           <Image
             src="/kareem-logo.webp"
             alt="The personal brand logo of Kareem Daniel"
@@ -24,10 +25,10 @@ const HeroSection = () => {
             className="w-full h-auto"
           />
         </div>
-        {/* === END: RESPONSIVE LOGO === */}
+        {/* === END: AGGRESSIVE LOGO SIZING === */}
 
         {/* Title Text */}
-        <h1 className="text-center text-6xl md:text-8xl font-bold mt-6 text-white">
+        <h1 className="text-center text-6xl md:text-8xl font-bold mt-8 text-white">
           The Kareem Crown
         </h1>
 
@@ -36,7 +37,7 @@ const HeroSection = () => {
           An Arsenal of Proof
         </p>
       </motion.div>
-    </section>
+    </div>
   );
 };
 
