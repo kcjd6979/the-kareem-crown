@@ -48,14 +48,14 @@ export const ArsenalSection = () => {
           {arsenalItems.map((item, i) => (
             <motion.div
               key={item.title}
-              className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md flex flex-col items-center text-center"
+              className="group p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md flex flex-col items-center text-center"
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               custom={i}
             >
-              <div className="mb-6">{item.icon}</div>
+              <div className="mb-6 transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(255,215,0,0.6)] group-hover:rotate-y-12">{item.icon}</div>
               <h3 className="font-playfair font-bold text-2xl text-white mb-4">{item.title}</h3>
               <p className="text-gray-400 font-merriweather mb-6 flex-grow">{item.description}</p>
               <LiquidGlassButton>
