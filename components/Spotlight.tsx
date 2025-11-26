@@ -36,7 +36,7 @@ export function Spotlight({
       ref={ref}
       style={{
         background: `radial-gradient(600px circle at ${x}px ${y}px, ${
-          fill || "rgba(255, 215, 0, 0.15)"
+          fill || "rgba(255, 215, 0, 0.18)"
         }, transparent 80%)`,
       }}
     />

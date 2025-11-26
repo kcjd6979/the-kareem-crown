@@ -15,7 +15,7 @@ const HeroSection = () => {
       >
         {/* === START: AGGRESSIVE LOGO SIZING === */}
         {/* Using more direct width control to ensure size */}
-        <div className="relative w-[40vw] max-w-xs md:w-[30vw] md:max-w-sm lg:w-[20vw] lg:max-w-md">
+        <div className="relative w-[85%] md:w-[75%]">
           <Image
             src="/kareem-logo.webp"
             alt="The personal brand logo of Kareem Daniel"
