@@ -1,5 +1,3 @@
-"Spotlight.tsx"
-
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
@@ -36,7 +34,7 @@ export function Spotlight({
       ref={ref}
       style={{
         background: `radial-gradient(600px circle at ${x}px ${y}px, ${
-          fill || "rgba(255, 215, 0, 0.18)"
+          fill || "rgba(255, 215, 0, 0.25)"
         }, transparent 80%)`,
       }}
     />
