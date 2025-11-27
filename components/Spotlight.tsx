@@ -15,8 +15,8 @@ export function Spotlight({
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        setMousePosition({ x: event.clientX - rect.left, y: event.clientY - rect.top });
+        // Since it's fixed, we can just use clientX/Y
+        setMousePosition({ x: event.clientX, y: event.clientY });
       }
     };
 
@@ -34,7 +34,7 @@ export function Spotlight({
       ref={ref}
       style={{
         background: `radial-gradient(600px circle at ${x}px ${y}px, ${
-          fill || "rgba(255, 215, 0, 0.25)"
+          fill || "rgba(255, 215, 0, 0.4)"
         }, transparent 80%)`,
       }}
     />

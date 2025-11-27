@@ -2,11 +2,26 @@
 
 import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
 import Image from 'next/image';
 import Spline from '@splinetool/react-spline';
+import { FaLinkedin, FaYoutube, FaInstagram, FaTiktok, FaTwitter, FaFacebook } from 'react-icons/fa';
+import { FaThreads } from 'react-icons/fa6';
+import { SiSubstack } from 'react-icons/si';
+import { FcGoogle } from 'react-icons/fc';
 
 export const ConnectionSection = () => {
+  const socialLinks = [
+    { icon: SiSubstack, href: "https://substack.com/home", label: "Substack" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/company/midas-touch-media-marketing/about/?viewAsMember=true", label: "LinkedIn" },
+    { icon: FaYoutube, href: "https://www.youtube.com/@midastouchmedia-24", label: "YouTube" },
+    { icon: FaFacebook, href: "https://www.facebook.com/midas.touch.media.2024", label: "Facebook" },
+    { icon: FaInstagram, href: "https://www.instagram.com/midastouchmedia24/", label: "Instagram" },
+    { icon: FaTwitter, href: "https://x.com/mtmedia2024", label: "X" },
+    { icon: FaThreads, href: "https://www.threads.net/@midastouchmedia24", label: "Threads" },
+    { icon: FaTiktok, href: "https://www.tiktok.com/@midastouchmedia24", label: "TikTok" },
+    { icon: FcGoogle, href: "https://www.google.com/search?q=Midas+Touch+Media", label: "Google" },
+  ];
+
   return (
     <section className="w-full py-20 md:py-32 px-4 md:px-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -41,7 +56,7 @@ export const ConnectionSection = () => {
                 src="/images/dossier.png"
                 alt="Dossier"
                 fill
-                className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                className="object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
               />
             </div>
           </motion.div>
@@ -60,16 +75,19 @@ export const ConnectionSection = () => {
               </Suspense>
             </div>
 
-            <div className="flex items-center justify-center gap-8">
-              <a href="https://github.com/kcjd6979" target="_blank" rel="noopener noreferrer" className="text-white hover:text-midas-gold transition-colors">
-                <Github size={32} />
-              </a>
-              <a href="https://www.linkedin.com/in/kareem-daniel-a1a397b5/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-midas-gold transition-colors">
-                <Linkedin size={32} />
-              </a>
-              <a href="mailto:your-email@example.com" className="text-white hover:text-midas-gold transition-colors">
-                <Mail size={32} />
-              </a>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#D4AF37] hover:text-[#E1E1E1] hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.8)] transition-all duration-300"
+                  aria-label={social.label}
+                >
+                  <social.icon size={28} />
+                </a>
+              ))}
             </div>
           </motion.div>
 
