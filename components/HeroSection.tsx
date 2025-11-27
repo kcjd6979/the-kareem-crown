@@ -47,7 +47,7 @@ const HeroSection = () => {
         {/* === START: AGGRESSIVE LOGO SIZING === */}
         {/* Using more direct width control to ensure size */}
         <motion.div
-          className="relative w-[90%] md:w-[80%]"
+          className="relative w-[90vw] md:w-[75vw] max-w-[1200px] mx-auto bg-transparent flex justify-center items-center"
           style={{
             rotateX: rotateX,
             rotateY: rotateY,
@@ -60,13 +60,13 @@ const HeroSection = () => {
             width={600}
             height={750}
             priority
-            className="w-full h-auto object-contain"
+            className="w-full h-auto object-contain mix-blend-screen"
           />
         </motion.div>
         {/* === END: AGGRESSIVE LOGO SIZING === */}
 
         {/* Title Text */}
-        <h1 className="text-center text-6xl md:text-8xl font-bold mt-8 text-white pb-4 leading-relaxed">
+        <h1 className="text-center text-6xl md:text-8xl font-black mt-8 text-white pb-4 leading-relaxed">
           The Kareem Crown
         </h1>
 
