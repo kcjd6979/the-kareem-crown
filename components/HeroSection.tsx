@@ -34,7 +34,7 @@ const HeroSection = () => {
 
   return (
     // The main container, centered on the screen.
-    <div className="relative flex flex-col items-center justify-center w-full h-screen overflow-hidden perspective-1000">
+    <div className="relative flex flex-col items-center justify-center w-full h-screen perspective-1000">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ const HeroSection = () => {
         {/* === START: AGGRESSIVE LOGO SIZING === */}
         {/* Using more direct width control to ensure size */}
         <motion.div
-          className="relative w-[85%] md:w-[75%]"
+          className="relative w-[90%] md:w-[80%]"
           style={{
             rotateX: rotateX,
             rotateY: rotateY,
@@ -60,13 +60,13 @@ const HeroSection = () => {
             width={600}
             height={750}
             priority
-            className="w-full h-auto drop-shadow-2xl"
+            className="w-full h-auto object-contain"
           />
         </motion.div>
         {/* === END: AGGRESSIVE LOGO SIZING === */}
 
         {/* Title Text */}
-        <h1 className="text-center text-6xl md:text-8xl font-bold mt-8 text-white">
+        <h1 className="text-center text-6xl md:text-8xl font-bold mt-8 text-white pb-4 leading-relaxed">
           The Kareem Crown
         </h1>
 
