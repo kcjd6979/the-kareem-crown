@@ -19,7 +19,7 @@ export const LiquidGlassButton = ({ children, onClick, className }: LiquidGlassB
         border border-white/20
         bg-white/10
         backdrop-blur-sm
-        text-white font-merriweather
+        text-white font-sans
         shadow-lg shadow-black/20
         transition-all duration-300 ease-in-out
         hover:bg-white/20 hover:shadow-midas-gold/20

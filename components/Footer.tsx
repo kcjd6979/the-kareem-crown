@@ -48,13 +48,13 @@ export const Footer = () => {
       >
         <div className="flex items-center justify-center gap-4">
           {/* NOTE: These are placeholders. We will add the actual 3D icons/images later */}
-          <p className="text-sm text-gray-300 font-merriweather">
+          <p className="text-sm text-gray-300" style={{ fontFamily: 'Georgia, serif' }}>
             &copy; {new Date().getFullYear()} Kareem Daniel
           </p>
           <div className="w-px h-6 bg-white/20"></div>
           <div className="flex items-center gap-2">
              {/* Placeholder for the "Told by The Forge" icon */}
-            <p className="text-sm text-gray-300 font-merriweather">
+            <p className="text-sm text-gray-300" style={{ fontFamily: 'Georgia, serif' }}>
               Told by The Forge
             </p>
           </div>
