@@ -12,7 +12,7 @@ export const ConnectionSection = () => {
     <section className="w-full py-20 md:py-32 px-4 md:px-8 relative overflow-hidden">
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2 
-          className="font-playfair font-bold text-4xl md:text-5xl text-white mb-6"
+          className="font-display font-black text-4xl md:text-5xl text-white mb-6"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -21,13 +21,13 @@ export const ConnectionSection = () => {
           Connect with The Architect
         </motion.h2>
         <motion.p 
-          className="text-xl text-gray-300 mb-12"
+          className="text-xl text-gray-300 mb-12 font-sans"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          Let's Build the Future Together
+          Let&apos;s Build the Future Together
         </motion.p>
 
         {/* Placeholder for the 3D Robot Scene */}

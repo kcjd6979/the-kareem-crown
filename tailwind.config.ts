@@ -1,4 +1,3 @@
-"tailwind.config.ts"
 
 import type { Config } from "tailwindcss";
 
@@ -15,8 +14,8 @@ const config: Config = {
         'midas-gold': '#FFD700',
       },
       fontFamily: {
-        'playfair': ['"Playfair Display SC"', 'serif'],
-        'merriweather': ['"Merriweather"', 'serif'],
+        'display': ['var(--font-playfair)', 'serif'],
+        'sans': ['var(--font-merriweather)', 'serif'],
       },
     },
   },

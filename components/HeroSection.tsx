@@ -15,25 +15,25 @@ const HeroSection = () => {
       >
         {/* === START: AGGRESSIVE LOGO SIZING === */}
         {/* Using more direct width control to ensure size */}
-        <div className="relative w-[85%] md:w-[75%]">
+        <div className="relative w-[90%] md:w-[75%]">
           <Image
             src="/kareem-logo.webp"
             alt="The personal brand logo of Kareem Daniel"
             width={600}
             height={750}
             priority
-            className="w-full h-auto"
+            className="w-full h-auto mix-blend-screen"
           />
         </div>
         {/* === END: AGGRESSIVE LOGO SIZING === */}
 
         {/* Title Text */}
-        <h1 className="text-center text-6xl md:text-8xl font-bold mt-8 text-white">
+        <h1 className="text-center text-6xl md:text-8xl font-display font-black mt-8 text-white pb-4 leading-normal">
           The Kareem Crown
         </h1>
 
         {/* Subtitle Text */}
-        <p className="text-center text-lg md:text-xl text-white/80 mt-4">
+        <p className="text-center text-lg md:text-xl text-white/80 mt-4 font-sans">
           An Arsenal of Proof
         </p>
       </motion.div>

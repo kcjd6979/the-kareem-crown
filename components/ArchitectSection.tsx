@@ -46,13 +46,13 @@ export const ArchitectSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         >
-          <h2 className="font-playfair font-bold text-4xl text-white mb-6">
+          <h2 className="font-display font-black text-4xl text-white mb-6">
             The Architect
           </h2>
-          <p className="text-lg text-gray-300 leading-relaxed font-merriweather">
-            "Most companies today see AI as either a confusing threat or a simple toy. I'm the guy who hands them the operating manual. My name is Kareem Daniel, founder of Midas Touch Media. 
-            <strong className="text-white"> I'm an AI Systems Architect who doesn't just use AI, I orchestrate it.</strong> 
-            I build the proprietary, automated systems that transform that chaos into a strategic weapon. My foundation wasn't built in a classroom; it was forged in a decade of operational warfare. And my future is being honed as a Software Engineering scholarship recipient at the AI-first Maestro University. I'm looking for a place where I can stop just talking about the future of business, and get back to the business of building it."
+          <p className="text-lg text-gray-300 leading-relaxed font-sans">
+            &quot;Most companies today see AI as either a confusing threat or a simple toy. I&apos;m the guy who hands them the operating manual. My name is Kareem Daniel, founder of Midas Touch Media.
+            <strong className="text-white"> I&apos;m an AI Systems Architect who doesn&apos;t just use AI, I orchestrate it.</strong>
+            I build the proprietary, automated systems that transform that chaos into a strategic weapon. My foundation wasn&apos;t built in a classroom; it was forged in a decade of operational warfare. And my future is being honed as a Software Engineering scholarship recipient at the AI-first Maestro University. I&apos;m looking for a place where I can stop just talking about the future of business, and get back to the business of building it.&quot;
           </p>
         </motion.div>
       </div>
