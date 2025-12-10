@@ -1,3 +1,5 @@
+"Spotlight.tsx"
+
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
@@ -15,8 +17,8 @@ export function Spotlight({
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       if (ref.current) {
-        // Since it's fixed, we can just use clientX/Y
-        setMousePosition({ x: event.clientX, y: event.clientY });
+        const rect = ref.current.getBoundingClientRect();
+        setMousePosition({ x: event.clientX - rect.left, y: event.clientY - rect.top });
       }
     };
 
@@ -30,12 +32,13 @@ export function Spotlight({
 
   return (
     <div
-      className={`pointer-events-none absolute z-50 h-full w-full ${className}`}
+      className={`pointer-events-none fixed inset-0 z-[9999] overflow-hidden ${className}`}
       ref={ref}
       style={{
         background: `radial-gradient(600px circle at ${x}px ${y}px, ${
-          fill || "rgba(255, 215, 0, 0.4)"
+          fill || "rgba(255, 215, 0, 0.2)"
         }, transparent 80%)`,
+        willChange: "background",
       }}
     />
   );
