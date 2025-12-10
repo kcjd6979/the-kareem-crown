@@ -3,7 +3,9 @@
 import { Spotlight } from "@/components/Spotlight";
 import HeroSection from "@/components/HeroSection";
 import { ArsenalSection } from "@/components/ArsenalSection";
+import { CredentialsSection } from "@/components/CredentialsSection";
 import { ArchitectSection } from "@/components/ArchitectSection";
+import { AIToolsSection } from "@/components/AIToolsSection";
 import { ConnectionSection } from "@/components/ConnectionSection";
 import { Footer } from "@/components/Footer";
 
@@ -17,7 +19,9 @@ export default function Home() {
       <main className="relative">
         <HeroSection />
         <ArsenalSection />
+        <CredentialsSection />
         <ArchitectSection />
+        <AIToolsSection />
         <ConnectionSection />
         <Footer />
       </main>
