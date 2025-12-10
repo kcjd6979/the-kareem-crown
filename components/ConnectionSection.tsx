@@ -71,10 +71,32 @@ export const ConnectionSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            <div className="h-[400px] w-full mb-8">
+            <div className="h-[400px] w-full mb-8 relative">
               <Suspense fallback={<div className="w-full h-full flex items-center justify-center"><div className="loader"></div></div>}>
                 <Spline scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" />
               </Suspense>
+              
+              {/* MTM Logo Overlay on Robot Chest */}
+              <motion.div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.8 }}
+                whileHover={{ scale: 1.1 }}
+              >
+                <div className="w-16 h-16 md:w-20 md:h-20">
+                  <Image
+                    src="/mtm_monogram_logo.png"
+                    alt="MTM Monogram Logo"
+                    fill
+                    className="object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]"
+                    style={{
+                      filter: 'drop-shadow(0 0 15px rgba(212,175,55,0.6))',
+                    }}
+                  />
+                </div>
+              </motion.div>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-6">
