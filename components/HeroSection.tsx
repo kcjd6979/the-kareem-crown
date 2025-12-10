@@ -1,57 +1,82 @@
-"HeroSection.tsx"
-
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect } from "react";
 
-export const HeroSection = () => {
+const HeroSection = () => {
+  // Mouse position state for 3D tilt effect
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Smooth out the mouse movement
+  const mouseX = useSpring(x, { stiffness: 50, damping: 20 });
+  const mouseY = useSpring(y, { stiffness: 50, damping: 20 });
+
+  // Transform mouse position to rotation values
+  // Adjust range as needed. Here: -20 to 20 degrees based on screen width/height
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [20, -20]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-20, 20]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Calculate normalized mouse position from center of screen (-0.5 to 0.5)
+      const normalizedX = (e.clientX / window.innerWidth) - 0.5;
+      const normalizedY = (e.clientY / window.innerHeight) - 0.5;
+
+      x.set(normalizedX);
+      y.set(normalizedY);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [x, y]);
+
   return (
-    <section className="h-screen w-screen flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Subtle animated background elements can go here if desired */}
-      
+    // The main container, centered on the screen.
+    <div className="relative flex flex-col items-center justify-center w-full h-screen perspective-1000">
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        className="text-center"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        style={{
+           perspective: 1000,
+        }}
+        className="z-10 flex flex-col items-center justify-center"
       >
-        {/* The Architect's Personal Logo */}
-        {/* NOTE: We will need to add the logo file to the /public folder later */}
+        {/* === START: AGGRESSIVE LOGO SIZING === */}
+        {/* Using more direct width control to ensure size */}
         <motion.div
-          initial={{ "--glow-opacity": 0, scale: 1 }}
-          animate={{ "--glow-opacity": [0, 1, 0.5, 1, 0] }}
-          transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+          className="relative w-[90%] md:w-[80%]"
           style={{
-            filter: `drop-shadow(0 0 15px rgba(255, 215, 0, var(--glow-opacity)))`
+            rotateX: rotateX,
+            rotateY: rotateY,
+            transformStyle: "preserve-3d",
           }}
         >
           <Image
-            src="/architect-logo.svg" // Placeholder - we will add the actual file
-            alt="The personal brand logo of Kareem Daniel."
-            width={150}
-            height={150}
+            src="/kareem-logo.webp"
+            alt="The personal brand logo of Kareem Daniel"
+            width={600}
+            height={750}
             priority
+            className="w-full h-auto object-contain"
           />
         </motion.div>
+        {/* === END: AGGRESSIVE LOGO SIZING === */}
 
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="font-playfair font-black text-5xl md:text-7xl mt-8 text-white"
-        >
+        {/* Title Text */}
+        <h1 className="text-center text-6xl md:text-8xl font-bold mt-8 text-white pb-4 leading-relaxed">
           The Kareem Crown
-        </motion.h1>
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="font-merriweather text-xl md:text-2xl mt-4 text-gray-300"
-        >
+        </h1>
+
+        {/* Subtitle Text */}
+        <p className="text-center text-lg md:text-xl text-white/80 mt-4">
           An Arsenal of Proof
-        </motion.h2>
+        </p>
       </motion.div>
-    </section>
+    </div>
   );
 };
+
+export default HeroSection;

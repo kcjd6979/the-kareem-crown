@@ -1,25 +1,15 @@
-"layout.tsx"
-
 import type { Metadata } from "next";
-import { Playfair_Display_SC, Merriweather } from "next/font/google";
+import { Inter } from "next/font/google";
+import BackgroundGradient from "@/components/BackgroundGradient";
+import MidasParticles from "@/components/MidasParticles";
+import { Spotlight } from "@/components/Spotlight";
 import "./globals.css";
 
-const playfair = Playfair_Display_SC({
-  subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  variable: '--font-playfair',
-});
-
-const merriweather = Merriweather({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: '--font-merriweather',
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Kareem Daniel | AI Systems Architect & Founder of Midas Touch Media",
-  description: "Kareem (KC) Daniel helps SMEs achieve unstoppable growth by architecting AI systems that automate leads, boost revenue, and streamline operations. Explore the portfolio of a forward-thinking AI strategist.",
-  keywords: "Kareem Daniel, AI Systems Architect, Midas Touch Media, SME Growth, AI Automation, Lead Generation, Revenue Operations",
+  title: "The Kareem Crown",
+  description: "An Arsenal of Proof",
 };
 
 export default function RootLayout({
@@ -29,8 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${playfair.variable} ${merriweather.variable} font-merriweather`}>
-        {children}
+      <body className={inter.className}>
+        <Spotlight className="fixed inset-0 z-50 pointer-events-none" fill="rgba(255, 215, 0, 0.3)" />
+        <BackgroundGradient />
+        <MidasParticles />
+        <main>{children}</main>
       </body>
     </html>
   );

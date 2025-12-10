@@ -1,5 +1,3 @@
-"page.tsx"
-
 "use client";
 
 import { Spotlight } from "@/components/Spotlight";
