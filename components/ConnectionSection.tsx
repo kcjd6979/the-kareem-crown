@@ -19,7 +19,6 @@ export const ConnectionSection = () => {
     { icon: FaTwitter, href: "https://x.com/mtmedia2024", label: "X" },
     { icon: FaThreads, href: "https://www.threads.net/@midastouchmedia24", label: "Threads" },
     { icon: FaTiktok, href: "https://www.tiktok.com/@midastouchmedia24", label: "TikTok" },
-    { icon: FcGoogle, href: "https://www.google.com/search?q=Midas+Touch+Media", label: "Google" },
   ];
 
   return (
@@ -32,10 +31,10 @@ export const ConnectionSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-          <h2 className="font-playfair font-bold text-4xl md:text-5xl text-white mb-6">
+          <h2 className="font-playfair font-bold text-4xl md:text-5xl text-white mb-6 tracking-wide">
             Connect with The Architect
           </h2>
-          <p className="text-xl text-gray-300">
+          <p className="text-xl text-gray-300 font-merriweather font-light tracking-wide">
             Let&apos;s Build the Future Together
           </p>
         </motion.div>
@@ -51,12 +50,15 @@ export const ConnectionSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="relative w-[80%] aspect-[3/4] border border-[#B39566]/30 rounded-xl overflow-hidden group">
+            <div className="relative w-[80%] aspect-[3/4] rounded-xl overflow-hidden group backdrop-blur-sm">
               <Image
                 src="/images/dossier.png"
                 alt="Dossier"
                 fill
-                className="object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                className="object-contain opacity-70 group-hover:opacity-90 transition-all duration-500 group-hover:scale-105"
+                style={{
+                  filter: 'drop-shadow(0 4px 20px rgba(255, 215, 0, 0.2))',
+                }}
               />
             </div>
           </motion.div>
@@ -75,17 +77,25 @@ export const ConnectionSection = () => {
               </Suspense>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-6">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#D4AF37] hover:text-[#E1E1E1] hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.8)] transition-all duration-300"
+                  className="group relative p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-300 hover:scale-110 hover:-translate-y-1"
                   aria-label={social.label}
+                  style={{
+                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+                  }}
                 >
-                  <social.icon size={28} />
+                  <social.icon 
+                    size={24} 
+                    className="text-[#D4AF37] group-hover:text-white transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]" 
+                  />
+                  {/* Mac-like pop-out glow effect */}
+                  <div className="absolute inset-0 rounded-full bg-[#D4AF37]/20 opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm scale-75 group-hover:scale-125 group-hover:blur-md"></div>
                 </a>
               ))}
             </div>

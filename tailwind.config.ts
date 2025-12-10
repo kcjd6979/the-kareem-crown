@@ -17,6 +17,8 @@ const config: Config = {
       fontFamily: {
         'playfair': ['"Playfair Display SC"', 'serif'],
         'merriweather': ['"Merriweather"', 'serif'],
+        'georgia': ['Georgia', 'serif'],
+        'times': ['"Times New Roman"', 'serif'],
       },
     },
   },

@@ -44,8 +44,7 @@ const HeroSection = () => {
         }}
         className="z-10 flex flex-col items-center justify-center"
       >
-        {/* === START: AGGRESSIVE LOGO SIZING === */}
-        {/* Using more direct width control to ensure size */}
+        {/* === TRANSPARENT LOGO BLENDING INTO ATMOSPHERE === */}
         <motion.div
           className="relative w-[90%] md:w-[80%]"
           style={{
@@ -60,18 +59,21 @@ const HeroSection = () => {
             width={600}
             height={750}
             priority
-            className="w-full h-auto object-contain"
+            className="w-full h-auto object-contain mix-blend-screen opacity-90"
+            style={{
+              filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))',
+            }}
           />
         </motion.div>
-        {/* === END: AGGRESSIVE LOGO SIZING === */}
+        {/* === END: TRANSPARENT LOGO === */}
 
-        {/* Title Text */}
-        <h1 className="text-center text-6xl md:text-8xl font-bold mt-8 text-white pb-4 leading-relaxed">
+        {/* Title Text - Playfair Display SC Black */}
+        <h1 className="text-center text-6xl md:text-8xl font-playfair font-black mt-8 text-white pb-4 leading-relaxed tracking-wide">
           The Kareem Crown
         </h1>
 
-        {/* Subtitle Text */}
-        <p className="text-center text-lg md:text-xl text-white/80 mt-4">
+        {/* Subtitle Text - Merriweather */}
+        <p className="text-center text-lg md:text-xl text-white/90 mt-4 font-merriweather font-light tracking-wide">
           An Arsenal of Proof
         </p>
       </motion.div>
