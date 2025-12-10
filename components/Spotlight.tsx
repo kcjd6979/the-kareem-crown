@@ -32,12 +32,13 @@ export function Spotlight({
 
   return (
     <div
-      className={`pointer-events-none absolute z-50 h-full w-full ${className}`}
+      className={`pointer-events-none fixed inset-0 z-[9999] overflow-hidden ${className}`}
       ref={ref}
       style={{
         background: `radial-gradient(600px circle at ${x}px ${y}px, ${
-          fill || "rgba(255, 215, 0, 0.15)"
+          fill || "rgba(255, 215, 0, 0.2)"
         }, transparent 80%)`,
+        willChange: "background",
       }}
     />
   );
