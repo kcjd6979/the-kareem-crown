@@ -7,6 +7,7 @@ import { CredentialsSection } from "@/components/CredentialsSection";
 import { ArchitectSection } from "@/components/ArchitectSection";
 import { AIToolsSection } from "@/components/AIToolsSection";
 import { ConnectionSection } from "@/components/ConnectionSection";
+import CompanyLogoSection from "@/components/CompanyLogoSection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
         <ArchitectSection />
         <AIToolsSection />
         <ConnectionSection />
+        <CompanyLogoSection />
         <Footer />
       </main>
     </div>

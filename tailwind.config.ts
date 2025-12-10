@@ -20,6 +20,9 @@ const config: Config = {
         'georgia': ['Georgia', 'serif'],
         'times': ['"Times New Roman"', 'serif'],
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
     },
   },
   plugins: [],
