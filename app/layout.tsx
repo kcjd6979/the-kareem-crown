@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Spotlight className="fixed inset-0 z-50 pointer-events-none" />
+        <Spotlight className="fixed inset-0 z-50 pointer-events-none" fill="rgba(255, 215, 0, 0.3)" />
         <BackgroundGradient />
         <MidasParticles />
         <main>{children}</main>
