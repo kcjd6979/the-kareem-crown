@@ -1,7 +1,7 @@
 "use client";
 
 import { Spotlight } from "@/components/Spotlight";
-import { HeroSection } from "@/components/HeroSection";
+import HeroSection from "@/components/HeroSection";
 import { ArsenalSection } from "@/components/ArsenalSection";
 import { ArchitectSection } from "@/components/ArchitectSection";
 import { ConnectionSection } from "@/components/ConnectionSection";
