@@ -187,51 +187,44 @@ const CompanyLogoSection: React.FC = () => {
         >
           {/* Main Logo */}
           <div className="relative w-80 h-80 md:w-96 md:h-96">
-            {/* Glowing background */}
-            <div className="absolute inset-0 bg-gradient-radial from-yellow-400/20 via-yellow-600/10 to-transparent rounded-full blur-3xl" />
-            
-            {/* Logo container with golden glow */}
+            {/* Logo container with subtle glow */}
             <div className="relative w-full h-full flex items-center justify-center">
               <motion.img
                 src="/images/mtm-logo-main.jpeg"
                 alt="Midas Touch Media"
-                className="w-full h-full object-contain filter drop-shadow-2xl"
+                className="w-full h-full object-contain filter drop-shadow-lg"
                 style={{
-                  filter: 'drop-shadow(0 0 30px #D4AF37) drop-shadow(0 0 60px #D4AF37)',
+                  filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.3))',
                 }}
                 animate={{
                   filter: [
-                    'drop-shadow(0 0 30px #D4AF37) drop-shadow(0 0 60px #D4AF37)',
-                    'drop-shadow(0 0 40px #FFD700) drop-shadow(0 0 80px #FFD700)',
-                    'drop-shadow(0 0 30px #D4AF37) drop-shadow(0 0 60px #D4AF37)'
+                    'drop-shadow(0 0 20px rgba(212, 175, 55, 0.3))',
+                    'drop-shadow(0 0 30px rgba(255, 215, 0, 0.4))',
+                    'drop-shadow(0 0 20px rgba(212, 175, 55, 0.3))'
                   ]
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
               />
             </div>
 
-            {/* Pulsing rings */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute inset-0 border-2 border-yellow-400/30 rounded-full"
-                initial={{ scale: 1, opacity: 0.8 }}
-                animate={{
-                  scale: [1, 1.5, 2],
-                  opacity: [0.8, 0.4, 0]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  delay: i * 1.3,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
+            {/* Subtle single ring */}
+            <motion.div
+              className="absolute inset-0 border border-yellow-400/20 rounded-full"
+              initial={{ scale: 1, opacity: 0.6 }}
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.6, 0.3, 0.6]
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
           </div>
 
           {/* Company tagline */}
