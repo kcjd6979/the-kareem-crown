@@ -33,4 +33,14 @@ main {
 
 body {
   background: linear-gradient(135deg, #111111 0%, #000000 50%, #1a1a1a 100%);
+  position: relative;
 }
+
+/* Z-Index Layering System */
+.bg-base { z-index: -50; }
+.bg-particles { z-index: -40; }
+.bg-ui { z-index: 1; }
+.ui-base { z-index: 10; }
+.ui-overlay { z-index: 20; }
+.ui-modal { z-index: 30; }
+.ui-spotlight { z-index: 40; }

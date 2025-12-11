@@ -23,6 +23,24 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
+      // Z-index scale for consistent layering
+      zIndex: {
+        'bg-base': '-50',
+        'bg-particles': '-40',
+        'ui-base': '10',
+        'ui-overlay': '20',
+        'ui-modal': '30',
+        'ui-spotlight': '40',
+      },
+      // Performance optimizations
+      willChange: {
+        'transform': 'transform',
+      },
+      contain: {
+        'layout': 'layout',
+        'style': 'style',
+        'paint': 'paint',
+      },
     },
   },
   plugins: [],

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import BackgroundGradient from "@/components/BackgroundGradient";
-import MidasParticles from "@/components/MidasParticles";
+import OptimizedBackground from "@/components/OptimizedBackground";
 import { Spotlight } from "@/components/Spotlight";
 import "./globals.css";
 
@@ -20,9 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Spotlight className="fixed inset-0 z-50 pointer-events-none" fill="rgba(255, 215, 0, 0.3)" />
-        <BackgroundGradient />
-        <MidasParticles />
+        <OptimizedBackground />
+        <Spotlight className="fixed inset-0 pointer-events-none" fill="rgba(255, 215, 0, 0.15)" />
         <main>{children}</main>
       </body>
     </html>

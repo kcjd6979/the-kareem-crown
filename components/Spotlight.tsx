@@ -32,7 +32,7 @@ export function Spotlight({
 
   return (
     <div
-      className={`pointer-events-none fixed inset-0 z-[9999] overflow-hidden ${className}`}
+      className={`pointer-events-none fixed inset-0 z-40 overflow-hidden ${className}`}
       ref={ref}
       style={{
         background: `radial-gradient(600px circle at ${x}px ${y}px, ${
