@@ -46,14 +46,34 @@ export const Footer = () => {
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        <div className="flex items-center justify-center gap-4">
-          {/* NOTE: These are placeholders. We will add the actual 3D icons/images later */}
+        <div className="flex items-center justify-center gap-6">
+          {/* Navigation Links */}
+          <div className="flex items-center gap-4">
+            <a 
+              href="#logo-story" 
+              className="text-sm text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-georgia"
+            >
+              Logo Story
+            </a>
+            <div className="w-px h-6 bg-white/20"></div>
+            <a 
+              href="#connection" 
+              className="text-sm text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-georgia"
+            >
+              Connect
+            </a>
+          </div>
+          
+          <div className="w-px h-6 bg-white/20"></div>
+          
+          {/* Copyright */}
           <p className="text-sm text-gray-300 font-georgia">
             &copy; {new Date().getFullYear()} Kareem Daniel
           </p>
+          
           <div className="w-px h-6 bg-white/20"></div>
+          
           <div className="flex items-center gap-2">
-             {/* Placeholder for the "Told by The Forge" icon */}
             <p className="text-sm text-gray-300 font-georgia">
               Told by The Forge
             </p>

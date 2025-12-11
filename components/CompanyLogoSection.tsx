@@ -17,21 +17,21 @@ const CompanyLogoSection: React.FC = () => {
         >
           {/* Main Logo - Full Screen Size */}
           <motion.img
-            src="/images/mtm-logo-main.jpeg"
+            src="/2-mtm-shield-black-_1_.svg"
             alt="Midas Touch Media"
             className="w-full h-full object-contain filter"
             style={{
-              filter: 'drop-shadow(0 0 40px rgba(212, 175, 55, 0.4))',
+              filter: 'drop-shadow(0 0 40px rgba(212, 175, 55, 0.6))',
             }}
             animate={{
               filter: [
-                'drop-shadow(0 0 40px rgba(212, 175, 55, 0.4))',
-                'drop-shadow(0 0 60px rgba(255, 215, 0, 0.5))',
-                'drop-shadow(0 0 40px rgba(212, 175, 55, 0.4))'
+                'drop-shadow(0 0 40px rgba(212, 175, 55, 0.6))',
+                'drop-shadow(0 0 80px rgba(255, 215, 0, 0.8))',
+                'drop-shadow(0 0 40px rgba(212, 175, 55, 0.6))'
               ]
             }}
             transition={{
-              duration: 6,
+              duration: 4,
               repeat: Infinity,
               ease: "easeInOut"
             }}

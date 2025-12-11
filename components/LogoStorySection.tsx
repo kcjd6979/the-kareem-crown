@@ -76,9 +76,12 @@ const LogoStorySection: React.FC = () => {
   ];
 
   return (
-    <section ref={containerRef} className="relative min-h-screen bg-black py-20 overflow-hidden">
+    <section id="logo-story" ref={containerRef} className="relative min-h-screen bg-black py-20 overflow-hidden">
       <motion.div 
-        style={{ opacity, y }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: "easeOut" }}
         className="container mx-auto px-6 relative z-10"
       >
         {/* Section Header */}
@@ -114,9 +117,12 @@ const LogoStorySection: React.FC = () => {
               {/* Main Logo */}
               <div className="relative aspect-square">
                 <motion.img
-                  src="/images/mtm-logo-main.jpeg"
+                  src="/2-mtm-shield-black-_1_.svg"
                   alt="MTM Logo Story"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain filter"
+                  style={{
+                    filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.4))',
+                  }}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 />
