@@ -15,6 +15,20 @@ html, body {
   color: #FFFFFF;
   overflow-x: hidden;
   min-height: 100%;
+  /* Performance optimizations for smooth scrolling */
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize animations for performance */
+* {
+  will-change: auto;
+}
+
+/* Optimize scroll performance */
+main {
+  contain: layout style paint;
 }
 
 body {

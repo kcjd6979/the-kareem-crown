@@ -87,7 +87,7 @@ export const ConnectionSection = () => {
               >
                 <div className="w-16 h-16 md:w-20 md:h-20">
                   <Image
-                    src="/mtm_monogram_logo.png"
+                    src="/images/mtm_logo.png"
                     alt="MTM Monogram Logo"
                     fill
                     className="object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]"

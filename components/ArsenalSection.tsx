@@ -55,7 +55,7 @@ export const ArsenalSection = () => {
               viewport={{ once: true }}
               custom={i}
             >
-              <div className="mb-6 transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(255,215,0,0.6)] group-hover:rotate-y-12">{item.icon}</div>
+              <div className="mb-6 transition-transform duration-300 ease-in-out group-hover:scale-110">{item.icon}</div>
               <h3 className="font-playfair font-bold text-2xl text-white mb-4">{item.title}</h3>
               <p className="text-gray-300 font-merriweather text-base leading-relaxed mb-6 flex-grow">{item.description}</p>
               <LiquidGlassButton>
