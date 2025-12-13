@@ -55,7 +55,7 @@ const HeroSection = () => {
           }}
         >
           <Image
-            src="/kareem-logo-clean.webp"
+            src="/kareem-logo-v2.webp"
             alt="The personal brand logo of Kareem Daniel"
             width={650}
             height={850}
