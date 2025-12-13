@@ -55,12 +55,12 @@ const HeroSection = () => {
           }}
         >
           <Image
-            src="/kareem-logo.webp"
+            src="/kareem-logo-clean.webp"
             alt="The personal brand logo of Kareem Daniel"
-            width={600}
-            height={750}
+            width={650}
+            height={850}
             priority
-            className="w-full h-auto object-contain"
+            className="w-full h-auto object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]"
           />
         </motion.div>
         {/* === END: AGGRESSIVE LOGO SIZING === */}
