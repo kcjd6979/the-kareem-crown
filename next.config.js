@@ -10,7 +10,7 @@ const nextConfig = {
   
   // Experimental performance features
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false,
     optimizePackageImports: ['lucide-react', 'framer-motion'],
     esmExternals: 'loose',
   },
