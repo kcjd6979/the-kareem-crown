@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Crown, Hand, Zap, CircuitBoard, Circle, Infinity } from 'lucide-react';
+import { Crown, Hand, Zap, CircuitBoard, Circle, Infinity as InfinityIcon } from 'lucide-react';
 
 interface LogoElement {
   id: string;
@@ -60,7 +60,7 @@ const LogoStorySection: React.FC = () => {
     {
       id: 'circle',
       title: 'Infinite Circle',
-      icon: <Infinity className="w-8 h-8" />,
+      icon: <InfinityIcon className="w-8 h-8" />,
       description: 'Continuous Partnership',
       symbolism: 'Represents ongoing support and collaboration - clients are part of a long-term relationship, not just transactions.',
       color: '#4169E1'
@@ -230,7 +230,7 @@ const LogoStorySection: React.FC = () => {
           className="text-center mt-20"
         >
           <blockquote className="text-2xl md:text-3xl font-playfair italic text-gray-300 max-w-4xl mx-auto">
-            "The fact that the logo evokes <span className="text-yellow-400 font-semibold">trust, excitement, and intrigue</span> shows that it successfully connects on an emotional level. This emotional appeal is essential in decision-making."
+            &quot;The fact that the logo evokes <span className="text-yellow-400 font-semibold">trust, excitement, and intrigue</span> shows that it successfully connects on an emotional level. This emotional appeal is essential in decision-making.&quot;
           </blockquote>
           
           <motion.div 
