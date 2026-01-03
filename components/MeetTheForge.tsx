@@ -112,7 +112,7 @@ function ForgeCard({
   return (
     <motion.div
       ref={cardRef}
-      className={`relative w-[260px] md:w-[280px] lg:w-[320px] h-[450px] md:h-[500px] lg:h-[540px] flex-shrink-0 perspective-1000 cursor-grab active:cursor-grabbing`}
+      className={`relative w-[260px] md:w-[280px] h-[450px] md:h-[500px] flex-shrink-0 perspective-1000 cursor-grab active:cursor-grabbing`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -327,14 +327,14 @@ export default function MeetTheForge() {
       <div 
         ref={trackRef}
         onScroll={handleScroll}
-        className="relative z-10 flex justify-center py-12 overflow-x-auto overflow-y-hidden no-scrollbar"
+        className="relative z-10 flex justify-center py-12 overflow-x-hidden no-scrollbar"
         style={{ 
           scrollBehavior: "smooth",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}
       >
-        <div className="flex items-center gap-4 md:gap-6 lg:gap-12 px-4">
+        <div className="flex items-center gap-4 md:gap-6">
           {forgeMembers.map((member) => (
             <div 
               key={member.id} 
