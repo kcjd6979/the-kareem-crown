@@ -32,13 +32,13 @@ const OptimizedBackground = () => {
 
   return (
     <>
-      {/* Base gradient background */}
+      {/* Base gradient background - darker to allow spotlight to be visible */}
       <div
         className="fixed inset-0 -z-50 h-screen w-screen"
         style={{
           background: `
-            radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 60%),
-            linear-gradient(to right, #0a0a0a, #1a1a1a, #0a0a0a)
+            radial-gradient(ellipse at center, rgba(212, 175, 55, 0.08) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 1) 100%),
+            linear-gradient(to right, #050505, #0a0a0a, #050505)
           `,
         }}
       />

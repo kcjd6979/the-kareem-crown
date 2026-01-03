@@ -33,8 +33,8 @@ const HeroSection = () => {
   }, [x, y]);
 
   return (
-    // The main container, centered on the screen.
-    <div className="relative flex flex-col items-center justify-start w-full min-h-screen perspective-1000 pt-24">
+    // The main container, centered on the screen with full impact
+    <div className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ const HeroSection = () => {
       >
         {/* === TRANSPARENT LOGO BLENDING INTO ATMOSPHERE === */}
         <motion.div
-          className="relative w-[75%] md:w-[60%] max-w-lg"
+          className="relative w-[85%] md:w-[70%] max-w-2xl"
           style={{
             rotateX: rotateX,
             rotateY: rotateY,
@@ -69,16 +69,11 @@ const HeroSection = () => {
         {/* === END: TRANSPARENT LOGO === */}
 
         {/* Title Text - Playfair Display SC Black - Glossy Metallic White */}
-        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black mt-12 text-white tracking-wide" style={{
+        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black mt-6 text-white tracking-wide" style={{
           textShadow: '0 2px 10px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.1)',
         }}>
           The Kareem Crown
         </h1>
-
-        {/* Subtitle Text - Merriweather */}
-        <p className="text-center text-lg md:text-xl text-white/90 mt-4 font-merriweather font-light tracking-wide">
-          An Arsenal of Proof
-        </p>
       </motion.div>
     </div>
   );
