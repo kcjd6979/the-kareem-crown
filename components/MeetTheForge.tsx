@@ -251,73 +251,6 @@ function ForgeCard({
   );
 }
 
-// Horizontal Scroll Track with Wheel Support (Alche-style)
-function CarouselTrack({ 
-  children, 
-  scrollX 
-}: { 
-  children: React.ReactNode;
-  scrollX: MotionValue<number>;
-}) {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [isMouseOver, setIsMouseOver] = useState(false);
-
-  // Handle wheel events to convert vertical scroll to horizontal movement
-  const handleWheel = useCallback((e: WheelEvent) => {
-    if (!trackRef.current) return;
-    
-    // Only intercept wheel when hovering over the carousel
-    if (isMouseOver) {
-      e.preventDefault();
-      
-      // Convert vertical wheel delta to horizontal scroll
-      const scrollAmount = e.deltaY * 1.5;
-      const currentScroll = trackRef.current.scrollLeft;
-      const maxScroll = trackRef.current.scrollWidth - trackRef.current.clientWidth;
-      
-      // Smooth scroll to new position
-      const newScroll = Math.max(0, Math.min(maxScroll, currentScroll + scrollAmount));
-      
-      trackRef.current.scrollTo({
-        left: newScroll,
-        behavior: 'auto', // Instant for wheel control
-      });
-    }
-  }, [isMouseOver]);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (track) {
-      track.addEventListener('wheel', handleWheel, { passive: false });
-    }
-    
-    return () => {
-      if (track) {
-        track.removeEventListener('wheel', handleWheel);
-      }
-    };
-  }, [handleWheel]);
-
-  return (
-    <div 
-      ref={trackRef}
-      className="relative z-10 flex items-center justify-start gap-12 px-[12vw] py-16 overflow-x-auto overflow-y-hidden no-scrollbar"
-      style={{ 
-        scrollSnapType: "x mandatory",
-        scrollBehavior: "smooth",
-        scrollbarWidth: "none",
-        msOverflowStyle: "none",
-        maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-        WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-      }}
-      onMouseEnter={() => setIsMouseOver(true)}
-      onMouseLeave={() => setIsMouseOver(false)}
-    >
-      {children}
-    </div>
-  );
-}
-
 // Main Component
 export default function MeetTheForge() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -402,19 +335,20 @@ export default function MeetTheForge() {
         }}
       >
         <div className="flex items-center justify-center gap-12 min-w-max px-8">
-            {forgeMembers.map((member) => (
-          <div 
-            key={member.id} 
-            className="transition-transform duration-500 hover:scale-[1.03] flex-shrink-0"
-          >
-            <ForgeCard 
-              member={member} 
-              mouseX={mouseX}
-              mouseY={mouseY}
-              scrollX={scrollX}
-            />
-          </div>
-        ))}
+          {forgeMembers.map((member) => (
+            <div 
+              key={member.id} 
+              className="transition-transform duration-500 hover:scale-[1.03] flex-shrink-0"
+            >
+              <ForgeCard 
+                member={member} 
+                mouseX={mouseX}
+                mouseY={mouseY}
+                scrollX={scrollX}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Scroll Indicator */}
