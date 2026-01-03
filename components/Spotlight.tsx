@@ -12,8 +12,8 @@ import { useMotionValue, useSpring } from 'framer-motion';
 export function Spotlight({
   className = "",
   color = "#D4AF37",
-  size = 600,
-  opacity = 0.15,
+  size = 800,
+  opacity = 0.35,
 }: {
   className?: string;
   color?: string;
@@ -27,7 +27,7 @@ export function Spotlight({
   const mouseY = useMotionValue(-1000);
   
   // Spring physics for smooth, weighted movement
-  const springConfig = { damping: 25, stiffness: 150 };
+  const springConfig = { damping: 20, stiffness: 150 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
@@ -50,7 +50,7 @@ export function Spotlight({
       ref={containerRef}
       className={`pointer-events-none fixed inset-0 z-[9999] overflow-hidden ${className}`}
       style={{
-        background: `radial-gradient(${size}px circle at ${smoothX.get()}px ${smoothY.get()}, ${color}${Math.round(opacity * 255).toString(16).padStart(2, '0')}, transparent ${size * 0.8}px)`,
+        background: `radial-gradient(${size}px circle at ${smoothX.get()}px ${smoothY.get()}, ${color}${Math.round(opacity * 255).toString(16).padStart(2, '0')}, transparent ${size * 0.75}px)`,
         willChange: "background",
       }}
     />

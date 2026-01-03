@@ -14,14 +14,14 @@ const OptimizedBackground = () => {
 
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Optimized particle count for better performance
-    const newParticles = Array.from({ length: 30 }).map(() => ({
+    // Optimized particle count for better performance with golden glow
+    const newParticles = Array.from({ length: 40 }).map(() => ({
       id: Math.random(),
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 2 + 1,
-      color: Math.random() > 0.7 ? "#FFD700" : "#B39566",
-      duration: Math.random() * 8 + 8,
+      size: Math.random() * 3 + 1,
+      color: Math.random() > 0.6 ? "#FFD700" : "#B39566",
+      duration: Math.random() * 10 + 10,
     }));
     setParticles(newParticles);
 
@@ -32,19 +32,27 @@ const OptimizedBackground = () => {
 
   return (
     <>
-      {/* Base gradient background - darker to allow spotlight to be visible */}
+      {/* Base gradient background - dark to allow golden spotlight to shine */}
       <div
         className="fixed inset-0 -z-50 h-screen w-screen"
         style={{
           background: `
-            radial-gradient(ellipse at center, rgba(212, 175, 55, 0.08) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 1) 100%),
-            linear-gradient(to right, #050505, #0a0a0a, #050505)
+            radial-gradient(ellipse at center, rgba(212, 175, 55, 0.06) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 1) 100%),
+            linear-gradient(to right, #020202, #080808, #020202)
           `,
         }}
       />
       
+      {/* Golden haze layer */}
+      <div 
+        className="fixed inset-0 -z-40 h-screen w-screen pointer-events-none opacity-30"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+        }}
+      />
+      
       {/* Optimized particles */}
-      <div className="fixed inset-0 -z-40 h-screen w-screen overflow-hidden">
+      <div className="fixed inset-0 -z-30 h-screen w-screen overflow-hidden">
         {particles.map((p) => (
           <OptimizedParticle key={p.id} particle={p} mousePosition={mousePosition} />
         ))}

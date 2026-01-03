@@ -10,13 +10,12 @@ const HeroSection = () => {
   const y = useMotionValue(0);
 
   // Smooth out the mouse movement
-  const mouseX = useSpring(x, { stiffness: 50, damping: 20 });
-  const mouseY = useSpring(y, { stiffness: 50, damping: 20 });
+  const mouseX = useSpring(x, { stiffness: 40, damping: 15 });
+  const mouseY = useSpring(y, { stiffness: 40, damping: 15 });
 
-  // Transform mouse position to rotation values
-  // Adjust range as needed. Here: -20 to 20 degrees based on screen width/height
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [20, -20]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-20, 20]);
+  // Transform mouse position to rotation values with enhanced sensitivity
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [15, -15]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-15, 15]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
