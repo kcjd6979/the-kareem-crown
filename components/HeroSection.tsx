@@ -33,13 +33,13 @@ const HeroSection = () => {
 
   return (
     // The main container - Hero section with proper spacing
-    <div className="relative flex flex-col items-center justify-start w-full min-h-screen perspective-1000 pt-20 md:pt-24">
+    <div className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000">
       {/* Logo + Title Group - Animates together as a unified centerpiece */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col items-center z-10 w-full max-w-6xl"
+        className="flex flex-col items-center z-10 w-full max-w-6xl -mt-20"
       >
         {/* === PERSONAL BRAND LOGO - BLACK CROWN - CENTERPIECE === */}
         <motion.div

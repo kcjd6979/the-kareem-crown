@@ -382,14 +382,14 @@ export default function MeetTheForge() {
       
       {/* Section Header - Playfair Display SC Black for headings */}
       <motion.div
-        className="relative z-10 pt-16 pb-16 text-center px-6"
+        className="relative z-10 pt-32 pb-16 text-center px-6"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-6xl md:text-8xl font-playfair font-black text-white mb-8 tracking-tight">
-          Meet <span style={{ color: "#D4AF37" }}>The Forge</span>
+        <h2 className="text-6xl md:text-8xl font-playfair font-black mb-8 tracking-tight" style={{ color: "#D4AF37" }}>
+          Meet The Forge
         </h2>
         <p className="text-xl text-white/45 font-merriweather max-w-4xl mx-auto leading-relaxed px-8">
           Four specialized intelligences working in concert. 
