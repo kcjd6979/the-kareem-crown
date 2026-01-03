@@ -245,23 +245,8 @@ function ForgeCard({
           <div className="absolute inset-0 bg-[linear-gradient(transparent_0%,rgba(255,255,255,0.015)_50%,transparent_100%)] bg-[length:100%_4px]" />
         </div>
 
-        {/* Corner Accents - Decorative borders */}
-        <div className={`absolute top-4 left-4 w-3 h-3 border-t-2 border-l-2 ${member.borderColor} opacity-60`} />
-        <div className={`absolute top-4 right-4 w-3 h-3 border-t-2 border-r-2 ${member.borderColor} opacity-60`} />
-        <div className={`absolute bottom-4 left-4 w-3 h-3 border-b-2 border-l-2 ${member.borderColor} opacity-60`} />
-        <div className={`absolute bottom-4 right-4 w-3 h-3 border-b-2 border-r-2 ${member.borderColor} opacity-60`} />
-
-        {/* Bottom decorative line */}
-        <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent ${member.borderColor} via-white/30 to-transparent opacity-50`} />
+        {/* Corner Accents - Decorative borders - removed to eliminate hard lines */}
       </div>
-
-      {/* 3D Depth Shadow Layer */}
-      <div 
-        className="absolute inset-0 rounded-2xl bg-black transform translate-z-[-40px]"
-        style={{ 
-          boxShadow: '0 30px 60px rgba(0,0,0,0.6)',
-        }}
-      />
     </motion.div>
   );
 }
@@ -369,9 +354,6 @@ export default function MeetTheForge() {
       className="relative w-full min-h-screen overflow-hidden"
       onMouseMove={handleMouseMove}
     >
-      {/* Top border - Visual distinction from Hero section while remaining seamless */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent pointer-events-none" />
-      
       {/* Subtle noise texture overlay - barely visible to maintain starfield */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none mix-blend-overlay">
         <div className="w-full h-full bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 400 400%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')]" />
