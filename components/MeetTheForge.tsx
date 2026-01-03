@@ -402,7 +402,7 @@ export default function MeetTheForge() {
         }}
       >
         <div className="flex items-center justify-center gap-12 min-w-max px-8">
-          {forgeMembers.map((member, index) => (
+            {forgeMembers.map((member) => (
           <div 
             key={member.id} 
             className="transition-transform duration-500 hover:scale-[1.03] flex-shrink-0"
