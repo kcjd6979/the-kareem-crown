@@ -366,7 +366,7 @@ export default function MeetTheForge() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full min-h-screen bg-[#050505] overflow-hidden"
+      className="relative w-full min-h-screen bg-black overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       {/* Background Texture - Noise */}
@@ -374,12 +374,12 @@ export default function MeetTheForge() {
         <div className="w-full h-full bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 400 400%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')]" />
       </div>
 
-      {/* Subtle Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-[#0c0c0c] to-[#080808]" />
+      {/* Subtle Background Glow - Seamless transition from Hero */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black" />
       
       {/* Section Header - Playfair Display SC Black for headings */}
       <motion.div
-        className="relative z-10 pt-28 pb-20 text-center px-6"
+        className="relative z-10 pt-16 pb-16 text-center px-6"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

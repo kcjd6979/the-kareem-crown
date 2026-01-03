@@ -34,7 +34,7 @@ const HeroSection = () => {
 
   return (
     // The main container, centered on the screen.
-    <div className="relative flex flex-col items-center justify-center w-full h-screen perspective-1000">
+    <div className="relative flex flex-col items-center justify-start w-full min-h-screen perspective-1000 pt-24">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ const HeroSection = () => {
       >
         {/* === TRANSPARENT LOGO BLENDING INTO ATMOSPHERE === */}
         <motion.div
-          className="relative w-[90%] md:w-[80%]"
+          className="relative w-[75%] md:w-[60%] max-w-lg"
           style={{
             rotateX: rotateX,
             rotateY: rotateY,
@@ -68,8 +68,10 @@ const HeroSection = () => {
         </motion.div>
         {/* === END: TRANSPARENT LOGO === */}
 
-        {/* Title Text - Playfair Display SC Black */}
-        <h1 className="text-center text-6xl md:text-8xl font-playfair font-black mt-8 text-white pb-4 leading-relaxed tracking-wide">
+        {/* Title Text - Playfair Display SC Black - Glossy Metallic White */}
+        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black mt-12 text-white tracking-wide" style={{
+          textShadow: '0 2px 10px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.1)',
+        }}>
           The Kareem Crown
         </h1>
 
