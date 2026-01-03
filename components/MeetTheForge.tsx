@@ -327,14 +327,14 @@ export default function MeetTheForge() {
       <div 
         ref={trackRef}
         onScroll={handleScroll}
-        className="relative z-10 w-full py-12 overflow-x-auto overflow-y-hidden no-scrollbar"
+        className="relative z-10 flex justify-center py-12 overflow-x-auto overflow-y-hidden no-scrollbar"
         style={{ 
           scrollBehavior: "smooth",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}
       >
-        <div className="flex items-center justify-center gap-4 md:gap-6 lg:gap-12 min-w-max px-4">
+        <div className="flex items-center gap-4 md:gap-6 lg:gap-12 px-4">
           {forgeMembers.map((member) => (
             <div 
               key={member.id} 
