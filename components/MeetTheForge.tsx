@@ -144,8 +144,8 @@ function ForgeCard({
         transition={{ duration: 0.3 }}
       />
 
-      {/* Card Background with Metallic/Glossy Gradient */}
-      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${member.gradientFrom} ${member.gradientTo} via-opacity-90 to-opacity-90 border ${member.borderColor} border-opacity-40 overflow-hidden`}>
+      {/* Card Background with Metallic/Glossy Finish - More transparent */}
+      <div className={`absolute inset-0 rounded-2xl border ${member.borderColor} border-opacity-30 overflow-hidden mix-blend-screen`}>
         
         {/* Glossy Reflection Layer */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/35 via-transparent to-transparent opacity-60" />
@@ -448,7 +448,7 @@ export default function MeetTheForge() {
       >
         <div className="flex flex-col items-center gap-4 text-white/20">
           <span className="text-[10px] font-mono uppercase tracking-[0.3em]">Mouse Wheel</span>
-          <div className="w-px h-12 bg-gradient-to-b from-white/20 to-transparent" />
+          <div className="w-px h-12 bg-white/20" />
         </div>
       </motion.div>
 
@@ -457,9 +457,7 @@ export default function MeetTheForge() {
         SCROLL →
       </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-1/2 left-0 w-32 h-32 bg-gradient-to-r from-[#D4AF37]/5 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 right-0 w-32 h-32 bg-gradient-to-l from-[#D4AF37]/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+      {/* Decorative Elements - Removed gold glows */}
     </section>
   );
 }
