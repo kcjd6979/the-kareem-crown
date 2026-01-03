@@ -153,7 +153,7 @@ const LogoStorySection: React.FC = () => {
                 {/* Pulsing Background Ring */}
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 20 as const, repeat: Infinity as const, ease: "linear" as const }}
                   className="absolute inset-0 border-2 border-yellow-400/20 rounded-full"
                   style={{ transform: 'scale(1.1)' }}
                 />
