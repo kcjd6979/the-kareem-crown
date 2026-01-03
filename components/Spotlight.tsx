@@ -1,44 +1,95 @@
-"Spotlight.tsx"
-
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useMotionValue, useSpring } from 'framer-motion';
+
+/**
+ * Global Golden Cursor - Midas Touch Media
+ * A subtle golden glow that follows the mouse cursor throughout the entire site.
+ * Uses Midas Gold (#D4AF37) from the brand bible for consistent identity.
+ */
 
 export function Spotlight({
-  className,
-  fill
+  className = "",
+  color = "#D4AF37",
+  size = 600,
+  opacity = 0.15,
 }: {
   className?: string;
-  fill?: string;
+  color?: string;
+  size?: number;
+  opacity?: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Use motion values for smooth cursor tracking
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
+  
+  // Spring physics for smooth, weighted movement
+  const springConfig = { damping: 25, stiffness: 150 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        setMousePosition({ x: event.clientX - rect.left, y: event.clientY - rect.top });
-      }
+      // Get current scroll position
+      mouseX.set(event.clientX);
+      mouseY.set(event.clientY);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
-
-  const { x, y } = mousePosition;
+  }, [mouseX, mouseY]);
 
   return (
     <div
-      className={`pointer-events-none fixed inset-0 z-40 overflow-hidden ${className}`}
-      ref={ref}
+      ref={containerRef}
+      className={`pointer-events-none fixed inset-0 z-[9999] overflow-hidden ${className}`}
       style={{
-        background: `radial-gradient(600px circle at ${x}px ${y}px, ${
-          fill || "rgba(255, 215, 0, 0.2)"
-        }, transparent 80%)`,
+        background: `radial-gradient(${size}px circle at ${smoothX.get()}px ${smoothY.get()}, ${color}${Math.round(opacity * 255).toString(16).padStart(2, '0')}, transparent ${size * 0.8}px)`,
         willChange: "background",
+      }}
+    />
+  );
+}
+
+// Compact version for headers/navigation areas
+export function SpotlightCompact({
+  className = "",
+  color = "#D4AF37",
+  size = 300,
+  opacity = 0.2,
+}: {
+  className?: string;
+  color?: string;
+  size?: number;
+  opacity?: number;
+}) {
+  const mouseX = useMotionValue(-500);
+  const mouseY = useMotionValue(-500);
+  const springConfig = { damping: 20, stiffness: 200 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      mouseX.set(event.clientX);
+      mouseY.set(event.clientY);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  return (
+    <div
+      className={`pointer-events-none fixed inset-0 z-[9999] overflow-hidden ${className}`}
+      style={{
+        background: `radial-gradient(${size}px circle at ${smoothX.get()}px ${smoothY.get()}, ${color}${Math.round(opacity * 255).toString(16).padStart(2, '0')}, transparent ${size * 0.7}px)`,
       }}
     />
   );
