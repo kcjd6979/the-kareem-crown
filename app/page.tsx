@@ -2,6 +2,7 @@
 
 import { Spotlight } from "@/components/Spotlight";
 import HeroSection from "@/components/HeroSection";
+import MeetTheForge from "@/components/MeetTheForge";
 import { ArsenalSection } from "@/components/ArsenalSection";
 import { CredentialsSection } from "@/components/CredentialsSection";
 import { ArchitectSection } from "@/components/ArchitectSection";
@@ -20,6 +21,7 @@ export default function Home() {
       {/* Main content */}
       <main className="relative">
         <HeroSection />
+        <MeetTheForge />
         <ArsenalSection />
         <CredentialsSection />
         <ArchitectSection />
