@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Crown, Hand, Zap, CircuitBoard, Circle, Infinity } from 'lucide-react';
+import { Crown, Hand, Zap, CircuitBoard, Circle, Infinity as InfinityIcon } from 'lucide-react';
 
 interface LogoElement {
   id: string;
@@ -60,7 +60,7 @@ const LogoStorySection: React.FC = () => {
     {
       id: 'circle',
       title: 'Infinite Circle',
-      icon: <Infinity className="w-8 h-8" />,
+      icon: <InfinityIcon className="w-8 h-8" />,
       description: 'Continuous Partnership',
       symbolism: 'Represents ongoing support and collaboration - clients are part of a long-term relationship, not just transactions.',
       color: '#4169E1'
@@ -153,7 +153,7 @@ const LogoStorySection: React.FC = () => {
                 {/* Pulsing Background Ring */}
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 20 as const, repeat: Infinity as const, ease: "linear" as const }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   className="absolute inset-0 border-2 border-yellow-400/20 rounded-full"
                   style={{ transform: 'scale(1.1)' }}
                 />
