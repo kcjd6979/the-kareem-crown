@@ -32,18 +32,18 @@ const HeroSection = () => {
   }, [x, y]);
 
   return (
-    // The main container - Hero section with proper spacing
+    // The main container - Hero section optimized for above-the-fold viewing
     <div className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000">
       {/* Logo + Title Group - Animates together as a unified centerpiece */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col items-center z-10 w-full max-w-6xl -mt-20"
+        className="flex flex-col items-center z-10 w-full max-w-6xl"
       >
         {/* === PERSONAL BRAND LOGO - BLACK CROWN - CENTERPIECE === */}
         <motion.div
-          className="relative w-[95%] md:w-[90%] max-w-5xl"
+          className="relative w-[90%] md:w-[85%] max-w-4xl"
           style={{
             rotateX: rotateX,
             rotateY: rotateY,
@@ -66,7 +66,7 @@ const HeroSection = () => {
         {/* === END: PERSONAL BRAND LOGO === */}
 
         {/* Title Text - Playfair Display SC Black - Glossy Metallic White */}
-        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black mt-6 text-white tracking-wide" style={{
+        <h1 className="text-center text-4xl md:text-6xl font-playfair font-black mt-3 text-white tracking-wide" style={{
           textShadow: '0 2px 10px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.1)',
         }}>
           The Kareem Crown
