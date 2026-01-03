@@ -43,9 +43,9 @@ const HeroSection = () => {
         }}
         className="z-10 flex flex-col items-center justify-center"
       >
-        {/* === TRANSPARENT LOGO BLENDING INTO ATMOSPHERE === */}
+        {/* === PERSONAL BRAND LOGO - BLACK CROWN - CENTERPIECE === */}
         <motion.div
-          className="relative w-[85%] md:w-[70%] max-w-2xl"
+          className="relative w-[95%] md:w-[90%] max-w-5xl"
           style={{
             rotateX: rotateX,
             rotateY: rotateY,
@@ -53,22 +53,22 @@ const HeroSection = () => {
           }}
         >
           <Image
-            src="/kc-logo-hero.webp"
+            src="/kc-logo-black-crown.webp"
             alt="The Kareem Crown personal brand logo"
-            width={650}
-            height={850}
+            width={800}
+            height={350}
             priority
-            className="w-full h-auto object-contain mix-blend-screen opacity-90"
+            className="w-full h-auto object-contain"
             style={{
-              // Midas Gold (Matte) - Brand Bible Official Color #D4AF37
-              filter: 'drop-shadow(0 0 25px rgba(212, 175, 55, 0.5))',
+              // Subtle golden glow for the crown accents
+              filter: 'drop-shadow(0 0 15px rgba(212, 175, 55, 0.25))',
             }}
           />
         </motion.div>
-        {/* === END: TRANSPARENT LOGO === */}
+        {/* === END: PERSONAL BRAND LOGO === */}
 
         {/* Title Text - Playfair Display SC Black - Glossy Metallic White */}
-        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black mt-6 text-white tracking-wide" style={{
+        <h1 className="text-center text-4xl md:text-6xl font-playfair font-black mt-4 text-white tracking-wide" style={{
           textShadow: '0 2px 10px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.1)',
         }}>
           The Kareem Crown
