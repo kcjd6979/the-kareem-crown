@@ -394,7 +394,7 @@ export default function MeetTheForge() {
       <div 
         ref={trackRef}
         onScroll={handleScroll}
-        className="relative z-10 flex items-center justify-center gap-12 px-[10vw] py-12 overflow-x-auto overflow-y-hidden no-scrollbar"
+        className="relative z-10 flex items-center justify-start gap-12 px-[calc(50vw-175px)] py-12 overflow-x-auto overflow-y-hidden no-scrollbar"
         style={{ 
           scrollBehavior: "smooth",
           scrollbarWidth: "none",
