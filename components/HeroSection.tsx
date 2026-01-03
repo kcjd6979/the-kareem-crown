@@ -54,14 +54,15 @@ const HeroSection = () => {
           }}
         >
           <Image
-            src="/kareem-logo-clean.webp"
-            alt="The personal brand logo of Kareem Daniel"
+            src="/kc-logo-hero.webp"
+            alt="The Kareem Crown personal brand logo"
             width={650}
             height={850}
             priority
             className="w-full h-auto object-contain mix-blend-screen opacity-90"
             style={{
-              filter: 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))',
+              // Midas Gold (Matte) - Brand Bible Official Color #D4AF37
+              filter: 'drop-shadow(0 0 25px rgba(212, 175, 55, 0.5))',
             }}
           />
         </motion.div>
