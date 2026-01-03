@@ -39,7 +39,7 @@ export const ArsenalSection = () => {
   };
 
   return (
-    <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-black/50">
+    <section className="w-full py-20 md:py-32 px-4 md:px-8">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="font-playfair font-bold text-4xl md:text-5xl text-white mb-4">
           The Arsenal
