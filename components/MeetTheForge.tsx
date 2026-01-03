@@ -394,21 +394,17 @@ export default function MeetTheForge() {
       <div 
         ref={trackRef}
         onScroll={handleScroll}
-        className="relative z-10 flex items-center justify-start gap-12 px-[10vw] py-12 overflow-x-auto overflow-y-hidden no-scrollbar"
+        className="relative z-10 flex items-center justify-center gap-12 px-[10vw] py-12 overflow-x-auto overflow-y-hidden no-scrollbar"
         style={{ 
-          scrollSnapType: "x mandatory",
           scrollBehavior: "smooth",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
         }}
       >
         {forgeMembers.map((member, index) => (
           <div 
             key={member.id} 
-            style={{ scrollSnapAlign: "center" }}
-            className="transition-transform duration-500 hover:scale-[1.03]"
+            className="transition-transform duration-500 hover:scale-[1.03] flex-shrink-0"
           >
             <ForgeCard 
               member={member} 
