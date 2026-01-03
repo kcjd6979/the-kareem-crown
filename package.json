@@ -12,6 +12,7 @@
     "@splinetool/react-spline": "^2.2.6",
     "@splinetool/runtime": "^1.12.4",
     "autoprefixer": "^10.4.22",
+    "critters": "^0.0.22",
     "framer-motion": "^11.2.10",
     "lucide-react": "^0.394.0",
     "next": "^14.2.15",
