@@ -328,15 +328,45 @@ export default function MeetTheForge() {
               key={member.id} 
               className="transition-transform duration-500 hover:scale-[1.03] flex-shrink-0 flex flex-col items-center"
             >
-              {/* Phase Tag above card */}
-              <div className="mb-4 flex items-center gap-3">
-                <span 
-                  className="text-xs font-georgia tracking-[0.3em] uppercase"
-                  style={{ color: member.color }}
+              {/* Phase Tag above card - Enhanced with unique styling per member */}
+              <motion.div 
+                className="mb-4 relative group"
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                {/* Pulsing glow ring */}
+                <div 
+                  className="absolute -inset-3 rounded-xl opacity-50 blur-lg animate-pulse"
+                  style={{ 
+                    background: member.color,
+                    animationDuration: '3s',
+                  }}
+                />
+                {/* Tag container with member's color theme */}
+                <div 
+                  className="relative px-6 py-3 rounded-lg border-2 backdrop-blur-md transition-all duration-300 group-hover:backdrop-blur-lg"
+                  style={{ 
+                    borderColor: `${member.color}90`,
+                    background: member.id === 'echo' 
+                      ? `linear-gradient(135deg, ${member.color}40, ${member.color}20)`
+                      : `linear-gradient(135deg, ${member.color}30, ${member.color}10)`,
+                    boxShadow: `0 0 25px ${member.color}30, inset 0 0 15px ${member.color}10`,
+                  }}
                 >
-                  {member.phase}
-                </span>
-              </div>
+                  <span 
+                    className="relative z-10 text-sm md:text-base font-georgia font-bold tracking-[0.4em] uppercase"
+                    style={{ 
+                      color: member.color,
+                      textShadow: `0 0 30px ${member.color}, 0 0 60px ${member.color}60`,
+                    }}
+                  >
+                    {member.phase}
+                  </span>
+                </div>
+              </motion.div>
               <ForgeCard 
                 member={member} 
                 mouseX={mouseX}
