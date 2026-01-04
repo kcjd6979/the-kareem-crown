@@ -328,39 +328,45 @@ export default function MeetTheForge() {
               key={member.id} 
               className="transition-transform duration-500 hover:scale-[1.03] flex-shrink-0 flex flex-col items-center"
             >
-              {/* Phase Tag above card - Enhanced with unique styling per member */}
+              {/* Phase Tag above card - Unique styling per member for distinction */}
               <motion.div 
                 className="mb-4 relative group"
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.08 }}
               >
-                {/* Pulsing glow ring */}
+                {/* Dynamic glow based on member - enhanced for visibility */}
                 <div 
-                  className="absolute -inset-3 rounded-xl opacity-50 blur-lg animate-pulse"
+                  className="absolute -inset-3 rounded-xl opacity-60 blur-lg"
                   style={{ 
-                    background: member.color,
-                    animationDuration: '3s',
+                    background: member.id === 'echo' 
+                      ? `linear-gradient(135deg, #00FFFF, ${member.color}88, ${member.color})`
+                      : `linear-gradient(135deg, ${member.color}, ${member.color}aa)`,
+                    boxShadow: `0 0 40px ${member.color}50, 0 0 80px ${member.color}30`,
                   }}
                 />
-                {/* Tag container with member's color theme */}
+                {/* Tag container with member's unique personality */}
                 <div 
-                  className="relative px-6 py-3 rounded-lg border-2 backdrop-blur-md transition-all duration-300 group-hover:backdrop-blur-lg"
+                  className="relative px-6 py-3 rounded-lg border-2 backdrop-blur-md transition-all duration-300"
                   style={{ 
-                    borderColor: `${member.color}90`,
-                    background: member.id === 'echo' 
-                      ? `linear-gradient(135deg, ${member.color}40, ${member.color}20)`
-                      : `linear-gradient(135deg, ${member.color}30, ${member.color}10)`,
-                    boxShadow: `0 0 25px ${member.color}30, inset 0 0 15px ${member.color}10`,
+                    borderColor: member.id === 'echo' ? '#00FFFF' : `${member.color}`,
+                    background: member.id === 'echo'
+                      ? `linear-gradient(135deg, ${member.color}40, ${member.color}60)`
+                      : `linear-gradient(135deg, ${member.color}25, ${member.color}10)`,
+                    boxShadow: member.id === 'echo'
+                      ? `0 0 30px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 255, 0.1)`
+                      : `0 0 25px ${member.color}30, inset 0 0 15px ${member.color}10`,
                   }}
                 >
                   <span 
                     className="relative z-10 text-sm md:text-base font-georgia font-bold tracking-[0.4em] uppercase"
                     style={{ 
-                      color: member.color,
-                      textShadow: `0 0 30px ${member.color}, 0 0 60px ${member.color}60`,
+                      color: member.id === 'echo' ? '#00FFFF' : member.color,
+                      textShadow: member.id === 'echo'
+                        ? `0 0 30px #00FFFF, 0 0 60px #00FFFF80`
+                        : `0 0 30px ${member.color}, 0 0 60px ${member.color}60`,
                     }}
                   >
                     {member.phase}
