@@ -311,18 +311,18 @@ export default function MeetTheForge() {
         </p>
       </motion.div>
 
-      {/* Carousel Container with Wheel Support - Aligned left to fit all cards */}
+      {/* Carousel Container - Aligned to left so all cards fit */}
       <div 
         ref={trackRef}
         onScroll={handleScroll}
-        className="relative z-10 flex justify-start w-full py-12 overflow-x-hidden no-scrollbar"
+        className="relative z-10 flex items-center w-full py-12 overflow-x-auto overflow-y-hidden no-scrollbar"
         style={{ 
           scrollBehavior: "smooth",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}
       >
-        <div className="flex items-center gap-4 md:gap-6 lg:gap-12 w-max pl-[3vw]">
+        <div className="flex items-center gap-4 md:gap-6 lg:gap-12 px-4 md:px-8">
           {forgeMembers.map((member) => (
             <div 
               key={member.id} 
