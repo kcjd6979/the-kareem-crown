@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import { motion, useSpring, useTransform, useMotionValue, MotionValue } from "framer-motion";
+import { motion, useTransform, useMotionValue, MotionValue } from "framer-motion";
 import Image from "next/image";
 
 // Forge member data with CORRECT colors and roles based on AEDPS framework
@@ -54,7 +54,7 @@ const forgeMembers = [
     title: "The Guardian",
     phase: "PULSE BACK",
     color: "#1A1A1A",
-    glowColor: "rgba(26, 26, 26, 0.6)",
+    glowColor: "rgba(0, 255, 255, 0.8)",
     gradientFrom: "from-neutral-900",
     gradientTo: "to-black",
     accentColor: "text-neutral-400",
@@ -64,189 +64,127 @@ const forgeMembers = [
   },
 ];
 
-// Spotlight cursor component for metallic shine effect
-function SpotlightCursor({ 
-  mouseX, 
-  mouseY, 
-  color,
-}: { 
-  mouseX: MotionValue<number>; 
-  mouseY: MotionValue<number>; 
-  color: string;
-}) {
-  return (
-    <motion.div
-      className="pointer-events-none absolute inset-0 z-10 rounded-2xl"
-      style={{
-        background: `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, ${color}25%, transparent 65%)`,
-      }}
-    />
-  );
-}
-
-// Individual Forge Card Component with Metallic/Glossy Finish
+// Individual Forge Card Component - Completely transparent, only image and text floating in space
 function ForgeCard({ 
   member, 
-  mouseX, 
-  mouseY,
   scrollX,
 }: { 
   member: typeof forgeMembers[0];
-  mouseX: MotionValue<number>;
-  mouseY: MotionValue<number>;
   scrollX: MotionValue<number>;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  
-  // 3D Tilt Effect - responds to mouse position within card
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [12, -12]), { stiffness: 150, damping: 20 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-12, 12]), { stiffness: 150, damping: 20 });
   
   // Parallax effect based on scroll position
   const cardParallaxX = useTransform(scrollX, [0, 1], [50, -50]);
   const cardRotation = useTransform(scrollX, [0, 1], [0, -5]);
   
-  const [isHovered, setIsHovered] = useState(false);
   const [imageError, setImageError] = useState(false);
 
   return (
     <motion.div
       ref={cardRef}
-      className={`relative w-[260px] md:w-[280px] lg:w-[320px] h-[450px] md:h-[500px] lg:h-[540px] flex-shrink-0 perspective-1000 cursor-grab active:cursor-grabbing`}
+      className={`group relative w-[260px] md:w-[280px] lg:w-[320px] h-[450px] md:h-[500px] lg:h-[540px] flex-shrink-0 perspective-1000 cursor-grab active:cursor-grabbing`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8 }}
       style={{
-        rotateX,
-        rotateY,
         rotateZ: cardRotation,
         x: cardParallaxX,
         transformStyle: "preserve-3d",
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Spotlight Effect跟随鼠标 */}
-      <SpotlightCursor 
-        mouseX={mouseX} 
-        mouseY={mouseY} 
-        color={member.color}
-      />
-
-      {/* Metallic Card Glow */}
-      <motion.div
-        className={`absolute inset-0 rounded-2xl ${member.borderColor} opacity-0`}
+      {/* Card Glow - Outside any container */}
+      <div
+        className="pointer-events-none absolute -inset-2 z-20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
-          boxShadow: isHovered ? `0 0 60px ${member.glowColor}` : "none",
+          boxShadow: `0 0 100px ${member.glowColor}`,
         }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
       />
 
-      {/* Card Background with Metallic/Glossy Finish - More transparent */}
-      <div className={`absolute inset-0 rounded-2xl border ${member.borderColor} border-opacity-30 overflow-hidden mix-blend-screen`}>
-        
-        {/* Glossy Reflection Layer */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/35 via-transparent to-transparent opacity-60" />
-        
-        {/* Metallic Sheen Overlay */}
-        <div className={`absolute inset-0 bg-gradient-to-b ${isHovered ? "from-white/25" : "from-white/8"} via-transparent to-black/40 opacity-60 transition-opacity duration-300`} />
-
-        {/* Character Image */}
-        <div className="absolute inset-x-0 top-0 h-3/5 p-5 pt-10">
-          {!imageError ? (
-            <div className="w-full h-full relative rounded-xl overflow-hidden shadow-2xl">
-              <Image
-                src={member.imagePath}
-                alt={member.name}
-                fill
-                className={`object-cover object-center transition-all duration-700 ${isHovered ? "scale-110" : "scale-100"}`}
-                onError={() => setImageError(true)}
-              />
-            </div>
-          ) : (
-            <div className="w-full h-full rounded-xl bg-black/50 flex items-center justify-center">
-              <span className="text-white/15 text-7xl font-black font-playfair italic">{member.name.charAt(0)}</span>
-            </div>
-          )}
-        </div>
-
-        {/* Metallic Accent Line */}
-        <div className={`absolute top-[calc(60%+20px)] left-5 right-5 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-50`} />
-
-        {/* Character Initial - Only show if image fails */}
-        {imageError && (
-          <div className="absolute top-28 left-8">
-            <span className="text-9xl font-black italic opacity-25 font-playfair" style={{ color: member.color }}>
-              {member.name.charAt(0)}
-            </span>
+      {/* Character Image - Full bleed, no background */}
+      <div className="absolute inset-0 top-0 h-3/5">
+        {!imageError ? (
+          <div className="w-full h-full relative">
+            <Image
+              src={member.imagePath}
+              alt={member.name}
+              fill
+              className="object-cover object-center transition-all duration-700 group-hover:scale-110"
+              onError={() => setImageError(true)}
+            />
+          </div>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <span className="text-white/15 text-7xl font-black font-playfair italic">{member.name.charAt(0)}</span>
           </div>
         )}
-
-        {/* Name & Title - Playfair Display SC Black */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
-          <h3 className="text-4xl font-playfair font-black text-white mb-2 tracking-tight">
-            {member.name}
-          </h3>
-          <p className={`text-xs font-bold uppercase tracking-[0.25em] mb-3 ${member.accentColor}`}>
-            {member.title}
-          </p>
-          
-          {/* Phase Badge - Georgia font for footer-like elements */}
-          <div className={`inline-flex px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest mb-4 border ${member.borderColor} font-georgia`}>
-            <span style={{ color: member.color }}>{member.phase}</span>&nbsp;PHASE
-          </div>
-
-          {/* Description - Merriweather for body text */}
-          <p className="text-sm text-white/65 font-merriweather font-light leading-relaxed">
-            {member.description}
-          </p>
-        </div>
-
-        {/* Power/Stats Indicators - Times New Roman for alternative text */}
-        <motion.div
-          className="absolute top-8 right-8 flex flex-col gap-4"
-          initial={{ opacity: 0, x: 25 }}
-          animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 25 }}
-          transition={{ duration: 0.4 }}
-        >
-          {/* Power Bar */}
-          <div className="flex items-center gap-3">
-            <span className="text-[9px] text-white/35 font-mono italic" style={{ fontFamily: 'Times New Roman, serif' }}>PWR</span>
-            <div className="w-16 h-2 bg-white/15 rounded-full overflow-hidden">
-              <motion.div 
-                className="h-full rounded-full"
-                style={{ background: `linear-gradient(90deg, ${member.color}, ${member.color}cc)` }}
-                initial={{ width: "0%" }}
-                animate={{ width: isHovered ? `${65 + (member.id === "goldie" ? 30 : member.id === "roman" ? 25 : member.id === "nina" ? 35 : 20)}%` : "0%" }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              />
-            </div>
-          </div>
-          
-          {/* Intelligence Bar */}
-          <div className="flex items-center gap-3">
-            <span className="text-[9px] text-white/35 font-mono italic" style={{ fontFamily: 'Times New Roman, serif' }}>INT</span>
-            <div className="w-16 h-2 bg-white/15 rounded-full overflow-hidden">
-              <motion.div 
-                className="h-full rounded-full"
-                style={{ background: `linear-gradient(90deg, ${member.color}, ${member.color}cc)` }}
-                initial={{ width: "0%" }}
-                animate={{ width: isHovered ? `${55 + (member.id === "nina" ? 40 : member.id === "echo" ? 25 : member.id === "roman" ? 35 : 25)}%` : "0%" }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              />
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Holographic Scan Lines Effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute inset-0 bg-[linear-gradient(transparent_0%,rgba(255,255,255,0.015)_50%,transparent_100%)] bg-[length:100%_4px]" />
-        </div>
-
-        {/* Corner Accents - Decorative borders - removed to eliminate hard lines */}
       </div>
+
+      {/* Character Initial - Only show if image fails */}
+      {imageError && (
+        <div className="absolute top-28 left-8">
+          <span className="text-9xl font-black italic opacity-25 font-playfair" style={{ color: member.color }}>
+            {member.name.charAt(0)}
+          </span>
+        </div>
+      )}
+
+      {/* Name & Title - Pure text, no container */}
+      <div className="absolute bottom-0 left-0 right-0 p-6">
+        <h3 className="text-4xl font-playfair font-black text-white mb-2 tracking-tight">
+          {member.name}
+        </h3>
+        <p className={`text-xs font-bold uppercase tracking-[0.25em] mb-3 ${member.accentColor}`}>
+          {member.title}
+        </p>
+        
+        {/* Phase Badge */}
+        <div className={`inline-flex px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest mb-4 font-georgia`}>
+          <span className="opacity-80" style={{ color: member.color }}>{member.phase}</span>&nbsp;PHASE
+        </div>
+
+        {/* Description */}
+        <p className="text-sm text-white/65 font-merriweather font-light leading-relaxed">
+          {member.description}
+        </p>
+      </div>
+
+      {/* Power/Stats Indicators */}
+      <motion.div
+        className="absolute top-8 right-8 flex flex-col gap-4"
+        initial={{ opacity: 0, x: 25 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        {/* Power Bar */}
+        <div className="flex items-center gap-3">
+          <span className="text-[9px] text-white/35 font-mono italic" style={{ fontFamily: 'Times New Roman, serif' }}>PWR</span>
+          <div className="w-16 h-2 bg-white/15 rounded-full overflow-hidden">
+            <motion.div 
+              className="h-full rounded-full"
+              style={{ background: `linear-gradient(90deg, ${member.color}, ${member.color}cc)` }}
+              initial={{ width: "0%" }}
+              animate={{ width: "85%" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            />
+          </div>
+        </div>
+        
+        {/* Intelligence Bar */}
+        <div className="flex items-center gap-3">
+          <span className="text-[9px] text-white/35 font-mono italic" style={{ fontFamily: 'Times New Roman, serif' }}>INT</span>
+          <div className="w-16 h-2 bg-white/15 rounded-full overflow-hidden">
+            <motion.div 
+              className="h-full rounded-full"
+              style={{ background: `linear-gradient(90deg, ${member.color}, ${member.color}cc)` }}
+              initial={{ width: "0%" }}
+              animate={{ width: "95%" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            />
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
@@ -254,29 +192,16 @@ function ForgeCard({
 // Main Component
 export default function MeetTheForge() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  
-  // Mouse tracking for card tilt effects
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const scrollTrackRef = useRef<HTMLDivElement>(null);
   
   // Scroll progress for parallax effects
   const scrollX = useMotionValue(0);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const normalizedX = (e.clientX - rect.left) / rect.width - 0.5;
-    const normalizedY = (e.clientY - rect.top) / rect.height - 0.5;
-    mouseX.set(normalizedX);
-    mouseY.set(normalizedY);
-  };
-
   // Track scroll position for parallax
   const handleScroll = () => {
-    if (trackRef.current) {
-      const maxScroll = trackRef.current.scrollWidth - trackRef.current.clientWidth;
-      const currentScroll = trackRef.current.scrollLeft;
+    if (scrollTrackRef.current) {
+      const maxScroll = scrollTrackRef.current.scrollWidth - scrollTrackRef.current.clientWidth;
+      const currentScroll = scrollTrackRef.current.scrollLeft;
       scrollX.set(maxScroll > 0 ? currentScroll / maxScroll : 0);
     }
   };
@@ -285,7 +210,6 @@ export default function MeetTheForge() {
     <section 
       ref={containerRef}
       className="relative w-full min-h-screen overflow-hidden"
-      onMouseMove={handleMouseMove}
     >
       {/* Subtle noise texture overlay - barely visible to maintain starfield */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none mix-blend-overlay">
@@ -311,49 +235,45 @@ export default function MeetTheForge() {
         </p>
       </motion.div>
 
-      {/* Carousel Container - Anchored to left edge */}
+      {/* Carousel Container - Grouped tag + card pairs */}
       <div 
-        ref={trackRef}
+        ref={scrollTrackRef}
         onScroll={handleScroll}
-        className="relative z-10 flex items-center py-12 overflow-x-auto overflow-y-hidden no-scrollbar"
-        style={{ 
-          scrollBehavior: "smooth",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        }}
+        className="relative z-10 w-full flex justify-start overflow-x-auto"
       >
-        <div className="flex items-center gap-4 md:gap-6 lg:gap-12 pr-4 md:pr-8">
+        {/* Inner wrapper - Equal padding on both sides */}
+        <div className="flex px-6 md:px-12 gap-8 lg:gap-12">
           {forgeMembers.map((member) => (
             <div 
-              key={member.id} 
-              className="transition-transform duration-500 hover:scale-[1.03] flex-shrink-0 flex flex-col items-center"
+              key={member.id}
+              className="flex-shrink-0 flex flex-col items-center w-[320px]"
             >
-              {/* Phase Tag above card - Distinct styling per member */}
+              {/* Tag */}
               <motion.div 
-                className="mb-4 relative group"
+                className="relative group mb-4"
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
                 whileHover={{ scale: 1.08 }}
               >
-                {/* Unique glow effects per member - reduced intensity */}
+                {/* Unique glow effects per member */}
                 <div 
                   className="absolute -inset-3 rounded-xl blur-md opacity-70"
                   style={{ 
                     background: member.id === 'goldie' 
                       ? `linear-gradient(135deg, #FFD700, #D4AF37, #FFA500)`
                       : member.id === 'roman'
-                      ? `linear-gradient(135deg, #E8E8E8, #B0C4DE, #87CEEB)`
+                      ? `linear-gradient(135deg, #7B8BA5, #4A6FA5, #2E5A8B)`
                       : member.id === 'nina'
-                      ? `linear-gradient(135deg, #FFFFFF, #E0F0FF, #B0E0E6)`
+                      ? `linear-gradient(135deg, #FFFFFF, #E8F5F5, #A8E6E0)`
                       : `linear-gradient(135deg, #9CA3AF, #6B7280, #4B5563)`,
                     boxShadow: member.id === 'goldie' 
                       ? `0 0 35px rgba(255, 215, 0, 0.4), 0 0 70px rgba(212, 175, 55, 0.2)`
                       : member.id === 'roman'
-                      ? `0 0 30px rgba(176, 196, 222, 0.35), 0 0 60px rgba(135, 206, 235, 0.2)`
+                      ? `0 0 30px rgba(74, 111, 165, 0.4), 0 0 60px rgba(46, 90, 139, 0.25)`
                       : member.id === 'nina'
-                      ? `0 0 30px rgba(255, 255, 255, 0.4), 0 0 60px rgba(176, 224, 230, 0.25)`
+                      ? `0 0 30px rgba(255, 255, 255, 0.4), 0 0 60px rgba(168, 230, 224, 0.25)`
                       : `0 0 35px rgba(156, 163, 175, 0.4), 0 0 70px rgba(107, 114, 128, 0.25)`,
                   }}
                 />
@@ -364,16 +284,16 @@ export default function MeetTheForge() {
                     borderColor: member.id === 'goldie' 
                       ? '#FFD700'
                       : member.id === 'roman'
-                      ? '#B0C4DE'
+                      ? '#4A6FA5'
                       : member.id === 'nina'
-                      ? '#FFFFFF'
+                      ? '#A8E6E0'
                       : '#9CA3AF',
                     background: member.id === 'goldie' 
                       ? `linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(212, 175, 55, 0.05))`
                       : member.id === 'roman'
-                      ? `linear-gradient(135deg, rgba(176, 196, 222, 0.2), rgba(135, 206, 235, 0.1))`
+                      ? `linear-gradient(135deg, rgba(123, 139, 165, 0.25), rgba(46, 90, 139, 0.15))`
                       : member.id === 'nina'
-                      ? `linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(224, 240, 255, 0.1))`
+                      ? `linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(168, 230, 224, 0.12))`
                       : `linear-gradient(135deg, rgba(156, 163, 175, 0.25), rgba(107, 114, 128, 0.15))`,
                   }}
                 >
@@ -383,16 +303,16 @@ export default function MeetTheForge() {
                       color: member.id === 'goldie' 
                         ? '#FFD700'
                         : member.id === 'roman'
-                        ? '#E8E8E8'
+                        ? '#7B8BA5'
                         : member.id === 'nina'
                         ? '#FFFFFF'
                         : '#9CA3AF',
                       textShadow: member.id === 'goldie' 
                         ? `0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.5)`
                         : member.id === 'roman'
-                        ? `0 0 12px rgba(176, 196, 222, 0.8), 0 0 25px rgba(135, 206, 235, 0.5)`
+                        ? `0 0 12px rgba(123, 139, 165, 0.8), 0 0 25px rgba(46, 90, 139, 0.5)`
                         : member.id === 'nina'
-                        ? `0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(224, 240, 255, 0.5)`
+                        ? `0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(168, 230, 224, 0.5)`
                         : `0 0 18px rgba(156, 163, 175, 0.9), 0 0 35px rgba(107, 114, 128, 0.6)`,
                     }}
                   >
@@ -400,10 +320,10 @@ export default function MeetTheForge() {
                   </span>
                 </div>
               </motion.div>
+              
+              {/* Card */}
               <ForgeCard 
                 member={member} 
-                mouseX={mouseX}
-                mouseY={mouseY}
                 scrollX={scrollX}
               />
             </div>

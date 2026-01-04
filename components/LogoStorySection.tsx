@@ -76,7 +76,7 @@ const LogoStorySection: React.FC = () => {
   ];
 
   return (
-    <section id="logo-story" ref={containerRef} className="relative min-h-screen bg-black py-20 overflow-hidden">
+    <section id="logo-story" ref={containerRef} className="relative min-h-screen py-20 overflow-hidden">
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -161,19 +161,19 @@ const LogoStorySection: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Story Content */}
-          <div className="space-y-8">
+          {/* Story Content - Floating cards with no visible container borders */}
+          <div className="space-y-6">
             {logoElements.map((element, index) => (
               <motion.div
                 key={element.id}
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`p-6 rounded-lg border transition-all duration-500 cursor-pointer ${
+                className={`p-6 transition-all duration-500 cursor-pointer ${
                   activeElement === element.id
-                    ? 'border-yellow-400 bg-yellow-400/10 shadow-lg shadow-yellow-400/20'
-                    : 'border-gray-700 bg-gray-900/50 hover:border-yellow-400/50'
-                }`}
+                    ? 'bg-yellow-400/5'
+                    : 'hover:bg-white/5'
+                }}`}
                 onClick={() => setActiveElement(element.id)}
               >
                 <div className="flex items-start space-x-4">
@@ -246,8 +246,8 @@ const LogoStorySection: React.FC = () => {
         </motion.div>
       </motion.div>
 
-      {/* Background Effects */}
-      <div className="absolute inset-0 opacity-5">
+      {/* Background Effects - Subtle, no visible containers */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-transparent to-transparent" />
         <motion.div
           animate={{ 
