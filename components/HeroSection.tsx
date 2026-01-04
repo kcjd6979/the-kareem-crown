@@ -5,17 +5,17 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect } from "react";
 
 const HeroSection = () => {
-  // Mouse position state for 3D tilt effect
+  // Mouse position state for 3D tilt effect - Increased sensitivity for fluid movement
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Smooth out the mouse movement
-  const mouseX = useSpring(x, { stiffness: 40, damping: 15 });
-  const mouseY = useSpring(y, { stiffness: 40, damping: 15 });
+  // Higher stiffness and lower damping = more responsive, fluid movement
+  const mouseX = useSpring(x, { stiffness: 150, damping: 10 });
+  const mouseY = useSpring(y, { stiffness: 150, damping: 10 });
 
-  // Transform mouse position to rotation values with enhanced sensitivity
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [15, -15]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-15, 15]);
+  // Wider rotation range for more visible movement
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [20, -20]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-25, 25]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -39,7 +39,7 @@ const HeroSection = () => {
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col items-center z-10 w-full max-w-6xl -mt-28 md:-mt-36"
+        className="flex flex-col items-center z-10 w-full max-w-6xl -mt-12 md:-mt-20"
       >
         {/* === PERSONAL BRAND LOGO - BLACK CROWN - CENTERPIECE === */}
         <motion.div
@@ -66,7 +66,7 @@ const HeroSection = () => {
         {/* === END: PERSONAL BRAND LOGO === */}
 
         {/* Title Text - Playfair Display SC Black - Glossy Metallic White */}
-        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black mt-1 text-white tracking-wide" style={{
+        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black mt-0 text-white tracking-wide" style={{
           textShadow: '0 2px 10px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.1)',
         }}>
           The Kareem Crown
