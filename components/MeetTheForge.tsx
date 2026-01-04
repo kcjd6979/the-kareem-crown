@@ -347,14 +347,14 @@ export default function MeetTheForge() {
                       ? `linear-gradient(135deg, #E8E8E8, #B0C4DE, #87CEEB)`
                       : member.id === 'nina'
                       ? `linear-gradient(135deg, #FFFFFF, #E0F0FF, #B0E0E6)`
-                      : `linear-gradient(135deg, #00FFFF, #00CED1, #40E0D0)`,
+                      : `linear-gradient(135deg, #9CA3AF, #6B7280, #4B5563)`,
                     boxShadow: member.id === 'goldie' 
                       ? `0 0 35px rgba(255, 215, 0, 0.4), 0 0 70px rgba(212, 175, 55, 0.2)`
                       : member.id === 'roman'
                       ? `0 0 30px rgba(176, 196, 222, 0.35), 0 0 60px rgba(135, 206, 235, 0.2)`
                       : member.id === 'nina'
                       ? `0 0 30px rgba(255, 255, 255, 0.4), 0 0 60px rgba(176, 224, 230, 0.25)`
-                      : `0 0 35px rgba(0, 255, 255, 0.4), 0 0 70px rgba(64, 224, 208, 0.25)`,
+                      : `0 0 35px rgba(156, 163, 175, 0.4), 0 0 70px rgba(107, 114, 128, 0.25)`,
                   }}
                 />
                 {/* Unique container styling per member */}
@@ -367,14 +367,14 @@ export default function MeetTheForge() {
                       ? '#B0C4DE'
                       : member.id === 'nina'
                       ? '#FFFFFF'
-                      : '#00FFFF',
+                      : '#9CA3AF',
                     background: member.id === 'goldie' 
                       ? `linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(212, 175, 55, 0.05))`
                       : member.id === 'roman'
                       ? `linear-gradient(135deg, rgba(176, 196, 222, 0.2), rgba(135, 206, 235, 0.1))`
                       : member.id === 'nina'
                       ? `linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(224, 240, 255, 0.1))`
-                      : `linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 206, 209, 0.1))`,
+                      : `linear-gradient(135deg, rgba(156, 163, 175, 0.25), rgba(107, 114, 128, 0.15))`,
                   }}
                 >
                   <span 
@@ -386,14 +386,14 @@ export default function MeetTheForge() {
                         ? '#E8E8E8'
                         : member.id === 'nina'
                         ? '#FFFFFF'
-                        : '#00FFFF',
+                        : '#9CA3AF',
                       textShadow: member.id === 'goldie' 
                         ? `0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.5)`
                         : member.id === 'roman'
                         ? `0 0 12px rgba(176, 196, 222, 0.8), 0 0 25px rgba(135, 206, 235, 0.5)`
                         : member.id === 'nina'
                         ? `0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(224, 240, 255, 0.5)`
-                        : `0 0 18px rgba(0, 255, 255, 0.8), 0 0 35px rgba(0, 206, 209, 0.5)`,
+                        : `0 0 18px rgba(156, 163, 175, 0.9), 0 0 35px rgba(107, 114, 128, 0.6)`,
                     }}
                   >
                     {member.phase}
