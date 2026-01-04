@@ -322,7 +322,7 @@ export default function MeetTheForge() {
           msOverflowStyle: "none",
         }}
       >
-        <div className="flex items-center gap-4 md:gap-6 lg:gap-12 px-4 md:px-8">
+        <div className="flex items-center gap-4 md:gap-6 lg:gap-12 pr-4 md:pr-8">
           {forgeMembers.map((member) => (
             <div 
               key={member.id} 
