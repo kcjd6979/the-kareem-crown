@@ -294,7 +294,7 @@ export default function MeetTheForge() {
       
       {/* Section Header - Playfair Display SC Black for headings */}
       <motion.div
-        className="relative z-10 pt-40 pb-20 text-center px-6"
+        className="relative z-10 pt-40 pb-12 text-center px-6"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -309,18 +309,6 @@ export default function MeetTheForge() {
           <br />
           <span className="text-[#D4AF37] italic">Adaptive Business Intelligence, personified.</span>
         </p>
-        
-        {/* AEDPS Framework Badge - Georgia font */}
-        <div className="flex items-center justify-center gap-6 mt-10 flex-wrap">
-          {["ADOPT", "ENHANCE", "DEPLOY", "PULSE BACK"].map((phase, i) => (
-            <React.Fragment key={phase}>
-              <span className="text-xs font-georgia tracking-[0.2em] text-white/35">
-                {phase}
-              </span>
-              {i < 3 && <span className="text-white/15 text-lg">→</span>}
-            </React.Fragment>
-          ))}
-        </div>
       </motion.div>
 
       {/* Carousel Container with Wheel Support */}
@@ -338,8 +326,17 @@ export default function MeetTheForge() {
           {forgeMembers.map((member) => (
             <div 
               key={member.id} 
-              className="transition-transform duration-500 hover:scale-[1.03] flex-shrink-0"
+              className="transition-transform duration-500 hover:scale-[1.03] flex-shrink-0 flex flex-col items-center"
             >
+              {/* Phase Tag above card */}
+              <div className="mb-4 flex items-center gap-3">
+                <span 
+                  className="text-xs font-georgia tracking-[0.3em] uppercase"
+                  style={{ color: member.color }}
+                >
+                  {member.phase}
+                </span>
+              </div>
               <ForgeCard 
                 member={member} 
                 mouseX={mouseX}
