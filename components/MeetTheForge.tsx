@@ -311,18 +311,18 @@ export default function MeetTheForge() {
         </p>
       </motion.div>
 
-      {/* Carousel Container with Wheel Support */}
+      {/* Carousel Container with Wheel Support - Aligned left to fit all cards */}
       <div 
         ref={trackRef}
         onScroll={handleScroll}
-        className="relative z-10 flex justify-center w-full py-12 overflow-x-hidden no-scrollbar"
+        className="relative z-10 flex justify-start w-full py-12 overflow-x-hidden no-scrollbar"
         style={{ 
           scrollBehavior: "smooth",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}
       >
-        <div className="flex items-center gap-4 md:gap-6 lg:gap-12 w-max px-4 md:px-8">
+        <div className="flex items-center gap-4 md:gap-6 lg:gap-12 w-max pl-[3vw]">
           {forgeMembers.map((member) => (
             <div 
               key={member.id} 
@@ -337,9 +337,9 @@ export default function MeetTheForge() {
                 transition={{ duration: 0.6 }}
                 whileHover={{ scale: 1.08 }}
               >
-                {/* Unique glow effects per member */}
+                {/* Unique glow effects per member - reduced intensity */}
                 <div 
-                  className="absolute -inset-3 rounded-xl blur-lg"
+                  className="absolute -inset-3 rounded-xl blur-md opacity-70"
                   style={{ 
                     background: member.id === 'goldie' 
                       ? `linear-gradient(135deg, #FFD700, #D4AF37, #FFA500)`
@@ -349,12 +349,12 @@ export default function MeetTheForge() {
                       ? `linear-gradient(135deg, #FFFFFF, #E0F0FF, #B0E0E6)`
                       : `linear-gradient(135deg, #00FFFF, #00CED1, #40E0D0)`,
                     boxShadow: member.id === 'goldie' 
-                      ? `0 0 50px rgba(255, 215, 0, 0.6), 0 0 100px rgba(212, 175, 55, 0.3)`
+                      ? `0 0 35px rgba(255, 215, 0, 0.4), 0 0 70px rgba(212, 175, 55, 0.2)`
                       : member.id === 'roman'
-                      ? `0 0 40px rgba(176, 196, 222, 0.5), 0 0 80px rgba(135, 206, 235, 0.3)`
+                      ? `0 0 30px rgba(176, 196, 222, 0.35), 0 0 60px rgba(135, 206, 235, 0.2)`
                       : member.id === 'nina'
-                      ? `0 0 40px rgba(255, 255, 255, 0.6), 0 0 80px rgba(176, 224, 230, 0.4)`
-                      : `0 0 50px rgba(0, 255, 255, 0.6), 0 0 100px rgba(64, 224, 208, 0.4)`,
+                      ? `0 0 30px rgba(255, 255, 255, 0.4), 0 0 60px rgba(176, 224, 230, 0.25)`
+                      : `0 0 35px rgba(0, 255, 255, 0.4), 0 0 70px rgba(64, 224, 208, 0.25)`,
                   }}
                 />
                 {/* Unique container styling per member */}
@@ -378,7 +378,7 @@ export default function MeetTheForge() {
                   }}
                 >
                   <span 
-                    className="relative z-10 text-sm md:text-base font-georgia font-bold tracking-[0.4em] uppercase"
+                    className="relative z-10 text-sm md:text-base font-georgia font-bold tracking-[0.35em] uppercase"
                     style={{ 
                       color: member.id === 'goldie' 
                         ? '#FFD700'
@@ -388,12 +388,12 @@ export default function MeetTheForge() {
                         ? '#FFFFFF'
                         : '#00FFFF',
                       textShadow: member.id === 'goldie' 
-                        ? `0 0 30px #FFD700, 0 0 60px #D4AF37`
+                        ? `0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.5)`
                         : member.id === 'roman'
-                        ? `0 0 25px #B0C4DE, 0 0 50px #87CEEB`
+                        ? `0 0 12px rgba(176, 196, 222, 0.8), 0 0 25px rgba(135, 206, 235, 0.5)`
                         : member.id === 'nina'
-                        ? `0 0 30px #FFFFFF, 0 0 60px #E0F0FF`
-                        : `0 0 35px #00FFFF, 0 0 70px #00CED1`,
+                        ? `0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(224, 240, 255, 0.5)`
+                        : `0 0 18px rgba(0, 255, 255, 0.8), 0 0 35px rgba(0, 206, 209, 0.5)`,
                     }}
                   >
                     {member.phase}
