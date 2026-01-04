@@ -311,11 +311,11 @@ export default function MeetTheForge() {
         </p>
       </motion.div>
 
-      {/* Carousel Container - Aligned to left so all cards fit */}
+      {/* Carousel Container - Anchored to left edge */}
       <div 
         ref={trackRef}
         onScroll={handleScroll}
-        className="relative z-10 flex items-center w-full py-12 overflow-x-auto overflow-y-hidden no-scrollbar"
+        className="relative z-10 flex items-center py-12 overflow-x-auto overflow-y-hidden no-scrollbar"
         style={{ 
           scrollBehavior: "smooth",
           scrollbarWidth: "none",
