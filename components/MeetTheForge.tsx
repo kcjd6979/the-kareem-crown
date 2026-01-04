@@ -328,7 +328,7 @@ export default function MeetTheForge() {
               key={member.id} 
               className="transition-transform duration-500 hover:scale-[1.03] flex-shrink-0 flex flex-col items-center"
             >
-              {/* Phase Tag above card - Unique styling per member for distinction */}
+              {/* Phase Tag above card - Distinct styling per member */}
               <motion.div 
                 className="mb-4 relative group"
                 initial={{ opacity: 0, y: -20 }}
@@ -337,36 +337,63 @@ export default function MeetTheForge() {
                 transition={{ duration: 0.6 }}
                 whileHover={{ scale: 1.08 }}
               >
-                {/* Dynamic glow based on member - enhanced for visibility */}
+                {/* Unique glow effects per member */}
                 <div 
-                  className="absolute -inset-3 rounded-xl opacity-60 blur-lg"
+                  className="absolute -inset-3 rounded-xl blur-lg"
                   style={{ 
-                    background: member.id === 'echo' 
-                      ? `linear-gradient(135deg, #00FFFF, ${member.color}88, ${member.color})`
-                      : `linear-gradient(135deg, ${member.color}, ${member.color}aa)`,
-                    boxShadow: `0 0 40px ${member.color}50, 0 0 80px ${member.color}30`,
+                    background: member.id === 'goldie' 
+                      ? `linear-gradient(135deg, #FFD700, #D4AF37, #FFA500)`
+                      : member.id === 'roman'
+                      ? `linear-gradient(135deg, #E8E8E8, #B0C4DE, #87CEEB)`
+                      : member.id === 'nina'
+                      ? `linear-gradient(135deg, #FFFFFF, #E0F0FF, #B0E0E6)`
+                      : `linear-gradient(135deg, #00FFFF, #00CED1, #40E0D0)`,
+                    boxShadow: member.id === 'goldie' 
+                      ? `0 0 50px rgba(255, 215, 0, 0.6), 0 0 100px rgba(212, 175, 55, 0.3)`
+                      : member.id === 'roman'
+                      ? `0 0 40px rgba(176, 196, 222, 0.5), 0 0 80px rgba(135, 206, 235, 0.3)`
+                      : member.id === 'nina'
+                      ? `0 0 40px rgba(255, 255, 255, 0.6), 0 0 80px rgba(176, 224, 230, 0.4)`
+                      : `0 0 50px rgba(0, 255, 255, 0.6), 0 0 100px rgba(64, 224, 208, 0.4)`,
                   }}
                 />
-                {/* Tag container with member's unique personality */}
+                {/* Unique container styling per member */}
                 <div 
-                  className="relative px-6 py-3 rounded-lg border-2 backdrop-blur-md transition-all duration-300"
+                  className="relative px-6 py-3 rounded-lg border-2 backdrop-blur-md"
                   style={{ 
-                    borderColor: member.id === 'echo' ? '#00FFFF' : `${member.color}`,
-                    background: member.id === 'echo'
-                      ? `linear-gradient(135deg, ${member.color}40, ${member.color}60)`
-                      : `linear-gradient(135deg, ${member.color}25, ${member.color}10)`,
-                    boxShadow: member.id === 'echo'
-                      ? `0 0 30px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 255, 0.1)`
-                      : `0 0 25px ${member.color}30, inset 0 0 15px ${member.color}10`,
+                    borderColor: member.id === 'goldie' 
+                      ? '#FFD700'
+                      : member.id === 'roman'
+                      ? '#B0C4DE'
+                      : member.id === 'nina'
+                      ? '#FFFFFF'
+                      : '#00FFFF',
+                    background: member.id === 'goldie' 
+                      ? `linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(212, 175, 55, 0.05))`
+                      : member.id === 'roman'
+                      ? `linear-gradient(135deg, rgba(176, 196, 222, 0.2), rgba(135, 206, 235, 0.1))`
+                      : member.id === 'nina'
+                      ? `linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(224, 240, 255, 0.1))`
+                      : `linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 206, 209, 0.1))`,
                   }}
                 >
                   <span 
                     className="relative z-10 text-sm md:text-base font-georgia font-bold tracking-[0.4em] uppercase"
                     style={{ 
-                      color: member.id === 'echo' ? '#00FFFF' : member.color,
-                      textShadow: member.id === 'echo'
-                        ? `0 0 30px #00FFFF, 0 0 60px #00FFFF80`
-                        : `0 0 30px ${member.color}, 0 0 60px ${member.color}60`,
+                      color: member.id === 'goldie' 
+                        ? '#FFD700'
+                        : member.id === 'roman'
+                        ? '#E8E8E8'
+                        : member.id === 'nina'
+                        ? '#FFFFFF'
+                        : '#00FFFF',
+                      textShadow: member.id === 'goldie' 
+                        ? `0 0 30px #FFD700, 0 0 60px #D4AF37`
+                        : member.id === 'roman'
+                        ? `0 0 25px #B0C4DE, 0 0 50px #87CEEB`
+                        : member.id === 'nina'
+                        ? `0 0 30px #FFFFFF, 0 0 60px #E0F0FF`
+                        : `0 0 35px #00FFFF, 0 0 70px #00CED1`,
                     }}
                   >
                     {member.phase}
