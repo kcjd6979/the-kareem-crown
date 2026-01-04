@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <OptimizedBackground />
-        <Spotlight className="fixed inset-0 pointer-events-none" color="#D4AF37" opacity={0.35} />
+        <Spotlight className="fixed inset-0 pointer-events-none" color="#D4AF37" opacity={0.5} size={1000} />
         <main>{children}</main>
       </body>
     </html>
