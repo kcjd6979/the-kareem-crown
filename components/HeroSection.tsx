@@ -49,36 +49,6 @@ const HeroSection = () => {
           filter: 'blur(15px)',
         }}
       />
-      
-      {/* === OVERHEAD WHITE LAMP LIGHT === */}
-      {/* Fixed white ambient light that shines from above continuously */}
-      <div 
-        className="fixed pointer-events-none z-0"
-        style={{
-          left: '50%',
-          top: '0%',
-          transform: 'translateX(-50%)',
-          width: '900px',
-          height: '220px',
-          background: 'radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.06) 50%, transparent 80%)',
-          filter: 'blur(25px)',
-        }}
-      />
-      
-      {/* === BOTTOM WHITE LAMP LIGHT (Mirrored) === */}
-      {/* Mirrored white ambient light at bottom to create bookmarking effect */}
-      <div 
-        className="fixed pointer-events-none z-0"
-        style={{
-          left: '50%',
-          bottom: '0%',
-          transform: 'translateX(-50%)',
-          width: '900px',
-          height: '220px',
-          background: 'radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 50%, transparent 80%)',
-          filter: 'blur(25px)',
-        }}
-      />
 
       {/* Logo + Title Group - Centered in viewport with minimal gap */}
       <motion.div
