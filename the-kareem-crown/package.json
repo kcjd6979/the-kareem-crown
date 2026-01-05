@@ -3,12 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "vercel-build": "mkdir -p tmp || true && npm run build --prefix \"the-kareem-crown/Kareem Crown Pre-Portfolio Site Codebase\""
+    "vercel-build": "mkdir -p tmp || true && npm run build --prefix \"Kareem Crown Pre-Portfolio Site Codebase\""
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "devDependencies": {
-    "next": "14.2.3"
   }
 }
