@@ -82,9 +82,9 @@ const HeroSection = () => {
           left: '50%',
           top: '0%',
           transform: 'translateX(-50%)',
-          width: '300px',
-          height: '200px',
-          background: 'radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 50%, transparent 80%)',
+          width: '450px',
+          height: '220px',
+          background: 'radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.06) 50%, transparent 80%)',
           filter: 'blur(25px)',
         }}
       />
@@ -98,12 +98,12 @@ const HeroSection = () => {
       >
         {/* === PERSONAL BRAND LOGO - BLACK CROWN - CENTERPIECE === */}
         <motion.div
-          className="relative w-[90%] md:w-[85%] max-w-4xl"
+          className="relative w-[90%] md:w-[85%] max-w-5xl"
           style={{
             rotateX: rotateX,
             rotateY: rotateY,
             transformStyle: "preserve-3d",
-            transform: 'scale(0.85)',
+            transform: 'scale(1.02, 0.95)',
           }}
         >
           <Image
