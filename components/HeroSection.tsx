@@ -32,14 +32,14 @@ const HeroSection = () => {
   }, [x, y]);
 
   return (
-    // The main container - Hero section positioned at top for full above-the-fold impact
-    <div className="relative flex flex-col items-center justify-start w-full min-h-screen perspective-1000">
-      {/* Logo + Title Group - Positioned at top, title at bottom tip of logo */}
+    // The main container - Hero section centered for full above-the-fold impact
+    <div className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000" style={{ paddingTop: '5vh', paddingBottom: '5vh' }}>
+      {/* Logo + Title Group - Centered in viewport with minimal gap */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col items-center z-10 w-full max-w-6xl pt-0"
+        className="flex flex-col items-center z-10 w-full max-w-4xl gap-[3vh]"
       >
         {/* === PERSONAL BRAND LOGO - BLACK CROWN - CENTERPIECE === */}
         <motion.div
@@ -48,6 +48,7 @@ const HeroSection = () => {
             rotateX: rotateX,
             rotateY: rotateY,
             transformStyle: "preserve-3d",
+            transform: 'scale(0.85)',
           }}
         >
           <Image
@@ -65,8 +66,8 @@ const HeroSection = () => {
         </motion.div>
         {/* === END: PERSONAL BRAND LOGO === */}
 
-        {/* Title Text - Positioned at bottom tip of logo for seamless flow */}
-        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black mt-2 text-white tracking-wide" style={{
+        {/* Title Text - Positioned immediately below logo */}
+        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black mt-0 mb-0 text-white tracking-wide" style={{
           textShadow: '0 2px 10px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.1)',
         }}>
           The Kareem Crown
