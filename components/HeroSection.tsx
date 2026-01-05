@@ -32,14 +32,14 @@ const HeroSection = () => {
   }, [x, y]);
 
   return (
-    // The main container - Hero section positioned at top of viewport
-    <div className="relative flex flex-col items-center justify-start w-full min-h-screen perspective-1000">
-      {/* Logo + Title Group - Animates together as a unified centerpiece */}
+    // The main container - Hero section centered vertically
+    <div className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000">
+      {/* Logo + Title Group - Animates together, positioned at bottom tip of logo */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col items-center z-10 w-full max-w-6xl -mt-16 md:-mt-28"
+        className="flex flex-col items-center z-10 w-full max-w-6xl -mt-8 md:-mt-12"
       >
         {/* === PERSONAL BRAND LOGO - BLACK CROWN - CENTERPIECE === */}
         <motion.div
@@ -65,8 +65,8 @@ const HeroSection = () => {
         </motion.div>
         {/* === END: PERSONAL BRAND LOGO === */}
 
-        {/* Title Text - Playfair Display SC Black - Glossy Metallic White */}
-        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black -mt-3 text-white tracking-wide" style={{
+        {/* Title Text - Positioned at bottom tip of logo for seamless flow */}
+        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black -mt-8 md:-mt-10 text-white tracking-wide" style={{
           textShadow: '0 2px 10px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.1)',
         }}>
           The Kareem Crown
@@ -74,8 +74,8 @@ const HeroSection = () => {
       </motion.div>
       {/* End: Logo + Title Group */}
 
-      {/* Bottom fade for seamless section transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-black pointer-events-none" />
+      {/* Seamless fade to next section - Full height gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-b from-transparent via-black/50 to-black pointer-events-none" />
     </div>
   );
 };
