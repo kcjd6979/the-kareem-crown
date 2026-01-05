@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build --prefix \"Kareem Crown Pre-Portfolio Site Codebase\"",
+  "buildCommand": "mkdir -p tmp && npm run build --prefix \"Kareem Crown Pre-Portfolio Site Codebase\"",
   "outputDirectory": "Kareem Crown Pre-Portfolio Site Codebase/out",
   "installCommand": "npm install --prefix \"Kareem Crown Pre-Portfolio Site Codebase\"",
   "framework": "nextjs"
