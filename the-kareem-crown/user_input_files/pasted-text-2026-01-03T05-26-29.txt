@@ -1,0 +1,86 @@
+23:24:41.242 Running build in Portland, USA (West) – pdx1
+23:24:41.242 Build machine configuration: 2 cores, 8 GB
+23:24:41.367 Cloning github.com/kcjd6979/the-kareem-crown (Branch: master, Commit: 242fb35)
+23:24:43.315 Cloning completed: 1.947s
+23:24:43.409 Skipping build cache since Node.js version changed from "22.x" to "24.x"
+23:24:43.674 Warning: Due to "engines": { "node": ">=18.0.0" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "24.x" will be used instead. Learn More: http://vercel.link/node-version
+23:24:43.675 Warning: Detected "engines": { "node": ">=18.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
+23:24:43.675 Running "vercel build"
+23:24:44.238 Vercel CLI 50.1.3
+23:24:44.521 Warning: Due to "engines": { "node": ">=18.0.0" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "24.x" will be used instead. Learn More: http://vercel.link/node-version
+23:24:44.523 Warning: Detected "engines": { "node": ">=18.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
+23:24:44.544 Installing dependencies...
+23:25:05.042 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+23:25:05.598 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+23:25:06.473 npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+23:25:06.499 npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+23:25:06.663 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+23:25:08.695 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+23:25:13.023 
+23:25:13.024 added 395 packages in 28s
+23:25:13.025 
+23:25:13.025 154 packages are looking for funding
+23:25:13.025   run `npm fund` for details
+23:25:13.068 Detected Next.js version: 14.2.35
+23:25:13.074 Running "npm run build"
+23:25:13.166 
+23:25:13.166 > the-kareem-crown@0.1.0 build
+23:25:13.166 > next build
+23:25:13.167 
+23:25:13.663 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+23:25:13.663 This information is used to shape Next.js' roadmap and prioritize features.
+23:25:13.663 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+23:25:13.664 https://nextjs.org/telemetry
+23:25:13.664 
+23:25:13.713   ▲ Next.js 14.2.35
+23:25:13.714   - Experiments (use with caution):
+23:25:13.714     · optimizeCss
+23:25:13.714     · esmExternals
+23:25:13.714 
+23:25:13.729    Creating an optimized production build ...
+23:25:39.082  ✓ Compiled successfully
+23:25:39.083    Linting and checking validity of types ...
+23:25:44.008    Collecting page data ...
+23:25:47.558    Generating static pages (0/4) ...
+23:25:47.742 
+23:25:47.743 Error occurred prerendering page "/404". Read more: https://nextjs.org/docs/messages/prerender-error
+23:25:47.743 
+23:25:47.743 Error: Cannot find module 'critters'
+23:25:47.743 Require stack:
+23:25:47.746 - /vercel/path0/node_modules/next/dist/compiled/next-server/pages.runtime.prod.js
+23:25:47.746 - /vercel/path0/.next/server/pages/_document.js
+23:25:47.746 - /vercel/path0/node_modules/next/dist/server/require.js
+23:25:47.746 - /vercel/path0/node_modules/next/dist/server/load-components.js
+23:25:47.747 - /vercel/path0/node_modules/next/dist/build/utils.js
+23:25:47.747 - /vercel/path0/node_modules/next/dist/build/worker.js
+23:25:47.747 - /vercel/path0/node_modules/next/dist/compiled/jest-worker/processChild.js
+23:25:47.747     at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+23:25:47.747     at /vercel/path0/node_modules/next/dist/server/require-hook.js:55:36
+23:25:47.748     at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+23:25:47.748     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+23:25:47.748     at Module._load (node:internal/modules/cjs/loader:1227:37)
+23:25:47.748     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+23:25:47.749     at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+23:25:47.750     at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+23:25:47.750     at mod.require (/vercel/path0/node_modules/next/dist/server/require-hook.js:65:28)
+23:25:47.751     at require (node:internal/modules/helpers:152:16)
+23:25:47.752    Generating static pages (1/4) 
+23:25:47.761    Generating static pages (2/4) 
+23:25:47.769 
+23:25:47.769 Error occurred prerendering page "/500". Read more: https://nextjs.org/docs/messages/prerender-error
+23:25:47.769 
+23:25:47.769 TypeError: r(...) is not a constructor
+23:25:47.769     at /vercel/path0/node_modules/next/dist/compiled/next-server/pages.runtime.prod.js:14:13131
+23:25:47.769     at u (/vercel/path0/node_modules/next/dist/compiled/next-server/pages.runtime.prod.js:14:13382)
+23:25:47.769     at async e3 (/vercel/path0/node_modules/next/dist/compiled/next-server/pages.runtime.prod.js:31:7193)
+23:25:47.769     at async exportPages (/vercel/path0/node_modules/next/dist/export/routes/pages.js:84:28)
+23:25:47.769     at async exportPageImpl (/vercel/path0/node_modules/next/dist/export/worker.js:206:16)
+23:25:47.769     at async Span.traceAsyncFn (/vercel/path0/node_modules/next/dist/trace/trace.js:154:20)
+23:25:47.769     at async Object.exportPage (/vercel/path0/node_modules/next/dist/export/worker.js:237:20)
+23:25:47.770    Generating static pages (3/4) 
+23:25:47.995  ✓ Generating static pages (4/4)
+23:25:48.004 
+23:25:48.011 > Export encountered errors on following paths:
+23:25:48.011 	/_error: /404
+23:25:48.012 	/_error: /500
+23:25:48.112 Error: Command "npm run build" exited with 1
