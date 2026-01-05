@@ -5,26 +5,27 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect } from "react";
 
 const HeroSection = () => {
-  // Mouse position state for 3D tilt effect - Increased sensitivity for fluid movement
+  // Mouse position state for 3D floating effect - More fluid and free-moving
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Higher stiffness and lower damping = more responsive, fluid movement
-  const mouseX = useSpring(x, { stiffness: 150, damping: 10 });
-  const mouseY = useSpring(y, { stiffness: 150, damping: 10 });
+  // Ultra-responsive spring for smooth, floating movement
+  const mouseX = useSpring(x, { stiffness: 120, damping: 8 });
+  const mouseY = useSpring(y, { stiffness: 120, damping: 8 });
 
-  // Wider rotation range for more visible movement
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [20, -20]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-25, 25]);
+  // Subtle rotation for 3D depth
+  const rotateX = useTransform(mouseY, [-300, 300], [15, -15]);
+  const rotateY = useTransform(mouseX, [-300, 300], [-20, 20]);
+
+  // Floating position shift for that "soaring" effect
+  const translateX = useTransform(mouseX, [-400, 400], [30, -30]);
+  const translateY = useTransform(mouseY, [-300, 300], [20, -20]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // Calculate normalized mouse position from center of screen (-0.5 to 0.5)
-      const normalizedX = (e.clientX / window.innerWidth) - 0.5;
-      const normalizedY = (e.clientY / window.innerHeight) - 0.5;
-
-      x.set(normalizedX);
-      y.set(normalizedY);
+      // Use raw mouse position for free movement across entire viewport
+      x.set(e.clientX - window.innerWidth / 2);
+      y.set(e.clientY - window.innerHeight / 2);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -63,6 +64,8 @@ const HeroSection = () => {
           style={{
             rotateX: rotateX,
             rotateY: rotateY,
+            x: translateX,
+            y: translateY,
             transformStyle: "preserve-3d",
             transform: 'scale(1.02, 0.95)',
           }}

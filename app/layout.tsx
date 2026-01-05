@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <OptimizedBackground />
         <FixedLighting />
-        <Spotlight className="fixed inset-0 pointer-events-none" color="#D4AF37" opacity={0.25} size={700} />
+        <Spotlight className="fixed inset-0 pointer-events-none" color="#D4AF37" opacity={0.45} size={700} />
         <main>{children}</main>
       </body>
     </html>
