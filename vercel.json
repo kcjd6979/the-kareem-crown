@@ -1,5 +1,9 @@
 {
   "version": 2,
-  "outputDirectory": ".next",
-  "framework": "nextjs"
+  "builds": [
+    {
+      "src": "the-kareem-crown/Kareem Crown Pre-Portfolio Site Codebase/next.config.js",
+      "use": "@vercel/next"
+    }
+  ]
 }
