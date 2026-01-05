@@ -66,7 +66,7 @@ const HeroSection = () => {
         {/* === END: PERSONAL BRAND LOGO === */}
 
         {/* Title Text - Positioned at bottom tip of logo for seamless flow */}
-        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black -mt-16 md:-mt-20 text-white tracking-wide" style={{
+        <h1 className="text-center text-5xl md:text-7xl font-playfair font-black -mt-4 md:-mt-6 text-white tracking-wide" style={{
           textShadow: '0 2px 10px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.1)',
         }}>
           The Kareem Crown
