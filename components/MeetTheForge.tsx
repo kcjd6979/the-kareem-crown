@@ -132,8 +132,8 @@ function ForgeCard({
           }}
         />
 
-        {/* Character Image - Full bleed, no background */}
-        <div className="absolute inset-0 top-0 h-3/5 overflow-hidden rounded-t-2xl">
+        {/* Character Image - Full bleed with seamless rounded corners */}
+        <div className="absolute inset-0 top-0 h-3/5 overflow-hidden rounded-2xl">
           {!imageError ? (
             <div className="w-full h-full relative">
               <Image
@@ -143,8 +143,8 @@ function ForgeCard({
                 className="object-cover object-center transition-all duration-700 group-hover:scale-115"
                 onError={() => setImageError(true)}
               />
-              {/* Subtle image overlay for depth */}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+              {/* Subtle image overlay for depth - fades into background */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10 rounded-b-2xl" />
             </div>
           ) : (
             <div className="w-full h-full flex items-center justify-center">
@@ -264,14 +264,24 @@ export default function MeetTheForge() {
       ref={containerRef}
       className="relative w-full min-h-screen overflow-hidden"
     >
+      {/* Top gradient fade for seamless transition from previous section */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: `linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.5) 100%)`
+      }} />
+      
+      {/* Bottom gradient fade for seamless transition to next section */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: `linear-gradient(to top, transparent 0%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.5) 100%)`
+      }} />
+
       {/* Subtle noise texture overlay - barely visible to maintain starfield */}
-      <div className="absolute inset-0 opacity-[0.015] pointer-events-none mix-blend-overlay">
+      <div className="absolute inset-0 opacity-[0.008] pointer-events-none mix-blend-overlay z-0">
         <div className="w-full h-full bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 400 400%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')]" />
       </div>
       
       {/* Section Header - Playfair Display SC Black for headings */}
       <motion.div
-        className="relative z-10 pt-40 pb-12 text-center px-6"
+        className="relative z-10 pt-32 pb-8 text-center px-6"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -289,9 +299,9 @@ export default function MeetTheForge() {
       </motion.div>
 
       {/* Carousel Container - Auto-animated floating cards */}
-      <div className="relative z-10 w-full flex justify-center overflow-hidden">
+      <div className="relative z-10 w-full flex justify-center overflow-visible">
         {/* Inner wrapper - Equal padding on both sides */}
-        <div className="flex px-6 md:px-12 gap-8 lg:gap-12 py-12">
+        <div className="flex px-6 md:px-12 gap-8 lg:gap-12 py-8">
           {forgeMembers.map((member, index) => (
             <div 
               key={member.id}
