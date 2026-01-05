@@ -32,14 +32,14 @@ const HeroSection = () => {
   }, [x, y]);
 
   return (
-    // The main container - Hero section centered vertically
-    <div className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000">
-      {/* Logo + Title Group - Animates together, positioned at bottom tip of logo */}
+    // The main container - Hero section at top of viewport for full above-the-fold impact
+    <div className="relative flex flex-col items-center justify-start w-full min-h-screen perspective-1000">
+      {/* Logo + Title Group - Positioned at top, title at bottom tip of logo */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col items-center z-10 w-full max-w-6xl -mt-8 md:-mt-12"
+        className="flex flex-col items-center z-10 w-full max-w-6xl pt-4 md:pt-8"
       >
         {/* === PERSONAL BRAND LOGO - BLACK CROWN - CENTERPIECE === */}
         <motion.div
