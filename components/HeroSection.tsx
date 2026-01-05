@@ -2,16 +2,12 @@
 
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 const HeroSection = () => {
   // Mouse position state for 3D tilt effect - Increased sensitivity for fluid movement
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  
-  // Refs for lighting effects
-  const spotlightRef = useRef<HTMLDivElement>(null);
-  const mousePosRef = useRef({ x: 0, y: 0 });
 
   // Higher stiffness and lower damping = more responsive, fluid movement
   const mouseX = useSpring(x, { stiffness: 150, damping: 10 });
@@ -22,17 +18,7 @@ const HeroSection = () => {
   const rotateY = useTransform(mouseX, [-0.5, 0.5], [-25, 25]);
 
   useEffect(() => {
-    // Handle mouse movement for spotlight
     const handleMouseMove = (e: MouseEvent) => {
-      // Store raw mouse position for CSS custom property
-      mousePosRef.current = { x: e.clientX, y: e.clientY };
-      
-      // Update CSS variable for spotlight position (performance-optimized)
-      if (spotlightRef.current) {
-        spotlightRef.current.style.setProperty('--mouse-x', `${e.clientX}px`);
-        spotlightRef.current.style.setProperty('--mouse-y', `${e.clientY}px`);
-      }
-
       // Calculate normalized mouse position from center of screen (-0.5 to 0.5)
       const normalizedX = (e.clientX / window.innerWidth) - 0.5;
       const normalizedY = (e.clientY / window.innerHeight) - 0.5;
@@ -48,16 +34,6 @@ const HeroSection = () => {
   return (
     // The main container - Hero section centered for full above-the-fold impact
     <div className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000 overflow-hidden" style={{ paddingTop: '0px', paddingBottom: '5vh' }}>
-      
-      {/* === GLOBAL MIDAS GOLD MOUSE SPOTLIGHT === */}
-      {/* Follows mouse cursor throughout site with Midas Gold glow */}
-      <div 
-        ref={spotlightRef}
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{
-          background: 'radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.12) 35%, transparent 65%)',
-        }}
-      />
       
       {/* === OVERHEAD GOLD CROWN LIGHT === */}
       {/* Fixed ambient gold light centered above crown for contrast */}
