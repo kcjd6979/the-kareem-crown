@@ -132,23 +132,28 @@ function ForgeCard({
           }}
         />
 
-        {/* Character Image - Full bleed with seamless rounded corners and mask fade */}
-        <div className="absolute inset-0 top-0 h-3/5 overflow-hidden rounded-2xl">
+        {/* Character Image - Extended beyond container for seamless fade */}
+        <div className="absolute inset-0 top-0 h-[55%] overflow-visible">
           {!imageError ? (
-            <div className="w-full h-full relative">
+            <div className="w-full h-full relative -bottom-4">
               <Image
                 src={member.imagePath}
                 alt={member.name}
                 fill
-                className="object-cover object-center transition-all duration-700 group-hover:scale-115"
+                className="object-cover object-center transition-all duration-700 group-hover:scale-105"
                 style={{
-                  maskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, black 75%, transparent 100%)',
+                  maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
                 }}
                 onError={() => setImageError(true)}
               />
-              {/* Subtle image overlay for depth - fades into background */}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30 rounded-b-2xl" />
+              {/* Fade to background - eliminates hard line */}
+              <div 
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(to bottom, transparent 50%, #000000 85%, #0a0a0a 100%)',
+                }}
+              />
             </div>
           ) : (
             <div className="w-full h-full flex items-center justify-center">
@@ -156,42 +161,6 @@ function ForgeCard({
             </div>
           )}
         </div>
-
-        {/* Magician's Distraction: Ambient Feet Glow - Draws attention away from bottom edge */}
-        <div
-          className="pointer-events-none absolute z-15"
-          style={{
-            left: '10%',
-            right: '10%',
-            bottom: '-5%',
-            height: '25%',
-            background: `radial-gradient(ellipse at center top, ${member.glowColor} 0%, transparent 70%)`,
-            opacity: 0.5,
-            filter: 'blur(20px)',
-            animation: `pulseGlow ${3 + (index * 0.5)}s ease-in-out infinite`,
-          }}
-        />
-
-        {/* Edge Blending: Gradient fade at bottom of image section */}
-        <div
-          className="pointer-events-none absolute z-10"
-          style={{
-            left: '2%',
-            right: '2%',
-            bottom: '38%',
-            height: '10%',
-            background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)',
-          }}
-        />
-
-        {/* Character Initial - Only show if image fails */}
-        {imageError && (
-          <div className="absolute top-28 left-8">
-            <span className="text-9xl font-black italic opacity-25 font-playfair" style={{ color: member.color }}>
-              {member.name.charAt(0)}
-            </span>
-          </div>
-        )}
 
         {/* Name & Title - Pure text, no container */}
         <div className="absolute bottom-0 left-0 right-0 p-6">
