@@ -82,7 +82,7 @@ const HeroSection = () => {
           left: '50%',
           top: '0%',
           transform: 'translateX(-50%)',
-          width: '450px',
+          width: '900px',
           height: '220px',
           background: 'radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.06) 50%, transparent 80%)',
           filter: 'blur(25px)',
