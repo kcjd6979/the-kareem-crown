@@ -51,9 +51,9 @@ const HeroSection = () => {
       />
       
       {/* === OVERHEAD WHITE LAMP LIGHT === */}
-      {/* White ambient light that complements the gold crown illumination */}
+      {/* Fixed white ambient light that shines from above continuously */}
       <div 
-        className="absolute pointer-events-none z-0"
+        className="fixed pointer-events-none z-0"
         style={{
           left: '50%',
           top: '0%',
