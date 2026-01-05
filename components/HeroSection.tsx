@@ -67,7 +67,7 @@ const HeroSection = () => {
             x: translateX,
             y: translateY,
             transformStyle: "preserve-3d",
-            transform: 'scale(28.0, 26.0)',
+            transform: 'scale(56.0, 52.0)',
           }}
         >
           <Image
