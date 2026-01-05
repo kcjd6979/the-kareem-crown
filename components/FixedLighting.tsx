@@ -12,7 +12,7 @@ export function FixedLighting() {
       {/* === TOP WHITE LAMP LIGHT === */}
       {/* Fixed white ambient light that shines from above continuously */}
       <div 
-        className="fixed pointer-events-none z-0"
+        className="fixed pointer-events-none z-[9998]"
         style={{
           left: '50%',
           top: '0%',
@@ -27,7 +27,7 @@ export function FixedLighting() {
       {/* === BOTTOM WHITE LAMP LIGHT (Mirrored) === */}
       {/* Mirrored white ambient light at bottom to create bookmarking effect */}
       <div 
-        className="fixed pointer-events-none z-0"
+        className="fixed pointer-events-none z-[9998]"
         style={{
           left: '50%',
           bottom: '0%',
