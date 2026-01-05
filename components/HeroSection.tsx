@@ -18,7 +18,7 @@ const OrbitingPlanet = ({
   alt: string;
   orbitRadius: number;
   orbitDuration: number;
-  size: number = 80;
+  size?: number = 80;
   startAngle?: number;
   zIndex?: number;
 }) => {
