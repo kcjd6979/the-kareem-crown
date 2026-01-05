@@ -55,22 +55,37 @@ const HeroSection = () => {
         ref={spotlightRef}
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          background: 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.03) 25%, transparent 60%)',
+          background: 'radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.12) 35%, transparent 65%)',
         }}
       />
       
-      {/* === OVERHEAD CROWN LIGHT === */}
-      {/* Fixed ambient light centered above crown for contrast */}
+      {/* === OVERHEAD GOLD CROWN LIGHT === */}
+      {/* Fixed ambient gold light centered above crown for contrast */}
       <div 
         className="absolute pointer-events-none z-0"
         style={{
           left: '50%',
-          top: '8%',
+          top: '5%',
           transform: 'translateX(-50%)',
-          width: '500px',
-          height: '300px',
-          background: 'radial-gradient(ellipse at center top, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 40%, transparent 70%)',
-          filter: 'blur(20px)',
+          width: '400px',
+          height: '250px',
+          background: 'radial-gradient(ellipse at center top, rgba(212, 175, 55, 0.18) 0%, rgba(212, 175, 55, 0.06) 40%, transparent 70%)',
+          filter: 'blur(15px)',
+        }}
+      />
+      
+      {/* === OVERHEAD WHITE LAMP LIGHT === */}
+      {/* White ambient light that complements the gold crown illumination */}
+      <div 
+        className="absolute pointer-events-none z-0"
+        style={{
+          left: '50%',
+          top: '0%',
+          transform: 'translateX(-50%)',
+          width: '300px',
+          height: '200px',
+          background: 'radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 50%, transparent 80%)',
+          filter: 'blur(25px)',
         }}
       />
 
