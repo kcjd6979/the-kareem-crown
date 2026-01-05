@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform, useTime } from "framer
 import { useEffect } from "react";
 
 // Planet Orbital Component - Each planet orbits the central sun
+// Uses trigonometry to keep planets upright (no flipping)
 const OrbitingPlanet = ({
   src,
   alt,
@@ -22,9 +23,28 @@ const OrbitingPlanet = ({
   startAngle?: number;
   zIndex?: number;
 }) => {
-  // Orbital animation using time-based rotation
+  // Time-based animation for smooth, continuous orbit
   const time = useTime();
-  
+
+  // Convert orbit duration to angular velocity (radians per millisecond)
+  const angularVelocity = (2 * Math.PI) / (orbitDuration * 1000);
+
+  // Motion values for x and y position - updated directly for performance
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Update positions on each frame using trigonometry
+  useEffect(() => {
+    const unsubscribe = time.on("change", (t) => {
+      const angle = t * angularVelocity + (startAngle * Math.PI) / 180;
+      // Calculate x and y based on orbit radius using trigonometry
+      // This keeps the planet upright - no rotation applied to the image itself
+      x.set(Math.cos(angle) * orbitRadius);
+      y.set(Math.sin(angle) * orbitRadius);
+    });
+    return () => unsubscribe();
+  }, [time, angularVelocity, startAngle, orbitRadius, x, y]);
+
   return (
     <motion.div
       className="absolute pointer-events-none"
@@ -33,25 +53,17 @@ const OrbitingPlanet = ({
         // Center the planet in the orbit
         left: '50%',
         top: '50%',
-        x: '-50%',
-        y: '-50%',
-      }}
-      animate={{
-        // The orbit container rotates
-        rotate: [startAngle, startAngle + 360],
-      }}
-      transition={{
-        duration: orbitDuration,
-        repeat: Infinity,
-        ease: "linear",
+        x, // Dynamic x position via trigonometry
+        y, // Dynamic y position via trigonometry
+        xPercent: -50, // Center the planet itself
+        yPercent: -50, // Center the planet itself
       }}
     >
-      {/* Planet container - offset from center by orbit radius */}
+      {/* Planet container - maintains upright orientation */}
       <motion.div
         style={{
           width: size,
           height: size,
-          x: orbitRadius, // Push planet out from center
         }}
       >
         <Image
