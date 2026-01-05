@@ -33,7 +33,7 @@ const HeroSection = () => {
 
   return (
     // The main container - Hero section centered for full above-the-fold impact
-    <div className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000" style={{ paddingTop: '5vh', paddingBottom: '5vh' }}>
+    <div className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000" style={{ paddingTop: '0px', paddingBottom: '5vh' }}>
       {/* Logo + Title Group - Centered in viewport with minimal gap */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
