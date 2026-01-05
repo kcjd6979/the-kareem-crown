@@ -9,17 +9,17 @@ const HeroSection = () => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Ultra-responsive spring for smooth, floating movement
-  const mouseX = useSpring(x, { stiffness: 120, damping: 8 });
-  const mouseY = useSpring(y, { stiffness: 120, damping: 8 });
+  // Ultra-responsive spring for smooth, gliding movement
+  const mouseX = useSpring(x, { stiffness: 80, damping: 12 });
+  const mouseY = useSpring(y, { stiffness: 80, damping: 12 });
 
-  // Subtle rotation for 3D depth
-  const rotateX = useTransform(mouseY, [-300, 300], [15, -15]);
-  const rotateY = useTransform(mouseX, [-300, 300], [-20, 20]);
+  // Dynamic movement - logo follows mouse direction (dance partners)
+  const rotateX = useTransform(mouseY, [-300, 300], [-12, 12]);
+  const rotateY = useTransform(mouseX, [-400, 400], [15, -15]);
 
-  // Floating position shift for that "soaring" effect
-  const translateX = useTransform(mouseX, [-400, 400], [30, -30]);
-  const translateY = useTransform(mouseY, [-300, 300], [20, -20]);
+  // Position shift - logo moves WITH mouse (same direction)
+  const translateX = useTransform(mouseX, [-400, 400], [-40, 40]);
+  const translateY = useTransform(mouseY, [-300, 300], [-25, 25]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
