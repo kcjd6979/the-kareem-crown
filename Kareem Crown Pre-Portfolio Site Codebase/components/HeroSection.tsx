@@ -278,7 +278,7 @@ const HeroSection = () => {
   return (
     // Mobile-first responsive container
     <div 
-      className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000 overflow-hidden"
+      className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000"
       style={{ 
         paddingTop: '0px', 
         paddingBottom: '5vh',
