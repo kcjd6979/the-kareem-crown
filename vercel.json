@@ -1,4 +1,5 @@
 {
   "buildCommand": "mkdir -p tmp || true && npm run build --prefix \"Kareem Crown Pre-Portfolio Site Codebase\"",
+  "outputDirectory": "Kareem Crown Pre-Portfolio Site Codebase/out",
   "installCommand": "npm install --prefix \"Kareem Crown Pre-Portfolio Site Codebase\""
 }
