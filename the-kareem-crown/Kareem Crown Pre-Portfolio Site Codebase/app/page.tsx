@@ -1,9 +1,19 @@
-"page.tsx"
+import HeroSection from "@/components/HeroSection";
+import ArchitectSection from "@/components/ArchitectSection";
+import ArsenalSection from "@/components/ArsenalSection";
+import ConnectionSection from "@/components/ConnectionSection";
+import Footer from "@/components/Footer";
+import Spotlight from "@/components/Spotlight";
 
 export default function Home() {
   return (
     <main>
-      <h1>The Kareem Crown</h1>
+      <HeroSection />
+      <Spotlight />
+      <ArchitectSection />
+      <ArsenalSection />
+      <ConnectionSection />
+      <Footer />
     </main>
   );
 }
