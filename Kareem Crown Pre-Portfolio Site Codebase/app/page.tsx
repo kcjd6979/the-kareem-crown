@@ -1,9 +1,9 @@
-"page.tsx"
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   return (
     <main>
-      <h1>The Kareem Crown</h1>
+      <HeroSection />
     </main>
   );
 }
