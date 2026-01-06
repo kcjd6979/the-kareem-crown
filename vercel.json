@@ -1,6 +1,5 @@
 {
   "framework": null,
   "buildCommand": "mkdir -p tmp || true && npm run build --prefix \"Kareem Crown Pre-Portfolio Site Codebase\"",
-  "outputDirectory": ".next",
   "installCommand": "npm install --prefix \"Kareem Crown Pre-Portfolio Site Codebase\""
 }
