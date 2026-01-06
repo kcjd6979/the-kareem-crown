@@ -1,0 +1,72 @@
+00:45:29.036 Running build in Portland, USA (West) – pdx1
+00:45:29.036 Build machine configuration: 2 cores, 8 GB
+00:45:29.145 Cloning github.com/kcjd6979/the-kareem-crown (Branch: master, Commit: 8c9bae1)
+00:45:36.152 Warning: Failed to fetch one or more git submodules
+00:45:36.153 Cloning completed: 7.007s
+00:45:36.486 Restored build cache from previous deployment (2jkrkukTxGC6VEtvr624qJ9a6V24)
+00:45:37.044 Warning: Due to "engines": { "node": ">=18.0.0" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "24.x" will be used instead. Learn More: http://vercel.link/node-version
+00:45:37.045 Warning: Detected "engines": { "node": ">=18.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
+00:45:37.045 Running "vercel build"
+00:45:37.448 Vercel CLI 50.1.3
+00:45:37.739 Warning: Due to "engines": { "node": ">=18.0.0" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "24.x" will be used instead. Learn More: http://vercel.link/node-version
+00:45:37.741 Warning: Detected "engines": { "node": ">=18.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
+00:45:37.743 Running "install" command: `npm install --prefix "Kareem Crown Pre-Portfolio Site Codebase"`...
+00:46:01.234 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+00:46:02.059 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+00:46:03.086 npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+00:46:03.165 npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+00:46:03.479 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+00:46:04.879 npm warn deprecated three-mesh-bvh@0.7.8: Deprecated due to three.js version incompatibility. Please use v0.8.0, instead.
+00:46:13.873 npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+00:46:18.243 npm warn deprecated next@14.2.3: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
+00:46:18.490 
+00:46:18.491 added 457 packages, and audited 458 packages in 41s
+00:46:18.492 
+00:46:18.492 154 packages are looking for funding
+00:46:18.492   run `npm fund` for details
+00:46:18.598 
+00:46:18.599 4 vulnerabilities (3 high, 1 critical)
+00:46:18.600 
+00:46:18.600 To address all issues (including breaking changes), run:
+00:46:18.600   npm audit fix --force
+00:46:18.601 
+00:46:18.601 Run `npm audit` for details.
+00:46:18.652 Detected Next.js version: 14.2.35
+00:46:18.653 Running "mkdir -p tmp || true && npm run build --prefix "Kareem Crown Pre-Portfolio Site Codebase""
+00:46:18.657 mkdir: cannot create directory 'tmp': File exists
+00:46:18.751 
+00:46:18.754 > the-kareem-crown@0.1.0 build
+00:46:18.754 > next build
+00:46:18.754 
+00:46:19.247 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+00:46:19.248 This information is used to shape Next.js' roadmap and prioritize features.
+00:46:19.248 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+00:46:19.248 https://nextjs.org/telemetry
+00:46:19.248 
+00:46:19.300   ▲ Next.js 14.2.3
+00:46:19.301 
+00:46:19.317    Creating an optimized production build ...
+00:46:31.501  ✓ Compiled successfully
+00:46:31.502    Linting and checking validity of types ...
+00:46:34.506    Collecting page data ...
+00:46:35.514    Generating static pages (0/4) ...
+00:46:35.700    Generating static pages (1/4) 
+00:46:35.714    Generating static pages (2/4) 
+00:46:35.863    Generating static pages (3/4) 
+00:46:35.864  ✓ Generating static pages (4/4)
+00:46:35.996    Finalizing page optimization ...
+00:46:35.996    Collecting build traces ...
+00:46:42.082 
+00:46:42.093 Route (app)                              Size     First Load JS
+00:46:42.093 ┌ ○ /                                    45.5 kB         133 kB
+00:46:42.093 └ ○ /_not-found                          871 B            88 kB
+00:46:42.093 + First Load JS shared by all            87.1 kB
+00:46:42.093   ├ chunks/23-36b5e9290e7e626e.js        31.6 kB
+00:46:42.093   ├ chunks/fd9d1056-4a917af64af6b262.js  53.6 kB
+00:46:42.093   └ other shared chunks (total)          1.89 kB
+00:46:42.094 
+00:46:42.094 
+00:46:42.094 ○  (Static)  prerendered as static content
+00:46:42.094 
+00:46:42.125 Error: The file "/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/out/routes-manifest.json" couldn't be found. This is often caused by a misconfiguration in your project.
+00:46:42.125 Learn More: https://err.sh/vercel/vercel/now-next-routes-manifest
