@@ -92,6 +92,39 @@ const OrbitingPlanet = ({
         perspective: '1000px',
       }}
     >
+      {/* R3F-inspired layered glow effect */}
+      {/* Outer glow layer */}
+      <motion.div
+        className="absolute inset-0 rounded-full pointer-events-none"
+        style={{
+          width: finalSize * 1.4,
+          height: finalSize * 1.4,
+          left: '50%',
+          top: '50%',
+          translateX: '-50%',
+          translateY: '-50%',
+          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 40%, transparent 70%)',
+          filter: 'blur(8px)',
+          zIndex: zIndex - 1,
+        }}
+      />
+      
+      {/* Inner glow layer */}
+      <motion.div
+        className="absolute inset-0 rounded-full pointer-events-none"
+        style={{
+          width: finalSize * 1.2,
+          height: finalSize * 1.2,
+          left: '50%',
+          top: '50%',
+          translateX: '-50%',
+          translateY: '-50%',
+          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.1) 50%, transparent 80%)',
+          filter: 'blur(4px)',
+          zIndex: zIndex - 0.5,
+        }}
+      />
+      
       {/* Planet container with 3D rotation */}
       <motion.div
         style={{
@@ -114,13 +147,35 @@ const OrbitingPlanet = ({
           priority={false}
           className="w-full h-auto object-contain"
           style={{
-            // Subtle glow for each planet
-            filter: 'drop-shadow(0 0 12px rgba(212, 175, 55, 0.4))',
-            // Backface visibility creates the flip effect
+            // Multi-layer glow effect (R3F-inspired)
+            filter: `
+              drop-shadow(0 0 20px rgba(212, 175, 55, 0.3))
+              drop-shadow(0 0 40px rgba(212, 175, 55, 0.15))
+              drop-shadow(0 0 60px rgba(212, 175, 55, 0.05))
+            `,
+            // Ambient occlusion simulation via overlay
             backfaceVisibility: 'hidden',
           }}
         />
       </motion.div>
+      
+      {/* Specular highlight (light reflection) */}
+      <motion.div
+        className="absolute pointer-events-none"
+        style={{
+          width: finalSize * 0.3,
+          height: finalSize * 0.15,
+          left: '35%',
+          top: '25%',
+          translateX: '-50%',
+          translateY: '-50%',
+          background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%)',
+          filter: 'blur(2px)',
+          borderRadius: '50%',
+          rotateY,
+          zIndex: zIndex + 1,
+        }}
+      />
     </motion.div>
   );
 };
@@ -160,51 +215,62 @@ const HeroSection = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [x, y]);
 
-  // Planet configurations - 3D solar system with tasteful selection
-  // Uses trig to keep planets upright + CSS 3D transforms for depth effect
+  // Planet configurations - 3D solar system with MTM ecosystem
+  // Uses trig to keep planets upright + CSS 3D transforms for depth + R3F-inspired lighting
   const planets = [
     {
-      // Inner orbit - Synapse Agent (Core Intelligence)
-      src: "/planets/planet-syn-orb.webp",
-      alt: "Synapse Agent - Core Intelligence planetary representation",
-      orbitRadius: -200,
-      orbitDuration: 15,
-      baseSize: 60,
+      // Inner orbit - MTM Shield (Brand Core/Foundation)
+      src: "/planets/planet-mtm-shield.webp",
+      alt: "MTM Shield - Brand Foundation planetary representation",
+      orbitRadius: -180,
+      orbitDuration: 12,
+      baseSize: 65,
       startAngle: 0,
       zIndex: 8,
       scale: { mobile: 0.5, tablet: 0.75, desktop: 1.0 },
     },
     {
-      // Middle orbit - Midas Mailer (Commerce/Transformation)
+      // Second orbit - Synapse Agent (Core Intelligence)
+      src: "/planets/planet-syn-orb.webp",
+      alt: "Synapse Agent - Core Intelligence planetary representation",
+      orbitRadius: 240,
+      orbitDuration: 18,
+      baseSize: 55,
+      startAngle: 72,
+      zIndex: 7,
+      scale: { mobile: 0.5, tablet: 0.7, desktop: 0.95 },
+    },
+    {
+      // Third orbit - Midas Mailer (Commerce/Transformation)
       src: "/planets/planet-midas-orb-1.webp",
       alt: "Midas Mailer - Transformation planetary representation",
-      orbitRadius: 280,
-      orbitDuration: 22,
-      baseSize: 75,
-      startAngle: 120,
-      zIndex: 6,
+      orbitRadius: -320,
+      orbitDuration: 25,
+      baseSize: 70,
+      startAngle: 144,
+      zIndex: 5,
       scale: { mobile: 0.5, tablet: 0.75, desktop: 1.0 },
     },
     {
-      // Outer orbit - Apex Predator (Dominance/Power)
+      // Fourth orbit - Competitor Pulse (Market Intelligence)
+      src: "/planets/planet-competitor-pulse.webp",
+      alt: "Competitor Pulse - Market Intelligence planetary representation",
+      orbitRadius: 420,
+      orbitDuration: 35,
+      baseSize: 75,
+      startAngle: 216,
+      zIndex: 3,
+      scale: { mobile: 0.45, tablet: 0.7, desktop: 0.95 },
+    },
+    {
+      // Far outer orbit - Apex Predator (Dominance/Power)
       src: "/planets/planet-apex-orb.webp",
       alt: "Apex Predator - Dominance planetary representation",
-      orbitRadius: -380,
-      orbitDuration: 32,
-      baseSize: 90,
-      startAngle: 240,
-      zIndex: 4,
-      scale: { mobile: 0.5, tablet: 0.75, desktop: 1.0 },
-    },
-    {
-      // Far outer orbit - Griff Winged (Aspiration/Freedom)
-      src: "/planets/planet-griff-winged.webp",
-      alt: "Griff Winged - Aspiration planetary representation",
-      orbitRadius: 480,
-      orbitDuration: 45,
-      baseSize: 70,
-      startAngle: 60,
-      zIndex: 2,
+      orbitRadius: -520,
+      orbitDuration: 48,
+      baseSize: 85,
+      startAngle: 288,
+      zIndex: 1,
       scale: { mobile: 0.4, tablet: 0.65, desktop: 0.9 },
     },
   ];
@@ -276,39 +342,48 @@ const HeroSection = () => {
         ))}
         
         {/* === ORBITAL PATH VISUALS (Subtle rings for visual reference) === */}
-        {/* Inner orbit path (200px) */}
+        {/* Inner orbit path (180px) */}
         <div 
-          className="absolute border border-white/5 rounded-full pointer-events-none"
+          className="absolute border border-white/6 rounded-full pointer-events-none"
           style={{
-            width: '400px', // 2 * 200
-            height: '400px',
+            width: '360px', // 2 * 180
+            height: '360px',
             zIndex: 1,
           }}
         />
-        {/* Middle orbit path (280px) */}
+        {/* Second orbit path (240px) */}
         <div 
           className="absolute border border-white/8 rounded-full pointer-events-none"
           style={{
-            width: '560px', // 2 * 280
-            height: '560px',
+            width: '480px', // 2 * 240
+            height: '480px',
             zIndex: 1,
           }}
         />
-        {/* Outer orbit path (380px) */}
+        {/* Third orbit path (320px) */}
         <div 
-          className="absolute border border-white/5 rounded-full pointer-events-none"
+          className="absolute border border-white/6 rounded-full pointer-events-none"
           style={{
-            width: '760px', // 2 * 380
-            height: '760px',
+            width: '640px', // 2 * 320
+            height: '640px',
             zIndex: 1,
           }}
         />
-        {/* Far outer orbit path (480px) */}
+        {/* Fourth orbit path (420px) */}
         <div 
-          className="absolute border border-white/3 rounded-full pointer-events-none"
+          className="absolute border border-white/4 rounded-full pointer-events-none"
           style={{
-            width: '960px', // 2 * 480
-            height: '960px',
+            width: '840px', // 2 * 420
+            height: '840px',
+            zIndex: 1,
+          }}
+        />
+        {/* Far outer orbit path (520px) */}
+        <div 
+          className="absolute border border-white/2 rounded-full pointer-events-none"
+          style={{
+            width: '1040px', // 2 * 520
+            height: '1040px',
             zIndex: 1,
           }}
         />
