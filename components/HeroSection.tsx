@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform, useTime } from "framer
 import { useEffect } from "react";
 
 // Planet Orbital Component - Each planet orbits the central sun
-// Uses trigonometry to keep planets upright (no flipping)
+// Uses trigonometry to keep planets upright + 3D CSS transforms for depth
 const OrbitingPlanet = ({
   src,
   alt,
@@ -14,6 +14,7 @@ const OrbitingPlanet = ({
   size = 80,
   startAngle = 0,
   zIndex = 5,
+  responsiveScale = { mobile: 0.5, tablet: 0.75, desktop: 1.0 },
 }: {
   src: string;
   alt: string;
@@ -22,6 +23,7 @@ const OrbitingPlanet = ({
   size?: number;
   startAngle?: number;
   zIndex?: number;
+  responsiveScale?: { mobile: number; tablet: number; desktop: number };
 }) => {
   // Time-based animation for smooth, continuous orbit
   const time = useTime();
@@ -29,21 +31,49 @@ const OrbitingPlanet = ({
   // Convert orbit duration to angular velocity (radians per millisecond)
   const angularVelocity = (2 * Math.PI) / (orbitDuration * 1000);
 
-  // Motion values for x and y position - updated directly for performance
+  // Motion values for position and 3D rotation
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const rotateY = useMotionValue(0); // For 3D flip effect
+  const rotateX = useMotionValue(0); // Subtle X rotation for depth
 
-  // Update positions on each frame using trigonometry
+  // Update positions and 3D rotation on each frame
   useEffect(() => {
     const unsubscribe = time.on("change", (t) => {
       const angle = t * angularVelocity + (startAngle * Math.PI) / 180;
+      
       // Calculate x and y based on orbit radius using trigonometry
-      // This keeps the planet upright - no rotation applied to the image itself
       x.set(Math.cos(angle) * orbitRadius);
       y.set(Math.sin(angle) * orbitRadius);
+      
+      // 3D rotation effect - flip based on orbit position
+      // This creates the illusion of seeing front/back as planet orbits
+      const rotationAngle = Math.cos(angle) * 180; // Flip from -180 to 180
+      rotateY.set(rotationAngle);
+      
+      // Subtle X rotation for depth perception
+      rotateX.set(Math.sin(angle) * 15);
     });
     return () => unsubscribe();
-  }, [time, angularVelocity, startAngle, orbitRadius, x, y]);
+  }, [time, angularVelocity, startAngle, orbitRadius, x, y, rotateY, rotateX]);
+
+  // Get responsive scale based on window size
+  const [scale, setScale] = useState(responsiveScale.desktop);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 640) setScale(responsiveScale.mobile);
+      else if (width < 1024) setScale(responsiveScale.tablet);
+      else setScale(responsiveScale.desktop);
+    };
+    
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [responsiveScale]);
+
+  const finalSize = size * scale;
 
   return (
     <motion.div
@@ -58,28 +88,36 @@ const OrbitingPlanet = ({
         // Center the planet itself using translate
         translateX: '-50%',
         translateY: '-50%',
+        // 3D perspective for rotation effect
+        perspective: '1000px',
       }}
     >
-      {/* Planet container - maintains upright orientation */}
+      {/* Planet container with 3D rotation */}
       <motion.div
         style={{
-          width: size,
-          height: size,
+          width: finalSize,
+          height: finalSize,
+          // 3D rotation transforms
+          rotateY,
+          rotateX,
+          transformStyle: 'preserve-3d',
+          transformOrigin: 'center center',
         }}
       >
         <Image
           src={src}
           alt={alt}
-          width={size}
-          height={size}
-          // Lazy loading for beast mode performance
+          width={finalSize}
+          height={finalSize}
+          // Lazy loading for performance
           loading="lazy"
-          // Priority for above-the-fold visible planets
           priority={false}
           className="w-full h-auto object-contain"
           style={{
             // Subtle glow for each planet
-            filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3))',
+            filter: 'drop-shadow(0 0 12px rgba(212, 175, 55, 0.4))',
+            // Backface visibility creates the flip effect
+            backfaceVisibility: 'hidden',
           }}
         />
       </motion.div>
@@ -122,26 +160,52 @@ const HeroSection = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [x, y]);
 
-  // Planet configurations - optimized orbit durations and radii
+  // Planet configurations - 3D solar system with tasteful selection
+  // Uses trig to keep planets upright + CSS 3D transforms for depth effect
   const planets = [
     {
-      // Inner orbit - MTM Monogram
-      src: "/planet-mtm-monogram.webp",
-      alt: "MTM Crown Monogram planetary logo",
-      orbitRadius: -280, // Negative = counter-clockwise direction
-      orbitDuration: 20, // Seconds per orbit
-      baseSize: 80,
+      // Inner orbit - Synapse Agent (Core Intelligence)
+      src: "/planets/planet-syn-orb.webp",
+      alt: "Synapse Agent - Core Intelligence planetary representation",
+      orbitRadius: -200,
+      orbitDuration: 15,
+      baseSize: 60,
       startAngle: 0,
       zIndex: 8,
+      scale: { mobile: 0.5, tablet: 0.75, desktop: 1.0 },
     },
     {
-      // Outer orbit - MTM Circuit Stacked
-      src: "/planet-mtm-circuit.webp",
-      alt: "MTM Circuit Stacked planetary logo", 
-      orbitRadius: 380,
-      orbitDuration: 30, // Slower, outer orbit
-      startAngle: 180, // Start on opposite side
+      // Middle orbit - Midas Mailer (Commerce/Transformation)
+      src: "/planets/planet-midas-orb-1.webp",
+      alt: "Midas Mailer - Transformation planetary representation",
+      orbitRadius: 280,
+      orbitDuration: 22,
+      baseSize: 75,
+      startAngle: 120,
       zIndex: 6,
+      scale: { mobile: 0.5, tablet: 0.75, desktop: 1.0 },
+    },
+    {
+      // Outer orbit - Apex Predator (Dominance/Power)
+      src: "/planets/planet-apex-orb.webp",
+      alt: "Apex Predator - Dominance planetary representation",
+      orbitRadius: -380,
+      orbitDuration: 32,
+      baseSize: 90,
+      startAngle: 240,
+      zIndex: 4,
+      scale: { mobile: 0.5, tablet: 0.75, desktop: 1.0 },
+    },
+    {
+      // Far outer orbit - Griff Winged (Aspiration/Freedom)
+      src: "/planets/planet-griff-winged.webp",
+      alt: "Griff Winged - Aspiration planetary representation",
+      orbitRadius: 480,
+      orbitDuration: 45,
+      baseSize: 70,
+      startAngle: 60,
+      zIndex: 2,
+      scale: { mobile: 0.4, tablet: 0.65, desktop: 0.9 },
     },
   ];
 
@@ -207,25 +271,44 @@ const HeroSection = () => {
             size={planet.baseSize}
             startAngle={planet.startAngle}
             zIndex={planet.zIndex}
+            responsiveScale={planet.scale}
           />
         ))}
         
-        {/* === ORBITAL PATH VISUALS (Optional - subtle rings) === */}
-        {/* Inner orbit path */}
+        {/* === ORBITAL PATH VISUALS (Subtle rings for visual reference) === */}
+        {/* Inner orbit path (200px) */}
         <div 
           className="absolute border border-white/5 rounded-full pointer-events-none"
+          style={{
+            width: '400px', // 2 * 200
+            height: '400px',
+            zIndex: 1,
+          }}
+        />
+        {/* Middle orbit path (280px) */}
+        <div 
+          className="absolute border border-white/8 rounded-full pointer-events-none"
           style={{
             width: '560px', // 2 * 280
             height: '560px',
             zIndex: 1,
           }}
         />
-        {/* Outer orbit path */}
+        {/* Outer orbit path (380px) */}
         <div 
           className="absolute border border-white/5 rounded-full pointer-events-none"
           style={{
             width: '760px', // 2 * 380
             height: '760px',
+            zIndex: 1,
+          }}
+        />
+        {/* Far outer orbit path (480px) */}
+        <div 
+          className="absolute border border-white/3 rounded-full pointer-events-none"
+          style={{
+            width: '960px', // 2 * 480
+            height: '960px',
             zIndex: 1,
           }}
         />
