@@ -77,7 +77,7 @@ export function Spotlight({
         }}
       >
         <Image
-          src="/images/gold-pen-cursor.webp"
+          src="/images/gold-pen-cursor.png"
           alt="Midas Gold Pen Cursor"
           width={64}
           height={64}
