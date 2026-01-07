@@ -35,7 +35,7 @@ export default function Home() {
     const twinkleContainer = document.querySelector('.twinkle-stars');
     if (twinkleContainer) {
       const twinkleColors = ['gold', 'white', 'platinum', 'chrome'];
-      const positions = [];
+      const positions: { left: number; top: number }[] = [];
       
       // Create 25 stars with purposeful distribution
       for (let i = 0; i < 25; i++) {
@@ -72,7 +72,7 @@ export default function Home() {
     const shineContainer = document.querySelector('.shine-stars');
     if (shineContainer) {
       const shineColors = ['gold', 'platinum'];
-      const shinePositions = [];
+      const shinePositions: { left: number; top: number }[] = [];
       
       // 10 shine stars - fewer, more impactful
       for (let i = 0; i < 10; i++) {
