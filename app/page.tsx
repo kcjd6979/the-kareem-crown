@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Spotlight } from "@/components/Spotlight";
 import HeroSection from "@/components/HeroSection";
 import MeetTheForge from "@/components/MeetTheForge";
-import { ArsenalSection } from "@/components/ArsenalSection";
+import { ArsenalCarousel } from "@/components/Arsenal/ArsenalCarousel";
 import { CredentialsSection } from "@/components/CredentialsSection";
 import { ArchitectSection } from "@/components/ArchitectSection";
 import { AIToolsSection } from "@/components/AIToolsSection";
@@ -64,7 +64,10 @@ export default function Home() {
       <main className="relative">
         <HeroSection />
         <MeetTheForge />
-        <ArsenalSection />
+        
+        {/* New Arsenal 3D Video Carousel */}
+        <ArsenalCarousel />
+        
         <CredentialsSection />
         <ArchitectSection />
         <AIToolsSection />
