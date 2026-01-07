@@ -52,7 +52,7 @@ export function ArsenalCarousel() {
   }, [x]);
 
   // Handle navigation dot click
-  const handleDotClick = (index: number) => {
+  const handleDotClick = useCallback((index: number) => {
     if (isMobile) {
       // On mobile, scroll to the card
       const cardWidth = window.innerWidth * 0.85 + 20; // card width + gap
@@ -68,7 +68,7 @@ export function ArsenalCarousel() {
       x.set(-index * cardWidth);
     }
     setActiveIndex(index);
-  };
+  }, [isMobile, scrollContainerRef, x]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -159,16 +159,8 @@ export function ArsenalCarousel() {
               transformStyle: 'preserve-3d',
               rotateY: rotation,
               transformOrigin: 'center center',
+              x,
             }}
-            drag="x"
-            dragConstraints={containerRef}
-            dragElastic={0.2}
-            dragPropagation={true}
-            onDragEnd={handleDragEnd}
-            onDrag={(e, { offset }) => {
-              x.set(offset.x);
-            }}
-            style={{ x }}
           >
             {arsenalData.map((item, index) => (
               <CurvedVideoCard

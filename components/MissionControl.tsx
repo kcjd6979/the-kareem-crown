@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX, Rocket, RocketOff } from 'lucide-react';
+import { Volume2, VolumeX, Rocket } from 'lucide-react';
 
 /**
  * MissionControl - Audio & Rocket Pen Toggle Panel
@@ -149,7 +149,23 @@ export default function MissionControl({ className = '' }: MissionControlProps) 
                     {rocketEnabled ? (
                       <Rocket size={18} style={{ color: '#D4AF37' }} />
                     ) : (
-                      <RocketOff size={18} style={{ color: 'rgba(255, 255, 255, 0.5)' }} />
+                      <svg 
+                        width="18" 
+                        height="18" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="rgba(255, 255, 255, 0.5)" 
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M12.5 2.5 4.5 10.5l6 6 8-8" />
+                        <path d="M13.5 9.5 11 12" />
+                        <path d="M15.5 7.5 17.5 9.5" />
+                        <path d="M6 18 2 22" />
+                        <path d="M18 6l-4-4" />
+                        <line x1="2" y1="2" x22="22" y22="22" stroke="rgba(255, 255, 255, 0.3)" />
+                      </svg>
                     )}
                   </div>
                   <div>
