@@ -81,13 +81,13 @@ export const AIToolsSection = () => {
               whileHover={{ y: -5 }}
             >
               {/* Glass Card */}
-              <div className="relative p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 group-hover:border-[#D4AF37]/50 transition-all duration-500 h-full">
+              <div className="relative p-8 bg-white/5 backdrop-blur-sm rounded-2xl group-hover:border-[#D4AF37]/50 transition-all duration-500 h-full">
                 {/* Subtle Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
                 
                 {/* Icon */}
                 <div className="relative mb-6">
-                  <div className="w-16 h-16 mx-auto flex items-center justify-center bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/10 rounded-xl border border-[#D4AF37]/30 group-hover:border-[#D4AF37]/60 transition-all duration-500">
+                  <div className="w-16 h-16 mx-auto flex items-center justify-center bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/10 rounded-xl group-hover:border-[#D4AF37]/60 transition-all duration-500">
                     <tool.icon 
                       size={32} 
                       className="text-[#D4AF37] group-hover:text-white transition-all duration-500" 
@@ -112,7 +112,7 @@ export const AIToolsSection = () => {
 
                 {/* Expertise */}
                 <div className="text-center">
-                  <span className="inline-block px-3 py-1 bg-[#D4AF37]/10 border border-[#D4AF37]/30 rounded-full text-[#D4AF37] font-merriweather text-xs">
+                  <span className="inline-block px-3 py-1 bg-[#D4AF37]/10 rounded-full text-[#D4AF37] font-merriweather text-xs">
                     {tool.expertise}
                   </span>
                 </div>

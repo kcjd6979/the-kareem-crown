@@ -39,7 +39,6 @@ export const Footer = () => {
           backdropFilter: "blur(8px)",
           filter: "url(#glass-distortion)",
           boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
-          border: "1px solid rgba(255, 255, 255, 0.18)",
         }}
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

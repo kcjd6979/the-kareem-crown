@@ -25,7 +25,6 @@ export const ArchitectSection = () => {
             .loader {
               width: 48px;
               height: 48px;
-              border: 5px solid #FFF;
               border-bottom-color: #FFD700;
               border-radius: 50%;
               display: inline-block;

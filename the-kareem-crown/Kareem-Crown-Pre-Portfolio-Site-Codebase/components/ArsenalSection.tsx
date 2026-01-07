@@ -48,7 +48,7 @@ export const ArsenalSection = () => {
           {arsenalItems.map((item, i) => (
             <motion.div
               key={item.title}
-              className="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md flex flex-col items-center text-center"
+              className="p-8 rounded-2xl bg-white/5 backdrop-blur-md flex flex-col items-center text-center"
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"

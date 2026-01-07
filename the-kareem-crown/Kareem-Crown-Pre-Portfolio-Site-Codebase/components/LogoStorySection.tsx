@@ -154,7 +154,7 @@ const LogoStorySection: React.FC = () => {
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 border-2 border-yellow-400/20 rounded-full"
+                  className="absolute inset-0 rounded-full"
                   style={{ transform: 'scale(1.1)' }}
                 />
               </div>
@@ -258,7 +258,7 @@ const LogoStorySection: React.FC = () => {
             rotate: { duration: 50, repeat: Infinity, ease: "linear" },
             scale: { duration: 8, repeat: Infinity, ease: "easeInOut" }
           }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 border border-yellow-400/10 rounded-full"
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full"
         />
       </div>
     </section>
