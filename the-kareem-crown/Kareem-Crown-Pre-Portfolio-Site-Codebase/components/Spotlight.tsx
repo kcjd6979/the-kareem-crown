@@ -9,7 +9,7 @@ export function Spotlight({
   className?: string;
   fill?: string;
 }) {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -27,20 +27,20 @@ export function Spotlight({
 
   return (
     <div
-      className={`pointer-events-none fixed z-50 ${className}`}
+      className={`pointer-events-none fixed z-40 ${className}`}
       style={{
         left: x,
         top: y,
         transform: 'translate(-50%, -50%)',
       }}
     >
+      {/* Large Pen Image that follows cursor */}
       <img
         src="/images/pen-cursor.png"
         alt="Pen Cursor"
         style={{
-          width: '150px',
-          height: '150px',
-          objectFit: 'contain',
+          width: '200px',
+          height: 'auto',
           display: 'block',
         }}
       />
