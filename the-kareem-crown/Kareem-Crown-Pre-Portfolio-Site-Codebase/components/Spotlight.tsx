@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Spotlight({
   className,
@@ -11,15 +11,12 @@ export function Spotlight({
   className?: string;
   fill?: string;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        setMousePosition({ x: event.clientX - rect.left, y: event.clientY - rect.top });
-      }
+      // Use raw client coordinates for fixed positioning
+      setMousePosition({ x: event.clientX, y: event.clientY });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -33,7 +30,6 @@ export function Spotlight({
   return (
     <div
       className={`pointer-events-none fixed inset-0 z-50 ${className}`}
-      ref={ref}
       style={{
         background: `radial-gradient(800px circle at ${x}px ${y}px, ${
           fill || "rgba(212, 175, 55, 0.35)"
