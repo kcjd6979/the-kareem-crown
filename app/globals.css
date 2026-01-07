@@ -167,8 +167,8 @@ section {
 
 /* ==================== 🚀 ROCKET PEN CURSOR ==================== */
 
-/* Hide default cursor globally */
-* {
+/* Hide default cursor globally when rocket pen is active */
+body.rocket-pen-active * {
   cursor: none !important;
 }
 
@@ -257,6 +257,43 @@ section {
   }
 }
 
+/* ==================== 🚀 ROCKET PEN TOGGLE ==================== */
+
+.rocket-pen-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100000;
+}
+
+.toggle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 215, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.toggle-btn:hover {
+  border-color: rgba(255, 215, 0, 0.9);
+  color: rgba(255, 215, 0, 1);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.toggle-btn.active {
+  border-color: rgba(255, 215, 0, 0.9);
+  background: rgba(255, 215, 0, 0.15);
+  color: rgba(255, 215, 0, 1);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
 /* Restore default cursor for touch devices */
 @media (hover: none) and (pointer: coarse) {
   * {
@@ -264,7 +301,8 @@ section {
   }
   
   .midas-pen-cursor,
-  .midas-spotlight {
+  .midas-spotlight,
+  .rocket-pen-toggle {
     display: none;
   }
 }
