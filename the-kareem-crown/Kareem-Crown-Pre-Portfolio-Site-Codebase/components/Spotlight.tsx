@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
 
 export function Spotlight({
   className,
@@ -50,47 +49,20 @@ export function Spotlight({
         transition: 'opacity 0.15s ease-out',
       }}
     >
-      {/* Midas Gold Spotlight - emanates from pen tip */}
-      <div
-        className="absolute"
+      {/* Gold Pen Tip Cursor - positioned at mouse location */}
+      <img
+        src="/images/pen-tip.webp"
+        alt="Midas Gold Pen Cursor"
         style={{
+          position: 'absolute',
           left: x,
           top: y,
-          width: '800px',
-          height: '800px',
+          width: '128px',
+          height: '128px',
           transform: 'translate(-50%, -50%)',
-          background: `radial-gradient(circle, ${
-            fill || "rgba(212, 175, 55, 0.35)"
-          }, transparent 60%)`,
           pointerEvents: 'none',
         }}
       />
-
-      {/* Gold Pen Tip Cursor - positioned at mouse location */}
-      <div
-        className="absolute"
-        style={{
-          left: x,
-          top: y,
-          transform: 'translate(-50%, -50%)',
-          pointerEvents: 'none',
-        }}
-      >
-        <Image
-          src="/images/gold-pen-cursor.png"
-          alt="Midas Gold Pen Cursor"
-          width={128}
-          height={128}
-          priority
-          unoptimized
-          style={{
-            width: '128px',
-            height: '128px',
-            objectFit: 'contain',
-            filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.8))',
-          }}
-        />
-      </div>
     </div>
   );
 }
