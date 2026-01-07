@@ -55,8 +55,8 @@ const OrbitingPlanet = ({
         top: '50%',
         x, // Dynamic x position via trigonometry
         y, // Dynamic y position via trigonometry
-        xPercent: -50, // Center the planet itself
-        yPercent: -50, // Center the planet itself
+        marginLeft: '-50%', // Center the planet itself
+        marginTop: '-50%', // Center the planet itself
       }}
     >
       {/* Planet container - maintains upright orientation */}
