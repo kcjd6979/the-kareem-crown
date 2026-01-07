@@ -35,6 +35,18 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "the-kareem-crown",
+    "Kareem-Crown-Pre-Portfolio-Site-Codebase",
+    "native_engine_operation",
+    "purge_operation",
+    "browser",
+    "docs",
+    "extract",
+    "scripts",
+    "temp_pdf_subsates",
+    "user_input_files",
+    "verification",
+    "imgs"
   ]
 }
