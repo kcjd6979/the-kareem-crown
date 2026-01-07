@@ -69,7 +69,7 @@ export const CredentialsSection = () => {
               whileHover={{ y: -10 }}
             >
               {/* Card Background */}
-              <div className="relative p-6 backdrop-blur-sm rounded-xl group-hover:border-[#D4AF37]/50 transition-all duration-500">
+              <div className="relative p-6 backdrop-blur-sm rounded-xl transition-all duration-500">
                 {/* Gold Glow Effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-xl"></div>
                 
@@ -98,8 +98,7 @@ export const CredentialsSection = () => {
                   {credential.achievement}
                 </p>
 
-                {/* Gold Outline on Hover */}
-                <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-[#D4AF37]/20 transition-all duration-500"></div>
+                {/* Gold Outline on Hover - Remove */}
               </div>
             </motion.div>
           ))}

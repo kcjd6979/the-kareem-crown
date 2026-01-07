@@ -33,12 +33,10 @@ export const Footer = () => {
     <footer className="w-full py-12 px-4 flex items-center justify-center relative">
       <GlassFilter />
       <motion.div
-        className="relative p-2 rounded-2xl"
+        className="relative p-2"
         style={{
-          background: "rgba(255, 255, 255, 0.1)",
-          backdropFilter: "blur(8px)",
-          filter: "url(#glass-distortion)",
-          boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+          background: "transparent",
+          backdropFilter: "none",
         }}
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +48,7 @@ export const Footer = () => {
           <p className="text-sm text-gray-300 font-merriweather">
             &copy; {new Date().getFullYear()} Kareem Daniel
           </p>
-          <div className="w-px h-6 bg-white/20"></div>
+          <div className="w-px h-4 bg-white/10"></div>
           <div className="flex items-center gap-2">
              {/* Placeholder for the "Told by The Forge" icon */}
             <p className="text-sm text-gray-300 font-merriweather">
