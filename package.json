@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "vercel-build": "mkdir -p tmp || true && npm run build --prefix \"Kareem Crown Pre-Portfolio Site Codebase\""
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "engines": {
     "node": ">=18.0.0"
