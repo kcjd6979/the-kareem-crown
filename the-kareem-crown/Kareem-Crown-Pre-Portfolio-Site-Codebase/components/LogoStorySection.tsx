@@ -245,22 +245,6 @@ const LogoStorySection: React.FC = () => {
           </motion.div>
         </motion.div>
       </motion.div>
-
-      {/* Background Effects - Subtle, no visible containers */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-transparent to-transparent" />
-        <motion.div
-          animate={{ 
-            rotate: 360,
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ 
-            rotate: { duration: 50, repeat: Infinity, ease: "linear" },
-            scale: { duration: 8, repeat: Infinity, ease: "easeInOut" }
-          }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full"
-        />
-      </div>
     </section>
   );
 };

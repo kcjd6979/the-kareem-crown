@@ -68,10 +68,10 @@ export const CredentialsSection = () => {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               whileHover={{ y: -10 }}
             >
-              {/* Chrome Card Background */}
-              <div className="relative p-6 bg-gradient-to-br from-gray-800/20 to-gray-900/40 backdrop-blur-sm rounded-xl group-hover:border-[#D4AF37]/50 transition-all duration-500">
+              {/* Card Background */}
+              <div className="relative p-6 backdrop-blur-sm rounded-xl group-hover:border-[#D4AF37]/50 transition-all duration-500">
                 {/* Gold Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-xl"></div>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-xl"></div>
                 
                 {/* Logo Container */}
                 <div className="relative h-16 w-full mb-4 flex items-center justify-center">

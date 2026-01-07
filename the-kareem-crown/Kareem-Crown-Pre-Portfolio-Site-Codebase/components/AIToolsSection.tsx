@@ -51,7 +51,7 @@ export const AIToolsSection = () => {
   ];
 
   return (
-    <section className="w-full py-20 md:py-32 px-4 md:px-8 relative overflow-hidden bg-gradient-to-b from-transparent to-black/20">
+    <section className="w-full py-20 md:py-32 px-4 md:px-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -81,9 +81,9 @@ export const AIToolsSection = () => {
               whileHover={{ y: -5 }}
             >
               {/* Glass Card */}
-              <div className="relative p-8 bg-white/5 backdrop-blur-sm rounded-2xl group-hover:border-[#D4AF37]/50 transition-all duration-500 h-full">
+              <div className="relative p-8 backdrop-blur-sm rounded-2xl transition-all duration-500 h-full">
                 {/* Subtle Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
                 
                 {/* Icon */}
                 <div className="relative mb-6">

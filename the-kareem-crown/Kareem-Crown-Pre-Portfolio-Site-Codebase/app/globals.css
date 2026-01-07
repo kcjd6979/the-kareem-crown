@@ -9,7 +9,53 @@ html, body {
 }
 
 body {
-  background-color: #111111;
+  background: #000000;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(1px 1px at 80% 10%, white, transparent),
+    radial-gradient(2px 2px at 90% 60%, white, transparent),
+    radial-gradient(1px 1px at 33% 50%, white, transparent),
+    radial-gradient(1px 1px at 55% 90%, white, transparent),
+    radial-gradient(3px 3px at 10% 80%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(2px 2px at 45% 20%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(4px 4px at 70% 40%, rgba(255,255,255,0.9), transparent);
+  background-size: 200px 200px;
+  background-attachment: fixed;
+  min-height: 100vh;
   color: #FFFFFF;
   overflow-x: hidden;
+}
+
+/* ALL page sections must be transparent wrappers */
+section {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
+
+/* Ensure all containers are transparent */
+.container,
+.section-container,
+.content-wrapper {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Sections should flow directly into each other */
+section + section {
+  margin-top: 0 !important;
+  padding-top: 60px;
+}
+
+/* Content cards can have SUBTLE dark overlays, but mostly transparent */
+.content-card {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 40px;
 }

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 const CompanyLogoSection: React.FC = () => {
 
   return (
-    <section className="relative h-screen bg-black overflow-hidden">
+    <section className="relative h-screen overflow-hidden">
       {/* Full Screen Logo Container */}
       <div className="relative z-10 flex items-center justify-center h-full">
         <motion.div

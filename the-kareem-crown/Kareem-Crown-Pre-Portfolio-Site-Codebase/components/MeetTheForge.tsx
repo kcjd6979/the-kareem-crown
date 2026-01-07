@@ -264,20 +264,6 @@ export default function MeetTheForge() {
       ref={containerRef}
       className="relative w-full min-h-screen overflow-hidden"
     >
-      {/* Top gradient fade for seamless transition from previous section */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: `linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.5) 100%)`
-      }} />
-      
-      {/* Bottom gradient fade for seamless transition to next section */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: `linear-gradient(to top, transparent 0%, rgba(0,0,0,0.3) 20%, rgba(0,0,0,0.5) 100%)`
-      }} />
-
-      {/* Subtle noise texture overlay - barely visible to maintain starfield */}
-      <div className="absolute inset-0 opacity-[0.008] pointer-events-none mix-blend-overlay z-0">
-        <div className="w-full h-full bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 400 400%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')]" />
-      </div>
       
       {/* Section Header - Playfair Display SC Black for headings */}
       <motion.div
