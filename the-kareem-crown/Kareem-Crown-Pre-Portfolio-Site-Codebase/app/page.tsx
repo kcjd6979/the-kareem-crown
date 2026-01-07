@@ -44,7 +44,7 @@ export default function Home() {
         star.className = `twinkle-star ${color}`;
         
         // Strategic positioning for visual flow
-        let left, top;
+        let left: number, top: number;
         do {
           left = Math.random() * 100;
           top = Math.random() * 100;
@@ -80,7 +80,7 @@ export default function Home() {
         const color = shineColors[Math.floor(Math.random() * shineColors.length)];
         star.className = `shine-star ${color}`;
         
-        let left, top;
+        let left: number, top: number;
         do {
           left = Math.random() * 100;
           top = Math.random() * 100;
