@@ -3,6 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide default cursor - use custom Midas Pen Cursor instead */
+* {
+  cursor: none !important;
+}
+
 html, body {
   height: auto;
   overflow-y: auto;
