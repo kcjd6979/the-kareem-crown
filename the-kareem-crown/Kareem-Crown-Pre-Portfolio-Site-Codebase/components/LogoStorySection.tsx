@@ -77,6 +77,11 @@ const LogoStorySection: React.FC = () => {
 
   return (
     <section id="logo-story" ref={containerRef} className="relative min-h-screen py-20 overflow-hidden">
+      {/* Subtle gradient to blend from previous section */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: 'linear-gradient(to top, #000000 0%, transparent 20%, transparent 100%)'
+      }} />
+      
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -136,10 +141,10 @@ const LogoStorySection: React.FC = () => {
                     transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                     whileHover={{ scale: 1.2 }}
                     onClick={() => setActiveElement(element.id)}
-                    className={`absolute w-6 h-6 rounded-full border-2 transition-all duration-300 ${
+                    className={`absolute w-6 h-6 rounded-full transition-all duration-300 ${
                       activeElement === element.id 
-                        ? 'bg-yellow-400 border-yellow-400 shadow-lg shadow-yellow-400/50' 
-                        : 'bg-black/80 border-yellow-400/50 hover:border-yellow-400'
+                        ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50' 
+                        : 'bg-black/80 hover:bg-black/60'
                     }`}
                     style={{
                       left: `${20 + (index % 3) * 30}%`,
