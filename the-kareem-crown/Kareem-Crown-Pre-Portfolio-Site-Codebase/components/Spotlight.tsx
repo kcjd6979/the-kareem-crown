@@ -79,13 +79,13 @@ export function Spotlight({
         <Image
           src="/images/gold-pen-cursor.png"
           alt="Midas Gold Pen Cursor"
-          width={64}
-          height={64}
+          width={128}
+          height={128}
           priority
           unoptimized
           style={{
-            width: '64px',
-            height: '64px',
+            width: '128px',
+            height: '128px',
             objectFit: 'contain',
             filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.8))',
           }}
