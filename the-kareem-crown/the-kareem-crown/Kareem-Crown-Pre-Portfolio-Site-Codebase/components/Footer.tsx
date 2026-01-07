@@ -33,25 +33,48 @@ export const Footer = () => {
     <footer className="w-full py-12 px-4 flex items-center justify-center relative">
       <GlassFilter />
       <motion.div
-        className="relative p-2"
+        className="relative p-2 rounded-2xl"
         style={{
-          background: "transparent",
-          backdropFilter: "none",
+          background: "rgba(255, 255, 255, 0.1)",
+          backdropFilter: "blur(8px)",
+          filter: "url(#glass-distortion)",
+          boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+          border: "1px solid rgba(255, 255, 255, 0.18)",
         }}
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        <div className="flex items-center justify-center gap-4">
-          {/* NOTE: These are placeholders. We will add the actual 3D icons/images later */}
-          <p className="text-sm text-gray-300 font-merriweather">
+        <div className="flex items-center justify-center gap-6">
+          {/* Navigation Links */}
+          <div className="flex items-center gap-4">
+            <a 
+              href="#logo-story" 
+              className="text-sm text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-georgia"
+            >
+              Logo Story
+            </a>
+            <div className="w-px h-6 bg-white/20"></div>
+            <a 
+              href="#connection" 
+              className="text-sm text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-georgia"
+            >
+              Connect
+            </a>
+          </div>
+          
+          <div className="w-px h-6 bg-white/20"></div>
+          
+          {/* Copyright */}
+          <p className="text-sm text-gray-300 font-georgia">
             &copy; {new Date().getFullYear()} Kareem Daniel
           </p>
-          <div className="w-px h-4 bg-white/10"></div>
+          
+          <div className="w-px h-6 bg-white/20"></div>
+          
           <div className="flex items-center gap-2">
-             {/* Placeholder for the "Told by The Forge" icon */}
-            <p className="text-sm text-gray-300 font-merriweather">
+            <p className="text-sm text-gray-300 font-georgia">
               Told by The Forge
             </p>
           </div>

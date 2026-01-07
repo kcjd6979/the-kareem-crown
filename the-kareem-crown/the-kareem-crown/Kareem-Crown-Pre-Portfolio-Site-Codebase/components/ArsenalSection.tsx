@@ -41,23 +41,26 @@ export const ArsenalSection = () => {
   return (
     <section className="w-full py-20 md:py-32 px-4 md:px-8">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="font-playfair font-bold text-4xl md:text-5xl text-white mb-12">
+        <h2 className="font-playfair font-bold text-4xl md:text-5xl text-white mb-4">
           The Arsenal
         </h2>
+        <p className="font-merriweather text-xl text-[#D4AF37] italic mb-12">
+          An Arsenal of Proof
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {arsenalItems.map((item, i) => (
             <motion.div
               key={item.title}
-              className="p-8 rounded-2xl backdrop-blur-sm flex flex-col items-center text-center"
+              className="group p-8 flex flex-col items-center text-center"
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               custom={i}
             >
-              <div className="mb-6">{item.icon}</div>
+              <div className="mb-6 transition-transform duration-300 ease-in-out group-hover:scale-110">{item.icon}</div>
               <h3 className="font-playfair font-bold text-2xl text-white mb-4">{item.title}</h3>
-              <p className="text-gray-400 font-merriweather mb-6 flex-grow">{item.description}</p>
+              <p className="text-gray-300 font-merriweather text-base leading-relaxed mb-6 flex-grow">{item.description}</p>
               <LiquidGlassButton>
                 View Proof
               </LiquidGlassButton>

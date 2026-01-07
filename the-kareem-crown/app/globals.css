@@ -36,7 +36,103 @@ body {
   position: relative;
 }
 
-/* Z-Index Layering System */
+/* ==================== CUSTOM CURSOR SYSTEM ==================== */
+
+/* Hide default cursor when rocket pen is enabled */
+body.rocket-pen-enabled * {
+  cursor: none !important;
+}
+
+/* Exception: allow default cursor on touch devices and when reduced motion */
+@media (hover: none) and (pointer: coarse),
+       (prefers-reduced-motion: reduce) {
+  body.rocket-pen-enabled * {
+    cursor: auto !important;
+  }
+  
+  .rocket-pen-cursor {
+    display: none !important;
+  }
+}
+
+/* Interactive elements still need pointer cursor */
+body.rocket-pen-enabled a,
+body.rocket-pen-enabled button,
+body.rocket-pen-enabled [role="button"],
+body.rocket-pen-enabled input[type="submit"],
+body.rocket-pen-enabled .interactive {
+  cursor: pointer !important;
+}
+
+/* ==================== MIDAS THRUSTER SPOTLIGHT ==================== */
+
+.midas-spotlight {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.35) 0%,
+    rgba(212, 175, 55, 0.2) 15%,
+    rgba(212, 175, 55, 0.1) 30%,
+    rgba(212, 175, 55, 0.05) 50%,
+    transparent 70%
+  );
+  will-change: background, left, top;
+  mix-blend-mode: screen;
+}
+
+/* Thruster pulse animation */
+@keyframes thrusterPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+.midas-spotlight.active {
+  animation: thrusterPulse 3s ease-in-out infinite;
+}
+
+/* Trail effect layer */
+.midas-spotlight::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.15) 0%,
+    rgba(212, 175, 55, 0.05) 40%,
+    transparent 70%
+  );
+  animation: thrusterTrail 4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes thrusterTrail {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* ==================== Z-INDEX LAYERING SYSTEM ==================== */
 .bg-base { z-index: -50; }
 .bg-particles { z-index: -40; }
 .bg-ui { z-index: 1; }
@@ -163,4 +259,67 @@ section {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+/* ==================== AUDIO FEEDBACK VISUALS ==================== */
+.audio-wave {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 20px;
+}
+
+.audio-wave span {
+  width: 3px;
+  background: #D4AF37;
+  border-radius: 2px;
+  animation: wavePulse 1s ease-in-out infinite;
+}
+
+.audio-wave span:nth-child(1) { animation-delay: 0s; height: 40%; }
+.audio-wave span:nth-child(2) { animation-delay: 0.1s; height: 70%; }
+.audio-wave span:nth-child(3) { animation-delay: 0.2s; height: 100%; }
+.audio-wave span:nth-child(4) { animation-delay: 0.3s; height: 60%; }
+.audio-wave span:nth-child(5) { animation-delay: 0.4s; height: 30%; }
+
+@keyframes wavePulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.5; }
+  50% { transform: scaleY(1.5); opacity: 1; }
+}
+
+/* ==================== INTERACTIVE HOVER STATES ==================== */
+.interactive {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive:hover {
+  filter: brightness(1.2);
+  transform: scale(1.02);
+}
+
+/* Button hover effect */
+button.interactive:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+/* ==================== GOLD TEXT GRADIENT ==================== */
+.text-gold-gradient {
+  background: linear-gradient(
+    135deg,
+    #D4AF37 0%,
+    #F5D76E 25%,
+    #D4AF37 50%,
+    #B8860B 75%,
+    #D4AF37 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: goldShimmer 4s ease-in-out infinite;
+}
+
+@keyframes goldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }

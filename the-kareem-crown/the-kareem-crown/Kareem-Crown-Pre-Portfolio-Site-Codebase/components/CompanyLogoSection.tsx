@@ -6,12 +6,7 @@ import { motion } from 'framer-motion';
 const CompanyLogoSection: React.FC = () => {
 
   return (
-    <section className="relative h-screen overflow-hidden">
-      {/* Subtle gradient to blend into next section */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'linear-gradient(to bottom, transparent 0%, transparent 85%, #000000 100%)'
-      }} />
-      
+    <section className="relative h-screen bg-black overflow-hidden">
       {/* Full Screen Logo Container */}
       <div className="relative z-10 flex items-center justify-center h-full">
         <motion.div

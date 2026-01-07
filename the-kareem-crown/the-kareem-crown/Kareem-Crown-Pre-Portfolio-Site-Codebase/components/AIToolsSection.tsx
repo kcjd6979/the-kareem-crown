@@ -51,7 +51,7 @@ export const AIToolsSection = () => {
   ];
 
   return (
-    <section className="w-full py-20 md:py-32 px-4 md:px-8 relative overflow-hidden">
+    <section className="w-full py-20 md:py-32 px-4 md:px-8 relative overflow-hidden bg-gradient-to-b from-transparent to-black/20">
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -81,13 +81,13 @@ export const AIToolsSection = () => {
               whileHover={{ y: -5 }}
             >
               {/* Glass Card */}
-              <div className="relative p-8 backdrop-blur-sm rounded-2xl transition-all duration-500 h-full">
+              <div className="relative p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 group-hover:border-[#D4AF37]/50 transition-all duration-500 h-full">
                 {/* Subtle Glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
                 
                 {/* Icon */}
                 <div className="relative mb-6">
-                  <div className="w-16 h-16 mx-auto flex items-center justify-center rounded-xl group-hover:border-[#D4AF37]/60 transition-all duration-500">
+                  <div className="w-16 h-16 mx-auto flex items-center justify-center bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/10 rounded-xl border border-[#D4AF37]/30 group-hover:border-[#D4AF37]/60 transition-all duration-500">
                     <tool.icon 
                       size={32} 
                       className="text-[#D4AF37] group-hover:text-white transition-all duration-500" 
@@ -112,12 +112,13 @@ export const AIToolsSection = () => {
 
                 {/* Expertise */}
                 <div className="text-center">
-                  <span className="inline-block px-3 py-1 rounded-full text-[#D4AF37] font-merriweather text-xs">
+                  <span className="inline-block px-3 py-1 bg-[#D4AF37]/10 border border-[#D4AF37]/30 rounded-full text-[#D4AF37] font-merriweather text-xs">
                     {tool.expertise}
                   </span>
                 </div>
 
-                {/* Hover Border Effect - Remove entirely */}
+                {/* Hover Border Effect */}
+                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#D4AF37]/20 transition-all duration-500"></div>
               </div>
             </motion.div>
           ))}

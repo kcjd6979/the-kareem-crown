@@ -77,11 +77,6 @@ const LogoStorySection: React.FC = () => {
 
   return (
     <section id="logo-story" ref={containerRef} className="relative min-h-screen py-20 overflow-hidden">
-      {/* Subtle gradient to blend from previous section */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'linear-gradient(to top, #000000 0%, transparent 20%, transparent 100%)'
-      }} />
-      
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -141,10 +136,10 @@ const LogoStorySection: React.FC = () => {
                     transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                     whileHover={{ scale: 1.2 }}
                     onClick={() => setActiveElement(element.id)}
-                    className={`absolute w-6 h-6 rounded-full transition-all duration-300 ${
+                    className={`absolute w-6 h-6 rounded-full border-2 transition-all duration-300 ${
                       activeElement === element.id 
-                        ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50' 
-                        : 'bg-black/80 hover:bg-black/60'
+                        ? 'bg-yellow-400 border-yellow-400 shadow-lg shadow-yellow-400/50' 
+                        : 'bg-black/80 border-yellow-400/50 hover:border-yellow-400'
                     }`}
                     style={{
                       left: `${20 + (index % 3) * 30}%`,
@@ -159,7 +154,7 @@ const LogoStorySection: React.FC = () => {
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 rounded-full"
+                  className="absolute inset-0 border-2 border-yellow-400/20 rounded-full"
                   style={{ transform: 'scale(1.1)' }}
                 />
               </div>
@@ -250,6 +245,22 @@ const LogoStorySection: React.FC = () => {
           </motion.div>
         </motion.div>
       </motion.div>
+
+      {/* Background Effects - Subtle, no visible containers */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-transparent to-transparent" />
+        <motion.div
+          animate={{ 
+            rotate: 360,
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ 
+            rotate: { duration: 50, repeat: Infinity, ease: "linear" },
+            scale: { duration: 8, repeat: Infinity, ease: "easeInOut" }
+          }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 border border-yellow-400/10 rounded-full"
+        />
+      </div>
     </section>
   );
 };

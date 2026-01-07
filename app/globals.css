@@ -36,7 +36,103 @@ body {
   position: relative;
 }
 
-/* Z-Index Layering System */
+/* ==================== CUSTOM CURSOR SYSTEM ==================== */
+
+/* Hide default cursor when rocket pen is enabled */
+body.rocket-pen-enabled * {
+  cursor: none !important;
+}
+
+/* Exception: allow default cursor on touch devices and when reduced motion */
+@media (hover: none) and (pointer: coarse),
+       (prefers-reduced-motion: reduce) {
+  body.rocket-pen-enabled * {
+    cursor: auto !important;
+  }
+  
+  .rocket-pen-cursor {
+    display: none !important;
+  }
+}
+
+/* Interactive elements still need pointer cursor */
+body.rocket-pen-enabled a,
+body.rocket-pen-enabled button,
+body.rocket-pen-enabled [role="button"],
+body.rocket-pen-enabled input[type="submit"],
+body.rocket-pen-enabled .interactive {
+  cursor: pointer !important;
+}
+
+/* ==================== MIDAS THRUSTER SPOTLIGHT ==================== */
+
+.midas-spotlight {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.35) 0%,
+    rgba(212, 175, 55, 0.2) 15%,
+    rgba(212, 175, 55, 0.1) 30%,
+    rgba(212, 175, 55, 0.05) 50%,
+    transparent 70%
+  );
+  will-change: background, left, top;
+  mix-blend-mode: screen;
+}
+
+/* Thruster pulse animation */
+@keyframes thrusterPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+.midas-spotlight.active {
+  animation: thrusterPulse 3s ease-in-out infinite;
+}
+
+/* Trail effect layer */
+.midas-spotlight::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.15) 0%,
+    rgba(212, 175, 55, 0.05) 40%,
+    transparent 70%
+  );
+  animation: thrusterTrail 4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes thrusterTrail {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* ==================== Z-INDEX LAYERING SYSTEM ==================== */
 .bg-base { z-index: -50; }
 .bg-particles { z-index: -40; }
 .bg-ui { z-index: 1; }
@@ -165,144 +261,65 @@ section {
   box-shadow: none !important;
 }
 
-/* ==================== 🚀 ROCKET PEN CURSOR ==================== */
-
-/* Hide default cursor globally when rocket pen is active */
-body.rocket-pen-active * {
-  cursor: none !important;
-}
-
-/* Custom Midas Gold Pen Cursor (ROCKET) */
-.midas-pen-cursor {
-  position: fixed;
-  width: 80px;
-  height: 80px;
-  pointer-events: none;
-  z-index: 99999;
-  /* Hotspot at bottom center where pen tip points */
-  transform: translate(-40px, -80px);
-  background-image: url('/gold-pen-tip.webp');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  image-rendering: -webkit-optimize-contrast;
-  
-  /* Smooth gliding handled by JS interpolation */
-}
-
-/* Thruster Spotlight Glow (HEADLIGHTS emanating from cursor) */
-.midas-spotlight {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  /* Center the glow on the cursor position */
-  transform: translate(-50%, -50%);
-  
-  /* Golden Midas headlight glow effect */
-  background: radial-gradient(
-    circle,
-    rgba(255, 215, 0, 0.4) 0%,      /* Bright gold center (light source) */
-    rgba(255, 215, 0, 0.25) 12%,    /* Strong glow */
-    rgba(255, 215, 0, 0.15) 25%,    /* Medium glow */
-    rgba(255, 215, 0, 0.08) 40%,    /* Fading */
-    transparent 65%                   /* Fully transparent at edges */
-  );
-  
-  /* No CSS transition - JS interpolation handles smooth movement */
-  
-  /* Pulsing thruster effect (headlight intensity) */
-  animation: thrusterPulse 2s ease-in-out infinite;
-}
-
-/* Rocket thruster pulse animation */
-@keyframes thrusterPulse {
-  0%, 100% {
-    opacity: 0.7;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.05);
-  }
-}
-
-/* Rocket exhaust trail effect */
-.midas-spotlight::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 215, 0, 0.2) 0%,
-    transparent 60%
-  );
-  transform: translate(-50%, -50%);
-  animation: thrusterTrail 3s ease-out infinite;
-  pointer-events: none;
-}
-
-@keyframes thrusterTrail {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(2.5);
-    opacity: 0;
-  }
-}
-
-/* ==================== 🚀 ROCKET PEN TOGGLE ==================== */
-
-.rocket-pen-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 100000;
-}
-
-.toggle-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 215, 0, 0.5);
-  background: rgba(0, 0, 0, 0.6);
-  color: rgba(255, 215, 0, 0.7);
+/* ==================== AUDIO FEEDBACK VISUALS ==================== */
+.audio-wave {
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
+  gap: 2px;
+  height: 20px;
 }
 
-.toggle-btn:hover {
-  border-color: rgba(255, 215, 0, 0.9);
-  color: rgba(255, 215, 0, 1);
-  background: rgba(0, 0, 0, 0.8);
+.audio-wave span {
+  width: 3px;
+  background: #D4AF37;
+  border-radius: 2px;
+  animation: wavePulse 1s ease-in-out infinite;
 }
 
-.toggle-btn.active {
-  border-color: rgba(255, 215, 0, 0.9);
-  background: rgba(255, 215, 0, 0.15);
-  color: rgba(255, 215, 0, 1);
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+.audio-wave span:nth-child(1) { animation-delay: 0s; height: 40%; }
+.audio-wave span:nth-child(2) { animation-delay: 0.1s; height: 70%; }
+.audio-wave span:nth-child(3) { animation-delay: 0.2s; height: 100%; }
+.audio-wave span:nth-child(4) { animation-delay: 0.3s; height: 60%; }
+.audio-wave span:nth-child(5) { animation-delay: 0.4s; height: 30%; }
+
+@keyframes wavePulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.5; }
+  50% { transform: scaleY(1.5); opacity: 1; }
 }
 
-/* Restore default cursor for touch devices */
-@media (hover: none) and (pointer: coarse) {
-  * {
-    cursor: auto !important;
-  }
-  
-  .midas-pen-cursor,
-  .midas-spotlight,
-  .rocket-pen-toggle {
-    display: none;
-  }
+/* ==================== INTERACTIVE HOVER STATES ==================== */
+.interactive {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive:hover {
+  filter: brightness(1.2);
+  transform: scale(1.02);
+}
+
+/* Button hover effect */
+button.interactive:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+/* ==================== GOLD TEXT GRADIENT ==================== */
+.text-gold-gradient {
+  background: linear-gradient(
+    135deg,
+    #D4AF37 0%,
+    #F5D76E 25%,
+    #D4AF37 50%,
+    #B8860B 75%,
+    #D4AF37 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: goldShimmer 4s ease-in-out infinite;
+}
+
+@keyframes goldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
