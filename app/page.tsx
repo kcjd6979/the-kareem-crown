@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Spotlight } from "@/components/Spotlight";
+import ClientLayout from "@/components/ClientLayout";
 import HeroSection from "@/components/HeroSection";
 import MeetTheForge from "@/components/MeetTheForge";
 import { ArsenalCarousel } from "@/components/Arsenal/ArsenalCarousel";
@@ -56,26 +56,25 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen">
-      {/* Global cursor glow effect with highest z-index */}
-      <Spotlight className="pointer-events-none" />
-      
-      {/* Main content */}
-      <main className="relative">
-        <HeroSection />
-        <MeetTheForge />
-        
-        {/* New Arsenal 3D Video Carousel */}
-        <ArsenalCarousel />
-        
-        <CredentialsSection />
-        <ArchitectSection />
-        <AIToolsSection />
-        <ConnectionSection />
-        <CompanyLogoSection />
-        <LogoStorySection />
-        <Footer />
-      </main>
-    </div>
+    <ClientLayout>
+      <div className="relative min-h-screen">
+        {/* Main content */}
+        <main className="relative">
+          <HeroSection />
+          <MeetTheForge />
+          
+          {/* New Arsenal 3D Video Carousel */}
+          <ArsenalCarousel />
+          
+          <CredentialsSection />
+          <ArchitectSection />
+          <AIToolsSection />
+          <ConnectionSection />
+          <CompanyLogoSection />
+          <LogoStorySection />
+          <Footer />
+        </main>
+      </div>
+    </ClientLayout>
   );
 }
