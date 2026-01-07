@@ -1,5 +1,6 @@
 {
   "version": 2,
-  "outputDirectory": ".next",
+  "buildCommand": "npm run build --prefix \"Kareem Crown Pre-Portfolio Site Codebase\"",
+  "outputDirectory": "Kareem Crown Pre-Portfolio Site Codebase/.next",
   "framework": "nextjs"
 }
