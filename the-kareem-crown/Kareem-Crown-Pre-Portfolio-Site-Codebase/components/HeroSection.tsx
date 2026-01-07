@@ -276,7 +276,8 @@ const HeroSection = () => {
   ];
 
   return (
-    // Mobile-first responsive container
+    // Mobile-first responsive container - OPEN GALAXY EFFECT
+    // Full width, no container boundaries, rocket pen navigates through open space
     <div 
       className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000"
       style={{ 
@@ -285,16 +286,19 @@ const HeroSection = () => {
         // Responsive padding for different screen sizes
         paddingLeft: 'env(safe-area-inset-left)',
         paddingRight: 'env(safe-area-inset-right)',
+        // OPEN GALAXY: Full width without container boundaries
+        overflow: 'visible',
       }}
     >
       
       {/* === SOLAR SYSTEM CONTAINER === */}
       {/* Centered in viewport, contains sun + orbiting planets */}
+      {/* OPEN GALAXY: Full width, no maxWidth constraint */}
       <div 
         className="relative flex items-center justify-center"
         style={{
           width: '100%',
-          maxWidth: '1200px',
+          // REMOVED: maxWidth: '1200px' - for open galaxy effect
           // Reserve space for orbital paths
           height: '800px',
         }}

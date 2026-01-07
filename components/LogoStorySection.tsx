@@ -82,9 +82,9 @@ const LogoStorySection: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="container mx-auto px-6 relative z-10"
+        className="w-full px-6 relative z-10"
       >
-        {/* Section Header */}
+        {/* Section Header - Open, no container */}
         <div className="text-center mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
@@ -119,7 +119,7 @@ const LogoStorySection: React.FC = () => {
                 <motion.img
                   src="/2-mtm-shield-black-_1_.svg"
                   alt="MTM Logo Story"
-                  className="w-full h-full object-contain filter"
+                  className="w-full h-full object-contain"
                   style={{
                     filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.4))',
                   }}
@@ -139,7 +139,7 @@ const LogoStorySection: React.FC = () => {
                     className={`absolute w-6 h-6 rounded-full border-2 transition-all duration-300 ${
                       activeElement === element.id 
                         ? 'bg-yellow-400 border-yellow-400 shadow-lg shadow-yellow-400/50' 
-                        : 'bg-black/80 border-yellow-400/50 hover:border-yellow-400'
+                        : 'bg-black/50 border-yellow-400/50 hover:border-yellow-400'
                     }`}
                     style={{
                       left: `${20 + (index % 3) * 30}%`,
@@ -161,20 +161,21 @@ const LogoStorySection: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Story Content - Floating cards with no visible container borders */}
-          <div className="space-y-6">
+          {/* Story Content - Floating items, NO visible container borders */}
+          <div className="space-y-4">
             {logoElements.map((element, index) => (
               <motion.div
                 key={element.id}
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`p-6 transition-all duration-500 cursor-pointer ${
+                className={`transition-all duration-500 cursor-pointer ${
                   activeElement === element.id
-                    ? 'bg-yellow-400/5'
+                    ? 'bg-white/5'
                     : 'hover:bg-white/5'
-                }}`}
+                }`}
                 onClick={() => setActiveElement(element.id)}
+                style={{ padding: '1.5rem', borderRadius: '0.75rem' }}
               >
                 <div className="flex items-start space-x-4">
                   <motion.div
@@ -222,7 +223,7 @@ const LogoStorySection: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Quote */}
+        {/* Bottom Quote - Open in galaxy space */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -246,7 +247,7 @@ const LogoStorySection: React.FC = () => {
         </motion.div>
       </motion.div>
 
-      {/* Background Effects - Subtle, no visible containers */}
+      {/* Subtle background glow - NO visible containers */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-transparent to-transparent" />
         <motion.div
