@@ -164,3 +164,105 @@ section {
   border: none !important;
   box-shadow: none !important;
 }
+
+/* ==================== 🚀 ROCKET PEN CURSOR ==================== */
+
+/* Hide default cursor globally */
+* {
+  cursor: none !important;
+}
+
+/* Custom Midas Gold Pen Cursor */
+.midas-pen-cursor {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-12px, -12px); /* Center hotspot at cursor tip */
+  background-image: url('/gold-pen-cursor.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Thruster Spotlight Glow */
+.midas-spotlight {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  
+  /* Golden Midas glow effect */
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.35) 0%,      /* Bright gold center */
+    rgba(255, 215, 0, 0.2) 15%,      /* Medium glow */
+    rgba(255, 215, 0, 0.1) 30%,      /* Fading */
+    rgba(255, 215, 0, 0.05) 50%,     /* Nearly invisible */
+    transparent 70%                   /* Fully transparent */
+  );
+  
+  /* Smooth movement */
+  transition: left 0.08s ease-out, 
+              top 0.08s ease-out, 
+              opacity 0.3s ease;
+  
+  /* Pulsing thruster effect */
+  animation: thrusterPulse 2s ease-in-out infinite;
+}
+
+/* Rocket thruster pulse animation */
+@keyframes thrusterPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+/* Rocket exhaust trail effect */
+.midas-spotlight::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.15) 0%,
+    transparent 60%
+  );
+  transform: translate(-50%, -50%);
+  animation: thrusterTrail 3s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes thrusterTrail {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Restore default cursor for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+  
+  .midas-pen-cursor,
+  .midas-spotlight {
+    display: none;
+  }
+}

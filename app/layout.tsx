@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import OptimizedBackground from "@/components/OptimizedBackground";
 import { Spotlight } from "@/components/Spotlight";
 import { FixedLighting } from "@/components/FixedLighting";
+import MidasSpotlight from "@/components/MidasSpotlight";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,6 +24,7 @@ export default function RootLayout({
         <OptimizedBackground />
         <FixedLighting />
         <Spotlight className="fixed inset-0 pointer-events-none" color="#D4AF37" opacity={0.45} size={700} />
+        <MidasSpotlight className="fixed inset-0 pointer-events-none" size={500} />
         <main>{children}</main>
       </body>
     </html>
