@@ -1,6 +1,4 @@
 {
   "version": 2,
-  "buildCommand": "npm run build --prefix \"the-kareem-crown/Kareem-Crown-Pre-Portfolio-Site-Codebase\"",
-  "outputDirectory": "the-kareem-crown/Kareem-Crown-Pre-Portfolio-Site-Codebase/.next",
   "framework": "nextjs"
 }
