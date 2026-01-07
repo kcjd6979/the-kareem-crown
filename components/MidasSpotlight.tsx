@@ -10,50 +10,60 @@ interface MidasSpotlightProps {
 
 export default function MidasSpotlight({ 
   className = "", 
-  size = 400,
-  color = "255, 215, 0" // Midas gold RGB
+  size = 450,
+  color = "255, 215, 0"
 }: MidasSpotlightProps) {
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isVisible, setIsVisible] = useState(false);
-  const animationFrameRef = useRef<number | null>(null);
-  const previousPos = useRef({ x: -100, y: -100 });
+  const targetPos = useRef({ x: -100, y: -100 });
+  const currentPos = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
     // Show spotlight once mouse enters window
     const handleMouseEnter = () => setIsVisible(true);
-    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseLeave = () => {
+      setIsVisible(false);
+      // Reset position when mouse leaves
+      targetPos.current = { x: -100, y: -100 };
+    };
 
-    // Use requestAnimationFrame for smoother cursor tracking
+    // Direct update for maximum responsiveness
     const updatePosition = (e: MouseEvent) => {
-      // Store position but don't update React state on every frame
-      previousPos.current = { x: e.clientX, y: e.clientY };
+      targetPos.current = { x: e.clientX, y: e.clientY };
+    };
+
+    // Smooth interpolation loop for gliding effect
+    let animationId: number;
+    
+    const animate = () => {
+      // Smooth interpolation (lerp) for gliding feel
+      // Lower value = smoother/glidier, Higher = more responsive
+      const ease = 0.12;
+      currentPos.current.x += (targetPos.current.x - currentPos.current.x) * ease;
+      currentPos.current.y += (targetPos.current.y - currentPos.current.y) * ease;
       
-      // Only update React state occasionally to reduce re-renders
-      if (!animationFrameRef.current) {
-        animationFrameRef.current = requestAnimationFrame(() => {
-          setPosition({ ...previousPos.current });
-          animationFrameRef.current = null;
-        });
-      }
+      setPosition({ ...currentPos.current });
+      animationId = requestAnimationFrame(animate);
     };
 
     window.addEventListener('mouseenter', handleMouseEnter);
     window.addEventListener('mouseleave', handleMouseLeave);
     window.addEventListener('mousemove', updatePosition);
+    
+    // Start animation loop
+    animationId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('mouseenter', handleMouseEnter);
       window.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('mousemove', updatePosition);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      cancelAnimationFrame(animationId);
     };
   }, []);
 
   return (
     <>
-      {/* Custom cursor - Golden Midas Pen Tip */}
+      {/* Custom cursor - Golden Midas Pen Tip (ROCKET) */}
       {isVisible && (
         <div
           className="midas-pen-cursor"
@@ -64,7 +74,7 @@ export default function MidasSpotlight({
         />
       )}
 
-      {/* Thruster spotlight glow */}
+      {/* Thruster spotlight glow (HEADLIGHTS emanating from cursor) */}
       <div
         className={`midas-spotlight ${className}`}
         style={{

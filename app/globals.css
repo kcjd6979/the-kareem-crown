@@ -172,44 +172,46 @@ section {
   cursor: none !important;
 }
 
-/* Custom Midas Gold Pen Cursor */
+/* Custom Midas Gold Pen Cursor (ROCKET) */
 .midas-pen-cursor {
   position: fixed;
-  width: 32px;
-  height: 32px;
+  width: 80px;
+  height: 80px;
   pointer-events: none;
   z-index: 99999;
-  transform: translate(-12px, -12px); /* Center hotspot at cursor tip */
-  background-image: url('/gold-pen-cursor.webp');
+  /* Hotspot at bottom center where pen tip points */
+  transform: translate(-40px, -80px);
+  background-image: url('/gold-pen-tip.webp');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
   image-rendering: -webkit-optimize-contrast;
+  
+  /* Smooth gliding handled by JS interpolation */
 }
 
-/* Thruster Spotlight Glow */
+/* Thruster Spotlight Glow (HEADLIGHTS emanating from cursor) */
 .midas-spotlight {
   position: fixed;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
+  /* Center the glow on the cursor position */
   transform: translate(-50%, -50%);
   
-  /* Golden Midas glow effect */
+  /* Golden Midas headlight glow effect */
   background: radial-gradient(
     circle,
-    rgba(255, 215, 0, 0.35) 0%,      /* Bright gold center */
-    rgba(255, 215, 0, 0.2) 15%,      /* Medium glow */
-    rgba(255, 215, 0, 0.1) 30%,      /* Fading */
-    rgba(255, 215, 0, 0.05) 50%,     /* Nearly invisible */
-    transparent 70%                   /* Fully transparent */
+    rgba(255, 215, 0, 0.4) 0%,      /* Bright gold center (light source) */
+    rgba(255, 215, 0, 0.25) 12%,    /* Strong glow */
+    rgba(255, 215, 0, 0.15) 25%,    /* Medium glow */
+    rgba(255, 215, 0, 0.08) 40%,    /* Fading */
+    transparent 65%                   /* Fully transparent at edges */
   );
   
-  /* Smooth movement */
-  transition: left 0.08s ease-out, 
-              top 0.08s ease-out, 
-              opacity 0.3s ease;
+  /* No CSS transition - JS interpolation handles smooth movement */
   
-  /* Pulsing thruster effect */
+  /* Pulsing thruster effect (headlight intensity) */
   animation: thrusterPulse 2s ease-in-out infinite;
 }
 
@@ -221,7 +223,7 @@ section {
   }
   50% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.08);
+    transform: translate(-50%, -50%) scale(1.05);
   }
 }
 
@@ -236,7 +238,7 @@ section {
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(255, 215, 0, 0.15) 0%,
+    rgba(255, 215, 0, 0.2) 0%,
     transparent 60%
   );
   transform: translate(-50%, -50%);
@@ -247,7 +249,7 @@ section {
 @keyframes thrusterTrail {
   0% {
     transform: translate(-50%, -50%) scale(1);
-    opacity: 0.4;
+    opacity: 0.5;
   }
   100% {
     transform: translate(-50%, -50%) scale(2.5);
