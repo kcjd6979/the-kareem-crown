@@ -1,6 +1,6 @@
 {
-  "framework": null,
-  "buildCommand": "mkdir -p tmp || true && npm run build --prefix \"Kareem-Crown-Pre-Portfolio-Site-Codebase\"",
-  "outputDirectory": "Kareem-Crown-Pre-Portfolio-Site-Codebase/out",
-  "installCommand": "npm install --prefix \"Kareem-Crown-Pre-Portfolio-Site-Codebase\""
+  "version": 2,
+  "buildCommand": "npm run build --prefix \"the-kareem-crown/Kareem-Crown-Pre-Portfolio-Site-Codebase\"",
+  "outputDirectory": "the-kareem-crown/Kareem-Crown-Pre-Portfolio-Site-Codebase/.next",
+  "framework": "nextjs"
 }

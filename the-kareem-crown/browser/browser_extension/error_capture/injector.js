@@ -14,4 +14,4 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   // 发送响应，表示消息已处理
   sendResponse({ received: true });
   return true;
-}); 
+});

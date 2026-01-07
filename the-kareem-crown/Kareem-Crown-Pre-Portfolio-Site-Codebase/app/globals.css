@@ -3,60 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hide default cursor - use custom Midas Pen Cursor instead */
-* {
-  cursor: none !important;
-}
-
-body {
-  cursor: url('/images/gold-pen-cursor.png') 32 32, auto !important; 
-}
-
-/* For clickable elements, you can add a different cursor state */
-a, button, [role="button"], input[type="submit"] {
-  cursor: url('/images/gold-pen-cursor.png') 32 32, pointer !important;
-}
-
-/* ===== MIDAS THRUSTER SPOTLIGHT ===== */
-
-.midas-spotlight {
-  position: fixed;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  
-  /* The actual glowing effect */
-  background: radial-gradient(
-    circle,
-    rgba(255, 215, 0, 0.4) 0%,
-    rgba(255, 215, 0, 0.2) 20%,
-    rgba(255, 215, 0, 0.1) 40%,
-    rgba(255, 215, 0, 0.05) 60%,
-    transparent 100%
-  );
-  
-  /* Pulsing animation (thruster effect) */
-  animation: thrusterPulse 2s ease-in-out infinite;
-  
-  /* Smooth movement */
-  transition: left 0.05s ease-out, top 0.05s ease-out;
-}
-
-/* Pulsing thruster animation */
-@keyframes thrusterPulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-}
-
 html, body {
   height: auto;
   overflow-y: auto;

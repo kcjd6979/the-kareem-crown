@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Crown, Hand, Zap, CircuitBoard, Circle, Infinity } from 'lucide-react';
+import { Crown, Hand, Zap, CircuitBoard, Circle, Infinity as InfinityIcon } from 'lucide-react';
 
 interface LogoElement {
   id: string;
@@ -60,7 +60,7 @@ const LogoStorySection: React.FC = () => {
     {
       id: 'circle',
       title: 'Infinite Circle',
-      icon: <Infinity className="w-8 h-8" />,
+      icon: <InfinityIcon className="w-8 h-8" />,
       description: 'Continuous Partnership',
       symbolism: 'Represents ongoing support and collaboration - clients are part of a long-term relationship, not just transactions.',
       color: '#4169E1'
@@ -76,9 +76,12 @@ const LogoStorySection: React.FC = () => {
   ];
 
   return (
-    <section ref={containerRef} className="relative min-h-screen bg-black py-20 overflow-hidden">
+    <section id="logo-story" ref={containerRef} className="relative min-h-screen py-20 overflow-hidden">
       <motion.div 
-        style={{ opacity, y }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: "easeOut" }}
         className="container mx-auto px-6 relative z-10"
       >
         {/* Section Header */}
@@ -114,9 +117,12 @@ const LogoStorySection: React.FC = () => {
               {/* Main Logo */}
               <div className="relative aspect-square">
                 <motion.img
-                  src="/images/mtm-logo-main.jpeg"
+                  src="/2-mtm-shield-black-_1_.svg"
                   alt="MTM Logo Story"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain filter"
+                  style={{
+                    filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.4))',
+                  }}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
                 />
@@ -155,19 +161,19 @@ const LogoStorySection: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Story Content */}
-          <div className="space-y-8">
+          {/* Story Content - Floating cards with no visible container borders */}
+          <div className="space-y-6">
             {logoElements.map((element, index) => (
               <motion.div
                 key={element.id}
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`p-6 rounded-lg border transition-all duration-500 cursor-pointer ${
+                className={`p-6 transition-all duration-500 cursor-pointer ${
                   activeElement === element.id
-                    ? 'border-yellow-400 bg-yellow-400/10 shadow-lg shadow-yellow-400/20'
-                    : 'border-gray-700 bg-gray-900/50 hover:border-yellow-400/50'
-                }`}
+                    ? 'bg-yellow-400/5'
+                    : 'hover:bg-white/5'
+                }}`}
                 onClick={() => setActiveElement(element.id)}
               >
                 <div className="flex items-start space-x-4">
@@ -224,7 +230,7 @@ const LogoStorySection: React.FC = () => {
           className="text-center mt-20"
         >
           <blockquote className="text-2xl md:text-3xl font-playfair italic text-gray-300 max-w-4xl mx-auto">
-            "The fact that the logo evokes <span className="text-yellow-400 font-semibold">trust, excitement, and intrigue</span> shows that it successfully connects on an emotional level. This emotional appeal is essential in decision-making."
+            &quot;The fact that the logo evokes <span className="text-yellow-400 font-semibold">trust, excitement, and intrigue</span> shows that it successfully connects on an emotional level. This emotional appeal is essential in decision-making.&quot;
           </blockquote>
           
           <motion.div 
@@ -240,8 +246,8 @@ const LogoStorySection: React.FC = () => {
         </motion.div>
       </motion.div>
 
-      {/* Background Effects */}
-      <div className="absolute inset-0 opacity-5">
+      {/* Background Effects - Subtle, no visible containers */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-transparent to-transparent" />
         <motion.div
           animate={{ 

@@ -252,4 +252,4 @@ chrome.runtime.onInstalled.addListener(async () => {
     world: "MAIN",
     allFrames: true
   }]);
-}); 
+});

@@ -1,8 +1,5 @@
-"layout.tsx"
-
 import type { Metadata } from "next";
 import { Playfair_Display_SC, Merriweather } from "next/font/google";
-import MidasSpotlight from "@/components/MidasSpotlight";
 import "./globals.css";
 
 const playfair = Playfair_Display_SC({
@@ -30,7 +27,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${merriweather.variable} font-merriweather`}>
-        <MidasSpotlight />
         {children}
       </body>
     </html>
