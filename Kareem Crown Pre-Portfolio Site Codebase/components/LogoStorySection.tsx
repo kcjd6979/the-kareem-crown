@@ -161,9 +161,9 @@ const LogoStorySection: React.FC = () => {
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ 
-                    duration: 20 as const, 
-                    repeat: Number.POSITIVE_INFINITY as const, 
-                    ease: "linear" as const 
+                    duration: 20, 
+                    repeat: Number.POSITIVE_INFINITY, 
+                    ease: "linear" 
                   }}
                   className="absolute inset-0 border-2 border-yellow-400/20 rounded-full"
                   style={{ transform: 'scale(1.1)' }}
