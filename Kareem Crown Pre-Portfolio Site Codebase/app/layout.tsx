@@ -2,6 +2,10 @@
 
 import type { Metadata } from "next";
 import { Playfair_Display_SC, Merriweather } from "next/font/google";
+import { AccessibilityProvider } from "@/context/AccessibilityContext";
+import { AccessibilityToggle } from "@/components/ui/AccessibilityToggle";
+import { RootStyleManager } from "@/components/RootStyleManager";
+import MidasSpotlight from "@/components/MidasSpotlight";
 import "./globals.css";
 
 const playfair = Playfair_Display_SC({
@@ -29,7 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${merriweather.variable} font-merriweather`}>
-        {children}
+        <AccessibilityProvider>
+          <RootStyleManager />
+          <MidasSpotlight />
+          {children}
+          <AccessibilityToggle />
+        </AccessibilityProvider>
       </body>
     </html>
   );
