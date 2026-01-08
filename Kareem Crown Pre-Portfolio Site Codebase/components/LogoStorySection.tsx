@@ -126,7 +126,11 @@ const LogoStorySection: React.FC = () => {
                 </motion.div>
                 
                 {/* Interactive Hotspots */}
-                {logoElements.map((element, index) => (
+                {logoElements.map((element, index) => {
+                  const leftPos = 20 + (index % 3) * 30;
+                  const topPos = 15 + Math.floor(index / 3) * 35;
+                  
+                  return (
                   <motion.button
                     key={element.id}
                     initial={{ scale: 0, opacity: 0 }}
@@ -140,13 +144,14 @@ const LogoStorySection: React.FC = () => {
                         : 'bg-black/80 border-yellow-400/50 hover:border-yellow-400'
                     }`}
                     style={{
-                      left: `${20 + (index % 3) * 30}%`,
-                      top: `${15 + Math.floor(index / 3) * 35}%`
+                      left: `${leftPos}%`,
+                      top: `${topPos}%`
                     }}
                   >
                     <div className="absolute inset-0 rounded-full bg-yellow-400 animate-ping opacity-75" />
                   </motion.button>
-                ))}
+                  );
+                })}
 
                 {/* Pulsing Background Ring */}
                 <motion.div
