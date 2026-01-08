@@ -77,19 +77,49 @@ const LogoStorySection: React.FC = () => {
 
   return (
     <section ref={containerRef} className="relative min-h-screen bg-black py-20 overflow-hidden">
+      {/* Ambient Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-gray-900/50 to-black" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gold-500/3 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/3 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-teal-500/3 rounded-full blur-[150px]" />
+      </div>
+
+      {/* Subtle Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div className="w-full h-full" style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
+
       <motion.div 
         style={{ opacity, y }}
         className="container mx-auto px-6 relative z-10"
       >
         {/* Section Header */}
         <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full mb-8"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-500"></span>
+            </span>
+            <span className="text-xs text-white/70 uppercase tracking-widest">The Story</span>
+          </motion.div>
+          
           <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-5xl md:text-7xl font-bold text-white mb-6 font-playfair"
           >
-            The <span className="text-yellow-400">Logo</span> Story
+            The <span className="text-gold-400">Logo</span> Story
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -98,7 +128,7 @@ const LogoStorySection: React.FC = () => {
             className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
             Each element tells a story of transformation, trust, and mastery. 
-            <span className="text-yellow-400 font-semibold"> The logo in itself is an asset. The story multiplies it.</span>
+            <span className="text-gold-400 font-semibold"> The logo in itself is an asset. The story multiplies it.</span>
           </motion.p>
         </div>
 
@@ -111,8 +141,9 @@ const LogoStorySection: React.FC = () => {
               transition={{ duration: 1, ease: "easeOut" }}
               className="relative w-full max-w-lg mx-auto"
             >
-              {/* Main Logo */}
-              <div className="relative aspect-square">
+              {/* Glassmorphism Container */}
+              <div className="relative aspect-square p-8 bg-black/20 backdrop-blur-xl border border-white/10 rounded-3xl">
+                {/* Main Logo */}
                 <motion.img
                   src="/images/mtm-logo-main.jpeg"
                   alt="MTM Logo Story"
@@ -132,23 +163,23 @@ const LogoStorySection: React.FC = () => {
                     onClick={() => setActiveElement(element.id)}
                     className={`absolute w-6 h-6 rounded-full border-2 transition-all duration-300 ${
                       activeElement === element.id 
-                        ? 'bg-yellow-400 border-yellow-400 shadow-lg shadow-yellow-400/50' 
-                        : 'bg-black/80 border-yellow-400/50 hover:border-yellow-400'
+                        ? 'bg-gold-400 border-gold-400 shadow-lg shadow-gold-400/50' 
+                        : 'bg-black/80 border-gold-400/50 hover:border-gold-400'
                     }`}
                     style={{
                       left: `${20 + (index % 3) * 30}%`,
                       top: `${15 + Math.floor(index / 3) * 35}%`
                     }}
                   >
-                    <div className="absolute inset-0 rounded-full bg-yellow-400 animate-ping opacity-75" />
+                    <div className="absolute inset-0 rounded-full bg-gold-400 animate-ping opacity-75" />
                   </motion.button>
                 ))}
 
                 {/* Pulsing Background Ring */}
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 border-2 border-yellow-400/20 rounded-full"
+                  transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                  className="absolute inset-0 border border-gold-400/20 rounded-full"
                   style={{ transform: 'scale(1.1)' }}
                 />
               </div>
@@ -156,17 +187,17 @@ const LogoStorySection: React.FC = () => {
           </div>
 
           {/* Story Content */}
-          <div className="space-y-8">
+          <div className="space-y-4">
             {logoElements.map((element, index) => (
               <motion.div
                 key={element.id}
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`p-6 rounded-lg border transition-all duration-500 cursor-pointer ${
+                className={`p-5 rounded-xl border transition-all duration-500 cursor-pointer ${
                   activeElement === element.id
-                    ? 'border-yellow-400 bg-yellow-400/10 shadow-lg shadow-yellow-400/20'
-                    : 'border-gray-700 bg-gray-900/50 hover:border-yellow-400/50'
+                    ? 'border-gold-400/50 bg-gold-400/5 shadow-lg shadow-gold-400/10'
+                    : 'border-white/10 bg-black/30 hover:border-white/20'
                 }`}
                 onClick={() => setActiveElement(element.id)}
               >
@@ -183,14 +214,14 @@ const LogoStorySection: React.FC = () => {
                   
                   <div className="flex-1">
                     <motion.h3 
-                      className="text-xl font-bold text-white mb-2"
+                      className="text-lg font-semibold text-white mb-1"
                       animate={{ color: activeElement === element.id ? element.color : '#FFFFFF' }}
                     >
                       {element.title}
                     </motion.h3>
                     
                     <motion.p 
-                      className="text-yellow-400 font-semibold mb-3"
+                      className="text-gold-400 font-medium text-sm mb-2"
                       animate={{ 
                         opacity: activeElement === element.id ? 1 : 0.7,
                         scale: activeElement === element.id ? 1.02 : 1
@@ -200,10 +231,10 @@ const LogoStorySection: React.FC = () => {
                     </motion.p>
                     
                     <motion.p 
-                      className="text-gray-300 leading-relaxed"
+                      className="text-gray-400 text-sm leading-relaxed"
                       animate={{ 
                         opacity: activeElement === element.id ? 1 : 0.5,
-                        height: activeElement === element.id ? 'auto' : '3em',
+                        height: activeElement === element.id ? 'auto' : '2.5em',
                         overflow: 'hidden'
                       }}
                     >
@@ -223,9 +254,12 @@ const LogoStorySection: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-center mt-20"
         >
-          <blockquote className="text-2xl md:text-3xl font-playfair italic text-gray-300 max-w-4xl mx-auto">
-            "The fact that the logo evokes <span className="text-yellow-400 font-semibold">trust, excitement, and intrigue</span> shows that it successfully connects on an emotional level. This emotional appeal is essential in decision-making."
-          </blockquote>
+          <div className="relative inline-block">
+            <div className="absolute -inset-4 bg-gradient-to-r from-gold-500/10 via-purple-500/10 to-teal-500/10 rounded-2xl blur-xl" />
+            <blockquote className="relative text-2xl md:text-3xl font-playfair italic text-gray-200 max-w-4xl mx-auto leading-relaxed">
+              "The fact that the logo evokes <span className="text-gold-400 font-semibold">trust, excitement, and intrigue</span> shows that it successfully connects on an emotional level. This emotional appeal is essential in decision-making."
+            </blockquote>
+          </div>
           
           <motion.div 
             className="mt-8 flex items-center justify-center space-x-4"
@@ -233,28 +267,44 @@ const LogoStorySection: React.FC = () => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <div className="h-px w-16 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
-            <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse" />
-            <div className="h-px w-16 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
+            <div className="h-px w-16 bg-gradient-to-r from-transparent via-gold-400/50 to-transparent" />
+            <div className="w-3 h-3 bg-gold-400 rounded-full animate-pulse" />
+            <div className="h-px w-16 bg-gradient-to-r from-transparent via-gold-400/50 to-transparent" />
           </motion.div>
         </motion.div>
       </motion.div>
 
       {/* Background Effects */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-transparent to-transparent" />
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-gold-400/20 via-transparent to-transparent" />
         <motion.div
           animate={{ 
             rotate: 360,
             scale: [1, 1.1, 1]
           }}
           transition={{ 
-            rotate: { duration: 50, repeat: Infinity, ease: "linear" },
-            scale: { duration: 8, repeat: Infinity, ease: "easeInOut" }
+            rotate: { duration: 50, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+            scale: { duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }
           }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 border border-yellow-400/10 rounded-full"
+          className="absolute top-1/4 left-1/4 w-96 h-96 border border-gold-400/10 rounded-full"
         />
       </div>
+
+      {/* Bottom Status Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center space-x-3"
+      >
+        <div className="relative flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-500"></span>
+          </span>
+          <span className="text-xs text-white/70 uppercase tracking-widest">Adopt Phase</span>
+        </div>
+      </motion.div>
     </section>
   );
 };

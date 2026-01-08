@@ -189,6 +189,25 @@ const CompanyLogoSection: React.FC = () => {
         }}
       />
 
+      {/* Ambient Glow Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gold-500/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-teal-500/5 rounded-full blur-[150px]" />
+      </div>
+
+      {/* Subtle Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: "50px 50px",
+          }}
+        />
+      </div>
+
       {/* Central Logo Container */}
       <div className="relative z-10 flex items-center justify-center h-full">
         <motion.div
@@ -215,7 +234,7 @@ const CompanyLogoSection: React.FC = () => {
                 }}
                 transition={{
                   duration: 3,
-                  repeat: Infinity,
+                  repeat: Number.POSITIVE_INFINITY,
                   ease: "easeInOut",
                 }}
               >
@@ -243,7 +262,7 @@ const CompanyLogoSection: React.FC = () => {
                 }}
                 transition={{
                   duration: 4,
-                  repeat: Infinity,
+                  repeat: Number.POSITIVE_INFINITY,
                   delay: i * 1.3,
                   ease: "easeOut",
                 }}
@@ -258,10 +277,10 @@ const CompanyLogoSection: React.FC = () => {
             transition={{ duration: 1, delay: 1 }}
             className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 text-center"
           >
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 font-serif">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 font-serif tracking-wide">
               Midas Touch Media
             </h3>
-            <p className="text-yellow-400 text-lg font-light tracking-wider">
+            <p className="text-yellow-400 text-lg font-light tracking-wider uppercase">
               AI-First Venture Studio & Product Lab
             </p>
             <div className="mt-4 flex items-center justify-center space-x-2">
@@ -284,6 +303,24 @@ const CompanyLogoSection: React.FC = () => {
           }}
         />
       </div>
+
+      {/* Bottom Status Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center space-x-3"
+      >
+        <div className="relative flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-500"></span>
+          </span>
+          <span className="text-xs text-white/70 uppercase tracking-widest">
+            Adopt Phase
+          </span>
+        </div>
+      </motion.div>
     </section>
   );
 };
