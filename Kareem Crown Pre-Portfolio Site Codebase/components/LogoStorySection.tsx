@@ -135,7 +135,11 @@ const LogoStorySection: React.FC = () => {
                     key={element.id}
                     initial={{ scale: 0, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                    transition={{ 
+                      duration: 0.5 as const, 
+                      delay: 0.5 + 0.1 * index,
+                      ease: "easeOut" as const
+                    }}
                     whileHover={{ scale: 1.2 }}
                     onClick={() => setActiveElement(element.id)}
                     className={`absolute w-6 h-6 rounded-full border-2 transition-all duration-300 ${
@@ -156,7 +160,11 @@ const LogoStorySection: React.FC = () => {
                 {/* Pulsing Background Ring */}
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  transition={{ 
+                    duration: 20 as const, 
+                    repeat: Infinity as const, 
+                    ease: "linear" as const 
+                  }}
                   className="absolute inset-0 border-2 border-yellow-400/20 rounded-full"
                   style={{ transform: 'scale(1.1)' }}
                 />
@@ -171,7 +179,11 @@ const LogoStorySection: React.FC = () => {
                 key={element.id}
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ 
+                  duration: 0.6 as const, 
+                  delay: 0.1 * index,
+                  ease: "easeOut" as const
+                }}
                 className={`p-6 rounded-lg border transition-all duration-500 cursor-pointer ${
                   activeElement === element.id
                     ? 'border-yellow-400 bg-yellow-400/10 shadow-lg shadow-yellow-400/20'
