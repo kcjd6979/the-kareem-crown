@@ -164,7 +164,7 @@ export default function MissionControl({ className = '' }: MissionControlProps) 
                         <path d="M15.5 7.5 17.5 9.5" />
                         <path d="M6 18 2 22" />
                         <path d="M18 6l-4-4" />
-                        <line x1="2" y1="2" x22="22" y22="22" stroke="rgba(255, 255, 255, 0.3)" />
+                        <line x1="2" y1="2" x2="22" y2="22" stroke="rgba(255, 255, 255, 0.3)" />
                       </svg>
                     )}
                   </div>
