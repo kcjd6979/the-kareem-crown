@@ -1,48 +1,71 @@
-/* Global Styles - Premium Dark Theme */
+/* Global Styles - Midas Touch Media Official Brand Colors */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Premium Gold Palette */
-  --gold-light: #FBF5B7;
-  --gold-primary: #BF953F;
-  --gold-dark: #AA6C39;
-  --gold-gradient: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
-  
-  /* Persona Colors */
-  --goldie-glow: rgba(251, 245, 183, 0.4);
-  --roman-glow: rgba(168, 85, 247, 0.4);
-  --nina-glow: rgba(203, 213, 225, 0.4);
-  --echo-glow: rgba(45, 212, 191, 0.4);
-  
+  /* Official MTM Brand Colors - Primary */
+  --midas-gold-glossy: #D4AF37;
+  --obsidian-black: #0A0A0A;
+  --chrome-white: #F5F5F5;
+
+  /* Official MTM Brand Colors - Secondary */
+  --midas-gold-matte: #B6862C;
+  --jet-black-soft: #1A1A1A;
+  --metallic-silver: #C0C0C0;
+
+  /* Official MTM Brand Colors - Accent */
+  --hi-gloss-chrome: #E1E1E1;
+
+  /* Premium Gold Gradient */
+  --gold-gradient: linear-gradient(135deg, var(--midas-gold-glossy) 0%, var(--midas-gold-matte) 100%);
+
+  /* Persona Colors - Updated to Official MTM Colors */
+  --goldie-glow: rgba(212, 175, 55, 0.4);
+  --roman-glow: rgba(192, 192, 192, 0.4); /* Changed from purple to Metallic Silver */
+  --nina-glow: rgba(225, 225, 225, 0.4); /* Changed from slate to Hi-Gloss Chrome */
+  --echo-glow: rgba(212, 175, 55, 0.4); /* Changed from teal to Midas Gold */
+
   /* Premium Shadows */
-  --glow-gold: 0 0 30px rgba(191, 149, 63, 0.3);
-  --glow-persona: 0 0 20px var(--persona-glow, rgba(191, 149, 63, 0.3));
+  --glow-gold: 0 0 30px rgba(212, 175, 55, 0.3);
+  --glow-persona: 0 0 20px var(--persona-glow, rgba(212, 175, 55, 0.3));
 }
 
-/* Gold Color Utilities */
+/* MTM Brand Color Utilities */
 @layer utilities {
-  .text-gold-400 { color: var(--gold-light); }
-  .text-gold-500 { color: var(--gold-primary); }
-  .bg-gold-400\/5 { background-color: rgba(251, 245, 183, 0.05); }
-  .bg-gold-400\/10 { background-color: rgba(251, 245, 183, 0.1); }
-  .bg-gold-500\/3 { background-color: rgba(191, 149, 63, 0.03); }
-  .bg-gold-500\/5 { background-color: rgba(191, 149, 63, 0.05); }
-  .bg-gold-500\/10 { background-color: rgba(191, 149, 63, 0.1); }
-  .border-gold-400\/10 { border-color: rgba(251, 245, 183, 0.1); }
-  .border-gold-400\/20 { border-color: rgba(251, 245, 183, 0.2); }
-  .border-gold-400\/30 { border-color: rgba(251, 245, 183, 0.3); }
-  .border-gold-400\/50 { border-color: rgba(251, 245, 183, 0.5); }
-  .border-gold-500\/10 { border-color: rgba(191, 149, 63, 0.1); }
-  .border-gold-500\/20 { border-color: rgba(191, 149, 63, 0.2); }
-  .from-gold-500\/10 { --gradient-from: rgba(191, 149, 63, 0.1); }
-  .via-gold-500\/10 { --gradient-via: rgba(191, 149, 63, 0.1); }
-  .to-gold-500\/10 { --gradient-to: rgba(191, 149, 63, 0.1); }
-  .from-gold-500\/5 { --gradient-from: rgba(191, 149, 63, 0.05); }
-  .via-gold-500\/5 { --gradient-via: rgba(191, 149, 63, 0.05); }
-  .to-gold-500\/5 { --gradient-to: rgba(191, 149, 63, 0.05); }
-  
+  /* Primary Colors */
+  .text-midas-gold { color: var(--midas-gold-glossy); }
+  .text-obsidian-black { color: var(--obsidian-black); }
+  .text-chrome-white { color: var(--chrome-white); }
+
+  /* Secondary Colors */
+  .text-midas-gold-matte { color: var(--midas-gold-matte); }
+  .text-jet-black { color: var(--jet-black-soft); }
+  .text-metallic-silver { color: var(--metallic-silver); }
+  .text-hi-gloss-chrome { color: var(--hi-gloss-chrome); }
+
+  /* Backgrounds */
+  .bg-midas-gold\/5 { background-color: rgba(212, 175, 55, 0.05); }
+  .bg-midas-gold\/10 { background-color: rgba(212, 175, 55, 0.1); }
+  .bg-midas-gold-matte\/5 { background-color: rgba(182, 134, 44, 0.05); }
+  .bg-midas-gold-matte\/10 { background-color: rgba(182, 134, 44, 0.1); }
+  .bg-metallic-silver\/5 { background-color: rgba(192, 192, 192, 0.05); }
+  .bg-hi-gloss-chrome\/5 { background-color: rgba(225, 225, 225, 0.05); }
+
+  /* Borders */
+  .border-midas-gold\/10 { border-color: rgba(212, 175, 55, 0.1); }
+  .border-midas-gold\/20 { border-color: rgba(212, 175, 55, 0.2); }
+  .border-midas-gold\/30 { border-color: rgba(212, 175, 55, 0.3); }
+  .border-midas-gold\/50 { border-color: rgba(212, 175, 55, 0.5); }
+  .border-metallic-silver\/30 { border-color: rgba(192, 192, 192, 0.3); }
+  .border-hi-gloss-chrome\/30 { border-color: rgba(225, 225, 225, 0.3); }
+
+  /* Gradients */
+  .from-midas-gold\/10 { --gradient-from: rgba(212, 175, 55, 0.1); }
+  .to-midas-gold-matte\/5 { --gradient-to: rgba(182, 134, 44, 0.05); }
+  .from-midas-gold\/5 { --gradient-from: rgba(212, 175, 55, 0.05); }
+  .to-midas-gold-matte\/5 { --gradient-to: rgba(182, 134, 44, 0.05); }
+
   /* Radial Gradients */
   .bg-gradient-radial {
     background-image: radial-gradient(var(--tw-gradient-stops));
@@ -69,9 +92,9 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    radial-gradient(ellipse at 20% 20%, rgba(191, 149, 63, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.02) 0%, transparent 50%),
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(192, 192, 192, 0.02) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.8) 0%, #050505 100%);
   pointer-events: none;
   z-index: -1;
@@ -86,7 +109,7 @@ body::before {
 }
 
 .text-gradient-gold-light {
-  background: linear-gradient(135deg, #FFFFFF 0%, var(--gold-light) 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, var(--midas-gold-glossy) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -98,7 +121,7 @@ body::before {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
@@ -109,30 +132,30 @@ body::before {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 2px solid var(--persona-color, #BF953F);
-  box-shadow: 
+  border-top: 2px solid var(--persona-color, #D4AF37);
+  box-shadow:
     0 10px 40px rgba(0, 0, 0, 0.4),
     var(--glow-persona);
 }
 
-/* Persona Color Variables */
+/* Persona Color Variables - Updated to Official MTM Colors */
 [data-persona="goldie"] {
-  --persona-color: #FBF5B7;
+  --persona-color: #D4AF37;
   --persona-glow: var(--goldie-glow);
 }
 
 [data-persona="roman"] {
-  --persona-color: #A855F7;
+  --persona-color: #C0C0C0; /* Changed from purple to Metallic Silver */
   --persona-glow: var(--roman-glow);
 }
 
 [data-persona="nina"] {
-  --persona-color: #CBD5E1;
+  --persona-color: #E1E1E1; /* Changed from slate to Hi-Gloss Chrome */
   --persona-glow: var(--nina-glow);
 }
 
 [data-persona="echo"] {
-  --persona-color: #2DD4BB;
+  --persona-color: #D4AF37; /* Changed from teal to Midas Gold */
   --persona-glow: var(--echo-glow);
 }
 
@@ -151,24 +174,24 @@ body::before {
 
 .btn-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 40px rgba(191, 149, 63, 0.5);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
 }
 
 /* Premium Gold Outline Button */
 .btn-gold-outline {
   background: transparent;
-  color: var(--gold-primary);
+  color: var(--midas-gold-glossy);
   font-weight: 600;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
-  border: 2px solid var(--gold-primary);
+  border: 2px solid var(--midas-gold-glossy);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .btn-gold-outline:hover {
-  background: rgba(191, 149, 63, 0.1);
-  box-shadow: 0 0 20px rgba(191, 149, 63, 0.2);
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
 
 /* Card Hover Effects */
@@ -178,7 +201,7 @@ body::before {
 
 .card-hover:hover {
   transform: translateY(-8px);
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.4),
     var(--glow-persona);
 }
@@ -209,7 +232,7 @@ body::before {
   position: fixed;
   width: 2px;
   height: 2px;
-  background: var(--gold-primary);
+  background: var(--midas-gold-glossy);
   border-radius: 50%;
   pointer-events: none;
   animation: particleFloat 20s infinite linear;
@@ -263,7 +286,7 @@ body::before {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(191, 149, 63, 0.1) 50%,
+    rgba(212, 175, 55, 0.1) 50%,
     transparent 100%
   );
   background-size: 200% 100%;
@@ -273,10 +296,10 @@ body::before {
 /* Pulsing Glow */
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(191, 149, 63, 0.3);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(191, 149, 63, 0.6);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
   }
 }
 
@@ -318,7 +341,7 @@ body::before {
 .section-divider {
   position: relative;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(191, 149, 63, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
   margin: 3rem 0;
 }
 
@@ -330,9 +353,9 @@ body::before {
   transform: translate(-50%, -50%);
   width: 8px;
   height: 8px;
-  background: var(--gold-primary);
+  background: var(--midas-gold-glossy);
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(191, 149, 63, 0.5);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
 }
 
 /* Custom Scrollbar */
@@ -345,16 +368,16 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--gold-dark), var(--gold-primary));
+  background: linear-gradient(180deg, var(--midas-gold-matte), var(--midas-gold-glossy));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--gold-primary), var(--gold-light));
+  background: linear-gradient(180deg, var(--midas-gold-glossy), var(--midas-gold-glossy));
 }
 
 /* Selection Color */
 ::selection {
-  background: rgba(191, 149, 63, 0.3);
+  background: rgba(212, 175, 55, 0.3);
   color: #FFFFFF;
 }

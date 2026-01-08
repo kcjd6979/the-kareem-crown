@@ -41,8 +41,8 @@ const aiTools: AITool[] = [
     name: "MiniMax",
     description: "Full-stack AI development platform",
     logo: "/images/minimax-logo.png",
-    color: "from-purple-500 to-purple-700",
-    brandColor: "#A855F7",
+    color: "from-[#D4AF37] to-[#B6862C]",
+    brandColor: "#D4AF37",
   },
   {
     id: "deepseek",
@@ -57,18 +57,18 @@ const aiTools: AITool[] = [
     name: "Custom AI",
     description: "Proprietary MTM AI systems",
     logo: "/images/custom-ai-logo.png",
-    color: "from-amber-500 to-amber-700",
-    brandColor: "#BF953F",
+    color: "from-[#D4AF37] to-[#B6862C]",
+    brandColor: "#D4AF37",
   },
 ];
 
 export const AIToolsSection = () => {
   return (
     <section className="relative min-h-screen py-20 px-4 md:px-8 bg-black overflow-hidden">
-      {/* Background Effects */}
+      {/* Background Effects - Midas Gold only, no purple/teal */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-amber-500/3 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/3 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#D4AF37]/3 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-[#B6862C]/3 rounded-full blur-3xl" />
       </div>
 
       {/* Section Header */}
@@ -137,7 +137,7 @@ export const AIToolsSection = () => {
                 >
                   {tool.name.charAt(0)}
                 </span>
-                
+
                 {/* Subtle Glow Ring */}
                 <div
                   className="absolute inset-0 rounded-xl border"
@@ -148,7 +148,7 @@ export const AIToolsSection = () => {
               </div>
 
               {/* Name & Description */}
-              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#D4AF37] transition-colors">
                 {tool.name}
               </h3>
               <p className="text-gray-400 text-sm leading-relaxed">
@@ -195,7 +195,7 @@ export const AIToolsSection = () => {
         className="relative max-w-4xl mx-auto mt-16 text-center p-8 rounded-2xl glass-card"
       >
         <div className="absolute inset-0 rounded-2xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-transparent to-purple-500/5" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/5 via-transparent to-[#B6862C]/5" />
         </div>
         <div className="relative z-10">
           <p className="text-gray-300 text-lg leading-relaxed">

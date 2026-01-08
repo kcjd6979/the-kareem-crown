@@ -3,14 +3,14 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-// AI Persona data matching the restore point image
+// AI Persona data - Using Midas Touch Media Official Brand Colors
 const personas = [
   {
     id: "goldie",
     name: "Goldie",
     role: "The Visionary",
-    color: "amber",
-    glowColor: "rgba(251, 245, 183, 0.5)",
+    color: "gold",
+    glowColor: "rgba(212, 175, 55, 0.5)", // Midas Gold Glossy #D4AF37
     status: "Adopt Phase",
     description: "Strategic foresight and creative direction",
   },
@@ -18,8 +18,8 @@ const personas = [
     id: "roman",
     name: "Roman",
     role: "The Engineer",
-    color: "purple",
-    glowColor: "rgba(168, 85, 247, 0.5)",
+    color: "silver",
+    glowColor: "rgba(192, 192, 192, 0.5)", // Metallic Silver #C0C0C0
     status: "Adopt Phase",
     description: "Technical architecture and implementation",
   },
@@ -27,8 +27,8 @@ const personas = [
     id: "nina",
     name: "Nina",
     role: "The Validator",
-    color: "slate",
-    glowColor: "rgba(203, 213, 225, 0.5)",
+    color: "chrome",
+    glowColor: "rgba(225, 225, 225, 0.5)", // Hi-Gloss Chrome #E1E1E1
     status: "Enhance Phase",
     description: "Quality assurance and validation systems",
   },
@@ -36,8 +36,8 @@ const personas = [
     id: "echo",
     name: "Echo",
     role: "The Guardian",
-    color: "teal",
-    glowColor: "rgba(45, 212, 191, 0.5)",
+    color: "gold",
+    glowColor: "rgba(212, 175, 55, 0.5)", // Midas Gold Glossy #D4AF37
     status: "Adopt Phase",
     description: "Security and protection protocols",
   },
@@ -48,40 +48,34 @@ const MeetTheForge = () => {
 
   const getColorClasses = (color: string, glowColor: string) => {
     const colors: Record<string, { bg: string; border: string; text: string; glow: string }> = {
-      amber: {
-        bg: "from-amber-500/10 to-amber-600/5",
-        border: "border-amber-500/30",
-        text: "text-amber-400",
+      gold: {
+        bg: "from-[#D4AF37]/10 to-[#B6862C]/5", // Midas Gold Glossy to Matte
+        border: "border-[#D4AF37]/30",
+        text: "text-[#D4AF37]",
         glow: glowColor,
       },
-      purple: {
-        bg: "from-purple-500/10 to-purple-600/5",
-        border: "border-purple-500/30",
-        text: "text-purple-400",
+      silver: {
+        bg: "from-[#C0C0C0]/10 to-[#C0C0C0]/5", // Metallic Silver
+        border: "border-[#C0C0C0]/30",
+        text: "text-[#C0C0C0]",
         glow: glowColor,
       },
-      slate: {
-        bg: "from-slate-400/10 to-slate-500/5",
-        border: "border-slate-400/30",
-        text: "text-slate-300",
-        glow: glowColor,
-      },
-      teal: {
-        bg: "from-teal-500/10 to-teal-600/5",
-        border: "border-teal-500/30",
-        text: "text-teal-400",
+      chrome: {
+        bg: "from-[#E1E1E1]/10 to-[#E1E1E1]/5", // Hi-Gloss Chrome
+        border: "border-[#E1E1E1]/30",
+        text: "text-[#E1E1E1]",
         glow: glowColor,
       },
     };
-    return colors[color] || colors.amber;
+    return colors[color] || colors.gold;
   };
 
   return (
     <section className="relative min-h-screen py-20 px-4 md:px-8 bg-black overflow-hidden">
-      {/* Background Effects */}
+      {/* Background Effects - Using Midas Gold colors only */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#C0C0C0]/5 rounded-full blur-3xl" />
       </div>
 
       {/* Section Header */}
@@ -106,7 +100,7 @@ const MeetTheForge = () => {
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {personas.map((persona, index) => {
           const colors = getColorClasses(persona.color, persona.glowColor);
-          
+
           return (
             <motion.div
               key={persona.id}
@@ -122,7 +116,7 @@ const MeetTheForge = () => {
                 activePersona === persona.id ? "scale-[1.02]" : ""
               }`}
               style={{
-                ["--persona-color" as string]: colors.text.replace("text-", ""),
+                ["--persona-color" as string]: colors.text.replace("text-", "").replace(/[\[\]]/g, ""),
                 ["--persona-glow" as string]: colors.glow,
               } as React.CSSProperties}
             >
@@ -137,7 +131,7 @@ const MeetTheForge = () => {
 
               {/* Status Pill */}
               <div className="absolute top-4 right-4">
-                <span className={`status-pill ${colors.text}`}>
+                <span className={`status-pill ${colors.text.replace(/[\[\]]/g, "")}`}>
                   {persona.status}
                 </span>
               </div>
@@ -145,31 +139,34 @@ const MeetTheForge = () => {
               {/* Persona Avatar Container */}
               <div className="relative mb-6 mt-2">
                 <div
-                  className={`w-20 h-20 rounded-full mx-auto flex items-center justify-center ${colors.bg} ${colors.border} border-2`}
+                  className={`w-20 h-20 rounded-full mx-auto flex items-center justify-center ${colors.bg} border-2`}
                   style={{
+                    borderColor: colors.border.replace(/[\[\]]/g, ""),
                     boxShadow: `0 0 30px ${colors.glow}`,
                   }}
                 >
-                  <span className={`text-3xl font-bold ${colors.text}`}>
+                  <span
+                    className={`text-3xl font-bold ${colors.text.replace(/[\[\]]/g, "")}`}
+                  >
                     {persona.name.charAt(0)}
                   </span>
                 </div>
-                
+
                 {/* Pulsing Ring */}
                 <div
                   className="absolute inset-0 rounded-full border border-current opacity-20"
                   style={{
-                    borderColor: colors.text.replace("text-", ""),
+                    borderColor: colors.text.replace("text-", "").replace(/[\[\]]/g, ""),
                     animation: "ringPulse 4s ease-in-out infinite",
                   }}
                 />
               </div>
 
               {/* Name & Role */}
-              <h3 className={`text-xl font-bold text-white mb-1 text-center ${colors.text}`}>
+              <h3 className={`text-xl font-bold text-white mb-1 text-center ${colors.text.replace(/[\[\]]/g, "")}`}>
                 {persona.name}
               </h3>
-              <p className={`text-sm text-center mb-4 ${colors.text.replace("400", "300")}`}>
+              <p className={`text-sm text-center mb-4 text-gray-300`}>
                 {persona.role}
               </p>
 
@@ -184,7 +181,7 @@ const MeetTheForge = () => {
                   activePersona === persona.id ? "w-20" : "w-12"
                 }`}
                 style={{
-                  background: colors.text.replace("text-", ""),
+                  background: colors.text.replace("text-", "").replace(/[\[\]]/g, ""),
                   boxShadow: `0 0 10px ${colors.glow}`,
                 }}
               />
@@ -233,16 +230,16 @@ const MeetTheForge = () => {
         {/* Central MTM Hub */}
         <div className="relative flex justify-center">
           <div
-            className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center relative"
+            className="w-20 h-20 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#B6862C] flex items-center justify-center relative"
             style={{
-              boxShadow: "0 0 40px rgba(251, 245, 183, 0.4)",
+              boxShadow: "0 0 40px rgba(212, 175, 55, 0.4)",
             }}
           >
             <span className="text-2xl font-bold text-black font-serif">MTM</span>
-            
+
             {/* Rotating Ring */}
             <div
-              className="absolute inset-0 rounded-full border-2 border-amber-400/30"
+              className="absolute inset-0 rounded-full border-2 border-[#D4AF37]/30"
               style={{
                 animation: "ringPulse 4s ease-in-out infinite",
               }}

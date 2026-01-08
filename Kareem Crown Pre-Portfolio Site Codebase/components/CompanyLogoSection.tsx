@@ -59,7 +59,7 @@ const CompanyLogoSection: React.FC = () => {
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
 
-      // Main circuitry circle
+      // Main circuitry circle - Using Midas Gold Glossy #D4AF37
       ctx.strokeStyle = "#D4AF37";
       ctx.lineWidth = 2;
       ctx.shadowColor = "#D4AF37";
@@ -80,11 +80,11 @@ const CompanyLogoSection: React.FC = () => {
         ctx.lineTo(x2, y2);
         ctx.stroke();
 
-        // Animated nodes
+        // Animated nodes - Using Midas Gold Glossy #D4AF37
         const nodeX = x1 + Math.cos(angle + Math.PI / 12) * 25;
         const nodeY = y1 + Math.sin(angle + Math.PI / 12) * 25;
 
-        ctx.fillStyle = "#FFD700";
+        ctx.fillStyle = "#D4AF37";
         ctx.shadowBlur = 15;
         ctx.beginPath();
         ctx.arc(nodeX, nodeY, 3 + Math.sin(time + i) * 2, 0, Math.PI * 2);
@@ -123,7 +123,7 @@ const CompanyLogoSection: React.FC = () => {
         })
       );
 
-      // Draw smoke particles
+      // Draw smoke particles - Using Midas Gold colors
       particles.forEach((particle) => {
         if (particle.opacity > 0) {
           const gradient = ctx.createRadialGradient(
@@ -189,11 +189,11 @@ const CompanyLogoSection: React.FC = () => {
         }}
       />
 
-      {/* Ambient Glow Effects */}
+      {/* Ambient Glow Effects - Using Midas Gold Only (No Purple/Teal) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gold-500/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-teal-500/5 rounded-full blur-[150px]" />
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#D4AF37]/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#B6862C]/5 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#C0C0C0]/5 rounded-full blur-[150px]" />
       </div>
 
       {/* Subtle Grid Pattern */}
@@ -218,13 +218,13 @@ const CompanyLogoSection: React.FC = () => {
         >
           {/* Main Logo */}
           <div className="relative w-80 h-80 md:w-96 md:h-96">
-            {/* Glowing background */}
-            <div className="absolute inset-0 bg-gradient-radial from-yellow-400/20 via-yellow-600/10 to-transparent rounded-full blur-3xl" />
+            {/* Glowing background - Using Midas Gold colors */}
+            <div className="absolute inset-0 bg-gradient-radial from-[#D4AF37]/20 via-[#B6862C]/10 to-transparent rounded-full blur-3xl" />
 
-            {/* Logo container with golden glow */}
+            {/* Logo container with golden glow - Using Official Midas Gold */}
             <div className="relative w-full h-full flex items-center justify-center">
               <motion.div
-                className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-700/20 border border-amber-500/30 flex items-center justify-center"
+                className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-[#D4AF37]/20 to-[#B6862C]/20 border border-[#D4AF37]/30 flex items-center justify-center"
                 animate={{
                   boxShadow: [
                     "0 0 30px rgba(212, 175, 55, 0.3)",
@@ -240,21 +240,21 @@ const CompanyLogoSection: React.FC = () => {
               >
                 {/* MTM Monogram */}
                 <div className="text-center">
-                  <div className="text-6xl md:text-8xl font-bold text-amber-400 font-serif">
+                  <div className="text-6xl md:text-8xl font-bold text-[#D4AF37] font-serif">
                     MTM
                   </div>
-                  <div className="text-amber-500 text-sm md:text-base tracking-widest mt-2">
+                  <div className="text-[#B6862C] text-sm md:text-base tracking-widest mt-2">
                     MIDAS TOUCH MEDIA
                   </div>
                 </div>
               </motion.div>
             </div>
 
-            {/* Pulsing rings */}
+            {/* Pulsing rings - Using Midas Gold */}
             {[...Array(3)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute inset-0 border-2 border-yellow-400/30 rounded-full"
+                className="absolute inset-0 border-2 border-[#D4AF37]/30 rounded-full"
                 initial={{ scale: 1, opacity: 0.8 }}
                 animate={{
                   scale: [1, 1.5, 2],
@@ -280,22 +280,22 @@ const CompanyLogoSection: React.FC = () => {
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 font-serif tracking-wide">
               Midas Touch Media
             </h3>
-            <p className="text-yellow-400 text-lg font-light tracking-wider uppercase">
+            <p className="text-[#D4AF37] text-lg font-light tracking-wider uppercase">
               AI-First Venture Studio & Product Lab
             </p>
             <div className="mt-4 flex items-center justify-center space-x-2">
-              <div className="h-px w-12 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
-              <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
-              <div className="h-px w-12 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
+              <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+              <div className="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse" />
+              <div className="h-px w-12 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
             </div>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Subtle scan lines effect */}
+      {/* Subtle scan lines effect - Using Midas Gold */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div
-          className="w-full h-full bg-gradient-to-b from-transparent via-yellow-400 to-transparent animate-pulse"
+          className="w-full h-full bg-gradient-to-b from-transparent via-[#D4AF37] to-transparent animate-pulse"
           style={{
             backgroundSize: "100% 2px",
             backgroundImage:
@@ -313,8 +313,8 @@ const CompanyLogoSection: React.FC = () => {
       >
         <div className="relative flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-full">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4AF37]"></span>
           </span>
           <span className="text-xs text-white/70 uppercase tracking-widest">
             Adopt Phase

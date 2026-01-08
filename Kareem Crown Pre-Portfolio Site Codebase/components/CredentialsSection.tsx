@@ -19,7 +19,7 @@ const credentialsData: EducationItem[] = [
     institution: "Your High School Name",
     year: "Year",
     icon: "🎓",
-    color: "amber",
+    color: "gold",
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const credentialsData: EducationItem[] = [
     institution: "Your First College",
     year: "Year - Year",
     icon: "🎓",
-    color: "blue",
+    color: "silver",
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const credentialsData: EducationItem[] = [
     institution: "Your Second College",
     year: "Year - Year",
     icon: "🎓",
-    color: "purple",
+    color: "chrome",
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ const credentialsData: EducationItem[] = [
     institution: "Certification Name",
     year: "Year",
     icon: "📜",
-    color: "teal",
+    color: "gold",
   },
   {
     id: 5,
@@ -51,7 +51,7 @@ const credentialsData: EducationItem[] = [
     institution: "Training Program",
     year: "Year",
     icon: "🎯",
-    color: "orange",
+    color: "silver",
   },
 ];
 
@@ -60,20 +60,33 @@ export const CredentialsSection = () => {
 
   const getColorClasses = (color: string) => {
     const colors: Record<string, { bg: string; border: string; text: string; glow: string }> = {
-      amber: { bg: "from-amber-500/10", border: "border-amber-500/30", text: "text-amber-400", glow: "rgba(251, 245, 183, 0.3)" },
-      blue: { bg: "from-blue-500/10", border: "border-blue-500/30", text: "text-blue-400", glow: "rgba(59, 130, 246, 0.3)" },
-      purple: { bg: "from-purple-500/10", border: "border-purple-500/30", text: "text-purple-400", glow: "rgba(168, 85, 247, 0.3)" },
-      teal: { bg: "from-teal-500/10", border: "border-teal-500/30", text: "text-teal-400", glow: "rgba(45, 212, 191, 0.3)" },
-      orange: { bg: "from-orange-500/10", border: "border-orange-500/30", text: "text-orange-400", glow: "rgba(249, 115, 22, 0.3)" },
+      gold: {
+        bg: "from-[#D4AF37]/10",
+        border: "border-[#D4AF37]/30",
+        text: "text-[#D4AF37]",
+        glow: "rgba(212, 175, 55, 0.3)",
+      },
+      silver: {
+        bg: "from-[#C0C0C0]/10",
+        border: "border-[#C0C0C0]/30",
+        text: "text-[#C0C0C0]",
+        glow: "rgba(192, 192, 192, 0.3)",
+      },
+      chrome: {
+        bg: "from-[#E1E1E1]/10",
+        border: "border-[#E1E1E1]/30",
+        text: "text-[#E1E1E1]",
+        glow: "rgba(225, 225, 225, 0.3)",
+      },
     };
-    return colors[color] || colors.amber;
+    return colors[color] || colors.gold;
   };
 
   return (
-    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-gradient-to-b from-black via-gray-900/50 to-black overflow-hidden">
-      {/* Background Effects */}
+    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-gradient-to-b from-black via-[#0A0A0A]/50 to-black overflow-hidden">
+      {/* Background Effects - Midas Gold only */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-amber-500/3 to-transparent" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-[#D4AF37]/3 to-transparent" />
       </div>
 
       {/* Section Header */}
@@ -97,7 +110,7 @@ export const CredentialsSection = () => {
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
         {credentialsData.map((item, index) => {
           const colors = getColorClasses(item.color);
-          
+
           return (
             <motion.div
               key={item.id}
@@ -125,7 +138,7 @@ export const CredentialsSection = () => {
                   hoveredItem === item.id ? "w-full" : "w-1/2"
                 }`}
                 style={{
-                  background: colors.text.replace("text-", ""),
+                  background: colors.text.replace(/[\[\]]/g, ""),
                   boxShadow: `0 0 10px ${colors.glow}`,
                 }}
               />
@@ -143,7 +156,7 @@ export const CredentialsSection = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+              <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#D4AF37] transition-colors">
                 {item.title}
               </h3>
 
@@ -151,14 +164,14 @@ export const CredentialsSection = () => {
               <p className="text-gray-400 text-sm mb-2">{item.institution}</p>
 
               {/* Year */}
-              <p className={`${colors.text} text-sm font-medium`}>{item.year}</p>
+              <p className={`${colors.text.replace(/[\[\]]/g, "")} text-sm font-medium`}>{item.year}</p>
 
               {/* Decorative Corner */}
               <div
                 className={`absolute bottom-0 right-0 w-16 h-16 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
               >
                 <div
-                  className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl from-amber-500/10 to-transparent rounded-tl-full"
+                  className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl from-[#D4AF37]/10 to-transparent rounded-tl-full"
                 />
               </div>
             </motion.div>
@@ -171,13 +184,13 @@ export const CredentialsSection = () => {
         <div className="section-divider" />
       </div>
 
-      {/* Stats/Highlights */}
+      {/* Stats/Highlights - Using Official MTM Colors Only */}
       <div className="relative max-w-5xl mx-auto mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
         {[
-          { value: "5+", label: "Years Experience", color: "#FBF5B7" },
-          { value: "50+", label: "Projects Completed", color: "#A855F7" },
-          { value: "100%", label: "Client Satisfaction", color: "#2DD4BB" },
-          { value: "24/7", label: "AI Operations", color: "#BF953F" },
+          { value: "5+", label: "Years Experience", color: "#D4AF37" },
+          { value: "50+", label: "Projects Completed", color: "#C0C0C0" },
+          { value: "100%", label: "Client Satisfaction", color: "#B6862C" },
+          { value: "24/7", label: "AI Operations", color: "#E1E1E1" },
         ].map((stat, index) => (
           <motion.div
             key={stat.label}
