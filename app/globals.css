@@ -232,15 +232,8 @@ body.rocket-pen-enabled .interactive {
   50% { opacity: 0.8; }
 }
 
-/* ==================== SMOOTH SCROLL SNAP ==================== */
-html {
-  scroll-snap-type: y proximity;
-}
-
-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-}
+/* ==================== SMOOTH SCROLLING ==================== */
+/* Scroll snap removed to allow normal scrolling behavior */
 
 /* ==================== PULSE GLOW ANIMATION ==================== */
 @keyframes pulseGlow {
