@@ -135,7 +135,7 @@ const generateScrollSound = (context: AudioContext): void => {
   const gainNode = context.createGain();
   const filter = context.createBiquadFilter();
   
-  oscillator.type = 'noise'; // Approximate with low frequency sine
+  oscillator.type = 'sine'; // Using sine for the scroll sound effect
   oscillator.frequency.setValueAtTime(100, now);
   oscillator.frequency.exponentialRampToValueAtTime(50, now + 0.2);
   
