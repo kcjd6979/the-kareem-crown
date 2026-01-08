@@ -27,7 +27,7 @@ export const ConnectionSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          Let's Build the Future Together
+          Let&apos;s Build the Future Together
         </motion.p>
 
         {/* Placeholder for the 3D Robot Scene */}
