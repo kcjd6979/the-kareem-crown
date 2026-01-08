@@ -228,7 +228,7 @@ const LogoStorySection: React.FC = () => {
           className="text-center mt-20"
         >
           <blockquote className="text-2xl md:text-3xl font-playfair italic text-gray-300 max-w-4xl mx-auto">
-            "The fact that the logo evokes <span className="text-yellow-400 font-semibold">trust, excitement, and intrigue</span> shows that it successfully connects on an emotional level. This emotional appeal is essential in decision-making."
+            &quot;The fact that the logo evokes <span className="text-yellow-400 font-semibold">trust, excitement, and intrigue</span> shows that it successfully connects on an emotional level. This emotional appeal is essential in decision-making.&quot;
           </blockquote>
           
           <motion.div 

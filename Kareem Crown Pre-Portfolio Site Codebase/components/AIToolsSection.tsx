@@ -71,7 +71,7 @@ export const AIToolsSection = () => {
           Arsenal of Intelligence
         </h2>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-          Leveraging the most advanced AI systems to architect solutions that redefine what's possible.
+          Leveraging the most advanced AI systems to architect solutions that redefine what&apos;s possible.
         </p>
       </motion.div>
 
