@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import HeroSection from "@/components/HeroSection";
+import ModernTouchManifesto from "@/components/ModernTouchManifesto";
 import MeetTheForge from "@/components/MeetTheForge";
 import { ArsenalCarousel } from "@/components/Arsenal/ArsenalCarousel";
 import { CredentialsSection } from "@/components/CredentialsSection";
@@ -61,6 +62,7 @@ export default function Home() {
         {/* Main content */}
         <main className="relative">
           <HeroSection />
+          <ModernTouchManifesto />
           <MeetTheForge />
           
           {/* New Arsenal 3D Video Carousel */}
