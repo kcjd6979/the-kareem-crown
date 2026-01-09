@@ -15,41 +15,41 @@ interface EducationItem {
 const credentialsData: EducationItem[] = [
   {
     id: 1,
-    title: "High School Diploma",
-    institution: "Your High School Name",
-    year: "Year",
+    title: "Maestro University",
+    institution: "Advanced AI System Architecture",
+    year: "2023-2025",
     icon: "🎓",
     color: "gold",
   },
   {
     id: 2,
-    title: "Bachelor's Degree",
-    institution: "Your First College",
-    year: "Year - Year",
+    title: "Full Sail University",
+    institution: "Bachelor of Science in Web Design & Development",
+    year: "2015-2018",
     icon: "🎓",
     color: "silver",
   },
   {
     id: 3,
-    title: "Advanced Studies",
-    institution: "Your Second College",
-    year: "Year - Year",
-    icon: "🎓",
+    title: "Oracle University",
+    institution: "Certified Professional, Java SE 8 Programmer",
+    year: "2019",
+    icon: "📜",
     color: "chrome",
   },
   {
     id: 4,
-    title: "Professional Certification",
-    institution: "Certification Name",
-    year: "Year",
+    title: "Google Certified",
+    institution: "Professional Cloud Architect",
+    year: "2022",
     icon: "📜",
     color: "gold",
   },
   {
     id: 5,
-    title: "Specialized Training",
-    institution: "Training Program",
-    year: "Year",
+    title: "DeepLearning.AI",
+    institution: "AI for Everyone",
+    year: "2021",
     icon: "🎯",
     color: "silver",
   },
@@ -59,34 +59,31 @@ export const CredentialsSection = () => {
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
 
   const getColorClasses = (color: string) => {
-    const colors: Record<string, { bg: string; border: string; text: string; glow: string }> = {
+    const colors: Record<string, { bg: string; border: string; text: string; }> = {
       gold: {
-        bg: "from-[#D4AF37]/10",
-        border: "border-[#D4AF37]/30",
-        text: "text-[#D4AF37]",
-        glow: "rgba(212, 175, 55, 0.3)",
+        bg: "from-midas-gold-glossy/10",
+        border: "border-midas-gold-glossy/30",
+        text: "text-midas-gold-glossy",
       },
       silver: {
-        bg: "from-[#C0C0C0]/10",
-        border: "border-[#C0C0C0]/30",
-        text: "text-[#C0C0C0]",
-        glow: "rgba(192, 192, 192, 0.3)",
+        bg: "from-metallic-silver/10",
+        border: "border-metallic-silver/30",
+        text: "text-metallic-silver",
       },
       chrome: {
-        bg: "from-[#E1E1E1]/10",
-        border: "border-[#E1E1E1]/30",
-        text: "text-[#E1E1E1]",
-        glow: "rgba(225, 225, 225, 0.3)",
+        bg: "from-hi-gloss-chrome/10",
+        border: "border-hi-gloss-chrome/30",
+        text: "text-hi-gloss-chrome",
       },
     };
     return colors[color] || colors.gold;
   };
 
   return (
-    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-gradient-to-b from-black via-[#0A0A0A]/50 to-black overflow-hidden">
+    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-gradient-to-b from-obsidian-black via-jet-black-soft/50 to-obsidian-black overflow-hidden">
       {/* Background Effects - Midas Gold only */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-[#D4AF37]/3 to-transparent" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-midas-gold-glossy/3 to-transparent" />
       </div>
 
       {/* Section Header */}
@@ -97,7 +94,7 @@ export const CredentialsSection = () => {
         viewport={{ once: true }}
         className="relative max-w-6xl mx-auto text-center mb-16"
       >
-        <h2 className="font-playfair font-bold text-4xl md:text-6xl text-white mb-4">
+        <h2 className="font-playfair font-bold text-4xl md:text-6xl text-chrome-white mb-4">
           The Architect&apos;s <span className="text-gradient-gold">Foundation</span>
         </h2>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
@@ -125,9 +122,8 @@ export const CredentialsSection = () => {
             >
               {/* Hover Glow Effect */}
               <div
-                className="absolute inset-0 rounded-xl transition-opacity duration-300"
+                className={`absolute inset-0 rounded-xl transition-opacity duration-300 bg-gradient-radial ${colors.bg} to-transparent`}
                 style={{
-                  background: `radial-gradient(ellipse at top, ${colors.glow}, transparent 70%)`,
                   opacity: hoveredItem === item.id ? 0.5 : 0,
                 }}
               />
@@ -136,27 +132,20 @@ export const CredentialsSection = () => {
               <div
                 className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-xl transition-all duration-300 ${
                   hoveredItem === item.id ? "w-full" : "w-1/2"
-                }`}
-                style={{
-                  background: colors.text.replace(/[\[\]]/g, ""),
-                  boxShadow: `0 0 10px ${colors.glow}`,
-                }}
+                } ${colors.text.replace("text-", "bg-")}`}
               />
 
               {/* Icon */}
               <div className="relative mb-4">
                 <div
-                  className={`w-12 h-12 rounded-lg ${colors.bg} flex items-center justify-center text-2xl`}
-                  style={{
-                    boxShadow: hoveredItem === item.id ? `0 0 20px ${colors.glow}` : "none",
-                  }}
+                  className={`w-12 h-12 rounded-lg bg-gradient-to-br ${colors.bg} to-transparent flex items-center justify-center text-2xl`}
                 >
                   {item.icon}
                 </div>
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#D4AF37] transition-colors">
+              <h3 className={`text-lg font-bold text-chrome-white mb-2 group-hover:${colors.text} transition-colors`}>
                 {item.title}
               </h3>
 
@@ -164,14 +153,14 @@ export const CredentialsSection = () => {
               <p className="text-gray-400 text-sm mb-2">{item.institution}</p>
 
               {/* Year */}
-              <p className={`${colors.text.replace(/[\[\]]/g, "")} text-sm font-medium`}>{item.year}</p>
+              <p className={`${colors.text} text-sm font-medium`}>{item.year}</p>
 
               {/* Decorative Corner */}
               <div
                 className={`absolute bottom-0 right-0 w-16 h-16 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
               >
                 <div
-                  className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl from-[#D4AF37]/10 to-transparent rounded-tl-full"
+                  className={`absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl ${colors.bg} to-transparent rounded-tl-full`}
                 />
               </div>
             </motion.div>
@@ -187,10 +176,10 @@ export const CredentialsSection = () => {
       {/* Stats/Highlights - Using Official MTM Colors Only */}
       <div className="relative max-w-5xl mx-auto mt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
         {[
-          { value: "5+", label: "Years Experience", color: "#D4AF37" },
-          { value: "50+", label: "Projects Completed", color: "#C0C0C0" },
-          { value: "100%", label: "Client Satisfaction", color: "#B6862C" },
-          { value: "24/7", label: "AI Operations", color: "#E1E1E1" },
+          { value: "5+", label: "Years Experience", color: "text-midas-gold-glossy" },
+          { value: "50+", label: "Projects Completed", color: "text-metallic-silver" },
+          { value: "100%", label: "Client Satisfaction", color: "text-midas-gold-matte" },
+          { value: "24/7", label: "AI Operations", color: "text-hi-gloss-chrome" },
         ].map((stat, index) => (
           <motion.div
             key={stat.label}
@@ -201,12 +190,7 @@ export const CredentialsSection = () => {
             className="text-center group"
           >
             <div
-              className="text-4xl md:text-5xl font-bold mb-3 font-playfair"
-              style={{
-                color: stat.color,
-                textShadow: hoveredItem === index + 1 ? `0 0 30px ${stat.color}40` : "none",
-                transition: "text-shadow 0.3s ease",
-              }}
+              className={`text-4xl md:text-5xl font-bold mb-3 font-playfair ${stat.color}`}
             >
               {stat.value}
             </div>

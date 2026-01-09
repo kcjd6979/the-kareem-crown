@@ -19,7 +19,7 @@ const arsenalVideos: ArsenalVideo[] = [
   {
     id: "ai-systems",
     title: "AI Systems Architecture",
-    description: "Building autonomous AI infrastructure",
+    description: "Designing and implementing scalable, autonomous AI infrastructures that form the backbone of modern digital ecosystems.",
     thumbnail: "/images/arsenal-ai-systems.webp",
     videoUrl: "/videos/ai-systems-architecture.mp4",
     duration: "2:45",
@@ -27,7 +27,7 @@ const arsenalVideos: ArsenalVideo[] = [
   {
     id: "autonomous-dev",
     title: "Full-Stack Development",
-    description: "Self-replicating code systems",
+    description: "Engineering self-sufficient, self-replicating code systems that adapt and evolve, minimizing manual intervention.",
     thumbnail: "/images/arsenal-autonomous-dev.webp",
     videoUrl: "/videos/autonomous-development.mp4",
     duration: "3:12",
@@ -35,7 +35,7 @@ const arsenalVideos: ArsenalVideo[] = [
   {
     id: "performance",
     title: "Performance Engineering",
-    description: "Lighthouse scores of 95+",
+    description: "Achieving elite performance benchmarks, including consistent Lighthouse scores of 95+ for optimal user experience.",
     thumbnail: "/images/arsenal-performance.webp",
     videoUrl: "/videos/performance-engineering.mp4",
     duration: "1:58",

@@ -8,74 +8,67 @@ const personas = [
   {
     id: "goldie",
     name: "Goldie",
-    role: "The Visionary",
+    role: "Adoption & Strategy",
     color: "gold",
-    glowColor: "rgba(212, 175, 55, 0.5)", // Midas Gold Glossy #D4AF37
     status: "Adopt Phase",
-    description: "Strategic foresight and creative direction",
+    description: "Identifies market opportunities and architects the initial adoption strategy for your brand's AI ecosystem.",
   },
   {
     id: "roman",
     name: "Roman",
-    role: "The Engineer",
+    role: "Enhancement & Engineering",
     color: "silver",
-    glowColor: "rgba(192, 192, 192, 0.5)", // Metallic Silver #C0C0C0
-    status: "Adopt Phase",
-    description: "Technical architecture and implementation",
+    status: "Enhance Phase",
+    description: "Engineers the core systems, enhancing your digital infrastructure with proprietary AI and automation.",
   },
   {
     id: "nina",
     name: "Nina",
-    role: "The Validator",
+    role: "Deployment & Validation",
     color: "chrome",
-    glowColor: "rgba(225, 225, 225, 0.5)", // Hi-Gloss Chrome #E1E1E1
-    status: "Enhance Phase",
-    description: "Quality assurance and validation systems",
+    status: "Deploy Phase",
+    description: "Manages the seamless deployment of all systems, validating performance and ensuring operational excellence.",
   },
   {
     id: "echo",
     name: "Echo",
-    role: "The Guardian",
+    role: "Pulse Back & Optimization",
     color: "gold",
-    glowColor: "rgba(212, 175, 55, 0.5)", // Midas Gold Glossy #D4AF37
-    status: "Adopt Phase",
-    description: "Security and protection protocols",
+    status: "Pulse Back Phase",
+    description: "Monitors the ecosystem post-launch, gathering performance data and providing insights for continuous optimization.",
   },
 ];
 
 const MeetTheForge = () => {
   const [activePersona, setActivePersona] = useState<string | null>(null);
 
-  const getColorClasses = (color: string, glowColor: string) => {
-    const colors: Record<string, { bg: string; border: string; text: string; glow: string }> = {
+  const getColorClasses = (color: string) => {
+    const colors: Record<string, { bg: string; border: string; text: string; }> = {
       gold: {
-        bg: "from-[#D4AF37]/10 to-[#B6862C]/5", // Midas Gold Glossy to Matte
-        border: "border-[#D4AF37]/30",
-        text: "text-[#D4AF37]",
-        glow: glowColor,
+        bg: "from-midas-gold-glossy/10 to-midas-gold-matte/5",
+        border: "border-midas-gold-glossy/30",
+        text: "text-midas-gold-glossy",
       },
       silver: {
-        bg: "from-[#C0C0C0]/10 to-[#C0C0C0]/5", // Metallic Silver
-        border: "border-[#C0C0C0]/30",
-        text: "text-[#C0C0C0]",
-        glow: glowColor,
+        bg: "from-metallic-silver/10 to-metallic-silver/5",
+        border: "border-metallic-silver/30",
+        text: "text-metallic-silver",
       },
       chrome: {
-        bg: "from-[#E1E1E1]/10 to-[#E1E1E1]/5", // Hi-Gloss Chrome
-        border: "border-[#E1E1E1]/30",
-        text: "text-[#E1E1E1]",
-        glow: glowColor,
+        bg: "from-hi-gloss-chrome/10 to-hi-gloss-chrome/5",
+        border: "border-hi-gloss-chrome/30",
+        text: "text-hi-gloss-chrome",
       },
     };
     return colors[color] || colors.gold;
   };
 
   return (
-    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-black overflow-hidden">
+    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-obsidian-black overflow-hidden">
       {/* Background Effects - Using Midas Gold colors only */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#C0C0C0]/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-midas-gold-glossy/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-metallic-silver/5 rounded-full blur-3xl" />
       </div>
 
       {/* Section Header */}
@@ -86,7 +79,7 @@ const MeetTheForge = () => {
         viewport={{ once: true }}
         className="relative max-w-6xl mx-auto text-center mb-16"
       >
-        <h2 className="font-playfair font-bold text-4xl md:text-6xl text-white mb-4">
+        <h2 className="font-playfair font-bold text-4xl md:text-6xl text-chrome-white mb-4">
           Meet <span className="text-gradient-gold">The Forge</span>
         </h2>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
@@ -99,7 +92,7 @@ const MeetTheForge = () => {
       {/* Persona Cards */}
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {personas.map((persona, index) => {
-          const colors = getColorClasses(persona.color, persona.glowColor);
+          const colors = getColorClasses(persona.color);
 
           return (
             <motion.div
@@ -115,23 +108,18 @@ const MeetTheForge = () => {
               className={`relative p-6 rounded-2xl glass-card-glow cursor-pointer card-hover ${
                 activePersona === persona.id ? "scale-[1.02]" : ""
               }`}
-              style={{
-                ["--persona-color" as string]: colors.text.replace("text-", "").replace(/[\[\]]/g, ""),
-                ["--persona-glow" as string]: colors.glow,
-              } as React.CSSProperties}
             >
               {/* Colored Glow Effect */}
               <div
-                className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300"
+                className={`absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 ${colors.bg}`}
                 style={{
-                  background: `radial-gradient(ellipse at top, ${colors.glow}, transparent 70%)`,
                   opacity: activePersona === persona.id ? 0.5 : 0,
                 }}
               />
 
               {/* Status Pill */}
               <div className="absolute top-4 right-4">
-                <span className={`status-pill ${colors.text.replace(/[\[\]]/g, "")}`}>
+                <span className={`status-pill ${colors.text}`}>
                   {persona.status}
                 </span>
               </div>
@@ -139,14 +127,10 @@ const MeetTheForge = () => {
               {/* Persona Avatar Container */}
               <div className="relative mb-6 mt-2">
                 <div
-                  className={`w-20 h-20 rounded-full mx-auto flex items-center justify-center ${colors.bg} border-2`}
-                  style={{
-                    borderColor: colors.border.replace(/[\[\]]/g, ""),
-                    boxShadow: `0 0 30px ${colors.glow}`,
-                  }}
+                  className={`w-20 h-20 rounded-full mx-auto flex items-center justify-center bg-gradient-to-br ${colors.bg} border-2 ${colors.border} shadow-lg`}
                 >
                   <span
-                    className={`text-3xl font-bold ${colors.text.replace(/[\[\]]/g, "")}`}
+                    className={`text-3xl font-bold ${colors.text}`}
                   >
                     {persona.name.charAt(0)}
                   </span>
@@ -154,16 +138,12 @@ const MeetTheForge = () => {
 
                 {/* Pulsing Ring */}
                 <div
-                  className="absolute inset-0 rounded-full border border-current opacity-20"
-                  style={{
-                    borderColor: colors.text.replace("text-", "").replace(/[\[\]]/g, ""),
-                    animation: "ringPulse 4s ease-in-out infinite",
-                  }}
+                  className={`absolute inset-0 rounded-full border opacity-20 ${colors.border} ring-pulse`}
                 />
               </div>
 
               {/* Name & Role */}
-              <h3 className={`text-xl font-bold text-white mb-1 text-center ${colors.text.replace(/[\[\]]/g, "")}`}>
+              <h3 className={`text-xl font-bold text-white mb-1 text-center ${colors.text}`}>
                 {persona.name}
               </h3>
               <p className={`text-sm text-center mb-4 text-gray-300`}>
@@ -179,11 +159,7 @@ const MeetTheForge = () => {
               <div
                 className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 rounded-full transition-all duration-300 ${
                   activePersona === persona.id ? "w-20" : "w-12"
-                }`}
-                style={{
-                  background: colors.text.replace("text-", "").replace(/[\[\]]/g, ""),
-                  boxShadow: `0 0 10px ${colors.glow}`,
-                }}
+                } ${colors.text.replace("text-", "bg-")}`}
               />
             </motion.div>
           );
@@ -219,7 +195,7 @@ const MeetTheForge = () => {
                 y1={y1}
                 x2={x2}
                 y2={y2}
-                stroke={persona.glowColor}
+                stroke="var(--midas-gold-glossy)"
                 strokeWidth="1"
                 strokeDasharray="4 4"
               />
@@ -230,19 +206,13 @@ const MeetTheForge = () => {
         {/* Central MTM Hub */}
         <div className="relative flex justify-center">
           <div
-            className="w-20 h-20 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#B6862C] flex items-center justify-center relative"
-            style={{
-              boxShadow: "0 0 40px rgba(212, 175, 55, 0.4)",
-            }}
+            className="w-20 h-20 rounded-full bg-gold-gradient flex items-center justify-center relative shadow-lg"
           >
             <span className="text-2xl font-bold text-black font-serif">MTM</span>
 
             {/* Rotating Ring */}
             <div
-              className="absolute inset-0 rounded-full border-2 border-[#D4AF37]/30"
-              style={{
-                animation: "ringPulse 4s ease-in-out infinite",
-              }}
+              className="absolute inset-0 rounded-full border-2 border-midas-gold-glossy/30 ring-pulse"
             />
           </div>
         </div>
