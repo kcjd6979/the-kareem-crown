@@ -11,8 +11,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'obsidian': '#111111',
-        'midas-gold': '#FFD700',
+        'midas-gold-glossy': 'var(--midas-gold-glossy)',
+        'obsidian-black': 'var(--obsidian-black)',
+        'chrome-white': 'var(--chrome-white)',
+        'midas-gold-matte': 'var(--midas-gold-matte)',
+        'jet-black-soft': 'var(--jet-black-soft)',
+        'metallic-silver': 'var(--metallic-silver)',
+        'hi-gloss-chrome': 'var(--hi-gloss-chrome)',
       },
       fontFamily: {
         'playfair': ['"Playfair Display SC"', 'serif'],
