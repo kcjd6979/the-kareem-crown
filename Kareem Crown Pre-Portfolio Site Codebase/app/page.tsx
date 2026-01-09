@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import HeroSection from "@/components/HeroSection";
+import ModernTouchManifesto from "@/components/ModernTouchManifesto";
 import MeetTheForge from "@/components/MeetTheForge";
 import { ArsenalCarousel } from "@/components/Arsenal/ArsenalCarousel";
 import { CredentialsSection } from "@/components/CredentialsSection";
@@ -10,7 +11,6 @@ import { AIToolsSection } from "@/components/AIToolsSection";
 import { ConnectionSection } from "@/components/ConnectionSection";
 import CompanyLogoSection from "@/components/CompanyLogoSection";
 import LogoStorySection from "@/components/LogoStorySection";
-import ModernTouchManifesto from "@/components/ModernTouchManifesto";
 import { Footer } from "@/components/Footer";
 import ClientLayout from "@/components/ClientLayout";
 
@@ -62,10 +62,11 @@ export default function Home() {
         {/* Main content */}
         <main className="relative">
           <HeroSection />
-          <MeetTheForge />
           
           {/* Modern Touch Manifesto - About Us Section */}
           <ModernTouchManifesto />
+          
+          <MeetTheForge />
           
           {/* New Arsenal 3D Video Carousel */}
           <ArsenalCarousel />
