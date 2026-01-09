@@ -11,6 +11,7 @@ import { AIToolsSection } from "@/components/AIToolsSection";
 import { ConnectionSection } from "@/components/ConnectionSection";
 import CompanyLogoSection from "@/components/CompanyLogoSection";
 import LogoStorySection from "@/components/LogoStorySection";
+import ModernTouchManifesto from "@/components/ModernTouchManifesto";
 import { Footer } from "@/components/Footer";
 import ClientLayout from "@/components/ClientLayout";
 
@@ -64,6 +65,9 @@ export default function Home() {
           <HeroSection />
           <ModernTouchManifesto />
           <MeetTheForge />
+          
+          {/* Modern Touch Manifesto - About Us Section */}
+          <ModernTouchManifesto />
           
           {/* New Arsenal 3D Video Carousel */}
           <ArsenalCarousel />
