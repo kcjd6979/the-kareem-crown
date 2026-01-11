@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import HeroSection from "@/components/HeroSection";
 import ModernTouchManifesto from "@/components/ModernTouchManifesto";
 import MeetTheForge from "@/components/MeetTheForge";
-import { ArsenalCarousel } from "@/components/Arsenal/ArsenalCarousel";
+import ArsenalSection from "@/components/ArsenalSection";  // Changed from ArsenalCarousel
 import { CredentialsSection } from "@/components/CredentialsSection";
 import { ArchitectSection } from "@/components/ArchitectSection";
 import { AIToolsSection } from "@/components/AIToolsSection";
@@ -69,7 +69,7 @@ export default function Home() {
           <MeetTheForge />
           
           {/* Armory - Strategic weapons in the war for digital dominance */}
-          <ArsenalCarousel />
+          <ArsenalSection />
           
           {/* Command Center - Arsenal of Intelligence renamed */}
           <AIToolsSection />
