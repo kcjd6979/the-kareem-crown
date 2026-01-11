@@ -47,7 +47,7 @@ export const ArchitectSection = () => {
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         >
           <h2 className="font-playfair font-bold text-4xl text-white mb-6">
-            The Architect
+            Architect
           </h2>
           <p className="text-lg text-gray-300 leading-relaxed font-merriweather">
             &quot;Most companies today see AI as either a confusing threat or a simple toy. I&apos;m the guy who hands them the operating manual. My name is Kareem Daniel, founder of Midas Touch Media.

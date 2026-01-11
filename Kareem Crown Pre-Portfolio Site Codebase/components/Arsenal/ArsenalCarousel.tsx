@@ -79,7 +79,7 @@ export const ArsenalCarousel = () => {
         className="max-w-6xl mx-auto text-center mb-12"
       >
         <h2 className="font-playfair font-bold text-4xl md:text-5xl text-white mb-4">
-          The Arsenal
+          Armory
         </h2>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
           Strategic weapons in the war for digital dominance.

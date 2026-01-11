@@ -80,7 +80,7 @@ export const AIToolsSection = () => {
         className="relative max-w-6xl mx-auto text-center mb-16"
       >
         <h2 className="font-playfair font-bold text-4xl md:text-6xl text-white mb-4">
-          <span className="text-gradient-gold">Arsenal</span> of Intelligence
+          <span className="text-gradient-gold">Command Center</span>
         </h2>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
           Leveraging the most advanced AI systems to architect solutions that redefine what&apos;s possible.

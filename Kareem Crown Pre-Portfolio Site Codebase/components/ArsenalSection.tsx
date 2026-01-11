@@ -42,7 +42,7 @@ export const ArsenalSection = () => {
     <section className="w-full py-20 md:py-32 px-4 md:px-8 bg-black/50">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="font-playfair font-bold text-4xl md:text-5xl text-white mb-12">
-          The Arsenal
+          Armory
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {arsenalItems.map((item, i) => (

@@ -18,7 +18,7 @@ export const ConnectionSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
-          Connect with The Architect
+          Connect with Architect
         </motion.h2>
         <motion.p 
           className="text-xl text-gray-300 mb-12"

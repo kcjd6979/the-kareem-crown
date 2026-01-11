@@ -98,7 +98,7 @@ export const CredentialsSection = () => {
         className="relative max-w-6xl mx-auto text-center mb-16"
       >
         <h2 className="font-playfair font-bold text-4xl md:text-6xl text-white mb-4">
-          The Architect&apos;s <span className="text-gradient-gold">Foundation</span>
+          Architect&apos;s <span className="text-gradient-gold">Foundation</span>
         </h2>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
           Building on a foundation of knowledge, certifications, and continuous learning.
