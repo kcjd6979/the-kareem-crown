@@ -17,6 +17,21 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  // Inject spin animation keyframe on client only
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes spin {
+        from { transform: translateX(-50%) rotate(0deg); }
+        to { transform: translateX(-50%) rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
   // Smooth mouse tracking with lerp
   const smoothPosition = useRef({ x: 0, y: 0 });
   const targetPosition = useRef({ x: 0, y: 0 });
@@ -308,7 +323,7 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                       border: "3px solid rgba(212, 175, 55, 0.3)",
                       borderTopColor: "#D4AF37",
                       borderRadius: "50%",
-                      animation: "cursorSpin 1s linear infinite",
+                      animation: "spin 1s linear infinite",
                     }}
                   />
                 </div>
@@ -427,17 +442,5 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
     </AnimatePresence>
   );
 };
-
-// Add the rotation animation keyframe
-const styleSheet = document.createElement("style");
-styleSheet.textContent = `
-  @keyframes cursorSpin {
-    from { transform: translateX(-50%) rotate(0deg); }
-    to { transform: translateX(-50%) rotate(360deg); }
-  }
-`;
-if (typeof document !== "undefined") {
-  document.head.appendChild(styleSheet);
-}
 
 export default RocketCursor;
