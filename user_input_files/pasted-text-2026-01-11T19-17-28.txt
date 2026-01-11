@@ -1,0 +1,83 @@
+13:15:41.939 Running build in Portland, USA (West) – pdx1
+13:15:41.940 Build machine configuration: 2 cores, 8 GB
+13:15:42.066 Cloning github.com/kcjd6979/the-kareem-crown (Branch: feature/modern-touch-manifesto-15066339748223857581, Commit: 9e2da39)
+13:15:52.020 Warning: Failed to fetch one or more git submodules
+13:15:52.021 Cloning completed: 9.955s
+13:15:52.158 Restored build cache from previous deployment (EJ5mhGVPxamJz8ESNGY1F8Aurogi)
+13:15:52.806 Warning: Due to "engines": { "node": ">=18.0.0" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "24.x" will be used instead. Learn More: http://vercel.link/node-version
+13:15:52.807 Warning: Detected "engines": { "node": ">=18.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
+13:15:52.807 Running "vercel build"
+13:15:53.231 Vercel CLI 50.1.6
+13:15:53.793 Warning: Due to "engines": { "node": ">=18.0.0" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "24.x" will be used instead. Learn More: http://vercel.link/node-version
+13:15:53.794 Warning: Detected "engines": { "node": ">=18.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
+13:15:53.796 Running "install" command: `npm install --prefix "Kareem Crown Pre-Portfolio Site Codebase"`...
+13:16:05.431 
+13:16:05.432 up to date, audited 458 packages in 11s
+13:16:05.432 
+13:16:05.433 154 packages are looking for funding
+13:16:05.433   run `npm fund` for details
+13:16:05.534 
+13:16:05.535 4 vulnerabilities (3 high, 1 critical)
+13:16:05.535 
+13:16:05.535 To address all issues (including breaking changes), run:
+13:16:05.536   npm audit fix --force
+13:16:05.536 
+13:16:05.536 Run `npm audit` for details.
+13:16:05.686 mkdir: cannot create directory 'tmp': File exists
+13:16:05.785 
+13:16:05.786 > the-kareem-crown@0.1.0 build
+13:16:05.786 > next build
+13:16:05.786 
+13:16:06.390 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+13:16:06.390 This information is used to shape Next.js' roadmap and prioritize features.
+13:16:06.390 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+13:16:06.390 https://nextjs.org/telemetry
+13:16:06.391 
+13:16:06.446   ▲ Next.js 14.2.3
+13:16:06.446 
+13:16:06.463    Creating an optimized production build ...
+13:16:31.844  ✓ Compiled successfully
+13:16:31.845    Linting and checking validity of types ...
+13:16:35.517 
+13:16:35.518 ./components/ModernTouchManifesto.tsx
+13:16:35.518 64:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+13:16:35.519 
+13:16:35.519 ./components/RocketCursor.tsx
+13:16:35.519 272:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+13:16:35.519 
+13:16:35.520 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+13:16:38.074    Collecting page data ...
+13:16:41.676    Generating static pages (0/4) ...
+13:16:41.922    Generating static pages (1/4) 
+13:16:41.923    Generating static pages (2/4) 
+13:16:41.969    Generating static pages (3/4) 
+13:16:41.969 ReferenceError: document is not defined
+13:16:41.970     at 90 (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/.next/server/app/page.js:63:3706)
+13:16:41.970     at Object.t [as require] (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/.next/server/webpack-runtime.js:1:127)
+13:16:41.970     at require (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:16:18365)
+13:16:41.971     at I (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94362)
+13:16:41.971     at /vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:96668
+13:16:41.972     at F._fromJSON (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97106)
+13:16:41.972     at JSON.parse (<anonymous>)
+13:16:41.973     at O (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94083)
+13:16:41.973     at t (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100582) {
+13:16:41.973   digest: '2022780398'
+13:16:41.973 }
+13:16:41.974 
+13:16:41.974 Error occurred prerendering page "/". Read more: https://nextjs.org/docs/messages/prerender-error
+13:16:41.974 
+13:16:41.974 ReferenceError: document is not defined
+13:16:41.974     at 90 (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/.next/server/app/page.js:63:3706)
+13:16:41.974     at Object.t [as require] (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/.next/server/webpack-runtime.js:1:127)
+13:16:41.974     at require (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:16:18365)
+13:16:41.975     at I (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94362)
+13:16:41.975     at /vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:96668
+13:16:41.977     at F._fromJSON (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:97106)
+13:16:41.977     at JSON.parse (<anonymous>)
+13:16:41.978     at O (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:94083)
+13:16:41.978     at t (/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js:12:100582)
+13:16:41.980  ✓ Generating static pages (4/4)
+13:16:41.991 
+13:16:41.992 > Export encountered errors on following paths:
+13:16:41.992 	/page: /
+13:16:42.026 Error: Command "mkdir -p tmp || true && npm run build --prefix "Kareem Crown Pre-Portfolio Site Codebase"" exited with 1
