@@ -40,10 +40,10 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
       cursorRef.current.style.top = `${smoothPosition.current.y}px`;
     }
 
-    // Update spotlight position - offset to emanate from tip (bottom of image)
+    // Update spotlight position - offset to emanate from tip (TOP of image after rotation)
     if (spotlightRef.current) {
       spotlightRef.current.style.left = `${smoothPosition.current.x}px`;
-      spotlightRef.current.style.top = `${smoothPosition.current.y + 35}px`; // Offset to tip
+      spotlightRef.current.style.top = `${smoothPosition.current.y - 35}px`; // Offset to tip (top)
     }
 
     animationFrameRef.current = requestAnimationFrame(animate);
@@ -103,7 +103,8 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
   }, [isEnabled, isVisible, animate]);
 
   // Calculate rotation based on velocity
-  const rotation = velocity.x * 0.3;
+  // Pen is rotated 180° so tip points UP (like a normal cursor)
+  const rotation = velocity.x * 0.3 + 180;
 
   if (!isEnabled) return null;
 
@@ -111,7 +112,7 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
     <AnimatePresence>
       {isVisible && (
         <>
-          {/* Spotlight / Headlight Effect - Illuminates from the DOWNWARD-POINTING tip */}
+          {/* Spotlight / Headlight Effect - Illuminates from the UPWARD-POINTING tip */}
           <motion.div
             ref={spotlightRef}
             className="fixed pointer-events-none z-[9998]"
@@ -126,16 +127,16 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
             }}
             transition={{ duration: 0.3 }}
           >
-            {/* Conical headlight beam projecting DOWN from the tip */}
+            {/* Conical headlight beam projecting UP from the tip */}
             <div
               className="absolute pointer-events-none"
               style={{
                 left: "50%",
-                top: 0,
+                bottom: 0,
                 transform: "translateX(-50%)",
                 width: "500px",
                 height: "600px",
-                background: "conic-gradient(from 0deg at 50% 0%, rgba(255, 215, 0, 0.12) 0deg, transparent 50deg, transparent 130deg, rgba(255, 215, 0, 0.06) 180deg, transparent 230deg)",
+                background: "conic-gradient(from 0deg at 50% 100%, rgba(255, 215, 0, 0.12) 0deg, transparent 50deg, transparent 130deg, rgba(255, 215, 0, 0.06) 180deg, transparent 230deg)",
                 mixBlendMode: "screen",
               }}
             />
@@ -145,11 +146,11 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
               className="absolute pointer-events-none"
               style={{
                 left: "50%",
-                top: 0,
+                bottom: 0,
                 transform: "translateX(-50%)",
                 width: "250px",
                 height: "400px",
-                background: "conic-gradient(from 0deg at 50% 0%, rgba(255, 255, 200, 0.15) 0deg, transparent 35deg, transparent 145deg, rgba(255, 255, 200, 0.08) 180deg, transparent 215deg)",
+                background: "conic-gradient(from 0deg at 50% 100%, rgba(255, 255, 200, 0.15) 0deg, transparent 35deg, transparent 145deg, rgba(255, 255, 200, 0.08) 180deg, transparent 215deg)",
                 mixBlendMode: "screen",
               }}
             />
@@ -159,11 +160,11 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
               className="absolute pointer-events-none"
               style={{
                 left: "50%",
-                top: 0,
+                bottom: 0,
                 transform: "translateX(-50%)",
                 width: "120px",
                 height: "120px",
-                background: "radial-gradient(ellipse at 50% 0%, rgba(255, 215, 0, 0.4) 0%, transparent 70%)",
+                background: "radial-gradient(ellipse at 50% 100%, rgba(255, 215, 0, 0.4) 0%, transparent 70%)",
                 filter: "blur(10px)",
               }}
             />
@@ -192,7 +193,7 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
               mass: 0.8,
             }}
           >
-            {/* Container with pen positioned so tip is at cursor point */}
+            {/* Container with pen positioned so tip (TOP) is at cursor point */}
             <motion.div
               className="relative"
               animate={{
@@ -203,7 +204,7 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                 width: "70px",
                 height: "100px",
                 display: "flex",
-                alignItems: "flex-start", // Tip at bottom
+                alignItems: "flex-end", // Tip at top, aligned with cursor
                 justifyContent: "center",
               }}
             >
@@ -212,7 +213,7 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                 className="absolute pointer-events-none"
                 style={{
                   inset: "-15px",
-                  background: "radial-gradient(ellipse at 50% 100%, rgba(212, 175, 55, 0.35) 0%, transparent 70%)",
+                  background: "radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.35) 0%, transparent 70%)",
                   filter: "blur(12px)",
                 }}
               />
@@ -325,12 +326,12 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                 </svg>
               )}
 
-              {/* Rocket flame trail at the TIP (bottom) when moving */}
+              {/* Rocket flame trail at the TOP (opposite end from tip) when moving */}
               <motion.div
                 className="absolute pointer-events-none"
                 style={{
                   left: "50%",
-                  top: "100%",
+                  bottom: "100%", // At the top of the pen (opposite end from tip)
                   transform: "translateX(-50%)",
                   width: "35px",
                   height: "60px",
@@ -345,12 +346,12 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                 <div
                   style={{
                     position: "absolute",
-                    top: 0,
+                    bottom: 0,
                     left: "50%",
                     transform: "translateX(-50%)",
                     width: "14px",
                     height: "55px",
-                    background: "linear-gradient(to bottom, rgba(255, 215, 0, 0.9), rgba(255, 140, 0, 0.7), transparent)",
+                    background: "linear-gradient(to top, rgba(255, 215, 0, 0.9), rgba(255, 140, 0, 0.7), transparent)",
                     borderRadius: "50% 50% 30% 30%",
                     filter: "blur(2px)",
                   }}
@@ -359,12 +360,12 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                 <div
                   style={{
                     position: "absolute",
-                    top: 0,
+                    bottom: 0,
                     left: "50%",
                     transform: "translateX(-50%)",
                     width: "24px",
                     height: "60px",
-                    background: "linear-gradient(to bottom, rgba(255, 200, 0, 0.6), rgba(255, 100, 50, 0.4), transparent)",
+                    background: "linear-gradient(to top, rgba(255, 200, 0, 0.6), rgba(255, 100, 50, 0.4), transparent)",
                     borderRadius: "50% 50% 40% 40%",
                     filter: "blur(4px)",
                   }}
@@ -373,12 +374,12 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                 <div
                   style={{
                     position: "absolute",
-                    top: 0,
+                    bottom: 0,
                     left: "50%",
                     transform: "translateX(-50%)",
                     width: "32px",
                     height: "65px",
-                    background: "linear-gradient(to bottom, rgba(212, 175, 55, 0.4), rgba(255, 69, 0, 0.2), transparent)",
+                    background: "linear-gradient(to top, rgba(212, 175, 55, 0.4), rgba(255, 69, 0, 0.2), transparent)",
                     borderRadius: "50% 50% 50% 50%",
                     filter: "blur(6px)",
                   }}
