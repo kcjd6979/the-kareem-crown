@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 
 // AI Persona data - Using Midas Touch Media Official Brand Colors
 const personas = [
@@ -10,36 +11,44 @@ const personas = [
     name: "Goldie",
     role: "The Visionary",
     color: "gold",
-    glowColor: "rgba(212, 175, 55, 0.5)", // Midas Gold Glossy #D4AF37
+    glowColor: "rgba(212, 175, 55, 0.5)",
+    bgGlow: "radial-gradient(circle at center, rgba(147, 51, 234, 0.4) 0%, rgba(212, 175, 55, 0.1) 70%)",
     status: "Adopt Phase",
     description: "Strategic foresight and creative direction",
+    image: "/images/forge/goldie-character.png",
   },
   {
     id: "roman",
     name: "Roman",
     role: "The Engineer",
     color: "silver",
-    glowColor: "rgba(192, 192, 192, 0.5)", // Metallic Silver #C0C0C0
+    glowColor: "rgba(192, 192, 192, 0.5)",
+    bgGlow: "radial-gradient(circle at center, rgba(59, 130, 246, 0.4) 0%, rgba(192, 192, 192, 0.1) 70%)",
     status: "Adopt Phase",
     description: "Technical architecture and implementation",
+    image: "/images/forge/roman-character.png",
   },
   {
     id: "nina",
     name: "Nina",
     role: "The Validator",
     color: "chrome",
-    glowColor: "rgba(225, 225, 225, 0.5)", // Hi-Gloss Chrome #E1E1E1
+    glowColor: "rgba(225, 225, 225, 0.5)",
+    bgGlow: "radial-gradient(circle at center, rgba(20, 184, 166, 0.4) 0%, rgba(225, 225, 225, 0.1) 70%)",
     status: "Enhance Phase",
     description: "Quality assurance and validation systems",
+    image: "/images/forge/nina-character.png",
   },
   {
     id: "echo",
     name: "Echo",
     role: "The Guardian",
     color: "gold",
-    glowColor: "rgba(212, 175, 55, 0.5)", // Midas Gold Glossy #D4AF37
+    glowColor: "rgba(212, 175, 55, 0.5)",
+    bgGlow: "radial-gradient(circle at center, rgba(236, 72, 153, 0.4) 0%, rgba(212, 175, 55, 0.1) 70%)",
     status: "Adopt Phase",
     description: "Security and protection protocols",
+    image: "/images/forge/echo-character.png",
   },
 ];
 
@@ -49,19 +58,19 @@ const MeetTheForge = () => {
   const getColorClasses = (color: string, glowColor: string) => {
     const colors: Record<string, { bg: string; border: string; text: string; glow: string }> = {
       gold: {
-        bg: "from-[#D4AF37]/10 to-[#B6862C]/5", // Midas Gold Glossy to Matte
+        bg: "from-[#D4AF37]/10 to-[#B6862C]/5",
         border: "border-[#D4AF37]/30",
         text: "text-[#D4AF37]",
         glow: glowColor,
       },
       silver: {
-        bg: "from-[#C0C0C0]/10 to-[#C0C0C0]/5", // Metallic Silver
+        bg: "from-[#C0C0C0]/10 to-[#C0C0C0]/5",
         border: "border-[#C0C0C0]/30",
         text: "text-[#C0C0C0]",
         glow: glowColor,
       },
       chrome: {
-        bg: "from-[#E1E1E1]/10 to-[#E1E1E1]/5", // Hi-Gloss Chrome
+        bg: "from-[#E1E1E1]/10 to-[#E1E1E1]/5",
         border: "border-[#E1E1E1]/30",
         text: "text-[#E1E1E1]",
         glow: glowColor,
@@ -96,7 +105,7 @@ const MeetTheForge = () => {
         <div className="section-divider mx-auto mt-8" />
       </motion.div>
 
-      {/* Persona Cards */}
+      {/* Persona Cards with Character Images */}
       <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {personas.map((persona, index) => {
           const colors = getColorClasses(persona.color, persona.glowColor);
@@ -112,7 +121,7 @@ const MeetTheForge = () => {
               whileHover={{ y: -8 }}
               onHoverStart={() => setActivePersona(persona.id)}
               onHoverEnd={() => setActivePersona(null)}
-              className={`relative p-6 rounded-2xl glass-card-glow cursor-pointer card-hover ${
+              className={`relative p-6 rounded-2xl glass-card-glow cursor-pointer card-hover overflow-hidden ${
                 activePersona === persona.id ? "scale-[1.02]" : ""
               }`}
               style={{
@@ -120,69 +129,96 @@ const MeetTheForge = () => {
                 ["--persona-glow" as string]: colors.glow,
               } as React.CSSProperties}
             >
-              {/* Colored Glow Effect */}
-              <div
-                className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300"
+              {/* Character-specific background glow */}
+              <div 
+                className="absolute inset-0 opacity-0 transition-opacity duration-500"
                 style={{
-                  background: `radial-gradient(ellipse at top, ${colors.glow}, transparent 70%)`,
-                  opacity: activePersona === persona.id ? 0.5 : 0,
+                  background: persona.bgGlow,
+                  opacity: activePersona === persona.id ? 0.8 : 0.3,
                 }}
               />
 
               {/* Status Pill */}
-              <div className="absolute top-4 right-4">
+              <div className="absolute top-4 right-4 z-20">
                 <span className={`status-pill ${colors.text.replace(/[\[\]]/g, "")}`}>
                   {persona.status}
                 </span>
               </div>
 
-              {/* Persona Avatar Container */}
-              <div className="relative mb-6 mt-2">
-                <div
-                  className={`w-20 h-20 rounded-full mx-auto flex items-center justify-center ${colors.bg} border-2`}
-                  style={{
-                    borderColor: colors.border.replace(/[\[\]]/g, ""),
-                    boxShadow: `0 0 30px ${colors.glow}`,
+              {/* Character Image Container */}
+              <div className="relative mb-6 mt-2 z-10">
+                <motion.div
+                  className="relative w-32 h-32 mx-auto"
+                  animate={{ 
+                    scale: activePersona === persona.id ? 1.05 : 1,
                   }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <span
-                    className={`text-3xl font-bold ${colors.text.replace(/[\[\]]/g, "")}`}
+                  {/* Character Image Placeholder with Glow */}
+                  <div 
+                    className="absolute inset-0 rounded-full opacity-80"
+                    style={{
+                      background: persona.bgGlow,
+                      boxShadow: `0 0 40px ${persona.glowColor}`,
+                    }}
+                  />
+                  
+                  {/* Character Avatar */}
+                  <div
+                    className={`relative w-full h-full rounded-full flex items-center justify-center overflow-hidden border-2`}
+                    style={{
+                      borderColor: colors.border.replace(/[\[\]]/g, ""),
+                    }}
                   >
-                    {persona.name.charAt(0)}
-                  </span>
-                </div>
+                    {/* Placeholder for character image - shows letter if image not found */}
+                    <div 
+                      className="absolute inset-0 flex items-center justify-center"
+                      style={{
+                        background: `linear-gradient(135deg, ${persona.glowColor}40 0%, transparent 100%)`,
+                      }}
+                    >
+                      <span
+                        className={`text-5xl font-bold ${colors.text.replace(/[\[\]]/g, "")} drop-shadow-lg`}
+                        style={{
+                          textShadow: `0 0 20px ${persona.glowColor}`,
+                        }}
+                      >
+                        {persona.name.charAt(0)}
+                      </span>
+                    </div>
+                  </div>
 
-                {/* Pulsing Ring */}
-                <div
-                  className="absolute inset-0 rounded-full border border-current opacity-20"
-                  style={{
-                    borderColor: colors.text.replace("text-", "").replace(/[\[\]]/g, ""),
-                    animation: "ringPulse 4s ease-in-out infinite",
-                  }}
-                />
+                  {/* Pulsing Ring */}
+                  <div
+                    className="absolute inset-0 rounded-full border border-current opacity-30"
+                    style={{
+                      borderColor: colors.text.replace("text-", "").replace(/[\[\]]/g, ""),
+                      animation: "ringPulse 4s ease-in-out infinite",
+                    }}
+                  />
+                </motion.div>
               </div>
 
               {/* Name & Role */}
-              <h3 className={`text-xl font-bold text-white mb-1 text-center ${colors.text.replace(/[\[\]]/g, "")}`}>
+              <h3 className={`text-xl font-bold text-white mb-1 text-center ${colors.text.replace(/[\[\]]/g, "")} z-10 relative`}>
                 {persona.name}
               </h3>
-              <p className={`text-sm text-center mb-4 text-gray-300`}>
+              <p className={`text-sm text-center mb-4 text-gray-300 z-10 relative`}>
                 {persona.role}
               </p>
 
               {/* Description */}
-              <p className="text-gray-400 text-sm text-center leading-relaxed">
+              <p className="text-gray-400 text-sm text-center leading-relaxed z-10 relative">
                 {persona.description}
               </p>
 
               {/* Bottom Accent Line */}
               <div
-                className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 rounded-full transition-all duration-300 ${
-                  activePersona === persona.id ? "w-20" : "w-12"
-                }`}
+                className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 rounded-full transition-all duration-300 z-10`}
                 style={{
                   background: colors.text.replace("text-", "").replace(/[\[\]]/g, ""),
                   boxShadow: `0 0 10px ${colors.glow}`,
+                  width: activePersona === persona.id ? "w-20" : "w-12",
                 }}
               />
             </motion.div>
