@@ -53,16 +53,11 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
       cursorRef.current.style.top = `${smoothPosition.current.y}px`;
     }
 
-    // Update spotlight position - emanates from tip (top when rotated to point up)
+    // Update spotlight position - emanates from the tip (at cursor position)
     if (spotlightRef.current) {
-      // Calculate tip position based on rotation
-      const tipOffset = 25;
-      const angleRad = (rotationRef.current - 90) * (Math.PI / 180);
-      const tipX = smoothPosition.current.x + Math.cos(angleRad) * tipOffset;
-      const tipY = smoothPosition.current.y + Math.sin(angleRad) * tipOffset;
-      
-      spotlightRef.current.style.left = `${tipX}px`;
-      spotlightRef.current.style.top = `${tipY}px`;
+      // Center the spotlight on the cursor/tip position
+      spotlightRef.current.style.left = `${smoothPosition.current.x - 400}px`;
+      spotlightRef.current.style.top = `${smoothPosition.current.y - 400}px`;
     }
 
     animationFrameRef.current = requestAnimationFrame(animate);
@@ -130,16 +125,17 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
     <AnimatePresence>
       {isVisible && (
         <>
-          {/* Dynamic Spotlight / Headlight Effect - Follows cursor direction */}
+          {/* Dynamic Spotlight / Headlight Effect - Clean and seamless */}
           <motion.div
             ref={spotlightRef}
             className="fixed pointer-events-none z-[9998]"
             style={{
               left: 0,
               top: 0,
-              position: "fixed",
-              width: 0,
-              height: 0,
+              width: "100vw",
+              height: "100vh",
+              overflow: "hidden",
+              pointerEvents: "none",
             }}
             initial={{ opacity: 0 }}
             animate={{
@@ -147,59 +143,76 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
             }}
             transition={{ duration: 0.2 }}
           >
-            {/* Conical headlight beam projecting in direction of movement */}
+            {/* Single seamless radial gradient that follows cursor */}
             <div
               className="absolute pointer-events-none"
               style={{
                 left: "50%",
                 top: "50%",
-                transform: `translate(-50%, -100%) rotate(${rotation - 90}deg)`,
-                width: "600px",
-                height: "500px",
-                background: `conic-gradient(from 270deg at 50% 100%, 
-                  rgba(255, 215, 0, 0.15) 0deg, 
-                  transparent 25deg, 
-                  transparent 155deg, 
-                  rgba(255, 215, 0, 0.08) 200deg, 
-                  transparent 310deg)`,
-                mixBlendMode: "screen",
-                transformOrigin: "center bottom",
+                transform: `translate(-50%, -50%) rotate(${rotation - 90}deg)`,
+                width: "800px",
+                height: "800px",
+                background: "transparent",
               }}
-            />
+            >
+              {/* Main headlight beam - symmetric and smooth */}
+              <div
+                className="absolute pointer-events-none"
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "800px",
+                  height: "800px",
+                  background: `
+                    radial-gradient(ellipse 400px 600px at 50% 100%, 
+                      rgba(255, 220, 100, 0.1) 0%, 
+                      rgba(255, 215, 0, 0.06) 20%, 
+                      rgba(255, 200, 50, 0.03) 45%, 
+                      transparent 75%
+                    )
+                  `,
+                  mixBlendMode: "screen",
+                }}
+              />
+              
+              {/* Inner bright beam */}
+              <div
+                className="absolute pointer-events-none"
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "800px",
+                  height: "800px",
+                  background: `
+                    radial-gradient(ellipse 200px 350px at 50% 100%, 
+                      rgba(255, 255, 200, 0.12) 0%, 
+                      rgba(255, 245, 180, 0.06) 30%, 
+                      transparent 60%
+                    )
+                  `,
+                  mixBlendMode: "screen",
+                }}
+              />
 
-            {/* Inner bright core - direct illumination */}
-            <div
-              className="absolute pointer-events-none"
-              style={{
-                left: "50%",
-                top: "50%",
-                transform: `translate(-50%, -100%) rotate(${rotation - 90}deg)`,
-                width: "350px",
-                height: "350px",
-                background: `conic-gradient(from 270deg at 50% 100%, 
-                  rgba(255, 255, 200, 0.2) 0deg, 
-                  transparent 20deg, 
-                  transparent 160deg, 
-                  rgba(255, 255, 200, 0.1) 200deg, 
-                  transparent 320deg)`,
-                mixBlendMode: "screen",
-                transformOrigin: "center bottom",
-              }}
-            />
-
-            {/* Golden glow at the tip */}
-            <div
-              className="absolute pointer-events-none"
-              style={{
-                left: "50%",
-                top: "50%",
-                transform: `translate(-50%, -50%)`,
-                width: "80px",
-                height: "80px",
-                background: "radial-gradient(circle, rgba(255, 215, 0, 0.5) 0%, transparent 70%)",
-                filter: "blur(8px)",
-              }}
-            />
+              {/* Golden glow at the tip source */}
+              <div
+                className="absolute pointer-events-none"
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "100px",
+                  height: "100px",
+                  background: "radial-gradient(circle, rgba(255, 215, 0, 0.5) 0%, rgba(255, 200, 100, 0.2) 50%, transparent 70%)",
+                  filter: "blur(10px)",
+                }}
+              />
+            </div>
           </motion.div>
 
           {/* Dynamic Golden Pen Tip Rocket Cursor */}
