@@ -10,12 +10,13 @@ interface RocketCursorProps {
 export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const spotlightRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [velocity, setVelocity] = useState({ x: 0, y: 0 });
   const lastPosition = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   // Smooth mouse tracking with lerp
   const smoothPosition = useRef({ x: 0, y: 0 });
@@ -23,7 +24,7 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
 
   const animate = useCallback(() => {
     // Lerp towards target for smooth movement
-    const ease = 0.15;
+    const ease = 0.2;
     smoothPosition.current.x += (targetPosition.current.x - smoothPosition.current.x) * ease;
     smoothPosition.current.y += (targetPosition.current.y - smoothPosition.current.y) * ease;
 
@@ -39,10 +40,10 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
       cursorRef.current.style.top = `${smoothPosition.current.y}px`;
     }
 
-    // Update spotlight position
+    // Update spotlight position - offset to emanate from tip (bottom of image)
     if (spotlightRef.current) {
       spotlightRef.current.style.left = `${smoothPosition.current.x}px`;
-      spotlightRef.current.style.top = `${smoothPosition.current.y}px`;
+      spotlightRef.current.style.top = `${smoothPosition.current.y + 35}px`; // Offset to tip
     }
 
     animationFrameRef.current = requestAnimationFrame(animate);
@@ -102,7 +103,7 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
   }, [isEnabled, isVisible, animate]);
 
   // Calculate rotation based on velocity
-  const rotation = velocity.x * 0.5;
+  const rotation = velocity.x * 0.3;
 
   if (!isEnabled) return null;
 
@@ -110,15 +111,13 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
     <AnimatePresence>
       {isVisible && (
         <>
-          {/* Spotlight / Headlight Effect - Illuminates the dark galaxy */}
+          {/* Spotlight / Headlight Effect - Illuminates from the DOWNWARD-POINTING tip */}
           <motion.div
             ref={spotlightRef}
             className="fixed pointer-events-none z-[9998]"
             style={{
               left: 0,
               top: 0,
-              width: "100vw",
-              height: "100vh",
               position: "fixed",
             }}
             initial={{ opacity: 0 }}
@@ -127,50 +126,50 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
             }}
             transition={{ duration: 0.3 }}
           >
-            {/* Radial spotlight that follows cursor - creates the "headlight" effect */}
+            {/* Conical headlight beam projecting DOWN from the tip */}
             <div
               className="absolute pointer-events-none"
               style={{
                 left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "800px",
-                height: "800px",
-                background: "radial-gradient(circle at center, transparent 0%, transparent 30%, rgba(212, 175, 55, 0.08) 50%, rgba(212, 175, 55, 0.03) 70%, rgba(0, 0, 0, 0.6) 100%)",
-                mixBlendMode: "screen",
-              }}
-            />
-
-            {/* Inner bright core - the direct illumination */}
-            <div
-              className="absolute pointer-events-none"
-              style={{
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "400px",
-                height: "400px",
-                background: "radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 60%)",
-                mixBlendMode: "screen",
-              }}
-            />
-
-            {/* Golden glow on the path ahead */}
-            <div
-              className="absolute pointer-events-none"
-              style={{
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "600px",
+                top: 0,
+                transform: "translateX(-50%)",
+                width: "500px",
                 height: "600px",
-                background: "radial-gradient(ellipse at 50% 40%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)",
+                background: "conic-gradient(from 0deg at 50% 0%, rgba(255, 215, 0, 0.12) 0deg, transparent 50deg, transparent 130deg, rgba(255, 215, 0, 0.06) 180deg, transparent 230deg)",
                 mixBlendMode: "screen",
+              }}
+            />
+
+            {/* Inner bright core - direct illumination from tip */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                left: "50%",
+                top: 0,
+                transform: "translateX(-50%)",
+                width: "250px",
+                height: "400px",
+                background: "conic-gradient(from 0deg at 50% 0%, rgba(255, 255, 200, 0.15) 0deg, transparent 35deg, transparent 145deg, rgba(255, 255, 200, 0.08) 180deg, transparent 215deg)",
+                mixBlendMode: "screen",
+              }}
+            />
+
+            {/* Golden glow around the tip */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                left: "50%",
+                top: 0,
+                transform: "translateX(-50%)",
+                width: "120px",
+                height: "120px",
+                background: "radial-gradient(ellipse at 50% 0%, rgba(255, 215, 0, 0.4) 0%, transparent 70%)",
+                filter: "blur(10px)",
               }}
             />
           </motion.div>
 
-          {/* The Golden Pen Tip "Rocket" Cursor */}
+          {/* The Golden Pen Tip "Rocket" Cursor - positioned so tip (bottom) is at mouse */}
           <motion.div
             ref={cursorRef}
             className="fixed pointer-events-none z-[99999]"
@@ -193,57 +192,152 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
               mass: 0.8,
             }}
           >
-            {/* Golden Pen Tip Image */}
+            {/* Container with pen positioned so tip is at cursor point */}
             <motion.div
               className="relative"
               animate={{
                 scale: isHovering ? 1.1 : 1,
               }}
               transition={{ duration: 0.2 }}
+              style={{
+                width: "70px",
+                height: "100px",
+                display: "flex",
+                alignItems: "flex-start", // Tip at bottom
+                justifyContent: "center",
+              }}
             >
-              {/* Main cursor image */}
-              <img
-                src="/images/golden-pen-cursor.webp"
-                alt="Midas Golden Pen Cursor"
-                className="w-10 h-auto drop-shadow-[0_0_20px_rgba(212,175,55,0.8)]"
-                style={{
-                  filter: "drop-shadow(0 0 15px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 30px rgba(212, 175, 55, 0.4))",
-                }}
-              />
-
-              {/* Inner golden glow */}
+              {/* Golden glow around the entire pen */}
               <div
-                className="absolute inset-0 rounded-full"
+                className="absolute pointer-events-none"
                 style={{
-                  background: "radial-gradient(circle at center, rgba(255, 215, 0, 0.4) 0%, transparent 70%)",
-                  filter: "blur(8px)",
-                  transform: "scale(1.5)",
+                  inset: "-15px",
+                  background: "radial-gradient(ellipse at 50% 100%, rgba(212, 175, 55, 0.35) 0%, transparent 70%)",
+                  filter: "blur(12px)",
                 }}
               />
 
-              {/* Outer halo effect */}
-              <div
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: "radial-gradient(circle at center, rgba(212, 175, 55, 0.2) 0%, transparent 50%)",
-                  filter: "blur(15px)",
-                  transform: "scale(2)",
-                }}
-              />
+              {/* Main cursor image - loaded from public folder */}
+              {!imageError && (
+                <img
+                  src="/images/golden-pen-cursor.webp"
+                  alt="Midas Golden Pen Cursor"
+                  onLoad={() => setImageLoaded(true)}
+                  onError={() => setImageError(true)}
+                  style={{
+                    width: "auto",
+                    height: "90px",
+                    maxWidth: "none",
+                    objectFit: "contain",
+                    filter: "drop-shadow(0 0 8px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 15px rgba(212, 175, 55, 0.5))",
+                    opacity: imageLoaded ? 1 : 0,
+                    transition: "opacity 0.3s ease",
+                  }}
+                />
+              )}
 
-              {/* Rocket flame trail when moving */}
+              {/* Fallback SVG if image fails to load */}
+              {imageError && (
+                <svg
+                  viewBox="0 0 100 160"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{
+                    width: "70px",
+                    height: "90px",
+                    position: "absolute",
+                    top: 0,
+                    filter: "drop-shadow(0 0 8px rgba(255, 215, 0, 0.8))",
+                  }}
+                >
+                  <defs>
+                    <linearGradient id="penGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#FFD700" />
+                      <stop offset="50%" stopColor="#D4AF37" />
+                      <stop offset="100%" stopColor="#B8860B" />
+                    </linearGradient>
+                    <linearGradient id="penTipGold" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#FFFACD" />
+                      <stop offset="100%" stopColor="#FFD700" />
+                    </linearGradient>
+                  </defs>
+                  {/* Pen body */}
+                  <rect
+                    x="15"
+                    y="30"
+                    width="70"
+                    height="100"
+                    rx="10"
+                    fill="url(#penGold)"
+                    stroke="#B8860B"
+                    strokeWidth="2"
+                  />
+                  {/* Gold ring */}
+                  <rect
+                    x="12"
+                    y="45"
+                    width="76"
+                    height="15"
+                    rx="5"
+                    fill="#D4AF37"
+                    stroke="#B8860B"
+                    strokeWidth="2"
+                  />
+                  {/* Sharp tip pointing DOWN */}
+                  <path
+                    d="M 15 130 L 50 160 L 85 130 Z"
+                    fill="url(#penTipGold)"
+                    stroke="#B8860B"
+                    strokeWidth="2"
+                    strokeLinejoin="round"
+                  />
+                  {/* Center line on tip */}
+                  <line
+                    x1="50"
+                    y1="130"
+                    x2="50"
+                    y2="155"
+                    stroke="#B8860B"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  {/* Pen clip */}
+                  <rect
+                    x="60"
+                    y="35"
+                    width="10"
+                    height="40"
+                    rx="3"
+                    fill="#D4AF37"
+                    stroke="#B8860B"
+                    strokeWidth="1"
+                  />
+                  {/* Highlight */}
+                  <rect
+                    x="25"
+                    y="35"
+                    width="8"
+                    height="90"
+                    rx="4"
+                    fill="white"
+                    fillOpacity="0.2"
+                  />
+                </svg>
+              )}
+
+              {/* Rocket flame trail at the TIP (bottom) when moving */}
               <motion.div
                 className="absolute pointer-events-none"
                 style={{
                   left: "50%",
                   top: "100%",
                   transform: "translateX(-50%)",
-                  width: "20px",
-                  height: "40px",
+                  width: "35px",
+                  height: "60px",
                 }}
                 animate={{
-                  opacity: Math.abs(velocity.y) > 2 || Math.abs(velocity.x) > 2 ? 0.8 : 0,
-                  scaleY: Math.abs(velocity.y) > 2 || Math.abs(velocity.x) > 2 ? 1 : 0.5,
+                  opacity: Math.abs(velocity.y) > 1 || Math.abs(velocity.x) > 1 ? 0.9 : 0,
+                  scaleY: Math.abs(velocity.y) > 1 || Math.abs(velocity.x) > 1 ? 1 : 0.3,
                 }}
                 transition={{ duration: 0.1 }}
               >
@@ -251,37 +345,51 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                 <div
                   style={{
                     position: "absolute",
-                    bottom: 0,
+                    top: 0,
                     left: "50%",
                     transform: "translateX(-50%)",
-                    width: "8px",
-                    height: "30px",
-                    background: "linear-gradient(to bottom, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.7), transparent)",
-                    borderRadius: "50% 50% 20% 20%",
+                    width: "14px",
+                    height: "55px",
+                    background: "linear-gradient(to bottom, rgba(255, 215, 0, 0.9), rgba(255, 140, 0, 0.7), transparent)",
+                    borderRadius: "50% 50% 30% 30%",
                     filter: "blur(2px)",
+                  }}
+                />
+                {/* Middle flame */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "24px",
+                    height: "60px",
+                    background: "linear-gradient(to bottom, rgba(255, 200, 0, 0.6), rgba(255, 100, 50, 0.4), transparent)",
+                    borderRadius: "50% 50% 40% 40%",
+                    filter: "blur(4px)",
                   }}
                 />
                 {/* Outer flame */}
                 <div
                   style={{
                     position: "absolute",
-                    bottom: 0,
+                    top: 0,
                     left: "50%",
                     transform: "translateX(-50%)",
-                    width: "16px",
-                    height: "35px",
-                    background: "linear-gradient(to bottom, rgba(212, 175, 55, 0.6), rgba(255, 100, 50, 0.3), transparent)",
-                    borderRadius: "50% 50% 30% 30%",
-                    filter: "blur(4px)",
+                    width: "32px",
+                    height: "65px",
+                    background: "linear-gradient(to bottom, rgba(212, 175, 55, 0.4), rgba(255, 69, 0, 0.2), transparent)",
+                    borderRadius: "50% 50% 50% 50%",
+                    filter: "blur(6px)",
                   }}
                 />
               </motion.div>
 
-              {/* Star sparkle effects around cursor */}
+              {/* Star sparkle effects near the pen */}
               <motion.div
                 className="absolute pointer-events-none"
                 animate={{
-                  opacity: [0.3, 1, 0.3],
+                  opacity: [0.4, 1, 0.4],
                 }}
                 transition={{
                   duration: 2,
@@ -289,11 +397,10 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                   ease: "easeInOut",
                 }}
                 style={{
-                  left: "-20px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  width: "4px",
-                  height: "4px",
+                  left: "-18px",
+                  top: "35%",
+                  width: "5px",
+                  height: "5px",
                   background: "#FFD700",
                   borderRadius: "50%",
                   boxShadow: "0 0 10px #FFD700, 0 0 20px #FFD700",
@@ -302,22 +409,43 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
               <motion.div
                 className="absolute pointer-events-none"
                 animate={{
-                  opacity: [0.5, 0.8, 0.5],
+                  opacity: [0.3, 0.8, 0.3],
                 }}
                 transition={{
-                  duration: 1.5,
+                  duration: 1.8,
                   repeat: Number.POSITIVE_INFINITY,
                   ease: "easeInOut",
-                  delay: 0.5,
+                  delay: 0.4,
                 }}
                 style={{
                   right: "-15px",
-                  top: "30%",
+                  top: "45%",
+                  width: "4px",
+                  height: "4px",
+                  background: "#FFD700",
+                  borderRadius: "50%",
+                  boxShadow: "0 0 8px #FFD700, 0 0 15px #FFD700",
+                }}
+              />
+              <motion.div
+                className="absolute pointer-events-none"
+                animate={{
+                  opacity: [0.5, 0.9, 0.5],
+                }}
+                transition={{
+                  duration: 2.2,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                  delay: 0.8,
+                }}
+                style={{
+                  left: "-12px",
+                  top: "55%",
                   width: "3px",
                   height: "3px",
                   background: "#FFD700",
                   borderRadius: "50%",
-                  boxShadow: "0 0 8px #FFD700, 0 0 15px #FFD700",
+                  boxShadow: "0 0 6px #FFD700",
                 }}
               />
             </motion.div>
