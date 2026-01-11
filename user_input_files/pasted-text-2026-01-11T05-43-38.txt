@@ -1,0 +1,259 @@
+---
+
+## 🔌 **CIRCUIT'S MESSAGE TO SYN - DESIGN PRESERVATION PROTOCOL**
+
+Syn, appreciate the work getting this pushed. Now we need to have the same conversation we had with Jules about **design preservation and iteration protocols**.
+
+***
+
+## 🎯 **CRITICAL RULE GOING FORWARD: ENHANCE, NOT REPLACE**
+
+**This is the SAME issue we've been dealing with throughout this project:**
+
+Every time we iterate, we're **losing visual design elements** that Kareem has spent months perfecting. The pattern keeps repeating:
+- ✅ We get the **structure** changes
+- ❌ We **lose the design** polish
+
+**This has to stop.**
+
+***
+
+## 🚨 **THE PROBLEM PATTERN:**
+
+### **What Keeps Happening:**
+```
+Iteration 1: Perfect design + structure
+   ↓
+Iteration 2: Structure changes made
+   ↓
+Result: NEW structure, but LOST design polish
+   ↓
+Iteration 3: Try to restore design
+   ↓
+Result: Design partially restored, but structure regresses
+   ↓
+REPEAT CYCLE ♾️
+```
+
+**We're stuck in a loop where each iteration loses something we worked hard to build.**
+
+***
+
+## 🔒 **THE NEW MANDATE: DESIGN BASELINE IS SACRED**
+
+### **What This Means:**
+
+The design elements in `design-baseline-v1` (or the version Kareem approved) are **IMMUTABLE**. They can ONLY be enhanced, never removed or "simplified."
+
+**These are LOCKED:**
+- ✅ Golden atmospheric glow effects
+- ✅ Orbital ring styling and animations  
+- ✅ Color palette (#DAA520, #B8860B, gradients)
+- ✅ Typography hierarchy (Playfair Display, sizing, spacing)
+- ✅ Shadow depths and layering
+- ✅ Border treatments and borders
+- ✅ Particle effects
+- ✅ Animation timings
+- ✅ Hover states
+- ✅ Card styling and depth
+- ✅ Section spacing rhythm
+
+**Treat these like production code in a bank - you don't touch them without explicit approval.**
+
+***
+
+## 📋 **PROTOCOLS YOU MUST FOLLOW:**
+
+### **ABI Protocol: Always Build Incrementally**
+
+```typescript
+// ✅ CORRECT: Adding to existing code
+export const ArsenalSection = () => {
+  return (
+    <section className="arsenal-section armory-section"> {/* Added class, kept original */}
+      <h2>Armory</h2> {/* Updated text only */}
+      {/* ALL existing styling and structure preserved */}
+    </section>
+  );
+};
+
+// ❌ WRONG: Replacing entire component
+export const ArmorySection = () => {
+  return (
+    <div className="new-armory"> {/* Lost all original classes/styles */}
+      <h2>Armory</h2>
+    </div>
+  );
+};
+```
+
+### **AEDPS Protocol: Atomic Enhancement Deployment & Preservation System**
+
+**Every commit must follow this format:**
+
+```bash
+git commit -m "[ENHANCE] Component: Specific change
+- Preserved: All existing design elements, styles, animations
+- Added: New functionality/content
+- Modified: Minimal text/structure changes only
+- Visual Diff: ✓ Zero design regression confirmed"
+```
+
+***
+
+## 🎨 **CSS/STYLING RULES:**
+
+### **NEVER do this:**
+```css
+/* ❌ WRONG: Overwriting existing styles */
+.arsenal-section {
+  background: #fff; /* Destroys the dark theme */
+  border: none; /* Removes golden borders */
+  box-shadow: none; /* Kills depth effects */
+}
+```
+
+### **ALWAYS do this:**
+```css
+/* ✅ CORRECT: Adding alongside existing styles */
+.arsenal-section {
+  /* KEEP all existing styles */
+}
+
+/* Add new class for enhancements */
+.arsenal-section.armory-section {
+  /* Only additive styling here */
+}
+
+/* Or use CSS selector grouping */
+.arsenal-section,
+.armory-section {
+  /* Preserves all original styling */
+}
+```
+
+***
+
+## 🔍 **VISUAL REGRESSION TESTING (MANDATORY):**
+
+**Before EVERY commit:**
+
+1. ✅ Take screenshot of current live site
+2. ✅ Make your changes
+3. ✅ Take screenshot of local dev version
+4. ✅ Compare side-by-side:
+   - Colors should be identical
+   - Glows/shadows should be identical
+   - Spacing should be identical
+   - Animations should be identical
+5. ✅ If ANYTHING looks different (besides intentional changes), **STOP and fix it**
+6. ✅ Only commit when visual diff shows zero regression
+
+***
+
+## 📸 **THE SCREENSHOT TEST:**
+
+**If I put screenshots side-by-side:**
+```
+Before: [Screenshot of original design]
+After:  [Screenshot after your changes]
+
+Question: Can you tell which is which (besides text changes)?
+Answer should be: NO - they should look identical
+```
+
+**If the answer is YES (you can tell), you've lost design elements.**
+
+***
+
+## 🚫 **WHAT NEVER TO DO:**
+
+### **DON'T:**
+- ❌ Delete existing CSS classes
+- ❌ Remove box-shadow properties
+- ❌ Change color values "to simplify"
+- ❌ Remove border-radius "for consistency"
+- ❌ Delete animation properties "that seem unused"
+- ❌ Simplify gradients to solid colors
+- ❌ Remove opacity/transparency effects
+- ❌ Delete z-index layering
+- ❌ Remove hover effects
+- ❌ Change font families or sizes without explicit instruction
+- ❌ Assume "this probably isn't needed anymore"
+
+### **DO:**
+- ✅ Add new classes alongside existing ones
+- ✅ Enhance existing effects (make glow stronger, add more particles)
+- ✅ Ask "Will this change the visual appearance?" before committing
+- ✅ When in doubt, ADD rather than REPLACE
+- ✅ Keep a backup of working CSS before changes
+- ✅ Test on multiple screen sizes
+- ✅ Verify animations still work
+- ✅ Confirm hover states still function
+
+***
+
+## 🎯 **YOUR RESPONSIBILITY:**
+
+### **You Are The Guardian Of The Design**
+
+Think of yourself as a **restoration architect** working on a historic building:
+- You can add modern amenities (structure changes)
+- You can improve functionality (new features)
+- You **CANNOT** remove ornamental details (design elements)
+- You **CANNOT** "modernize" the facade (visual style)
+
+**The visual design is the brand. The brand took months to perfect. Breaking it is unacceptable.**
+
+***
+
+## 📝 **CONFIRMATION REQUIRED:**
+
+**Syn, respond with:**
+
+```
+✓ I understand: ENHANCE, NOT REPLACE
+✓ I will preserve ALL existing design elements in future iterations
+✓ I will run visual regression tests before every commit
+✓ I will add new code alongside existing code, not replace it
+✓ I will never remove CSS properties without explicit approval
+✓ I understand the design baseline is IMMUTABLE
+✓ I will use ABI + AEDPS protocols on all future work
+✓ If I'm unsure whether a change affects design, I will ASK first
+```
+
+***
+
+## 🔄 **WHAT THIS MEANS FOR CURRENT WORK:**
+
+**Before I can approve what you just pushed**, I need to verify that you didn't lose any design elements in the process of:
+- Renaming sections
+- Reordering components
+- Updating text
+
+**Please confirm:**
+1. All golden glows are still present
+2. All border styling is intact
+3. All shadows and depth effects remain
+4. All animations still work
+5. All spacing and rhythm is preserved
+6. Typography hierarchy unchanged (except for text content updates)
+
+***
+
+## ⚡ **MOVING FORWARD:**
+
+**Every future iteration must:**
+1. Start from approved design baseline
+2. Make changes additively (not destructively)
+3. Run visual regression test
+4. Document what was preserved vs. added
+5. Get visual approval before merge
+
+**This is not optional. This is how we prevent the endless revision loop.**
+
+***
+
+**Syn, confirm you understand these protocols and that the current push preserves all design elements.**
+
+**Circuit standing by.** 🔌
