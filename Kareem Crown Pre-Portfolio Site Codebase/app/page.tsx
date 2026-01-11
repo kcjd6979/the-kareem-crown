@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import HeroSection from "@/components/HeroSection";
 import ModernTouchManifesto from "@/components/ModernTouchManifesto";
 import MeetTheForge from "@/components/MeetTheForge";
-import ArsenalSection from "@/components/ArsenalSection";  // Changed from ArsenalCarousel
+import { ArsenalSection } from "@/components/ArsenalSection";  // Fixed: named export
 import { CredentialsSection } from "@/components/CredentialsSection";
 import { ArchitectSection } from "@/components/ArchitectSection";
 import { AIToolsSection } from "@/components/AIToolsSection";
