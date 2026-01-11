@@ -1,0 +1,77 @@
+23:50:33.724 Running build in Portland, USA (West) – pdx1
+23:50:33.724 Build machine configuration: 2 cores, 8 GB
+23:50:33.843 Cloning github.com/kcjd6979/the-kareem-crown (Branch: feature/modern-touch-manifesto-15066339748223857581, Commit: baed63a)
+23:50:45.516 Warning: Failed to fetch one or more git submodules
+23:50:45.516 Cloning completed: 11.673s
+23:50:45.614 Restored build cache from previous deployment (BCNDWuq65dxPvp6NvtA1vzmJs5Q8)
+23:50:46.193 Warning: Due to "engines": { "node": ">=18.0.0" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "24.x" will be used instead. Learn More: http://vercel.link/node-version
+23:50:46.193 Warning: Detected "engines": { "node": ">=18.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
+23:50:46.194 Running "vercel build"
+23:50:46.625 Vercel CLI 50.1.6
+23:50:47.163 Warning: Due to "engines": { "node": ">=18.0.0" } in your `package.json` file, the Node.js Version defined in your Project Settings ("22.x") will not apply, Node.js Version "24.x" will be used instead. Learn More: http://vercel.link/node-version
+23:50:47.164 Warning: Detected "engines": { "node": ">=18.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
+23:50:47.166 Running "install" command: `npm install --prefix "Kareem Crown Pre-Portfolio Site Codebase"`...
+23:50:57.947 
+23:50:57.948 up to date, audited 458 packages in 10s
+23:50:57.948 
+23:50:57.948 154 packages are looking for funding
+23:50:57.949   run `npm fund` for details
+23:50:58.050 
+23:50:58.051 4 vulnerabilities (3 high, 1 critical)
+23:50:58.051 
+23:50:58.051 To address all issues (including breaking changes), run:
+23:50:58.052   npm audit fix --force
+23:50:58.052 
+23:50:58.052 Run `npm audit` for details.
+23:50:58.190 mkdir: cannot create directory 'tmp': File exists
+23:50:58.290 
+23:50:58.291 > the-kareem-crown@0.1.0 build
+23:50:58.291 > next build
+23:50:58.291 
+23:50:58.895 Attention: Next.js now collects completely anonymous telemetry regarding usage.
+23:50:58.896 This information is used to shape Next.js' roadmap and prioritize features.
+23:50:58.896 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+23:50:58.896 https://nextjs.org/telemetry
+23:50:58.896 
+23:50:58.949   ▲ Next.js 14.2.3
+23:50:58.950 
+23:50:58.966    Creating an optimized production build ...
+23:51:10.787  ⚠ Compiled with warnings
+23:51:10.787 
+23:51:10.789 ./app/page.tsx
+23:51:10.789 Attempted import error: '@/components/ArsenalSection' does not contain a default export (imported as 'ArsenalSection').
+23:51:10.789 
+23:51:10.789 Import trace for requested module:
+23:51:10.789 ./app/page.tsx
+23:51:10.789 
+23:51:14.081 request to https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap failed, reason: 
+23:51:14.082 
+23:51:14.082 Retrying 1/3...
+23:51:23.896  ⚠ Compiled with warnings
+23:51:23.896 
+23:51:23.896 ./app/page.tsx
+23:51:23.896 Attempted import error: '@/components/ArsenalSection' does not contain a default export (imported as 'ArsenalSection').
+23:51:23.896 
+23:51:23.897 Import trace for requested module:
+23:51:23.897 ./app/page.tsx
+23:51:23.897 
+23:51:23.970  ✓ Compiled successfully
+23:51:23.971    Linting and checking validity of types ...
+23:51:27.615 
+23:51:27.616 ./components/ModernTouchManifesto.tsx
+23:51:27.616 64:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+23:51:27.616 
+23:51:27.617 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+23:51:29.996 Failed to compile.
+23:51:29.996 
+23:51:29.996 ./app/page.tsx:7:8
+23:51:29.997 Type error: Module '"/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/components/ArsenalSection"' has no default export. Did you mean to use 'import { ArsenalSection } from "/vercel/path0/Kareem Crown Pre-Portfolio Site Codebase/components/ArsenalSection"' instead?
+23:51:29.997 
+23:51:29.997 [0m [90m  5 |[39m [36mimport[39m [33mModernTouchManifesto[39m [36mfrom[39m [32m"@/components/ModernTouchManifesto"[39m[33m;[39m[0m
+23:51:29.997 [0m [90m  6 |[39m [36mimport[39m [33mMeetTheForge[39m [36mfrom[39m [32m"@/components/MeetTheForge"[39m[33m;[39m[0m
+23:51:29.997 [0m[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m [33mArsenalSection[39m [36mfrom[39m [32m"@/components/ArsenalSection"[39m[33m;[39m  [90m// Changed from ArsenalCarousel[39m[0m
+23:51:29.997 [0m [90m    |[39m        [31m[1m^[22m[39m[0m
+23:51:29.997 [0m [90m  8 |[39m [36mimport[39m { [33mCredentialsSection[39m } [36mfrom[39m [32m"@/components/CredentialsSection"[39m[33m;[39m[0m
+23:51:29.997 [0m [90m  9 |[39m [36mimport[39m { [33mArchitectSection[39m } [36mfrom[39m [32m"@/components/ArchitectSection"[39m[33m;[39m[0m
+23:51:29.997 [0m [90m 10 |[39m [36mimport[39m { [33mAIToolsSection[39m } [36mfrom[39m [32m"@/components/AIToolsSection"[39m[33m;[39m[0m
+23:51:30.044 Error: Command "mkdir -p tmp || true && npm run build --prefix "Kareem Crown Pre-Portfolio Site Codebase"" exited with 1
