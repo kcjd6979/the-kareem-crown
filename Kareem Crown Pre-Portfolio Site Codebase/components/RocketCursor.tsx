@@ -11,27 +11,40 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const spotlightRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
-  const [velocity, setVelocity] = useState({ x: 0, y: 0 });
+  const velocityRef = useRef({ x: 0, y: 0 });
   const lastPosition = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
 
   // Smooth mouse tracking with lerp
   const smoothPosition = useRef({ x: 0, y: 0 });
   const targetPosition = useRef({ x: 0, y: 0 });
+  const rotationRef = useRef(180);
 
   const animate = useCallback(() => {
     // Lerp towards target for smooth movement
-    const ease = 0.2;
+    const ease = 0.25;
     smoothPosition.current.x += (targetPosition.current.x - smoothPosition.current.x) * ease;
     smoothPosition.current.y += (targetPosition.current.y - smoothPosition.current.y) * ease;
 
-    // Calculate velocity for rotation
+    // Calculate velocity for dynamic rotation
     const velX = smoothPosition.current.x - lastPosition.current.x;
     const velY = smoothPosition.current.y - lastPosition.current.y;
-    setVelocity({ x: velX, y: velY });
+    velocityRef.current = { x: velX, y: velY };
+
+    // Calculate rotation based on movement direction (like a rocket pointing where it goes)
+    const speed = Math.sqrt(velX * velX + velY * velY);
+    if (speed > 0.5) {
+      const targetRotation = Math.atan2(velY, velX) * (180 / Math.PI);
+      // Smooth rotation transition
+      let diff = targetRotation - (rotationRef.current - 180);
+      // Handle angle wrapping
+      while (diff > 180) diff -= 360;
+      while (diff < -180) diff += 360;
+      rotationRef.current += diff * 0.15;
+    }
+
     lastPosition.current = { x: smoothPosition.current.x, y: smoothPosition.current.y };
 
     // Update cursor position
@@ -40,10 +53,16 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
       cursorRef.current.style.top = `${smoothPosition.current.y}px`;
     }
 
-    // Update spotlight position - offset to emanate from tip (TOP of image after rotation)
+    // Update spotlight position - emanates from tip (top when rotated to point up)
     if (spotlightRef.current) {
-      spotlightRef.current.style.left = `${smoothPosition.current.x}px`;
-      spotlightRef.current.style.top = `${smoothPosition.current.y - 35}px`; // Offset to tip (top)
+      // Calculate tip position based on rotation
+      const tipOffset = 25;
+      const angleRad = (rotationRef.current - 90) * (Math.PI / 180);
+      const tipX = smoothPosition.current.x + Math.cos(angleRad) * tipOffset;
+      const tipY = smoothPosition.current.y + Math.sin(angleRad) * tipOffset;
+      
+      spotlightRef.current.style.left = `${tipX}px`;
+      spotlightRef.current.style.top = `${tipY}px`;
     }
 
     animationFrameRef.current = requestAnimationFrame(animate);
@@ -102,9 +121,8 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
     };
   }, [isEnabled, isVisible, animate]);
 
-  // Calculate rotation based on velocity
-  // Pen is rotated 180° so tip points UP (like a normal cursor)
-  const rotation = velocity.x * 0.3 + 180;
+  // Get current rotation for rendering
+  const rotation = rotationRef.current;
 
   if (!isEnabled) return null;
 
@@ -112,7 +130,7 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
     <AnimatePresence>
       {isVisible && (
         <>
-          {/* Spotlight / Headlight Effect - Illuminates from the UPWARD-POINTING tip */}
+          {/* Dynamic Spotlight / Headlight Effect - Follows cursor direction */}
           <motion.div
             ref={spotlightRef}
             className="fixed pointer-events-none z-[9998]"
@@ -120,57 +138,71 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
               left: 0,
               top: 0,
               position: "fixed",
+              width: 0,
+              height: 0,
             }}
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
           >
-            {/* Conical headlight beam projecting UP from the tip */}
+            {/* Conical headlight beam projecting in direction of movement */}
             <div
               className="absolute pointer-events-none"
               style={{
                 left: "50%",
-                bottom: 0,
-                transform: "translateX(-50%)",
-                width: "500px",
-                height: "600px",
-                background: "conic-gradient(from 0deg at 50% 100%, rgba(255, 215, 0, 0.12) 0deg, transparent 50deg, transparent 130deg, rgba(255, 215, 0, 0.06) 180deg, transparent 230deg)",
+                top: "50%",
+                transform: `translate(-50%, -100%) rotate(${rotation - 90}deg)`,
+                width: "600px",
+                height: "500px",
+                background: `conic-gradient(from 270deg at 50% 100%, 
+                  rgba(255, 215, 0, 0.15) 0deg, 
+                  transparent 25deg, 
+                  transparent 155deg, 
+                  rgba(255, 215, 0, 0.08) 200deg, 
+                  transparent 310deg)`,
                 mixBlendMode: "screen",
+                transformOrigin: "center bottom",
               }}
             />
 
-            {/* Inner bright core - direct illumination from tip */}
+            {/* Inner bright core - direct illumination */}
             <div
               className="absolute pointer-events-none"
               style={{
                 left: "50%",
-                bottom: 0,
-                transform: "translateX(-50%)",
-                width: "250px",
-                height: "400px",
-                background: "conic-gradient(from 0deg at 50% 100%, rgba(255, 255, 200, 0.15) 0deg, transparent 35deg, transparent 145deg, rgba(255, 255, 200, 0.08) 180deg, transparent 215deg)",
+                top: "50%",
+                transform: `translate(-50%, -100%) rotate(${rotation - 90}deg)`,
+                width: "350px",
+                height: "350px",
+                background: `conic-gradient(from 270deg at 50% 100%, 
+                  rgba(255, 255, 200, 0.2) 0deg, 
+                  transparent 20deg, 
+                  transparent 160deg, 
+                  rgba(255, 255, 200, 0.1) 200deg, 
+                  transparent 320deg)`,
                 mixBlendMode: "screen",
+                transformOrigin: "center bottom",
               }}
             />
 
-            {/* Golden glow around the tip */}
+            {/* Golden glow at the tip */}
             <div
               className="absolute pointer-events-none"
               style={{
                 left: "50%",
-                bottom: 0,
-                transform: "translateX(-50%)",
-                width: "120px",
-                height: "120px",
-                background: "radial-gradient(ellipse at 50% 100%, rgba(255, 215, 0, 0.4) 0%, transparent 70%)",
-                filter: "blur(10px)",
+                top: "50%",
+                transform: `translate(-50%, -50%)`,
+                width: "80px",
+                height: "80px",
+                background: "radial-gradient(circle, rgba(255, 215, 0, 0.5) 0%, transparent 70%)",
+                filter: "blur(8px)",
               }}
             />
           </motion.div>
 
-          {/* The Golden Pen Tip "Rocket" Cursor - positioned so tip (bottom) is at mouse */}
+          {/* Dynamic Golden Pen Tip Rocket Cursor */}
           <motion.div
             ref={cursorRef}
             className="fixed pointer-events-none z-[99999]"
@@ -183,270 +215,196 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{
               opacity: 1,
-              scale: isHovering ? 1.2 : 1,
-              rotate: rotation,
+              scale: isHovering ? 1.3 : 1,
             }}
             transition={{
               type: "spring",
-              stiffness: 400,
-              damping: 30,
-              mass: 0.8,
+              stiffness: 500,
+              damping: 25,
+              mass: 0.6,
             }}
           >
-            {/* Container with pen positioned so tip (TOP) is at cursor point */}
+            {/* Rocket container that rotates based on movement direction */}
             <motion.div
               className="relative"
               animate={{
-                scale: isHovering ? 1.1 : 1,
+                rotate: rotation,
+                scale: isHovering ? 1.15 : 1,
               }}
-              transition={{ duration: 0.2 }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 20,
+              }}
               style={{
-                width: "70px",
+                width: "60px",
                 height: "100px",
                 display: "flex",
-                alignItems: "flex-end", // Tip at top, aligned with cursor
+                alignItems: "flex-end",
                 justifyContent: "center",
+                transformOrigin: "center center",
               }}
             >
-              {/* Golden glow around the entire pen */}
+              {/* Golden glow around the rocket */}
               <div
                 className="absolute pointer-events-none"
                 style={{
-                  inset: "-15px",
-                  background: "radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.35) 0%, transparent 70%)",
-                  filter: "blur(12px)",
+                  inset: "-20px",
+                  background: "radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.4) 0%, transparent 60%)",
+                  filter: "blur(15px)",
                 }}
               />
 
-              {/* Main cursor image - loaded from public folder */}
-              {!imageError && (
-                <img
-                  src="/images/golden-pen-cursor.webp"
-                  alt="Midas Golden Pen Cursor"
-                  onLoad={() => setImageLoaded(true)}
-                  onError={() => setImageError(true)}
-                  style={{
-                    width: "auto",
-                    height: "90px",
-                    maxWidth: "none",
-                    objectFit: "contain",
-                    filter: "drop-shadow(0 0 8px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 15px rgba(212, 175, 55, 0.5))",
-                    opacity: imageLoaded ? 1 : 0,
-                    transition: "opacity 0.3s ease",
-                  }}
-                />
-              )}
+              {/* THE ACTUAL GOLDEN PEN TIP IMAGE - Properly loaded */}
+              <img
+                src="/images/golden-pen-cursor.webp"
+                alt="Midas Golden Pen Cursor"
+                onLoad={() => setImageLoaded(true)}
+                onError={(e) => {
+                  console.error("Failed to load golden pen cursor image");
+                  // Keep imageError state for potential fallback
+                }}
+                style={{
+                  width: "auto",
+                  height: "100px",
+                  maxWidth: "none",
+                  objectFit: "contain",
+                  objectPosition: "bottom center",
+                  filter: "drop-shadow(0 0 10px rgba(255, 215, 0, 0.9)) drop-shadow(0 0 25px rgba(212, 175, 55, 0.6))",
+                  opacity: imageLoaded ? 1 : 0,
+                  transition: "opacity 0.2s ease-out",
+                }}
+              />
 
-              {/* Fallback SVG if image fails to load */}
-              {imageError && (
-                <svg
-                  viewBox="0 0 100 160"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+              {/* Loading state - show while image loads */}
+              {!imageLoaded && (
+                <div
                   style={{
-                    width: "70px",
-                    height: "90px",
                     position: "absolute",
-                    top: 0,
-                    filter: "drop-shadow(0 0 8px rgba(255, 215, 0, 0.8))",
+                    inset: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.3) 0%, transparent 70%)",
                   }}
                 >
-                  <defs>
-                    <linearGradient id="penGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFD700" />
-                      <stop offset="50%" stopColor="#D4AF37" />
-                      <stop offset="100%" stopColor="#B8860B" />
-                    </linearGradient>
-                    <linearGradient id="penTipGold" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#FFFACD" />
-                      <stop offset="100%" stopColor="#FFD700" />
-                    </linearGradient>
-                  </defs>
-                  {/* Pen body */}
-                  <rect
-                    x="15"
-                    y="30"
-                    width="70"
-                    height="100"
-                    rx="10"
-                    fill="url(#penGold)"
-                    stroke="#B8860B"
-                    strokeWidth="2"
+                  <div
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      border: "3px solid rgba(212, 175, 55, 0.3)",
+                      borderTopColor: "#D4AF37",
+                      borderRadius: "50%",
+                      animation: "cursorSpin 1s linear infinite",
+                    }}
                   />
-                  {/* Gold ring */}
-                  <rect
-                    x="12"
-                    y="45"
-                    width="76"
-                    height="15"
-                    rx="5"
-                    fill="#D4AF37"
-                    stroke="#B8860B"
-                    strokeWidth="2"
-                  />
-                  {/* Sharp tip pointing DOWN */}
-                  <path
-                    d="M 15 130 L 50 160 L 85 130 Z"
-                    fill="url(#penTipGold)"
-                    stroke="#B8860B"
-                    strokeWidth="2"
-                    strokeLinejoin="round"
-                  />
-                  {/* Center line on tip */}
-                  <line
-                    x1="50"
-                    y1="130"
-                    x2="50"
-                    y2="155"
-                    stroke="#B8860B"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                  {/* Pen clip */}
-                  <rect
-                    x="60"
-                    y="35"
-                    width="10"
-                    height="40"
-                    rx="3"
-                    fill="#D4AF37"
-                    stroke="#B8860B"
-                    strokeWidth="1"
-                  />
-                  {/* Highlight */}
-                  <rect
-                    x="25"
-                    y="35"
-                    width="8"
-                    height="90"
-                    rx="4"
-                    fill="white"
-                    fillOpacity="0.2"
-                  />
-                </svg>
+                </div>
               )}
 
-              {/* Rocket flame trail at the TOP (opposite end from tip) when moving */}
+              {/* Dynamic flame trail at the back when moving */}
               <motion.div
                 className="absolute pointer-events-none"
                 style={{
                   left: "50%",
-                  bottom: "100%", // At the top of the pen (opposite end from tip)
+                  bottom: "-30px",
                   transform: "translateX(-50%)",
-                  width: "35px",
-                  height: "60px",
+                  width: "40px",
+                  height: "70px",
                 }}
                 animate={{
-                  opacity: Math.abs(velocity.y) > 1 || Math.abs(velocity.x) > 1 ? 0.9 : 0,
-                  scaleY: Math.abs(velocity.y) > 1 || Math.abs(velocity.x) > 1 ? 1 : 0.3,
+                  opacity: Math.sqrt(
+                    velocityRef.current.x * velocityRef.current.x +
+                    velocityRef.current.y * velocityRef.current.y
+                  ) > 0.8 ? 0.95 : 0,
+                  scaleY: Math.sqrt(
+                    velocityRef.current.x * velocityRef.current.x +
+                    velocityRef.current.y * velocityRef.current.y
+                  ) > 0.8 ? 1 : 0.4,
                 }}
-                transition={{ duration: 0.1 }}
+                transition={{ duration: 0.08 }}
               >
-                {/* Inner flame core */}
+                {/* Inner flame - bright gold */}
                 <div
                   style={{
                     position: "absolute",
                     bottom: 0,
                     left: "50%",
                     transform: "translateX(-50%)",
-                    width: "14px",
-                    height: "55px",
-                    background: "linear-gradient(to top, rgba(255, 215, 0, 0.9), rgba(255, 140, 0, 0.7), transparent)",
+                    width: "16px",
+                    height: "65px",
+                    background: "linear-gradient(to top, rgba(255, 215, 0, 1), rgba(255, 165, 0, 0.8), transparent)",
                     borderRadius: "50% 50% 30% 30%",
                     filter: "blur(2px)",
                   }}
                 />
-                {/* Middle flame */}
+                {/* Middle flame - orange */}
                 <div
                   style={{
                     position: "absolute",
                     bottom: 0,
                     left: "50%",
                     transform: "translateX(-50%)",
-                    width: "24px",
-                    height: "60px",
-                    background: "linear-gradient(to top, rgba(255, 200, 0, 0.6), rgba(255, 100, 50, 0.4), transparent)",
+                    width: "26px",
+                    height: "70px",
+                    background: "linear-gradient(to top, rgba(255, 140, 0, 0.7), rgba(255, 69, 0, 0.4), transparent)",
                     borderRadius: "50% 50% 40% 40%",
                     filter: "blur(4px)",
                   }}
                 />
-                {/* Outer flame */}
+                {/* Outer flame - subtle glow */}
                 <div
                   style={{
                     position: "absolute",
                     bottom: 0,
                     left: "50%",
                     transform: "translateX(-50%)",
-                    width: "32px",
-                    height: "65px",
-                    background: "linear-gradient(to top, rgba(212, 175, 55, 0.4), rgba(255, 69, 0, 0.2), transparent)",
+                    width: "36px",
+                    height: "80px",
+                    background: "linear-gradient(to top, rgba(212, 175, 55, 0.5), rgba(255, 50, 0, 0.2), transparent)",
                     borderRadius: "50% 50% 50% 50%",
-                    filter: "blur(6px)",
+                    filter: "blur(8px)",
                   }}
                 />
               </motion.div>
 
-              {/* Star sparkle effects near the pen */}
-              <motion.div
+              {/* Dynamic star sparkles along the rocket body */}
+              {[-20, 0, 20].map((offset, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute pointer-events-none"
+                  animate={{
+                    opacity: [0.2 + i * 0.2, 0.8 + i * 0.1, 0.2 + i * 0.2],
+                    scale: [0.8, 1.2, 0.8],
+                  }}
+                  transition={{
+                    duration: 1.5 + i * 0.3,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                    delay: i * 0.2,
+                  }}
+                  style={{
+                    left: `${25 + offset}px`,
+                    top: `${30 + i * 15}px`,
+                    width: `${3 + i}px`,
+                    height: `${3 + i}px`,
+                    background: "#FFD700",
+                    borderRadius: "50%",
+                    boxShadow: `0 0 ${8 + i * 4}px #FFD700, 0 0 ${15 + i * 5}px rgba(255, 215, 0, 0.5)`,
+                  }}
+                />
+              ))}
+
+              {/* Tip glow highlight */}
+              <div
                 className="absolute pointer-events-none"
-                animate={{
-                  opacity: [0.4, 1, 0.4],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
-                }}
                 style={{
-                  left: "-18px",
-                  top: "35%",
-                  width: "5px",
-                  height: "5px",
-                  background: "#FFD700",
-                  borderRadius: "50%",
-                  boxShadow: "0 0 10px #FFD700, 0 0 20px #FFD700",
-                }}
-              />
-              <motion.div
-                className="absolute pointer-events-none"
-                animate={{
-                  opacity: [0.3, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: 1.8,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
-                  delay: 0.4,
-                }}
-                style={{
-                  right: "-15px",
-                  top: "45%",
-                  width: "4px",
-                  height: "4px",
-                  background: "#FFD700",
-                  borderRadius: "50%",
-                  boxShadow: "0 0 8px #FFD700, 0 0 15px #FFD700",
-                }}
-              />
-              <motion.div
-                className="absolute pointer-events-none"
-                animate={{
-                  opacity: [0.5, 0.9, 0.5],
-                }}
-                transition={{
-                  duration: 2.2,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
-                  delay: 0.8,
-                }}
-                style={{
-                  left: "-12px",
-                  top: "55%",
-                  width: "3px",
-                  height: "3px",
-                  background: "#FFD700",
-                  borderRadius: "50%",
-                  boxShadow: "0 0 6px #FFD700",
+                  left: "50%",
+                  top: 0,
+                  transform: "translateX(-50%)",
+                  width: "20px",
+                  height: "15px",
+                  background: "radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.8) 0%, transparent 70%)",
+                  filter: "blur(3px)",
                 }}
               />
             </motion.div>
@@ -456,5 +414,17 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
     </AnimatePresence>
   );
 };
+
+// Add the rotation animation keyframe
+const styleSheet = document.createElement("style");
+styleSheet.textContent = `
+  @keyframes cursorSpin {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to { transform: translateX(-50%) rotate(360deg); }
+  }
+`;
+if (typeof document !== "undefined") {
+  document.head.appendChild(styleSheet);
+}
 
 export default RocketCursor;
