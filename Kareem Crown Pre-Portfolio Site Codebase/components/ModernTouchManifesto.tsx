@@ -34,7 +34,7 @@ const ModernTouchManifesto = () => {
           className="text-center mb-20"
         >
           <h2 className="font-merriweather text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-            THE MODERN TOUCH <span className="text-[#D4AF37]">MANIFESTO</span>
+            MODERN TOUCH <span className="text-[#D4AF37]">MANIFESTO</span>
           </h2>
           <div className="w-24 h-0.5 bg-[#D4AF37] mx-auto rounded-full" />
         </motion.div>

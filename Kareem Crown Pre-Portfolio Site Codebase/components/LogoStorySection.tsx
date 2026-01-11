@@ -140,7 +140,7 @@ const LogoStorySection: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-5xl md:text-7xl font-bold text-white mb-6 font-playfair"
           >
-            The <span className="text-[#D4AF37]">Logo</span> Story
+            <span className="text-[#D4AF37]">Logo</span> Story
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

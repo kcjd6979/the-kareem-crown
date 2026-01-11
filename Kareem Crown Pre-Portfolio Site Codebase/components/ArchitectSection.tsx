@@ -19,7 +19,7 @@ export const ArchitectSection = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <Suspense fallback={<div className="w-full h-full flex items-center justify-center"><div className="loader"></div></div>}>
-            <Spline scene="https://prod.spline.design/IlW1JT7EQJB8IZtpZElGnvmr/scene.splinecode" />
+            <Spline scene="https://app.spline.design/community/file/08b0ad4f-2015-4aef-88be-8a30bb3373ee/scene.splinecode" />
           </Suspense>
           <style>{`
             .loader {

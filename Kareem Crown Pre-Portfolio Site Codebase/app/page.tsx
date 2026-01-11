@@ -68,15 +68,23 @@ export default function Home() {
           
           <MeetTheForge />
           
-          {/* New Arsenal 3D Video Carousel */}
+          {/* Armory - Strategic weapons in the war for digital dominance */}
           <ArsenalCarousel />
           
-          <CredentialsSection />
-          <ArchitectSection />
+          {/* Command Center - Arsenal of Intelligence renamed */}
           <AIToolsSection />
+          
+          {/* Architect Section with Particle Brain */}
+          <ArchitectSection />
+          
+          {/* Architect's Foundation */}
+          <CredentialsSection />
+          
+          {/* Logo Story */}
+          <LogoStorySection />
+          
           <ConnectionSection />
           <CompanyLogoSection />
-          <LogoStorySection />
           <Footer />
         </main>
       </div>
