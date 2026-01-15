@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform, useTime } from "framer-motion";
 import { useEffect, useState } from "react";
+import CursorToggle from "./CursorToggle";
 
 // Planet Orbital Component - Each planet orbits the central sun
 // Uses trigonometry to keep planets upright + 3D CSS transforms for depth
@@ -287,6 +288,7 @@ const HeroSection = () => {
         paddingRight: 'env(safe-area-inset-right)',
       }}
     >
+      <CursorToggle />
       {/* === SOLAR SYSTEM CONTAINER === */}
       {/* Centered in viewport, contains sun + orbiting planets */}
       <div 
@@ -308,7 +310,7 @@ const HeroSection = () => {
             x: translateX,
             y: translateY,
             transformStyle: "preserve-3d",
-            transform: 'scale(896.0, 832.0)',
+            transform: 'scale(0.7, 0.7)',
           }}
         >
           <Image

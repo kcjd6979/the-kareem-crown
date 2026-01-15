@@ -7,6 +7,7 @@ export default function RocketCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isMoving, setIsMoving] = useState(false);
   const [velocity, setVelocity] = useState(0);
+  const [cursorState, setCursorState] = useState<'default' | 'pointer' | 'text' | 'grab'>('default');
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -37,10 +38,33 @@ export default function RocketCursor() {
       }, 100);
     };
 
+    const handleMouseOver = (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        if (
+            target.tagName === 'A' ||
+            target.tagName === 'BUTTON' ||
+            target.onclick !== null ||
+            target.classList.contains('clickable') ||
+            window.getComputedStyle(target).cursor === 'pointer'
+        ) {
+            setCursorState('pointer');
+        } else if (
+            target.tagName === 'INPUT' ||
+            target.tagName === 'TEXTAREA' ||
+            target.isContentEditable
+        ) {
+            setCursorState('text');
+        } else {
+            setCursorState('default');
+        }
+    };
+
     document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseover', handleMouseOver, true);
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       clearTimeout(timeout);
+      document.removeEventListener('mouseover', handleMouseOver, true);
     };
   }, []);
 
@@ -107,6 +131,33 @@ export default function RocketCursor() {
         }
 
         @keyframes pulse {
+          0%, 100% { opacity: 0.8; }
+          50% { opacity: 1; }
+        }
+
+        /* POINTER STATE - over clickable elements */
+        .pen-tip-image.pointer {
+          transform: rotate(0deg) scale(1.2); /* Slightly larger */
+          filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
+        }
+
+        .headlight.pointer {
+          box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+          animation: pulse-fast 0.5s ease-in-out infinite;
+        }
+
+        /* TEXT STATE - over input fields */
+        .pen-tip-image.text {
+          transform: rotate(90deg); /* Horizontal like I-beam cursor */
+          filter: drop-shadow(0 0 8px rgba(100, 200, 255, 0.6));
+        }
+
+        /* GRAB STATE - over draggable elements */
+        .pen-tip-image.grab {
+          transform: rotate(0deg) scale(0.9);
+        }
+
+        @keyframes pulse-fast {
           0%, 100% { opacity: 0.8; }
           50% { opacity: 1; }
         }
@@ -187,11 +238,11 @@ export default function RocketCursor() {
       >
         <div className="pen-wrapper">
           {/* DUAL GOLDEN HEADLIGHTS at narrow tip */}
-          <div className="headlight headlight-left" />
-          <div className="headlight headlight-right" />
+          <div className={`headlight headlight-left ${cursorState}`} />
+          <div className={`headlight headlight-right ${cursorState}`} />
 
           {/* THE ACTUAL PEN TIP IMAGE */}
-          <div className="pen-tip-image" />
+          <div className={`pen-tip-image ${cursorState}`} />
 
           {/* ROCKET THRUST FLAMES at rounded bottom */}
           <div className={`rocket-flames ${isMoving ? 'active' : ''}`}>
