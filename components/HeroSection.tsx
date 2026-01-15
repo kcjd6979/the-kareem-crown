@@ -313,7 +313,7 @@ const HeroSection = () => {
           }}
         >
           <Image
-            src="/kc-logo-black-crown.webp"
+            src="/kc-logo-black-crown.)webp"
             alt="The Kareem Crown personal brand logo - The Sun"
             width={800}
             height={350}
