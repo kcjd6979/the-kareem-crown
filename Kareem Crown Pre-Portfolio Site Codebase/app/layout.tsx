@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display_SC, Merriweather } from "next/font/google";
 import "./globals.css";
-import "./cursor.css";
-import { RocketCursor } from "@/components/RocketCursor";
+import RocketCursor from "@/components/RocketCursor";
 
 const playfair = Playfair_Display_SC({
   subsets: ["latin"],

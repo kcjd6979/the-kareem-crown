@@ -287,7 +287,6 @@ const HeroSection = () => {
         paddingRight: 'env(safe-area-inset-right)',
       }}
     >
-      
       {/* === SOLAR SYSTEM CONTAINER === */}
       {/* Centered in viewport, contains sun + orbiting planets */}
       <div 
