@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+
 // components/ArchitectSection.tsx
 
 import { SplineParticleBrain } from './SplineParticleBrain';
