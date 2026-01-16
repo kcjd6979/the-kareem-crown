@@ -161,7 +161,7 @@ const CompanyLogoSection: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, []);
+  }, [particles]);
 
   // Set canvas size
   useEffect(() => {

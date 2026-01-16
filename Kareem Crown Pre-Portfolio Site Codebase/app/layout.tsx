@@ -2,13 +2,6 @@ import type { Metadata } from "next";
 import { Playfair_Display_SC, Merriweather } from "next/font/google";
 import "./globals.css";
 import RocketCursor from "@/components/RocketCursor";
-import CursorToggle from "@/components/CursorToggle";
-import dynamic from 'next/dynamic';
-
-const AnimatedGalaxyBackground = dynamic(
-  () => import('@/components/AnimatedGalaxyBackground'),
-  { ssr: false }
-);
 
 const playfair = Playfair_Display_SC({
   subsets: ["latin"],
@@ -35,9 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${merriweather.variable} font-merriweather`}>
-        <AnimatedGalaxyBackground />
         <RocketCursor />
-        <CursorToggle />
         {children}
       </body>
     </html>
