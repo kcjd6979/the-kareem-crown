@@ -362,3 +362,246 @@ body {
   background: rgba(212, 175, 55, 0.3);
   color: #FFFFFF;
 }
+
+/* Architect Section Grid */
+.architect-section {
+  padding: 8rem 4rem;
+  position: relative;
+  background: #000;
+}
+
+.architect-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.architect-grid {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Left Column: Brain */
+.architect-visual {
+  position: relative;
+  min-height: 600px;
+}
+
+.spline-brain-container {
+  position: sticky;
+  top: 120px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 0 60px rgba(218, 165, 32, 0.4),
+    0 20px 80px rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(218, 165, 32, 0.3);
+}
+
+/* Loader */
+.spline-loader, .robot-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+  color: rgba(218, 165, 32, 0.8);
+}
+
+.loader-animation {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(218, 165, 32, 0.2);
+  border-top-color: #DAA520;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Fallback */
+.spline-fallback, .robot-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+  text-align: center;
+  color: rgba(218, 165, 32, 0.7);
+}
+
+.fallback-brain-icon, .fallback-robot-icon {
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 0 20px rgba(218, 165, 32, 0.5));
+}
+
+/* Right Column: Content */
+.architect-content {
+  position: relative;
+  z-index: 2;
+}
+
+.architect-text p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.emphasis {
+  font-size: 1.5rem !important;
+  font-weight: 600;
+  color: #DAA520;
+  margin: 2rem 0 !important;
+}
+
+.highlight {
+  color: #DAA520;
+  font-weight: 600;
+}
+
+.architect-ctas {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #DAA520, #B8860B);
+  color: #000;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(218, 165, 32, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid #DAA520;
+  color: #DAA520;
+}
+
+.btn-secondary:hover {
+  background: rgba(218, 165, 32, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .architect-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .architect-visual {
+    order: 1;
+    min-height: 500px;
+  }
+
+  .architect-content {
+    order: 2;
+  }
+
+  .spline-brain-container {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .architect-section {
+    padding: 4rem 2rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .architect-visual {
+    min-height: 400px;
+  }
+
+  .spline-brain-container iframe,
+  .spline-loader,
+  .spline-fallback {
+    min-height: 400px;
+  }
+
+  .architect-ctas {
+    flex-direction: column;
+  }
+}
+
+/* Connect Section */
+.connect-section {
+  padding: 8rem 4rem;
+  text-align: center;
+  background: #000;
+}
+
+.connect-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.connect-robot {
+  max-width: 800px;
+  margin: 4rem auto;
+}
+
+.spline-robot-container {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(218, 165, 32, 0.3);
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(218, 165, 32, 0.2);
+}
+
+.connect-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.connect-links a {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.connect-links a:hover {
+    color: #DAA520;
+}
+
+.connect-footer {
+    margin-top: 4rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.section-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+}
