@@ -9,7 +9,7 @@ export const ConnectionSection = () => {
       <div className="connect-container">
 
         <h2 className="section-title">Connect with The Architect</h2>
-        <p className="section-subtitle">Let's Build the Future Together</p>
+        <p className="section-subtitle">Let&apos;s Build the Future Together</p>
 
         {/* 3D Robot */}
         <div className="connect-robot">
