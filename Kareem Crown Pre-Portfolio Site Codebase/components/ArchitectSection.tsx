@@ -22,19 +22,17 @@ export const ArchitectSection = () => {
             <div className="architect-text">
               <p>
                 "Most companies today see AI as either a confusing threat
-                or a simple toy. I'm the guy who hands them the operating
-                manual. My name is Kareem Daniel, founder of
+              or a simple toy. I&apos;m the guy who hands them the operating                manual. My name is Kareem Daniel, founder of
                 <span className="highlight">Midas Touch Media</span>.
               </p>
 
               <p className="emphasis">
-                I'm an AI Systems Architect who doesn't just use AI,
-                I orchestrate it.
+              I&apos;m an AI Systems Architect who doesn&apos;t just use AI,                I orchestrate it.
               </p>
 
               <p>
                 I build the proprietary, automated systems that transform
-                that chaos into a strategic weapon. My foundation wasn't
+                that chaos into a strategic weapon. My foundation wasn&apos;t
                 built in a classroom; it was forged in a decade of
                 operational warfare. And my future is being honed as a
                 Software Engineering scholarship recipient at the AI-first
