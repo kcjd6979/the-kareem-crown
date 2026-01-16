@@ -4,9 +4,27 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Define types for state objects
+interface Star {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  duration: number;
+  delay: number;
+}
+
+interface Comet {
+  id: number;
+  x: number;
+  y: number;
+  duration: number;
+  delay: number;
+}
+
 const AnimatedGalaxyBackground = () => {
-  const [stars, setStars] = useState([]);
-  const [comets, setComets] = useState([]);
+  const [stars, setStars] = useState<Star[]>([]);
+  const [comets, setComets] = useState<Comet[]>([]);
 
   useEffect(() => {
     const generateStars = () => {
