@@ -12,7 +12,6 @@ import CompanyLogoSection from "@/components/CompanyLogoSection";
 import LogoStorySection from "@/components/LogoStorySection";
 import ModernTouchManifesto from "@/components/ModernTouchManifesto";
 import { Footer } from "@/components/Footer";
-import ClientLayout from "@/components/ClientLayout";
 
 export default function Home() {
   useEffect(() => {
@@ -57,28 +56,26 @@ export default function Home() {
   }, []);
 
   return (
-    <ClientLayout>
-      <div className="relative min-h-screen">
-        {/* Main content */}
-        <main className="relative">
-          <HeroSection />
-          <MeetTheForge />
-          
-          {/* Modern Touch Manifesto - About Us Section */}
-          <ModernTouchManifesto />
-          
-          {/* New Arsenal 3D Video Carousel */}
-          <ArsenalCarousel />
-          
-          <CredentialsSection />
-          <ArchitectSection />
-          <AIToolsSection />
-          <ConnectionSection />
-          <CompanyLogoSection />
-          <LogoStorySection />
-          <Footer />
-        </main>
-      </div>
-    </ClientLayout>
+    <div className="relative bg-transparent">
+      {/* Main content */}
+      <main className="relative">
+        <HeroSection />
+        <MeetTheForge />
+
+        {/* Modern Touch Manifesto - About Us Section */}
+        <ModernTouchManifesto />
+
+        {/* New Arsenal 3D Video Carousel */}
+        <ArsenalCarousel />
+
+        <CredentialsSection />
+        <ArchitectSection />
+        <AIToolsSection />
+        <ConnectionSection />
+        <CompanyLogoSection />
+        <LogoStorySection />
+        <Footer />
+      </main>
+    </div>
   );
 }
