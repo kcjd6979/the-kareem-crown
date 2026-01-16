@@ -309,11 +309,11 @@ const HeroSection = () => {
             x: translateX,
             y: translateY,
             transformStyle: "preserve-3d",
-            transform: 'scale(896.0, 832.0)',
+            transform: 'scale(760, 720',
           }}
         >
           <Image
-            src="/kc-logo-black-crown.webp"
+            src="/kc-logo-black-crown.)webp"
             alt="The Kareem Crown personal brand logo - The Sun"
             width={800}
             height={350}
