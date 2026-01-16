@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, ReactNode } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 
 // Reusable component for highlighted text
@@ -98,7 +99,7 @@ const ModernTouchManifesto = () => {
                   className="w-full h-full object-cover"
                 >
                   <source src="/videos/customer-journey.mp4" type="video/mp4" />
-                  <img src="/images/customer-journey.gif" alt="Customer Journey Fallback" className="w-full h-full object-cover" />
+                  <Image src="/images/customer-journey.gif" alt="Customer Journey Fallback" width={1280} height={720} className="w-full h-full object-cover" />
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-obsidian-black/50 via-transparent to-transparent pointer-events-none" />
               </div>

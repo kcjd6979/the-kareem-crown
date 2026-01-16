@@ -22,13 +22,13 @@ export const ArchitectSection = () => {
             <div className="architect-text">
               <p>
                 "Most companies today see AI as either a confusing threat
-                or a simple toy. I'm the guy who hands them the operating
+                or a simple toy. I&apos;m the guy who hands them the operating
                 manual. My name is Kareem Daniel, founder of
                 <span className="highlight">Midas Touch Media</span>.
               </p>
 
               <p className="emphasis">
-                I'm an AI Systems Architect who doesn't just use AI,
+                I&apos;m an AI Systems Architect who doesn't just use AI,
                 I orchestrate it.
               </p>
 
@@ -45,7 +45,7 @@ export const ArchitectSection = () => {
             {/* CTAs */}
             <div className="architect-ctas">
               <a href="#connection" className="btn-primary">
-                Let's Build Together
+                Let&apos;s Build Together
               </a>
               <a href="/resume.pdf" className="btn-secondary" download>
                 Download Resume
