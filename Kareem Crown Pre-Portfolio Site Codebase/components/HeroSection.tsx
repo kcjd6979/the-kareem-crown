@@ -1,33 +1,81 @@
 "use client";
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+
+import Image from "next/image";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect } from "react";
 
 const HeroSection = () => {
+  // Mouse position state for 3D tilt effect
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Smooth out the mouse movement
+  const mouseX = useSpring(x, { stiffness: 50, damping: 20 });
+  const mouseY = useSpring(y, { stiffness: 50, damping: 20 });
+
+  // Transform mouse position to rotation values
+  // Adjust range as needed. Here: -20 to 20 degrees based on screen width/height
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [20, -20]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-20, 20]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Calculate normalized mouse position from center of screen (-0.5 to 0.5)
+      const normalizedX = (e.clientX / window.innerWidth) - 0.5;
+      const normalizedY = (e.clientY / window.innerHeight) - 0.5;
+
+      x.set(normalizedX);
+      y.set(normalizedY);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [x, y]);
+
   return (
-    <section className="w-full h-screen flex flex-col justify-center items-center text-center text-white relative overflow-hidden">
+    // The main container, centered on the screen.
+    <div className="relative flex flex-col items-center justify-center w-full h-screen perspective-1000">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex flex-col items-center"
+        style={{
+           perspective: 1000,
+        }}
+        className="z-10 flex flex-col items-center justify-center"
       >
-        {/* Static Logo Image */}
-        <Image
-          src="/2-mtm-shield-black-_1.svg" // The path to your logo in the public folder
-          alt="The personal brand logo of Kareem Daniel"
-          width={150} // Adjust size as needed
-          height={150} // Adjust size as needed
-          priority // Tells Next.js to load this image first
-        />
+        {/* === START: AGGRESSIVE LOGO SIZING === */}
+        {/* Using more direct width control to ensure size */}
+        <motion.div
+          className="relative w-[90vw] md:w-[75vw] max-w-[1200px] mx-auto bg-transparent flex justify-center items-center"
+          style={{
+            rotateX: rotateX,
+            rotateY: rotateY,
+            transformStyle: "preserve-3d",
+          }}
+        >
+          <Image
+            src="/kareem-logo.webp"
+            alt="The personal brand logo of Kareem Daniel"
+            width={600}
+            height={750}
+            priority
+            className="w-full h-auto object-contain mix-blend-screen"
+          />
+        </motion.div>
+        {/* === END: AGGRESSIVE LOGO SIZING === */}
 
-        <h1 className="text-6xl md:text-8xl font-bold mt-6">
+        {/* Title Text */}
+        <h1 className="text-center text-6xl md:text-8xl font-black mt-8 text-white pb-4 leading-relaxed">
           The Kareem Crown
         </h1>
-        <p className="text-lg md:text-xl text-white/80 mt-4">
+
+        {/* Subtitle Text */}
+        <p className="text-center text-lg md:text-xl text-white/80 mt-4">
           An Arsenal of Proof
         </p>
       </motion.div>
-    </section>
+    </div>
   );
 };
 
