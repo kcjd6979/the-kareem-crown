@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // NOTE: 'output: export' was removed to revert to standard Next.js server-based deployment on Vercel.
-  // This is the critical change to fix the asset loading and JS hydration issues.
+  // NOTE: 'output: export' and unoptimized images were removed to revert to a standard
+  // Vercel server-based deployment. This is the key to fixing asset loading and hydration.
 };
 
 module.exports = nextConfig;

@@ -80,7 +80,7 @@ export const HeroSection = () => {
             width={400}
             height={400}
             priority
-            className="w-[400px] h-[400px] drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]"
+            className="w-[400px] h-[400px] drop-shadow-[0_0_25px_rgba(212,175,55,0.8)]"
           />
         </motion.div>
 
