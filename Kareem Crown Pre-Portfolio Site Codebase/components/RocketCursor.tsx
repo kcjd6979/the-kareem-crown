@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef, useCallback } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface RocketCursorProps {
@@ -284,13 +285,12 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
               />
 
               {/* THE ACTUAL GOLDEN PEN TIP IMAGE - Properly loaded */}
-              <img
+              <Image
                 src="/images/golden-pen-cursor.webp"
                 alt="Midas Golden Pen Cursor"
                 onLoad={() => setImageLoaded(true)}
                 onError={(e) => {
                   console.error("Failed to load golden pen cursor image");
-                  // Keep imageError state for potential fallback
                 }}
                 style={{
                   width: "auto",
@@ -302,6 +302,7 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                   opacity: imageLoaded ? 1 : 0,
                   transition: "opacity 0.2s ease-out",
                 }}
+                unoptimized
               />
 
               {/* Loading state - show while image loads */}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 
 const ModernTouchManifesto = () => {
@@ -61,9 +62,11 @@ const ModernTouchManifesto = () => {
                   poster="/images/manifesto-poster.jpg"
                 >
                   <source src="/videos/customer-journey.mp4" type="video/mp4" />
-                  <img 
-                    src="/images/customer-journey.gif" 
+                  <Image
+                    src="/images/customer-journey.gif"
                     alt="Customer Journey"
+                    width={1280}
+                    height={720}
                     className="w-full h-full object-cover"
                   />
                 </video>
