@@ -3,10 +3,11 @@
 import Image from "next/image";
 import { useRef, ReactNode } from "react";
 import { motion, useInView } from "framer-motion";
+import { VideoPlaceholder, ImagePlaceholder } from "./ui/MediaPlaceholder";
 
 // Reusable component for highlighted text
 const Gold = ({ children }: { children: ReactNode }) => (
-  <span className="text-[#D4AF37] font-semibold">{children}</span>
+  <span className="text-midas-gold-glossy font-semibold">{children}</span>
 );
 
 // New Manifesto Box component as per specs
@@ -28,10 +29,10 @@ const ManifestoBox = ({ number, title, children, isInView, align }: ManifestoBox
   return (
     <motion.div {...animation} className="mb-12 md:mb-16">
       <div className={`flex flex-col relative ${align === "right" ? "md:items-end" : "md:items-start"}`}>
-        <span className="text-7xl md:text-8xl font-black text-[#D4AF37]/10 select-none absolute -top-8 -z-10 opacity-50">
+        <span className="text-7xl md:text-8xl font-black text-midas-gold-glossy/10 select-none absolute -top-8 -z-10 opacity-50">
           {number}
         </span>
-        <div className="w-full md:w-4/5 bg-[#0d0d0d] border border-[#D4AF37]/20 rounded-xl p-6 md:p-8 shadow-lg shadow-black/20">
+        <div className="w-full md:w-4/5 glass-card-glow p-6 md:p-8">
           <h3 className="text-2xl md:text-3xl font-bold text-chrome-white mb-4">
             {title}
           </h3>
@@ -73,9 +74,9 @@ const ModernTouchManifesto = () => {
         {/* Section Header */}
         <motion.div {...headerAnimation} className="text-center mb-16 md:mb-24">
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-chrome-white mb-4 tracking-tight">
-            THE MODERN TOUCH <span className="text-[#D4AF37]">MANIFESTO</span>
+            THE MODERN TOUCH <span className="text-midas-gold-glossy">MANIFESTO</span>
           </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-[#D4AF37] to-[#B6862C] mx-auto rounded-full" />
+          <div className="w-32 h-1 bg-gold-gradient mx-auto rounded-full" />
         </motion.div>
 
         {/* Main Grid Layout */}
@@ -102,7 +103,7 @@ const ModernTouchManifesto = () => {
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-obsidian-black/50 via-transparent to-transparent pointer-events-none" />
               </div>
-              <p className="text-center text-[#D4AF37] text-sm tracking-[0.2em] uppercase mt-4">
+              <p className="text-center text-midas-gold-glossy text-sm tracking-[0.2em] uppercase mt-4">
                 Your Journey Starts Here
               </p>
             </motion.div>
@@ -122,7 +123,13 @@ const ModernTouchManifesto = () => {
               </p>
             </ManifestoBox>
 
-            <ManifestoBox number="03" title="THE MECHANISM" isInView={isInView} align="left">
+            <ManifestoBox number="03" title="THE MIDAS TOUCH" isInView={isInView} align="left">
+              <p>
+                This isn&apos;t about chasing trends; it&apos;s about engineering legacy. The Midas Touch is our methodology: a proprietary fusion of architectural precision, creative alchemy, and relentless optimization. We don&apos;t just build systems; we forge ecosystems that anticipate market shifts, captivate audiences, and transmute potential into measurable, undeniable performance. It&apos;s the difference between being in the market and <Gold>becoming</Gold> the market.
+              </p>
+            </ManifestoBox>
+
+            <ManifestoBox number="04" title="THE MECHANISM" isInView={isInView} align="right">
               <p className="mb-4">
                 At MTM, we don&apos;t do hacks; we do the <Gold>Modern Touch</Gold>. We deploy <Gold>The Forge</Gold>: a specialized elite unit powered by our proprietary <Gold>Midas OS</Gold>.
               </p>
@@ -131,7 +138,7 @@ const ModernTouchManifesto = () => {
               </p>
             </ManifestoBox>
 
-            <ManifestoBox number="04" title="THE RESULT" isInView={isInView} align="right">
+            <ManifestoBox number="05" title="THE RESULT" isInView={isInView} align="left">
               <p>
                 You are the hero of this story. We are simply the guide providing the map and the weaponry. We turn your chaos into clarity and your attention into <Gold>ROI</Gold>. The old rules are burned. The new paradigm is yours to write.
               </p>
@@ -142,12 +149,12 @@ const ModernTouchManifesto = () => {
         {/* CTA Section */}
         <div className="text-center mt-24 md:mt-32">
            <motion.div {...ctaAnimation} className="relative inline-block">
-             <div className="absolute -inset-1 bg-gradient-to-r from-[#D4AF37] to-[#B6862C] rounded-2xl blur opacity-30 animate-pulse" />
-             <div className="relative bg-[#0d0d0d] border border-[#D4AF37]/50 rounded-2xl p-8 md:p-12">
+             <div className="absolute -inset-1 bg-gold-gradient rounded-2xl blur opacity-30 animate-pulse" />
+             <div className="relative bg-jet-black-soft border border-midas-gold-glossy/50 rounded-2xl p-8 md:p-12">
                <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-chrome-white mb-4">
                  THE PALACE IS OPEN.
                </p>
-               <p className="text-xl md:text-2xl text-[#D4AF37] font-semibold">
+               <p className="text-xl md:text-2xl text-midas-gold-glossy font-semibold">
                  Don&apos;t just watch the shift. <span className="text-white">Own it.</span>
                </p>
              </div>
@@ -157,7 +164,7 @@ const ModernTouchManifesto = () => {
              initial={{ opacity: 0 }}
              animate={isInView ? { opacity: 1 } : {}}
              transition={{ duration: 0.8, delay: 0.8 }}
-             className="text-[#D4AF37] text-sm tracking-[0.3em] uppercase mt-12"
+             className="text-midas-gold-glossy text-sm tracking-[0.3em] uppercase mt-12"
             >
              MARKETING MASTERY FOR MODERN MINDS
            </motion.p>
