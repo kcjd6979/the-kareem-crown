@@ -21,7 +21,15 @@ export default function Home() {
         {/* Main content */}
         <main className="relative">
           <HeroSection />
+          <MeetTheForge />
+
+          {/* Modern Touch Manifesto - About Us Section */}
           <ModernTouchManifesto />
+
+          {/* New Arsenal 3D Video Carousel */}
+          <ArsenalCarousel />
+
+          <CredentialsSection />
           <ArchitectSection />
           <MeetTheForge />
           <CompanyLogoSection />

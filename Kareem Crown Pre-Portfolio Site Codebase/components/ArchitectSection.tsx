@@ -1,5 +1,4 @@
-"ArchitectSection.tsx"
-
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import React, { Suspense } from 'react';
@@ -11,7 +10,7 @@ export const ArchitectSection = () => {
     <section className="w-full py-20 md:py-32 px-4 md:px-8 relative">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left Column: 3D Brain */}
-        <motion.div 
+        <motion.div
           className="h-[400px] w-full"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -35,7 +34,7 @@ export const ArchitectSection = () => {
             @keyframes rotation {
               0% { transform: rotate(0deg ); }
               100% { transform: rotate(360deg); }
-            } 
+            }
           `}</style>
         </motion.div>
 

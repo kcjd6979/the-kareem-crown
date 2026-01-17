@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, ReactNode } from "react";
 import { motion, useInView } from "framer-motion";
 import { VideoPlaceholder, ImagePlaceholder } from "./ui/MediaPlaceholder";
@@ -89,8 +90,18 @@ const ModernTouchManifesto = () => {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               className="mb-12 lg:mb-0"
             >
-              <div className="relative aspect-video rounded-xl overflow-hidden border-2 border-midas-gold-glossy/30 shadow-2xl shadow-midas-gold-glossy/10">
-                <VideoPlaceholder label="Customer Journey Video" />
+              <div className="relative aspect-video rounded-xl overflow-hidden border-2 border-[#D4AF37]/30 shadow-2xl shadow-[#D4AF37]/10">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/images/manifesto-poster.jpg"
+                  className="w-full h-full object-cover"
+                >
+                  <source src="/videos/customer-journey.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian-black/50 via-transparent to-transparent pointer-events-none" />
               </div>
               <p className="text-center text-midas-gold-glossy text-sm tracking-[0.2em] uppercase mt-4">
                 Your Journey Starts Here

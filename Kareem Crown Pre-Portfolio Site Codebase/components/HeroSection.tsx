@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform, useTime } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useTime, useMotionTemplate } from "framer-motion";
 import { useEffect, useState } from "react";
 
 // Planet Orbital Component - Each planet orbits the central sun
@@ -75,6 +75,9 @@ const OrbitingPlanet = ({
 
   const finalSize = size * scale;
 
+  // Combine centering transform with dynamic motion values
+  const transform = useMotionTemplate`translate(-50%, -50%) translate(${x}px, ${y}px)`;
+
   return (
     <motion.div
       className="absolute pointer-events-none"
@@ -83,11 +86,7 @@ const OrbitingPlanet = ({
         // Center the planet in the orbit
         left: '50%',
         top: '50%',
-        x, // Dynamic x position via trigonometry
-        y, // Dynamic y position via trigonometry
-        // Center the planet itself using translate
-        translateX: '-50%',
-        translateY: '-50%',
+        transform,
         // 3D perspective for rotation effect
         perspective: '1000px',
       }}
@@ -101,8 +100,7 @@ const OrbitingPlanet = ({
           height: finalSize * 1.4,
           left: '50%',
           top: '50%',
-          translateX: '-50%',
-          translateY: '-50%',
+          transform: 'translate(-50%, -50%)',
           background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 40%, transparent 70%)',
           filter: 'blur(8px)',
           zIndex: zIndex - 1,
@@ -117,8 +115,7 @@ const OrbitingPlanet = ({
           height: finalSize * 1.2,
           left: '50%',
           top: '50%',
-          translateX: '-50%',
-          translateY: '-50%',
+          transform: 'translate(-50%, -50%)',
           background: 'radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.1) 50%, transparent 80%)',
           filter: 'blur(4px)',
           zIndex: zIndex - 0.5,
@@ -167,8 +164,7 @@ const OrbitingPlanet = ({
           height: finalSize * 0.15,
           left: '35%',
           top: '25%',
-          translateX: '-50%',
-          translateY: '-50%',
+          transform: 'translate(-50%, -50%)',
           background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%)',
           filter: 'blur(2px)',
           borderRadius: '50%',
@@ -287,7 +283,6 @@ const HeroSection = () => {
         paddingRight: 'env(safe-area-inset-right)',
       }}
     >
-      
       {/* === SOLAR SYSTEM CONTAINER === */}
       {/* Centered in viewport, contains sun + orbiting planets */}
       <div 
