@@ -64,7 +64,7 @@ const ModernTouchManifesto = () => {
   return (
     <section
       ref={containerRef}
-      className="relative w-full overflow-hidden bg-obsidian-black py-24 sm:py-32"
+      className="relative w-full overflow-hidden bg-obsidian-black py-24 sm:py-32 manifesto-section"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#1a1a1a]/50 to-transparent" />
