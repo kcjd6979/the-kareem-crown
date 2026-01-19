@@ -174,21 +174,22 @@ const GalaxyBackground: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-[-1]"
+      className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none"
       style={{
-        background: "linear-gradient(180deg, #000000 0%, #0A0A0A 50%, #050505 100%)",
+        zIndex: -1,
+        background: "linear-gradient(180deg, #050505 0%, #0A0A0A 50%, #020202 100%)",
       }}
     >
-      {/* Layer 0: Deep space base gradient - warmest near center */}
+      {/* Layer 0: Deep space base gradient - golden warmth */}
       <div
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-            radial-gradient(ellipse at 30% 50%, rgba(255, 180, 50, 0.03) 0%, transparent 40%),
-            radial-gradient(ellipse at 70% 50%, rgba(255, 200, 100, 0.03) 0%, transparent 40%),
-            radial-gradient(ellipse at 50% 100%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-            linear-gradient(180deg, #000000 0%, #080808 50%, #000000 100%)
+            radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+            radial-gradient(ellipse at 30% 50%, rgba(255, 180, 50, 0.06) 0%, transparent 40%),
+            radial-gradient(ellipse at 70% 50%, rgba(255, 200, 100, 0.06) 0%, transparent 40%),
+            radial-gradient(ellipse at 50% 100%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+            linear-gradient(180deg, #050505 0%, #080808 50%, #020202 100%)
           `,
         }}
       />
