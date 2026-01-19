@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Spline from '@splinetool/react-spline';
+import { motion } from 'framer-motion';
 
 export const SplineParticleBrain = () => {
   const [isLoaded, setIsLoaded] = useState(false);
