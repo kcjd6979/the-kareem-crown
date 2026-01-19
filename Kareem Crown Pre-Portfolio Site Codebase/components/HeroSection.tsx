@@ -274,7 +274,7 @@ const HeroSection = () => {
   return (
     // Mobile-first responsive container
     <div 
-      className="relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000"
+      className="hero-section relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000"
       style={{ 
         paddingTop: '0px', 
         paddingBottom: '5vh',
@@ -297,27 +297,24 @@ const HeroSection = () => {
         
         {/* === THE SUN: Personal Brand Logo === */}
         <motion.div
-          className="relative z-20"
+          className="relative z-20 hero-logo-container"
           style={{
             rotateX,
             rotateY,
             x: translateX,
             y: translateY,
             transformStyle: "preserve-3d",
-            transform: 'scale(896.0, 832.0)',
+            // transform: 'scale(896.0, 832.0)', // Removed potentially broken scale
           }}
         >
           <Image
             src="/kc-logo-black-crown.webp"
             alt="The Kareem Crown personal brand logo - The Sun"
-            width={800}
-            height={350}
+            width={400}
+            height={400}
             // Priority load for LCP optimization
             priority
             className="w-full h-auto object-contain"
-            style={{
-              filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.4))',
-            }}
           />
         </motion.div>
 
