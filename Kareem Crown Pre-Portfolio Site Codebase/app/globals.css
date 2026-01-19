@@ -476,15 +476,12 @@ body::after {
   position: sticky;
   top: 120px;
   border-radius: 16px;
-  overflow: hidden;
+  overflow: visible;
   min-height: 600px;
   width: 100%;
   position: relative;
-  box-shadow:
-    0 0 60px rgba(218, 165, 32, 0.4),
-    0 20px 80px rgba(0, 0, 0, 0.6);
-  background: rgba(0, 0, 0, 0.4);
-  border: 2px solid rgba(218, 165, 32, 0.3);
+  background: transparent;
+  border: none;
 }
 
 .spline-canvas-wrapper {
@@ -656,10 +653,9 @@ body::after {
 
 .spline-robot-container {
   border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 0 60px rgba(218, 165, 32, 0.3);
-  background: rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(218, 165, 32, 0.2);
+  overflow: visible;
+  background: transparent;
+  border: none;
 }
 
 .connect-links {
