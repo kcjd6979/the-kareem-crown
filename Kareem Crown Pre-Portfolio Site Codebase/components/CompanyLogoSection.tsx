@@ -321,6 +321,27 @@ const CompanyLogoSection: React.FC = () => {
           </span>
         </div>
       </motion.div>
+      
+      {/* === RISING WARMTH - Bottom Section Lighting === */}
+      <div className="absolute pointer-events-none z-0" style={{ left: 0, bottom: 0, width: '100%', height: '30vh' }}>
+        <div className="absolute pointer-events-none" style={{
+          left: '50%', bottom: '0%', transform: 'translateX(-50%)',
+          width: '600px', height: '200px',
+          background: 'radial-gradient(ellipse at center bottom, rgba(212, 175, 55, 0.2) 0%, rgba(255, 200, 100, 0.1) 35%, transparent 70%)',
+          filter: 'blur(20px)',
+        }} />
+        <div className="absolute pointer-events-none" style={{
+          left: '50%', bottom: '-5%', transform: 'translateX(-50%)',
+          width: '900px', height: '250px',
+          background: 'radial-gradient(ellipse at center bottom, rgba(255, 215, 0, 0.08) 0%, rgba(255, 180, 50, 0.04) 45%, transparent 75%)',
+          filter: 'blur(35px)',
+        }} />
+        <div className="absolute pointer-events-none" style={{
+          left: '0', bottom: '0', width: '100%', height: '100%',
+          background: 'linear-gradient(to top, rgba(212, 175, 55, 0.05) 0%, rgba(200, 150, 50, 0.02) 50%, transparent 80%)',
+          filter: 'blur(50px)',
+        }} />
+      </div>
     </section>
   );
 };

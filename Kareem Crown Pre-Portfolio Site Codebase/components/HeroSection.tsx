@@ -194,6 +194,7 @@ const HeroSection = () => {
   // Mouse position state for 3D floating effect on the sun
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const [isNearSun, setIsNearSun] = useState(false);
 
   // Ultra-responsive spring for smooth, gliding movement
   const mouseX = useSpring(x, { stiffness: 80, damping: 12 });
@@ -209,6 +210,12 @@ const HeroSection = () => {
     const handleMouseMove = (e: MouseEvent) => {
       x.set(e.clientX - window.innerWidth / 2);
       y.set(e.clientY - window.innerHeight / 2);
+      
+      // Check if cursor is near the sun (center of screen)
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const distance = Math.sqrt(Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2));
+      setIsNearSun(distance < 350);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -300,7 +307,295 @@ const HeroSection = () => {
         }}
       >
         
-        {/* === THE SUN: Personal Brand Logo === */}
+        {/* === THE SUN: Personal Brand Logo with True Light Source Effects === */}
+        {/* Layer 1: Core glow - brightest, matching gold color - represents the surface where light originates */}
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '900px',
+            height: '900px',
+            background: 'radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, rgba(212, 175, 55, 0.4) 30%, rgba(212, 175, 55, 0.15) 50%, transparent 70%)',
+            filter: 'blur(20px)',
+            zIndex: 15,
+          }}
+          animate={{
+            opacity: isNearSun ? 1.2 : 1,
+            scale: isNearSun ? 1.1 : 1,
+          }}
+          transition={{ duration: 0.5 }}
+        />
+        
+        {/* Layer 2: Inner atmosphere - immediate diffusion, still intense */}
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '1000px',
+            height: '1000px',
+            background: 'radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 200, 100, 0.15) 40%, transparent 65%)',
+            filter: 'blur(30px)',
+            zIndex: 14,
+          }}
+          animate={{
+            opacity: isNearSun ? 1.15 : 1,
+          }}
+          transition={{ duration: 0.5 }}
+        />
+        
+        {/* Layer 3: Outer atmosphere - light scattering through space */}
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '1200px',
+            height: '1200px',
+            background: 'radial-gradient(circle, rgba(255, 180, 50, 0.1) 0%, rgba(255, 140, 0, 0.05) 50%, transparent 75%)',
+            filter: 'blur(40px)',
+            zIndex: 13,
+          }}
+          animate={{
+            opacity: isNearSun ? 1.1 : 1,
+          }}
+          transition={{ duration: 0.5 }}
+        />
+        
+        {/* Layer 4: Far scattered light - final diffusion */}
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '1500px',
+            height: '1500px',
+            background: 'radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, rgba(200, 150, 50, 0.02) 60%, transparent 85%)',
+            filter: 'blur(60px)',
+            zIndex: 12,
+          }}
+        />
+        
+        {/* === Animated Ray Effects === */}
+        {/* Rays suggesting ongoing energy release from the sun */}
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '1400px',
+            height: '1400px',
+            background: 'transparent',
+            zIndex: 11,
+          }}
+          animate={{
+            rotate: [0, 360],
+          }}
+          transition={{
+            duration: 120,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "linear",
+          }}
+        >
+          {/* Ray 1 */}
+          <div
+            className="absolute"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '0',
+              transform: 'translateX(-50%)',
+              width: '2px',
+              height: '100%',
+              background: 'linear-gradient(to bottom, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+            }}
+          />
+          {/* Ray 2 */}
+          <div
+            className="absolute"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '0',
+              transform: 'translateX(-50%) rotate(45deg)',
+              width: '2px',
+              height: '100%',
+              background: 'linear-gradient(to bottom, rgba(255, 200, 100, 0.1) 0%, transparent 70%)',
+            }}
+          />
+          {/* Ray 3 */}
+          <div
+            className="absolute"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '0',
+              transform: 'translateX(-50%) rotate(90deg)',
+              width: '2px',
+              height: '100%',
+              background: 'linear-gradient(to bottom, rgba(212, 175, 55, 0.12) 0%, transparent 70%)',
+            }}
+          />
+          {/* Ray 4 */}
+          <div
+            className="absolute"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '0',
+              transform: 'translateX(-50%) rotate(135deg)',
+              width: '2px',
+              height: '100%',
+              background: 'linear-gradient(to bottom, rgba(255, 180, 50, 0.1) 0%, transparent 70%)',
+            }}
+          />
+          {/* Ray 5 */}
+          <div
+            className="absolute"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '0',
+              transform: 'translateX(-50%) rotate(180deg)',
+              width: '2px',
+              height: '100%',
+              background: 'linear-gradient(to bottom, rgba(212, 175, 55, 0.08) 0%, transparent 70%)',
+            }}
+          />
+          {/* Ray 6 */}
+          <div
+            className="absolute"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '0',
+              transform: 'translateX(-50%) rotate(225deg)',
+              width: '2px',
+              height: '100%',
+              background: 'linear-gradient(to bottom, rgba(255, 165, 0, 0.1) 0%, transparent 70%)',
+            }}
+          />
+          {/* Ray 7 */}
+          <div
+            className="absolute"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '0',
+              transform: 'translateX(-50%) rotate(270deg)',
+              width: '2px',
+              height: '100%',
+              background: 'linear-gradient(to bottom, rgba(212, 175, 55, 0.1) 0%, transparent 70%)',
+            }}
+          />
+          {/* Ray 8 */}
+          <div
+            className="absolute"
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '0',
+              transform: 'translateX(-50%) rotate(315deg)',
+              width: '2px',
+              height: '100%',
+              background: 'linear-gradient(to bottom, rgba(255, 200, 100, 0.08) 0%, transparent 70%)',
+            }}
+          />
+        </motion.div>
+        
+        {/* === Flare Effects === */}
+        {/* Lens flares at strategic points in the radial gradient field */}
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '800px',
+            height: '800px',
+            zIndex: 16,
+          }}
+        >
+          {/* Flare 1 - Top right */}
+          <motion.div
+            className="absolute"
+            style={{
+              position: 'absolute',
+              right: '80px',
+              top: '-60px',
+              width: '30px',
+              height: '30px',
+              background: 'radial-gradient(circle, rgba(255, 255, 200, 0.6) 0%, rgba(255, 215, 0, 0.2) 50%, transparent 70%)',
+              filter: 'blur(4px)',
+              borderRadius: '50%',
+            }}
+            animate={{
+              opacity: [0.4, 0.8, 0.4],
+              scale: [0.9, 1.1, 0.9],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
+          />
+          {/* Flare 2 - Bottom left */}
+          <motion.div
+            className="absolute"
+            style={{
+              position: 'absolute',
+              left: '-40px',
+              bottom: '-20px',
+              width: '40px',
+              height: '40px',
+              background: 'radial-gradient(circle, rgba(255, 245, 180, 0.5) 0%, rgba(255, 200, 100, 0.15) 50%, transparent 70%)',
+              filter: 'blur(6px)',
+              borderRadius: '50%',
+            }}
+            animate={{
+              opacity: [0.3, 0.7, 0.3],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 1,
+            }}
+          />
+          {/* Flare 3 - Far right */}
+          <motion.div
+            className="absolute"
+            style={{
+              position: 'absolute',
+              right: '-100px',
+              top: '30%',
+              width: '25px',
+              height: '25px',
+              background: 'radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, rgba(200, 150, 50, 0.1) 50%, transparent 70%)',
+              filter: 'blur(3px)',
+              borderRadius: '50%',
+            }}
+            animate={{
+              opacity: [0.5, 0.9, 0.5],
+              scale: [0.8, 1.1, 0.8],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: 2,
+            }}
+          />
+        </motion.div>
+        
+        {/* === THE SUN LOGO ITSELF === */}
         <motion.div
           className="relative z-20"
           style={{
@@ -317,11 +612,10 @@ const HeroSection = () => {
             alt="The Kareem Crown personal brand logo - The Sun"
             width={800}
             height={350}
-            // Priority load for LCP optimization
             priority
             className="w-full h-auto object-contain"
             style={{
-              filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.4))',
+              filter: 'drop-shadow(0 0 30px rgba(212, 175, 55, 0.6)) drop-shadow(0 0 60px rgba(255, 215, 0, 0.3))',
             }}
           />
         </motion.div>
@@ -410,19 +704,119 @@ const HeroSection = () => {
         </h1>
       </motion.div>
 
-      {/* === OVERHEAD GOLD CROWN LIGHT === */}
-      <div 
+      {/* === CELESTIAL CROWN ILLUMINATION - Top Down Lighting === */}
+      {/* Dramatic downward-facing light from radial gradients positioned above the logo */}
+      {/* Creates spotlight effect that illuminates the central emblem with warmth spreading outward */}
+      <motion.div
         className="absolute pointer-events-none z-0"
         style={{
           left: '50%',
-          top: '5%',
+          top: '0%',
           transform: 'translateX(-50%)',
-          width: '400px',
-          height: '250px',
-          background: 'radial-gradient(ellipse at center top, rgba(212, 175, 55, 0.18) 0%, rgba(212, 175, 55, 0.06) 40%, transparent 70%)',
-          filter: 'blur(15px)',
+          width: '100vw',
+          height: '60vh',
         }}
-      />
+        animate={{
+          opacity: isNearSun ? 1.15 : 1,
+        }}
+        transition={{ duration: 0.5 }}
+      >
+        {/* Main crown glow - warm and intense near the source */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%',
+            top: '10%',
+            transform: 'translateX(-50%)',
+            width: '600px',
+            height: '400px',
+            background: 'radial-gradient(ellipse at center top, rgba(212, 175, 55, 0.35) 0%, rgba(255, 215, 0, 0.2) 25%, rgba(255, 200, 100, 0.1) 50%, transparent 75%)',
+            filter: 'blur(20px)',
+          }}
+        />
+        {/* Secondary glow - softer, extending further */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%',
+            top: '5%',
+            transform: 'translateX(-50%)',
+            width: '900px',
+            height: '500px',
+            background: 'radial-gradient(ellipse at center top, rgba(255, 215, 0, 0.15) 0%, rgba(255, 180, 50, 0.08) 40%, rgba(255, 140, 0, 0.03) 65%, transparent 85%)',
+            filter: 'blur(35px)',
+          }}
+        />
+        {/* Tertiary glow - ambient warmth filling the space */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%',
+            top: '0%',
+            transform: 'translateX(-50%)',
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(to bottom, rgba(212, 175, 55, 0.08) 0%, rgba(200, 150, 50, 0.04) 50%, transparent 85%)',
+            filter: 'blur(50px)',
+          }}
+        />
+      </motion.div>
+
+      {/* === RISING WARMTH - Bottom Section Lighting === */}
+      {/* Energy rising from below, preventing dark theme from becoming oppressive */}
+      {/* Gradients start subtle at boundaries and intensify toward bottom edge */}
+      <motion.div
+        className="absolute pointer-events-none z-0"
+        style={{
+          left: '0',
+          bottom: '0',
+          width: '100vw',
+          height: '40vh',
+        }}
+        animate={{
+          opacity: isNearSun ? 1.1 : 1,
+        }}
+        transition={{ duration: 0.5 }}
+      >
+        {/* Core rising warmth - intense near bottom */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%',
+            bottom: '0%',
+            transform: 'translateX(-50%)',
+            width: '800px',
+            height: '300px',
+            background: 'radial-gradient(ellipse at center bottom, rgba(212, 175, 55, 0.25) 0%, rgba(255, 200, 100, 0.12) 30%, rgba(255, 150, 50, 0.05) 60%, transparent 85%)',
+            filter: 'blur(25px)',
+          }}
+        />
+        {/* Extended warmth - spreads across the bottom */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            left: '50%',
+            bottom: '-10%',
+            transform: 'translateX(-50%)',
+            width: '1200px',
+            height: '400px',
+            background: 'radial-gradient(ellipse at center bottom, rgba(255, 215, 0, 0.1) 0%, rgba(255, 180, 50, 0.05) 40%, rgba(255, 140, 0, 0.02) 70%, transparent 90%)',
+            filter: 'blur(40px)',
+          }}
+        />
+        {/* Ambient fill - gentle closure without hard edges */}
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            left: '0',
+            bottom: '0',
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(to top, rgba(212, 175, 55, 0.06) 0%, rgba(200, 150, 50, 0.02) 50%, transparent 85%)',
+            filter: 'blur(60px)',
+          }}
+        />
+      </motion.div>
 
       
     </div>
