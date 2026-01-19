@@ -13,6 +13,7 @@ import CompanyLogoSection from "@/components/CompanyLogoSection";
 import LogoStorySection from "@/components/LogoStorySection";
 import { Footer } from "@/components/Footer";
 import ClientLayout from "@/components/ClientLayout";
+import GalaxyBackground from "@/components/GalaxyBackground";
 
 export default function Home() {
   useEffect(() => {
@@ -58,6 +59,7 @@ export default function Home() {
 
   return (
     <ClientLayout>
+      <GalaxyBackground />
       <div className="relative min-h-screen">
         {/* Main content */}
         <main className="relative">
