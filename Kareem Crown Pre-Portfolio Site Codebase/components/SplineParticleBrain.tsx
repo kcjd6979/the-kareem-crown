@@ -27,7 +27,7 @@ export const SplineParticleBrain = () => {
             style={{ display: isLoaded ? 'block' : 'none' }}
           >
             <Spline
-              scene="https://prod.spline.design/08b0ad4f-2015-4aef-88be-8a30bb3373ee/scene.splinecode"
+              scene="https://prod.spline.design/wuVfCRtSg0nsVdL9/scene.splinecode"
               onLoad={() => setIsLoaded(true)}
               onError={() => setHasError(true)}
             />

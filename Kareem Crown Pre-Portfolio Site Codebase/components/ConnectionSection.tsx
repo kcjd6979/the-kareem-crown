@@ -2,7 +2,7 @@
 
 // components/ConnectSection.tsx
 
-import { SplineRobot } from './SplineRobot';
+import { MTMRobot } from './MTMRobot';
 import { Github, Linkedin, Mail } from 'lucide-react';
 
 export const ConnectionSection = () => {
@@ -15,7 +15,7 @@ export const ConnectionSection = () => {
 
         {/* 3D Robot */}
         <div className="connect-robot">
-          <SplineRobot />
+          <MTMRobot />
         </div>
 
         {/* Social Links */}
