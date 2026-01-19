@@ -13,33 +13,41 @@ export const SplineParticleBrain = () => {
       if (!isLoaded) {
         setHasError(true);
       }
-    }, 30000); // 30 second timeout
+    }, 10000); // 10 second timeout
 
     return () => clearTimeout(timer);
   }, [isLoaded]);
 
   return (
-    <div className="spline-brain-container">
+    <div className="spline-brain-container flex items-center justify-center">
       {!hasError ? (
-        <>
+        <div className="relative w-full h-full flex items-center justify-center">
           <div
-            className="spline-canvas-wrapper"
+            className="spline-canvas-wrapper w-full h-full"
             style={{ display: isLoaded ? 'block' : 'none' }}
           >
             <Spline
               scene="https://prod.spline.design/08b0ad4f-2015-4aef-88be-8a30bb3373ee/scene.splinecode"
-              onLoad={() => setIsLoaded(true)}
-              onError={() => setHasError(true)}
+              onLoad={() => {
+                console.log("Spline Loaded Successfully");
+                setIsLoaded(true);
+              }}
+              onError={() => {
+                console.error("Spline Error Triggered");
+                setHasError(true);
+              }}
             />
           </div>
 
           {!isLoaded && (
-            <div className="spline-loader">
+            <div className="spline-loader absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm z-10">
               <div className="loader-animation"></div>
-              <p>Loading Brain Visualization...</p>
+              <p className="mt-4 text-[#DAA520] font-mono animate-pulse uppercase tracking-widest text-xs">
+                Initializing Neural Link...
+              </p>
             </div>
           )}
-        </>
+        </div>
       ) : (
         <div className="spline-fallback">
           <div className="fallback-brain-icon relative w-[300px] h-[300px]">
