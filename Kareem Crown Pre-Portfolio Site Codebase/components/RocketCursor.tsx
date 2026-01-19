@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface RocketCursorProps {
@@ -16,22 +15,6 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
   const lastPosition = useRef({ x: 0, y: 0 });
   const animationFrameRef = useRef<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  // Inject spin animation keyframe on client only
-  useEffect(() => {
-    const style = document.createElement("style");
-    style.textContent = `
-      @keyframes spin {
-        from { transform: translateX(-50%) rotate(0deg); }
-        to { transform: translateX(-50%) rotate(360deg); }
-      }
-    `;
-    document.head.appendChild(style);
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
 
   // Smooth mouse tracking with lerp
   const smoothPosition = useRef({ x: 0, y: 0 });
@@ -244,7 +227,7 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{
               opacity: 1,
-              scale: isHovering ? 1.3 : 1,
+              scale: isHovering ? 1.2 : 1,
             }}
             transition={{
               type: "spring",
@@ -258,7 +241,7 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
               className="relative"
               animate={{
                 rotate: rotation,
-                scale: isHovering ? 1.15 : 1,
+                scale: isHovering ? 1.1 : 1,
               }}
               transition={{
                 type: "spring",
@@ -266,8 +249,8 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                 damping: 20,
               }}
               style={{
-                width: "60px",
-                height: "100px",
+                width: "50px",
+                height: "90px",
                 display: "flex",
                 alignItems: "flex-end",
                 justifyContent: "center",
@@ -278,79 +261,47 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
               <div
                 className="absolute pointer-events-none"
                 style={{
-                  inset: "-20px",
-                  background: "radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.4) 0%, transparent 60%)",
-                  filter: "blur(15px)",
+                  inset: "-15px",
+                  background: "radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.5) 0%, transparent 60%)",
+                  filter: "blur(12px)",
                 }}
               />
 
-              {/* THE ACTUAL GOLDEN PEN TIP IMAGE - Properly loaded */}
-              <Image
+              {/* THE ACTUAL GOLD PEN TIP BRAND ASSET - YOUR BEAUTIFUL ROCKET */}
+              <img
                 src="/images/golden-pen-cursor.webp"
-                alt="Midas Golden Pen Cursor"
-                onLoad={() => setImageLoaded(true)}
-                onError={(e) => {
-                  console.error("Failed to load golden pen cursor image");
-                }}
+                alt="Midas Golden Pen Rocket Cursor"
                 style={{
                   width: "auto",
-                  height: "100px",
+                  height: "90px",
                   maxWidth: "none",
                   objectFit: "contain",
                   objectPosition: "bottom center",
-                  filter: "drop-shadow(0 0 10px rgba(255, 215, 0, 0.9)) drop-shadow(0 0 25px rgba(212, 175, 55, 0.6))",
-                  opacity: imageLoaded ? 1 : 0,
-                  transition: "opacity 0.2s ease-out",
+                  filter: "drop-shadow(0 0 15px rgba(255, 215, 0, 1)) drop-shadow(0 0 30px rgba(212, 175, 55, 0.8))",
                 }}
-                unoptimized
               />
-
-              {/* Loading state - show while image loads */}
-              {!imageLoaded && (
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: "radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.3) 0%, transparent 70%)",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      border: "3px solid rgba(212, 175, 55, 0.3)",
-                      borderTopColor: "#D4AF37",
-                      borderRadius: "50%",
-                      animation: "spin 1s linear infinite",
-                    }}
-                  />
-                </div>
-              )}
 
               {/* Dynamic flame trail at the back when moving */}
               <motion.div
                 className="absolute pointer-events-none"
                 style={{
                   left: "50%",
-                  bottom: "-30px",
+                  bottom: "-40px",
                   transform: "translateX(-50%)",
                   width: "40px",
-                  height: "70px",
+                  height: "80px",
                 }}
                 animate={{
                   opacity: Math.sqrt(
                     velocityRef.current.x * velocityRef.current.x +
                     velocityRef.current.y * velocityRef.current.y
-                  ) > 0.8 ? 0.95 : 0,
+                  ) > 0.8 ? 1 : 0,
                   scaleY: Math.sqrt(
                     velocityRef.current.x * velocityRef.current.x +
                     velocityRef.current.y * velocityRef.current.y
-                  ) > 0.8 ? 1 : 0.4,
+                  ) > 0.8 ? 1 : 0.3,
                 }}
-                transition={{ duration: 0.08 }}
+                transition={{ duration: 0.1 }}
               >
                 {/* Inner flame - bright gold */}
                 <div
@@ -359,9 +310,9 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                     bottom: 0,
                     left: "50%",
                     transform: "translateX(-50%)",
-                    width: "16px",
-                    height: "65px",
-                    background: "linear-gradient(to top, rgba(255, 215, 0, 1), rgba(255, 165, 0, 0.8), transparent)",
+                    width: "14px",
+                    height: "75px",
+                    background: "linear-gradient(to top, rgba(255, 215, 0, 1), rgba(255, 165, 0, 0.9), transparent)",
                     borderRadius: "50% 50% 30% 30%",
                     filter: "blur(2px)",
                   }}
@@ -373,9 +324,9 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                     bottom: 0,
                     left: "50%",
                     transform: "translateX(-50%)",
-                    width: "26px",
-                    height: "70px",
-                    background: "linear-gradient(to top, rgba(255, 140, 0, 0.7), rgba(255, 69, 0, 0.4), transparent)",
+                    width: "24px",
+                    height: "80px",
+                    background: "linear-gradient(to top, rgba(255, 140, 0, 0.8), rgba(255, 69, 0, 0.5), transparent)",
                     borderRadius: "50% 50% 40% 40%",
                     filter: "blur(4px)",
                   }}
@@ -387,9 +338,9 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                     bottom: 0,
                     left: "50%",
                     transform: "translateX(-50%)",
-                    width: "36px",
-                    height: "80px",
-                    background: "linear-gradient(to top, rgba(212, 175, 55, 0.5), rgba(255, 50, 0, 0.2), transparent)",
+                    width: "34px",
+                    height: "90px",
+                    background: "linear-gradient(to top, rgba(212, 175, 55, 0.6), rgba(255, 50, 0, 0.3), transparent)",
                     borderRadius: "50% 50% 50% 50%",
                     filter: "blur(8px)",
                   }}
@@ -397,43 +348,43 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
               </motion.div>
 
               {/* Dynamic star sparkles along the rocket body */}
-              {[-20, 0, 20].map((offset, i) => (
+              {[-15, 0, 15].map((offset, i) => (
                 <motion.div
                   key={i}
                   className="absolute pointer-events-none"
                   animate={{
-                    opacity: [0.2 + i * 0.2, 0.8 + i * 0.1, 0.2 + i * 0.2],
-                    scale: [0.8, 1.2, 0.8],
+                    opacity: [0.3 + i * 0.2, 0.9, 0.3 + i * 0.2],
+                    scale: [0.8, 1.3, 0.8],
                   }}
                   transition={{
-                    duration: 1.5 + i * 0.3,
+                    duration: 1.2 + i * 0.4,
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "easeInOut",
-                    delay: i * 0.2,
+                    delay: i * 0.15,
                   }}
                   style={{
-                    left: `${25 + offset}px`,
-                    top: `${30 + i * 15}px`,
+                    left: `${22 + offset}px`,
+                    top: `${25 + i * 12}px`,
                     width: `${3 + i}px`,
                     height: `${3 + i}px`,
                     background: "#FFD700",
                     borderRadius: "50%",
-                    boxShadow: `0 0 ${8 + i * 4}px #FFD700, 0 0 ${15 + i * 5}px rgba(255, 215, 0, 0.5)`,
+                    boxShadow: `0 0 ${10 + i * 4}px #FFD700, 0 0 ${20 + i * 5}px rgba(255, 215, 0, 0.6)`,
                   }}
                 />
               ))}
 
-              {/* Tip glow highlight */}
+              {/* Tip glow highlight - at the front/nose */}
               <div
                 className="absolute pointer-events-none"
                 style={{
                   left: "50%",
                   top: 0,
                   transform: "translateX(-50%)",
-                  width: "20px",
-                  height: "15px",
-                  background: "radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.8) 0%, transparent 70%)",
-                  filter: "blur(3px)",
+                  width: "16px",
+                  height: "12px",
+                  background: "radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.9) 0%, transparent 70%)",
+                  filter: "blur(2px)",
                 }}
               />
             </motion.div>

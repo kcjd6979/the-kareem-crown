@@ -91,11 +91,11 @@ const LogoStorySection: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen bg-black py-20 overflow-hidden"
+      className="relative min-h-screen bg-transparent py-20 overflow-hidden"
     >
       {/* Ambient Background Effects - Midas Gold Only (No Purple/Teal) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-[#0A0A0A]/50 to-black" />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-transparent/30 to-transparent" />
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[#D4AF37]/3 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#B6862C]/3 rounded-full blur-[100px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#C0C0C0]/3 rounded-full blur-[150px]" />
