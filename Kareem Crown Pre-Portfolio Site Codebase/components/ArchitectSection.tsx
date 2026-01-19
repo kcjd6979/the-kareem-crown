@@ -38,7 +38,7 @@ export const ArchitectSection = () => {
             </Suspense>
           ) : (
             /* Fallback: Animated Particle Brain Visualization */
-            <div className="w-full h-full rounded-2xl bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] to-[#0a0a0a] border border-[#D4AF37]/30 flex flex-col items-center justify-center relative overflow-hidden">
+            <div className="w-full h-full rounded-2xl border border-[#D4AF37]/30 flex flex-col items-center justify-center relative overflow-hidden bg-white/5 backdrop-blur-sm">
               {/* Animated particles */}
               <div className="absolute inset-0 overflow-hidden">
                 {[...Array(20)].map((_, i) => (
