@@ -2,204 +2,231 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { motion, useMotionValue, useSpring, useVelocity, useTransform } from 'framer-motion';
 
 export default function RocketCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isMoving, setIsMoving] = useState(false);
-  const [velocity, setVelocity] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Base mouse position
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // Smooth spring physics for movement (momentum/mass feel)
+  const springConfig = { stiffness: 120, damping: 25, mass: 0.5 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  // Velocity tracking
+  const velX = useVelocity(smoothX);
+  const velY = useVelocity(smoothY);
+
+  // Speed as a motion value for reactive transforms
+  const speed = useMotionValue(0);
+  const [angle, setAngle] = useState(0);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    let lastX = 0;
-    let lastY = 0;
-    let lastTime = Date.now();
-
     const handleMouseMove = (e: MouseEvent) => {
-      const currentTime = Date.now();
-      const deltaTime = currentTime - lastTime;
-      const deltaX = e.clientX - lastX;
-      const deltaY = e.clientY - lastY;
-      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-      const speed = distance / (deltaTime || 1);
-
-      setPosition({ x: e.clientX, y: e.clientY });
-      setVelocity(Math.min(speed * 10, 10)); // Normalize to 0-10
-      setIsMoving(true);
-
-      lastX = e.clientX;
-      lastY = e.clientY;
-      lastTime = currentTime;
-
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        setIsMoving(false);
-        setVelocity(0);
-      }, 100);
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+      if (!isVisible) setIsVisible(true);
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
+    const updateLoop = () => {
+      const vx = velX.get();
+      const vy = velY.get();
+      const currentSpeed = Math.sqrt(vx * vx + vy * vy);
+
+      speed.set(Math.min(currentSpeed / 50, 10)); // Normalized speed
+
+      if (currentSpeed > 50) {
+        // Only update angle when moving with some speed to avoid jitter
+        const newAngle = Math.atan2(vy, vx) * (180 / Math.PI) + 90;
+        setAngle(newAngle);
+      }
+
+      requestAnimationFrame(updateLoop);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    const animId = requestAnimationFrame(updateLoop);
+
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      clearTimeout(timeout);
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animId);
     };
-  }, []);
+  }, [mouseX, mouseY, isVisible, velX, velY, speed]);
+
+  // Derived transforms
+  const galaxyOpacity = useTransform(speed, [0, 5], [0.4, 0.8]);
+  const galaxyScale = useTransform(speed, [0, 10], [1, 1.2]);
+  const beamScaleY = useTransform(speed, [0, 10], [1, 2]);
+  const beamOpacity = useTransform(speed, [0, 0.5], [0.2, 0.7]);
+  const flameScaleY = useTransform(speed, [0, 10], [0, 2]);
+  const flameOpacity = useTransform(speed, [0, 0.2], [0, 1]);
+
+  if (!isVisible) return null;
 
   return (
-    <>
+    <div className="rocket-cursor-root" style={{
+      position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
+      pointerEvents: 'none', zIndex: 999999
+    }}>
       <style jsx global>{`
-        * {
-          cursor: none !important;
-        }
-
-        .rocket-cursor-container {
-          position: fixed;
-          pointer-events: none;
-          z-index: 999999;
-          left: 0;
-          top: 0;
-          transform: translate(-50%, -50%);
-          will-change: transform;
-        }
-
-        .pen-wrapper {
-          position: relative;
-          width: 50px;
-          height: 60px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        /* THE ACTUAL PEN TIP IMAGE - ROTATED UPWARD */
-        .pen-tip-image {
-          width: 45px;
-          height: 55px;
-          background-image: url('/images/gold-pen-tip-4k.webp');
-          background-size: contain;
-          background-repeat: no-repeat;
-          background-position: center;
-          transform: rotate(0deg); /* Adjust this value to make tip point UP */
-          /* Try: rotate(-90deg) or rotate(180deg) depending on original image orientation */
-          filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
-          position: relative;
-          z-index: 3;
-        }
-
-        /* DUAL GOLDEN HEADLIGHTS - at the narrow pointed tip */
-        .headlight {
-          position: absolute;
-          top: -5px; /* Position at the narrow end */
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(255, 215, 0, 0.9), rgba(255, 215, 0, 0.3));
-          box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-          z-index: 2;
-          animation: pulse 2s ease-in-out infinite;
-        }
-
-        .headlight-left {
-          left: 8px;
-        }
-
-        .headlight-right {
-          right: 8px;
-        }
-
-        @keyframes pulse {
-          0%, 100% { opacity: 0.8; }
-          50% { opacity: 1; }
-        }
-
-        /* ROCKET THRUST FLAMES - at the rounded bottom */
-        .rocket-flames {
-          position: absolute;
-          bottom: -20px; /* Position at the wide/rounded end */
-          left: 50%;
-          transform: translateX(-50%);
-          width: 30px;
-          height: 40px;
-          z-index: 1;
-          opacity: 0;
-          transition: opacity 0.15s ease;
-        }
-
-        .rocket-flames.active {
-          opacity: 1;
-        }
-
-        .flame {
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(to bottom,
-            rgba(255, 140, 0, 0.9) 0%,
-            rgba(255, 215, 0, 0.7) 30%,
-            rgba(255, 255, 0, 0.5) 60%,
-            transparent 100%
-          );
-          border-radius: 50% 50% 0 0;
-          filter: blur(3px);
-          animation: flameFlicker 0.1s ease-in-out infinite;
-        }
-
-        .flame-inner {
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 60%;
-          height: 70%;
-          background: linear-gradient(to bottom,
-            rgba(255, 215, 0, 1) 0%,
-            rgba(255, 255, 100, 0.8) 40%,
-            transparent 100%
-          );
-          border-radius: 50% 50% 0 0;
-          filter: blur(2px);
-        }
-
-        @keyframes flameFlicker {
-          0%, 100% {
-            transform: translateX(-50%) scaleY(1);
-            opacity: 1;
-          }
-          50% {
-            transform: translateX(-50%) scaleY(1.1);
-            opacity: 0.9;
-          }
-        }
-
-        /* Increase flame intensity based on velocity */
-        .rocket-flames.active .flame {
-          animation-duration: 0.08s;
-        }
+        * { cursor: none !important; }
       `}</style>
 
-      <div
-        className="rocket-cursor-container"
+      {/* GALAXY ILLUMINATION - Global glow that follows the cursor */}
+      <motion.div
         style={{
-          transform: `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`,
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          x: smoothX,
+          y: smoothY,
+          translateX: '-50%',
+          translateY: '-50%',
+          width: '600px',
+          height: '600px',
+          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.05) 40%, transparent 70%)',
+          borderRadius: '50%',
+          mixBlendMode: 'screen',
+          opacity: galaxyOpacity,
+          scale: galaxyScale,
+        }}
+      />
+
+      {/* HEADLIGHT BEAMS */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          x: smoothX,
+          y: smoothY,
+          rotate: angle,
+          translateX: '-50%',
+          translateY: '-50%',
         }}
       >
-        <div className="pen-wrapper">
-          {/* DUAL GOLDEN HEADLIGHTS at narrow tip */}
-          <div className="headlight headlight-left" />
-          <div className="headlight headlight-right" />
+        {/* Left Beam */}
+        <motion.div style={{
+          position: 'absolute',
+          left: '-15px',
+          top: '-20px',
+          width: '40px',
+          height: '200px',
+          background: 'conic-gradient(from 160deg at 50% 0%, transparent 0%, rgba(212, 175, 55, 0.3) 30%, rgba(212, 175, 55, 0.5) 50%, rgba(212, 175, 55, 0.3) 70%, transparent 100%)',
+          filter: 'blur(10px)',
+          transformOrigin: 'top center',
+          opacity: beamOpacity,
+          scaleY: beamScaleY,
+        }} />
 
-          {/* THE ACTUAL PEN TIP IMAGE */}
-          <div className="pen-tip-image" />
+        {/* Right Beam */}
+        <motion.div style={{
+          position: 'absolute',
+          right: '-15px',
+          top: '-20px',
+          width: '40px',
+          height: '200px',
+          background: 'conic-gradient(from 160deg at 50% 0%, transparent 0%, rgba(212, 175, 55, 0.3) 30%, rgba(212, 175, 55, 0.5) 50%, rgba(212, 175, 55, 0.3) 70%, transparent 100%)',
+          filter: 'blur(10px)',
+          transformOrigin: 'top center',
+          opacity: beamOpacity,
+          scaleY: beamScaleY,
+        }} />
+      </motion.div>
 
-          {/* ROCKET THRUST FLAMES at rounded bottom */}
-          <div className={`rocket-flames ${isMoving ? 'active' : ''}`}>
-            <div className="flame" />
-            <div className="flame-inner" />
-          </div>
+      {/* THE ROCKET (PEN) */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          x: smoothX,
+          y: smoothY,
+          rotate: angle,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+      >
+        <div style={{ position: 'relative', width: '50px', height: '60px' }}>
+          {/* Headlights */}
+          <div style={{ position: 'absolute', left: '10px', top: '0', width: '8px', height: '8px', borderRadius: '50%', background: '#D4AF37', boxShadow: '0 0 15px #D4AF37', zIndex: 10 }} />
+          <div style={{ position: 'absolute', right: '10px', top: '0', width: '8px', height: '8px', borderRadius: '50%', background: '#D4AF37', boxShadow: '0 0 15px #D4AF37', zIndex: 10 }} />
+
+          {/* Body (Pen Tip) */}
+          <div style={{
+            width: '100%', height: '100%',
+            backgroundImage: "url('/images/gold-pen-tip-4k.webp')",
+            backgroundSize: 'contain', backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundColor: 'rgba(212, 175, 55, 0.1)', // Fallback
+            borderRadius: '50% 50% 10% 10%',
+            filter: 'drop-shadow(0 0 10px rgba(212, 175, 55, 0.4))',
+            zIndex: 5
+          }} />
+
+          {/* Flames */}
+          <motion.div
+            style={{
+              position: 'absolute',
+              bottom: '-15px',
+              left: '50%',
+              translateX: '-50%',
+              width: '30px',
+              height: '40px',
+              background: 'linear-gradient(to bottom, #FF8C00, #D4AF37, transparent)',
+              borderRadius: '50% 50% 0 0',
+              filter: 'blur(3px)',
+              scaleY: flameScaleY,
+              opacity: flameOpacity,
+              zIndex: 1,
+            }}
+          />
         </div>
-      </div>
-    </>
+      </motion.div>
+
+      {/* TRAILS */}
+      {[0.1, 0.15, 0.2].map((delay, i) => (
+        <RocketTrail
+          key={i}
+          mouseX={mouseX} mouseY={mouseY}
+          delay={delay}
+          angle={angle}
+          speed={speed}
+        />
+      ))}
+    </div>
+  );
+}
+
+function RocketTrail({ mouseX, mouseY, delay, angle, speed }: any) {
+  const trailX = useSpring(mouseX, { stiffness: 80, damping: 20, mass: 0.5 + delay * 5 });
+  const trailY = useSpring(mouseY, { stiffness: 80, damping: 20, mass: 0.5 + delay * 5 });
+
+  const trailOpacity = useTransform(speed, [0.5, 2], [0, 0.3 - delay]);
+
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        x: trailX,
+        y: trailY,
+        rotate: angle,
+        translateX: '-50%',
+        translateY: '-50%',
+        width: '40px',
+        height: '50px',
+        background: 'rgba(212, 175, 55, 0.1)',
+        borderRadius: '50% 50% 10% 10%',
+        filter: 'blur(5px)',
+        zIndex: 90,
+        opacity: trailOpacity,
+        scale: 1 - delay,
+      }}
+    />
   );
 }
