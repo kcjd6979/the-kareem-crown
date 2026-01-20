@@ -2,13 +2,24 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 interface RocketCursorProps {
   isEnabled?: boolean;
 }
 
 export default function RocketCursor({ isEnabled = true }: RocketCursorProps) {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  // Use MotionValues for high-performance tracking
+  // Initialize to a value off-screen or far away to avoid (0,0) flash
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
+
+  // Smooth springs for that "loose, gliding" feel
+  const springConfig = { damping: 25, stiffness: 120, mass: 0.5 };
+  const cursorX = useSpring(mouseX, springConfig);
+  const cursorY = useSpring(mouseY, springConfig);
+
+  // State for visual effects
   const [velocity, setVelocity] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
@@ -30,8 +41,10 @@ export default function RocketCursor({ isEnabled = true }: RocketCursorProps) {
       const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
       const speed = distance / (deltaTime || 1);
 
-      setPosition({ x: e.clientX, y: e.clientY });
-      setVelocity(Math.min(speed * 10, 10)); // Normalize to 0-10
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+
+      setVelocity(Math.min(speed * 10, 10));
       setIsMoving(true);
 
       lastX = e.clientX;
@@ -73,15 +86,38 @@ export default function RocketCursor({ isEnabled = true }: RocketCursorProps) {
       document.removeEventListener('mouseover', handleMouseOver);
       clearTimeout(timeout);
     };
-  }, [isEnabled]);
+  }, [isEnabled, mouseX, mouseY]);
 
   if (!isEnabled) return null;
 
   return (
-    <>
-      <style jsx global>{`
+    <div className="rocket-cursor-wrapper">
+      <style dangerouslySetInnerHTML={{ __html: `
         * {
           cursor: none !important;
+        }
+
+        .global-headlight {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 1000px;
+          height: 1000px;
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 999998;
+          mix-blend-mode: screen;
+          filter: blur(120px);
+          opacity: 0.4; /* Increased opacity for better "discovery" */
+          will-change: transform;
+        }
+
+        .headlight-gold-left {
+          background: radial-gradient(circle, rgba(255, 215, 0, 0.6) 0%, transparent 75%);
+        }
+
+        .headlight-gold-right {
+          background: radial-gradient(circle, rgba(255, 215, 0, 0.5) 0%, transparent 75%);
         }
 
         .rocket-cursor-container {
@@ -90,7 +126,6 @@ export default function RocketCursor({ isEnabled = true }: RocketCursorProps) {
           z-index: 999999;
           left: 0;
           top: 0;
-          transform: translate(-50%, -50%);
           will-change: transform;
         }
 
@@ -112,7 +147,6 @@ export default function RocketCursor({ isEnabled = true }: RocketCursorProps) {
           transform: scale(0.8) rotate(-45deg);
         }
 
-        /* THE ACTUAL PEN TIP IMAGE - ROTATED UPWARD */
         .pen-tip-image {
           width: 45px;
           height: 55px;
@@ -120,42 +154,35 @@ export default function RocketCursor({ isEnabled = true }: RocketCursorProps) {
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
-          transform: rotate(180deg); /* Pointing UP - usually needs 180 if original is DOWN */
+          transform: rotate(180deg);
           filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
           position: relative;
           z-index: 3;
         }
 
-        /* DUAL GOLDEN HEADLIGHTS - at the narrow pointed tip */
         .headlight {
           position: absolute;
-          top: -5px; /* Position at the narrow end */
+          top: -5px;
           width: 10px;
           height: 10px;
           border-radius: 50%;
           background: radial-gradient(circle, rgba(255, 215, 0, 0.9), rgba(255, 215, 0, 0.3));
           box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
           z-index: 2;
-          animation: pulse 2s ease-in-out infinite;
+          animation: cursor-headlight-pulse 2s ease-in-out infinite;
         }
 
-        .headlight-left {
-          left: 8px;
-        }
+        .headlight-left { left: 8px; }
+        .headlight-right { right: 8px; }
 
-        .headlight-right {
-          right: 8px;
-        }
-
-        @keyframes pulse {
+        @keyframes cursor-headlight-pulse {
           0%, 100% { opacity: 0.8; }
           50% { opacity: 1; }
         }
 
-        /* ROCKET THRUST FLAMES - at the rounded bottom */
         .rocket-flames {
           position: absolute;
-          bottom: -20px; /* Position at the wide/rounded end */
+          bottom: -20px;
           left: 50%;
           transform: translateX(-50%);
           width: 30px;
@@ -165,9 +192,7 @@ export default function RocketCursor({ isEnabled = true }: RocketCursorProps) {
           transition: opacity 0.15s ease;
         }
 
-        .rocket-flames.active {
-          opacity: 1;
-        }
+        .rocket-flames.active { opacity: 1; }
 
         .flame {
           position: absolute;
@@ -204,26 +229,39 @@ export default function RocketCursor({ isEnabled = true }: RocketCursorProps) {
         }
 
         @keyframes flameFlicker {
-          0%, 100% {
-            transform: translateX(-50%) scaleY(1);
-            opacity: 1;
-          }
-          50% {
-            transform: translateX(-50%) scaleY(1.1);
-            opacity: 0.9;
-          }
+          0%, 100% { transform: translateX(-50%) scaleY(1); opacity: 1; }
+          50% { transform: translateX(-50%) scaleY(1.1); opacity: 0.9; }
         }
 
-        /* Increase flame intensity based on velocity */
-        .rocket-flames.active .flame {
-          animation-duration: 0.08s;
-        }
-      `}</style>
+        .rocket-flames.active .flame { animation-duration: 0.08s; }
+      ` }} />
+      {/* GLOBAL DISCOVERY HEADLIGHTS */}
+      <motion.div
+        className="global-headlight headlight-gold-left"
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: '-120%',
+          translateY: '-50%',
+        }}
+      />
+      <motion.div
+        className="global-headlight headlight-gold-right"
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: '20%',
+          translateY: '-50%',
+        }}
+      />
 
-      <div
+      <motion.div
         className="rocket-cursor-container"
         style={{
-          transform: `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`,
+          x: cursorX,
+          y: cursorY,
+          translateX: '-50%',
+          translateY: '-50%',
         }}
       >
         <div className={`pen-wrapper ${isHovering ? 'hovering' : ''} ${cursorType === 'text' ? 'text-mode' : ''}`}>
@@ -240,7 +278,7 @@ export default function RocketCursor({ isEnabled = true }: RocketCursorProps) {
             <div className="flame-inner" />
           </div>
         </div>
-      </div>
-    </>
+      </motion.div>
+    </div>
   );
 }
