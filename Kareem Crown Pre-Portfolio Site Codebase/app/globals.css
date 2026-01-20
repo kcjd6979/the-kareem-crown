@@ -443,7 +443,6 @@ body::after {
 .architect-section {
   padding: 8rem 4rem;
   position: relative;
-  background: #000;
 }
 
 .architect-container {
@@ -641,7 +640,6 @@ body::after {
 .connect-section {
   padding: 8rem 4rem;
   text-align: center;
-  background: #000;
 }
 
 .connect-container {
