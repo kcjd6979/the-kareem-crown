@@ -9,6 +9,7 @@ interface RocketCursorProps {
 
 export default function RocketCursor({ isEnabled = true }: RocketCursorProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [velocity, setVelocity] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [cursorType, setCursorType] = useState<'default' | 'pointer' | 'text'>('default');
