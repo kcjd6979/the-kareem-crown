@@ -3,12 +3,19 @@
 
 import { useEffect, useState } from 'react';
 
-export default function RocketCursor() {
+interface RocketCursorProps {
+  isEnabled?: boolean;
+}
+
+export default function RocketCursor({ isEnabled = true }: RocketCursorProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isMoving, setIsMoving] = useState(false);
-  const [velocity, setVelocity] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const [cursorType, setCursorType] = useState<'default' | 'pointer' | 'text'>('default');
 
   useEffect(() => {
+    if (!isEnabled) return;
+
     let timeout: NodeJS.Timeout;
     let lastX = 0;
     let lastY = 0;
@@ -37,12 +44,37 @@ export default function RocketCursor() {
       }, 100);
     };
 
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const isPointer =
+        target.tagName === 'A' ||
+        target.tagName === 'BUTTON' ||
+        target.closest('a') !== null ||
+        target.closest('button') !== null ||
+        window.getComputedStyle(target).cursor === 'pointer';
+
+      const isText =
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable ||
+        window.getComputedStyle(target).cursor === 'text';
+
+      setIsHovering(isPointer || isText);
+      if (isText) setCursorType('text');
+      else if (isPointer) setCursorType('pointer');
+      else setCursorType('default');
+    };
+
     document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseover', handleMouseOver);
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseover', handleMouseOver);
       clearTimeout(timeout);
     };
-  }, []);
+  }, [isEnabled]);
+
+  if (!isEnabled) return null;
 
   return (
     <>
@@ -68,6 +100,15 @@ export default function RocketCursor() {
           display: flex;
           align-items: center;
           justify-content: center;
+          transition: transform 0.2s ease;
+        }
+
+        .pen-wrapper.hovering {
+          transform: scale(1.2);
+        }
+
+        .pen-wrapper.text-mode {
+          transform: scale(0.8) rotate(-45deg);
         }
 
         /* THE ACTUAL PEN TIP IMAGE - ROTATED UPWARD */
@@ -78,8 +119,7 @@ export default function RocketCursor() {
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
-          transform: rotate(0deg); /* Adjust this value to make tip point UP */
-          /* Try: rotate(-90deg) or rotate(180deg) depending on original image orientation */
+          transform: rotate(180deg); /* Pointing UP - usually needs 180 if original is DOWN */
           filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
           position: relative;
           z-index: 3;
@@ -185,7 +225,7 @@ export default function RocketCursor() {
           transform: `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`,
         }}
       >
-        <div className="pen-wrapper">
+        <div className={`pen-wrapper ${isHovering ? 'hovering' : ''} ${cursorType === 'text' ? 'text-mode' : ''}`}>
           {/* DUAL GOLDEN HEADLIGHTS at narrow tip */}
           <div className="headlight headlight-left" />
           <div className="headlight headlight-right" />

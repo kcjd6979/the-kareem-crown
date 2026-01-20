@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display_SC, Merriweather } from "next/font/google";
 import "./globals.css";
-import RocketCursor from "@/components/RocketCursor";
 
 const playfair = Playfair_Display_SC({
   subsets: ["latin"],
@@ -28,7 +27,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${merriweather.variable} font-merriweather`}>
-        <RocketCursor />
         {children}
       </body>
     </html>

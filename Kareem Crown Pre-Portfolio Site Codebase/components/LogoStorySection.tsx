@@ -91,7 +91,7 @@ const LogoStorySection: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen bg-black py-20 overflow-hidden"
+      className="relative min-h-screen bg-transparent py-20 overflow-hidden"
     >
       {/* Ambient Background Effects - Midas Gold Only (No Purple/Teal) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

@@ -69,7 +69,7 @@ export const ArsenalCarousel = () => {
   const currentVideo = arsenalVideos[currentIndex];
 
   return (
-    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-transparent overflow-hidden">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}

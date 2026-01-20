@@ -80,7 +80,7 @@ export const CredentialsSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-gradient-to-b from-obsidian-black via-jet-black-soft/50 to-obsidian-black overflow-hidden">
+    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-transparent overflow-hidden">
       {/* Background Effects - Midas Gold only */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-midas-gold-glossy/3 to-transparent" />

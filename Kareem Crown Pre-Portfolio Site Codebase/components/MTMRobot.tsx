@@ -35,7 +35,7 @@ export const MTMRobot = () => {
             style={{
               border: 'none',
               background: 'transparent',
-              opacity: isLoaded ? 1 : 0,
+              opacity: 1, // Always visible to avoid loading delay invisibility
               transition: 'opacity 1s ease-in-out'
             }}
             title="Interactive 3D Robot - MTM Branded"
@@ -43,23 +43,25 @@ export const MTMRobot = () => {
 
           {/* MTM Logo Branding Overlay - Centered on Robot's Chest */}
           <div
-            className="absolute pointer-events-none z-10"
+            className="absolute pointer-events-none z-20 flex items-center justify-center"
             style={{
-              top: '44%', // Positioned exactly on the robot's chest plate
-              left: '50.1%', // Centered horizontally
+              top: '44%',
+              left: '50.1%',
               transform: 'translate(-50%, -50%)',
-              width: '110px',
-              height: '110px',
+              width: '15%',
+              maxWidth: '120px',
+              minWidth: '60px',
+              aspectRatio: '1/1',
               opacity: isLoaded ? 1 : 0,
               transition: 'opacity 2s ease-in-out',
-              filter: 'drop-shadow(0 0 20px rgba(212, 175, 55, 0.7))'
+              filter: 'drop-shadow(0 0 15px rgba(212, 175, 55, 0.6))'
             }}
           >
             <Image
-              src="/main-logo-4k-clear.webp"
+              src="/main-logo-4k-transparent.webp"
               alt="MTM Logo"
-              width={220}
-              height={220}
+              width={240}
+              height={240}
               className="object-contain w-full h-full"
               priority
             />

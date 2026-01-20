@@ -64,10 +64,10 @@ const ModernTouchManifesto = () => {
   return (
     <section
       ref={containerRef}
-      className="relative w-full overflow-hidden bg-obsidian-black py-24 sm:py-32 manifesto-section"
+      className="relative w-full overflow-hidden bg-transparent py-24 sm:py-32 manifesto-section"
     >
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#1a1a1a]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -150,7 +150,7 @@ const ModernTouchManifesto = () => {
         <div className="text-center mt-24 md:mt-32">
            <motion.div {...ctaAnimation} className="relative inline-block">
              <div className="absolute -inset-1 bg-gold-gradient rounded-2xl blur opacity-30 animate-pulse" />
-             <div className="relative bg-jet-black-soft border border-midas-gold-glossy/50 rounded-2xl p-8 md:p-12">
+            <div className="relative bg-black/20 backdrop-blur-md border border-midas-gold-glossy/50 rounded-2xl p-8 md:p-12">
                <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-chrome-white mb-4">
                  THE PALACE IS OPEN.
                </p>

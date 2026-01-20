@@ -417,7 +417,7 @@ const HeroSection = () => {
       />
 
       {/* === SEAMLESS FADE TO NEXT SECTION === */}
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-b from-transparent via-black/50 to-black pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-b from-transparent via-transparent to-transparent pointer-events-none" />
       
     </div>
   );

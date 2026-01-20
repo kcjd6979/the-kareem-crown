@@ -177,13 +177,13 @@ const CompanyLogoSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative h-screen bg-black overflow-hidden">
+    <section className="relative h-screen bg-transparent overflow-hidden">
       {/* Animated Background Canvas */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
         style={{
-          background: "radial-gradient(ellipse at center, #1A1A1A 0%, #000000 100%)",
+          background: "transparent",
         }}
       />
 
