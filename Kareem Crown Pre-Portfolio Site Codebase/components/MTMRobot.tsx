@@ -56,7 +56,7 @@ export const MTMRobot = () => {
             }}
           >
             <Image
-              src="/main-logo-4k-clear.webp"
+              src="/kc-logo-black-crown.webp"
               alt="MTM Logo"
               width={100}
               height={100}

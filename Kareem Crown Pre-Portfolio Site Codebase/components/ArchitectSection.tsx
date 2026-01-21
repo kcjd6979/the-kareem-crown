@@ -9,7 +9,7 @@ export const ArchitectSection = () => {
   return (
     <section className="architect-section" id="architect">
       <div className="architect-container">
-        <h2 className="section-title">Connect with The Architect</h2>
+        <h2 className="section-title">CONNECT WITH THE ARCHITECT</h2>
 
         <div className="architect-grid">
           {/* Left Column: 3D Brain */}

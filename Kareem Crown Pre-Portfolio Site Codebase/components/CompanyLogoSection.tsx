@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 interface Particle {
@@ -17,7 +17,7 @@ interface Particle {
 const CompanyLogoSection: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
-  const [particles, setParticles] = useState<Particle[]>([]);
+  const particlesRef = useRef<Particle[]>([]);
 
   // Initialize particles for smoke effect
   useEffect(() => {
@@ -35,7 +35,7 @@ const CompanyLogoSection: React.FC = () => {
           life: Math.random() * 300 + 200,
         });
       }
-      setParticles(newParticles);
+      particlesRef.current = newParticles;
     };
 
     initParticles();
@@ -92,39 +92,27 @@ const CompanyLogoSection: React.FC = () => {
       }
 
       // Update and draw particles (smoke effect)
-      setParticles((prevParticles) =>
-        prevParticles.map((particle) => {
-          const newX = particle.x + particle.vx;
-          const newY = particle.y + particle.vy;
-          const newOpacity = particle.opacity * 0.99;
-          const newLife = particle.life - 1;
+      particlesRef.current.forEach((particle, index) => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.opacity *= 0.99;
+        particle.life -= 1;
 
-          if (newLife <= 0 || newY < -100) {
-            // Respawn particle
-            return {
-              ...particle,
-              x: Math.random() * canvas.width,
-              y: canvas.height + Math.random() * 100,
-              vx: (Math.random() - 0.5) * 0.5,
-              vy: -Math.random() * 2 - 1,
-              size: Math.random() * 40 + 20,
-              opacity: Math.random() * 0.3,
-              life: Math.random() * 300 + 200,
-            };
-          }
-
-          return {
+        if (particle.life <= 0 || particle.y < -100) {
+          // Respawn particle
+          particlesRef.current[index] = {
             ...particle,
-            x: newX,
-            y: newY,
-            opacity: newOpacity,
-            life: newLife,
+            x: Math.random() * canvas.width,
+            y: canvas.height + Math.random() * 100,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: -Math.random() * 2 - 1,
+            size: Math.random() * 40 + 20,
+            opacity: Math.random() * 0.3,
+            life: Math.random() * 300 + 200,
           };
-        })
-      );
+        }
 
-      // Draw smoke particles - Using Midas Gold colors
-      particles.forEach((particle) => {
+        // Draw smoke particles - Using Midas Gold colors
         if (particle.opacity > 0) {
           const gradient = ctx.createRadialGradient(
             particle.x,
@@ -161,7 +149,7 @@ const CompanyLogoSection: React.FC = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [particles]);
+  }, []); // No dependencies, runs once
 
   // Set canvas size
   useEffect(() => {

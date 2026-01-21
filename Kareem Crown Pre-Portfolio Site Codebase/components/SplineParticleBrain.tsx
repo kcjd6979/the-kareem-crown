@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Spline from '@splinetool/react-spline';
 
 export const SplineParticleBrain = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -11,11 +12,10 @@ export const SplineParticleBrain = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!isLoaded) {
-        // We don't necessarily set hasError here because the iframe might still be loading
-        // but we can at least stop showing the full-screen loader
+        // We don't necessarily set hasError here because the 3D asset might still be loading
         setIsLoaded(true);
       }
-    }, 15000); // 15 second timeout for robot
+    }, 30000); // 30 second timeout for 3D assets
 
     return () => clearTimeout(timer);
   }, [isLoaded]);
@@ -26,29 +26,20 @@ export const SplineParticleBrain = () => {
         <>
           <div
             className="spline-canvas-wrapper w-full h-[600px]"
-            style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 1s ease-in-out' }}
+            style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 1.5s ease-in-out' }}
           >
-            <iframe
-              src="https://my.spline.design/67babb82-9cf8-4e62-9811-3c5a342578d6"
-              frameBorder="0"
-              width="100%"
-              height="100%"
+            <Spline
+              scene="https://prod.spline.design/wuVfCRtSg0nsVdL9/scene.splinecode"
               onLoad={() => setIsLoaded(true)}
               onError={() => setHasError(true)}
-              style={{
-                border: 'none',
-                background: 'transparent',
-              }}
-              title="Interactive 3D Robot - Connect with The Architect"
-              loading="eager"
             />
           </div>
 
-          {/* MTM Logo Branding Overlay - Centered on Robot */}
+          {/* MTM Logo Branding Overlay - Centered on Character */}
           <div
             className="absolute pointer-events-none z-10"
             style={{
-              top: '45%',
+              top: '45%', // Centered on the character's chest
               left: '50%',
               transform: 'translate(-50%, -50%)',
               width: '100px',
@@ -70,23 +61,24 @@ export const SplineParticleBrain = () => {
           {!isLoaded && (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0a0a1a]">
               <div className="loader-animation mb-4"></div>
-              <p className="text-[#DAA520] font-playfair tracking-widest animate-pulse">Initializing Robot Architect...</p>
+              <p className="text-[#DAA520] font-playfair tracking-widest animate-pulse">Initializing Particle Brain...</p>
             </div>
           )}
         </>
       ) : (
         <div className="spline-fallback flex flex-col items-center justify-center min-h-[600px]">
-          <div className="fallback-robot-icon relative w-[200px] h-[200px]">
-             <svg viewBox="0 0 200 200" className="w-full h-full text-[#DAA520]">
-              <rect x="70" y="80" width="60" height="80" rx="8" fill="none" stroke="currentColor" strokeWidth="2" />
-              <circle cx="85" cy="100" r="5" fill="currentColor" />
-              <circle cx="115" cy="100" r="5" fill="currentColor" />
-              <line x1="100" y1="120" x2="100" y2="140" stroke="currentColor" strokeWidth="2" />
-              <circle cx="100" cy="60" r="20" fill="none" stroke="currentColor" strokeWidth="2" />
+          <div className="fallback-brain-icon relative w-[200px] h-[200px]">
+            <svg viewBox="0 0 200 200" className="w-full h-full text-[#DAA520]">
+              <path d="M100,40 C60,40 40,70 40,100 C40,130 60,160 100,160 C140,160 160,130 160,100 C160,70 140,40 100,40 Z" fill="none" stroke="currentColor" strokeWidth="2" />
+              <circle cx="100" cy="100" r="30" fill="none" stroke="currentColor" strokeWidth="2" />
+              <line x1="100" y1="40" x2="100" y2="70" stroke="currentColor" strokeWidth="2" />
+              <line x1="100" y1="130" x2="100" y2="160" stroke="currentColor" strokeWidth="2" />
+              <line x1="40" y1="100" x2="70" y2="100" stroke="currentColor" strokeWidth="2" />
+              <line x1="130" y1="100" x2="160" y2="100" stroke="currentColor" strokeWidth="2" />
             </svg>
           </div>
           <p className="mt-8 text-xl font-playfair tracking-widest text-[#D4AF37] uppercase animate-pulse">
-            Robot Architect Offline
+            Neural Interface Offline
           </p>
         </div>
       )}
