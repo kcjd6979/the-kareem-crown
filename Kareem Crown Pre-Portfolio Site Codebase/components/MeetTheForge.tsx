@@ -76,30 +76,6 @@ const characters: Character[] = [
     },
   },
   {
-    id: "nina",
-    name: "NINA",
-    role: "The Interrogator",
-    action: "DEPLOY",
-    narrative:
-      "The 'Reality Check' and complacency killer who stress-tests every strategy before launch to ensure it is bulletproof.",
-    colors: {
-      primary: "#F0F8FF",
-      secondary: "#E0FFFF",
-      accent: "#D4D4D4",
-    },
-    stats: [
-      { label: "Risk Mitigation", value: 100 },
-      { label: "Critical Thinking", value: 100 },
-      { label: "Security", value: 100 },
-    ],
-    morphModes: {
-      idle: "Discerning professional in a stark white architectural blazer.",
-      active: "The Aura—a translucent energy barrier shimmers around her silhouette.",
-      maestro:
-        "The Validator—eyes go solid Blinding White LED; her shield becomes opaque and unyielding.",
-    },
-  },
-  {
     id: "echo",
     name: "ECHO",
     role: "The Market Heartbeat",
@@ -121,6 +97,30 @@ const characters: Character[] = [
       active: "Sonic Distortion—the air around him ripples and distorts like a heat haze.",
       maestro:
         "The Guardian—eyes become light-absorbing Vantablack Orbs; Smoke Trails drift off his form as he dissolves into pure data.",
+    },
+  },
+  {
+    id: "nina",
+    name: "NINA",
+    role: "The Interrogator",
+    action: "DEPLOY",
+    narrative:
+      "The 'Reality Check' and complacency killer who stress-tests every strategy before launch to ensure it is bulletproof.",
+    colors: {
+      primary: "#F0F8FF",
+      secondary: "#E0FFFF",
+      accent: "#D4D4D4",
+    },
+    stats: [
+      { label: "Risk Mitigation", value: 100 },
+      { label: "Critical Thinking", value: 100 },
+      { label: "Security", value: 100 },
+    ],
+    morphModes: {
+      idle: "Discerning professional in a stark white architectural blazer.",
+      active: "The Aura—a translucent energy barrier shimmers around her silhouette.",
+      maestro:
+        "The Validator—eyes go solid Blinding White LED; her shield becomes opaque and unyielding.",
     },
   },
 ];
