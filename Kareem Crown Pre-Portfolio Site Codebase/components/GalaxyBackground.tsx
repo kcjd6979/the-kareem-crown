@@ -174,22 +174,22 @@ const GalaxyBackground: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none"
+      className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none animate-galaxy-breathe"
       style={{
         zIndex: -1,
-        background: "linear-gradient(180deg, #050505 0%, #0A0A0A 50%, #020202 100%)",
+        background: "linear-gradient(180deg, #0a0a1a 0%, #0f0f2e 50%, #0a0a1a 100%)",
       }}
     >
-      {/* Layer 0: Deep space base gradient - golden warmth */}
+      {/* Layer 0: Deep space base gradient - golden warmth with breathing effect */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 animate-pulse-slow"
         style={{
           background: `
             radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
             radial-gradient(ellipse at 30% 50%, rgba(255, 180, 50, 0.06) 0%, transparent 40%),
             radial-gradient(ellipse at 70% 50%, rgba(255, 200, 100, 0.06) 0%, transparent 40%),
             radial-gradient(ellipse at 50% 100%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-            linear-gradient(180deg, #050505 0%, #080808 50%, #020202 100%)
+            linear-gradient(180deg, #0a0a1a 0%, #0d0d24 50%, #0a0a1a 100%)
           `,
         }}
       />

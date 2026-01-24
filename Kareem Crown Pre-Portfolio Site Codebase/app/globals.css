@@ -79,7 +79,7 @@ html, body {
 }
 
 body {
-  background-color: #050505;
+  background-color: #0a0a1a;
   color: #FFFFFF;
   overflow-x: hidden;
 }
@@ -95,7 +95,7 @@ body::before {
   background-image:
     radial-gradient(ellipse at 20% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 80%, rgba(192, 192, 192, 0.02) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.8) 0%, #050505 100%);
+    radial-gradient(ellipse at 50% 50%, rgba(10, 10, 26, 0.6) 0%, #0a0a1a 100%);
   pointer-events: none;
   z-index: -1;
 }
@@ -364,7 +364,7 @@ body::before {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: #0a0a1a;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -380,4 +380,181 @@ body::before {
 ::selection {
   background: rgba(212, 175, 55, 0.3);
   color: #FFFFFF;
+}
+
+/* ============================================
+   SOUL OF THE KAREEM CROWN - LIVING ORGANISM
+   Breathing Galaxy Animations
+   ============================================ */
+
+/* Main Galaxy Breathing - Subtle pulse for the entire background */
+@keyframes galaxy-breathe {
+  0%, 100% {
+    background-color: #0a0a1a;
+    filter: brightness(1);
+  }
+  50% {
+    background-color: #0d0d24;
+    filter: brightness(1.05);
+  }
+}
+
+.animate-galaxy-breathe {
+  animation: galaxy-breathe 8s ease-in-out infinite;
+}
+
+/* Secondary breathing layer - Faster, more subtle pulse */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+/* Star twinkle - Natural organic variation */
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 0.7;
+    transform: scale(1.15);
+  }
+}
+
+/* Nebula drift - Very slow movement for nebula clouds */
+@keyframes nebula-drift {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10px, -5px) rotate(1deg);
+  }
+  50% {
+    transform: translate(0, -10px) rotate(0deg);
+  }
+  75% {
+    transform: translate(-10px, -5px) rotate(-1deg);
+  }
+}
+
+/* Celestial crown pulse - Top lighting rhythm */
+@keyframes crown-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translateX(-50%) scaleY(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateX(-50%) scaleY(1.05);
+  }
+}
+
+/* Rising warmth pulse - Bottom lighting rhythm */
+@keyframes warmth-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+}
+
+/* Golden aura breathing - For interactive elements */
+@keyframes golden-aura {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+  }
+}
+
+/* Headlight sweep - For cursor illumination effect */
+@keyframes headlight-sweep {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+  }
+}
+
+/* Comet streak - Shooting star animation */
+@keyframes comet-streak {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(300px) translateY(200px);
+    opacity: 0;
+  }
+}
+
+/* Rocket flame flicker - Dynamic cursor flame */
+@keyframes flame-flicker {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scaleY(1) scaleX(1);
+  }
+  25% {
+    opacity: 1;
+    transform: scaleY(1.1) scaleX(0.95);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scaleY(0.95) scaleX(1.05);
+  }
+  75% {
+    opacity: 1;
+    transform: scaleY(1.05) scaleX(0.98);
+  }
+}
+
+/* Depth layer parallax - Creates spatial depth between layers */
+@keyframes depth-parallax {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(50px);
+  }
+}
+
+/* Void absorption - Dark area breathing effect */
+@keyframes void-absorption {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
 }
