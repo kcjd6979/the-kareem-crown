@@ -1,0 +1,102 @@
+SITE FOLW AND NAMING CONVENTION OF SECTIONS
+
+Let me check the current section order and naming conventions in the codebase to provide you with the complete restructured flow.
+
+
+
+<think duration="1715" >
+The user wants to know the section order and naming conventions that we came up with for the site. From the page.tsx file, I can see the current structure. Let me also check the individual section files to get the exact titles and descriptions that we implemented.
+
+The current order in page.tsx is:
+1. GalaxyBackground (background layer)
+2. HeroSection
+3. ModernTouchManifesto
+4. MeetTheForge
+5. ArsenalSection (comment: "Armory - Strategic weapons in the war for digital dominance")
+6. AIToolsSection (comment: "Command Center - Arsenal of Intelligence renamed")
+7. ArchitectSection (comment: "Architect Section with Particle Brain")
+8. CredentialsSection (comment: "Architect's Foundation")
+9. LogoStorySection
+10. ConnectionSection
+11. CompanyLogoSection
+12. Footer
+
+Let me read a few more section files to get their exact titles and descriptions.
+
+</think>
+
+
+
+
+<think duration="638" >
+The user wants to know the section order and naming conventions that we came up with for the site. Based on the code I've read, I can now provide a comprehensive overview of the restructured flow and section names.
+
+Let me also check the HeroSection and other sections to get the complete picture.
+
+</think>
+
+
+
+# Site Section Order and Naming Convention
+
+Based on the restructured flow we implemented, here is the complete section order and naming convention for the site:
+
+## Section Flow (Top to Bottom)
+
+**1. GalaxyBackground**
+The foundational animated layer that sits behind everything, featuring stars, nebulae, comets, and lens flares in a warm golden palette. This is not a visible section but rather the atmospheric foundation of the entire site experience.
+
+**2. HeroSection — The Solar System**
+The main landing section featuring the central logo as a "sun" with orbiting planets. This section establishes the cosmic theme with a solar system metaphor where the logo serves as the gravitational center. The section includes animated planet orbits, the main logo/sun, and establishes the golden color palette.
+
+**3. ModernTouchManifesto — MODERN TOUCH MANIFESTO**
+The "About Us" section that introduces the brand philosophy. It uses an editorial serif style with a two-column layout featuring a video or media area on the left and manifesto content on the right. The section header displays "MODERN TOUCH MANIFESTO" in large typography with a gold accent line beneath.
+
+**4. MeetTheForge — Meet The Forge**
+The AI team introduction section that presents four specialized AI intelligences working in unison. Each character appears as a card with stats, narrative descriptions, and visual representations:
+
+- **Goldie** — "The Visionary Spark" (Action: ADOPT)
+- **Roman** — "The Strategic Engineer" (Action: ENHANCE)
+- **Nina** — "The Reality Check" (Action: DEPLOY)
+- **Echo** — "The Market Heartbeat" (Action: PULSE)
+
+**5. ArsenalSection — Armory**
+The services section themed as "strategic weapons in the war for digital dominance." It displays three core capabilities as cards:
+
+- AI Systems Architecture — "Designing and building proprietary, automated AI systems that serve as strategic weapons for business."
+- Full-Stack Autonomous Development — "Orchestrating full-stack applications from concept to deployment with ruthless efficiency and elegant precision."
+- Performance & SEO 2.0 — "Engineering applications for 'Performance Beast Mode' with Lighthouse scores of 95+ and advanced discoverability."
+
+**6. AIToolsSection — Command Center**
+The technology showcase section (previously "Arsenal of Intelligence") that displays the AI tools and platforms utilized. It presents a grid of AI technologies including Gemini, ChatGPT, Claude, MiniMax, DeepSeek, and Custom AI systems, each with their brand colors and descriptions.
+
+**7. ArchitectSection — Architect**
+The technical showcase section featuring the "Particle Brain" — a 3D Spline visualization of the AI systems architecture. This section demonstrates the technical capabilities through an interactive 3D brain visualization with animated particle effects and a fallback for when the Spline scene doesn't load.
+
+**8. CredentialsSection — Architect's Foundation**
+The education and credentials section that presents professional background. It displays credentials as collectible items with icons representing:
+
+- High School Diploma
+- Bachelor's Degree
+- Advanced Studies
+- Professional Certification
+- Specialized Training
+
+**9. LogoStorySection**
+The section that tells the story behind the logo design, explaining the symbolism and meaning behind the visual identity.
+
+**10. ConnectionSection**
+The contact or connection section that allows visitors to reach out or connect with the brand.
+
+**11. CompanyLogoSection**
+A section showcasing the company logo, potentially with different variations or applications of the brand mark.
+
+**12. Footer**
+The final footer section with navigation links, social media connections, and closing branding elements.
+
+## Design Philosophy
+
+The entire structure follows a "digital foundry" or "architect's studio" metaphor, positioning the brand as creators and builders of AI-powered digital experiences. Each section builds upon the previous one, moving from the cosmic/heroic introduction (Solar System) through the team introduction (Forge), capabilities demonstration (Armory and Command Center), technical proof (Architect), credibility establishment (Foundation), and finally connection and closure.
+
+----
+
