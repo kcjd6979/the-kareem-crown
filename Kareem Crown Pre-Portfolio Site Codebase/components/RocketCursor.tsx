@@ -267,10 +267,10 @@ export const RocketCursor: React.FC<RocketCursorProps> = ({ isEnabled }) => {
                 }}
               />
 
-              {/* THE ACTUAL GOLD PEN TIP BRAND ASSET - YOUR BEAUTIFUL ROCKET */}
+              {/* THE ACTUAL GOLD PEN TIP BRAND ASSET - GOLD PEN TIP 4K */}
               <img
-                src="/images/golden-pen-cursor.webp"
-                alt="Midas Golden Pen Rocket Cursor"
+                src="/images/gold-pen-tip-4k.webp"
+                alt="Gold Pen Tip Rocket Cursor"
                 style={{
                   width: "auto",
                   height: "90px",
