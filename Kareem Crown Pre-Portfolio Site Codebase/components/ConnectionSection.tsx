@@ -45,7 +45,8 @@ export const ConnectionSection = () => {
           className="text-center mb-16"
         >
           <p className="text-[#DAA520]/60 text-xs uppercase tracking-[0.4em] mb-4 font-mono">
-            // ESTABLISHING UPLINK
+            {/* ESTABLISHING UPLINK */}
+            ◈ ESTABLISHING UPLINK ◈
           </p>
           <h2 className="font-serif font-bold text-4xl md:text-6xl text-white mb-4">
             Connect with <span className="text-[#DAA520]">The Architect</span>

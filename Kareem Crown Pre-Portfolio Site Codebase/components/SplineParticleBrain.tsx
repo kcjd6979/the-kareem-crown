@@ -39,7 +39,7 @@ export const SplineParticleBrain = () => {
     }, 15000); // 15 second timeout for robot
 
     return () => clearTimeout(timer);
-  }, [isLoaded]);
+  }, [isLoaded, isInView]);
 
   return (
     <div className="spline-brain-container relative overflow-hidden bg-[#0a0a1a]/50 border border-[#DAA520]/30 rounded-2xl shadow-[0_0_50px_rgba(218,165,32,0.15)]" ref={containerRef}>

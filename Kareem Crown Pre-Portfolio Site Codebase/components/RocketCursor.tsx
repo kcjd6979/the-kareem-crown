@@ -8,6 +8,7 @@
 'use client';
 
 import { useEffect, useState, useCallback, useRef } from 'react';
+import Image from 'next/image';
 import { motion, useMotionValue, useSpring, useVelocity, useTransform } from 'framer-motion';
 
 export default function RocketCursor({ isEnabled = true }: { isEnabled?: boolean }) {
@@ -195,10 +196,13 @@ export default function RocketCursor({ isEnabled = true }: { isEnabled?: boolean
           {/* ─── THE ASSET: Gold Pen Tip (WebP) ─── */}
           {/* Pointed tip faces UP (top of element = front/direction of travel)
               Rounded base at bottom = rear where thrusters attach */}
-          <img
+          <Image
             src="/gold-pen-tip-4k.webp"
             alt=""
+            width={32}
+            height={80}
             draggable={false}
+            priority
             style={{
               position: 'absolute',
               top: '0',
@@ -208,7 +212,6 @@ export default function RocketCursor({ isEnabled = true }: { isEnabled?: boolean
               height: 'auto',
               filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.6)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.3))',
               zIndex: 10,
-              imageRendering: 'auto',
             }}
           />
 
