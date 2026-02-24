@@ -1,12 +1,34 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export const SplineRobot = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
+  const [isInView, setIsInView] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect(); // Once loaded, keep it loaded
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isInView) return;
     const timer = setTimeout(() => {
       if (!isLoaded) {
         setHasError(true);
@@ -14,11 +36,11 @@ export const SplineRobot = () => {
     }, 10000);
 
     return () => clearTimeout(timer);
-  }, [isLoaded]);
+  }, [isLoaded, isInView]);
 
   return (
-    <div className="spline-robot-container">
-      {!hasError ? (
+    <div className="spline-robot-container" ref={containerRef}>
+      {!hasError && isInView ? (
         <>
           <iframe
             src="https://my.spline.design/67babb82-9cf8-4e62-9811-3c5a342578d6"

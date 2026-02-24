@@ -1,0 +1,97 @@
+                      
+ Usage: nlm login     
+ [OPTIONS] COMMAND    
+ [ARGS]...            
+                      
+ Authentication and   
+ profile management   
+                      
++- Options ----------+
+| --à  à          Mà |
+|                 pà |
+|                 cà |
+|                 fà |
+|                 a  |
+|                 fà |
+| --à             Oà |
+|                 cà |
+|                 if |
+|                 cà |
+|                 aà |
+|                 is |
+|                 và |
+| --à  à      TE  Pà |
+|             XT  nà |
+|                 (à |
+|                 cà |
+|                 dà |
+|                 if |
+|                 nà |
+|                 sà |
+| --à  à      TE  Pà |
+|             XT  to |
+|                 fà |
+|                 cà |
+|                 cà |
+|                 (à |
+|                 mà |
+|                 mà |
+| --à         TE  Aà |
+|             XT  pà |
+|                 bà |
+|                 (à |
+|                 or |
+|                 oà |
+|                 [à |
+|                 bà |
+| --à         TE  Cà |
+|             XT  eà |
+|                 Uà |
+|                 fà |
+|                 eà |
+|                 pà |
+|                 mà |
+|                 [à |
+|                 hà |
+| --à             Fà |
+|                 oà |
+|                 eà |
+|                 if |
+|                 pà |
+|                 hà |
+|                 cà |
+|                 fà |
+|                 a  |
+|                 dà |
+|                 aà |
+| --à             Dà |
+|                 tà |
+|                 là |
+|                 Cà |
+|                 pà |
+|                 dà |
+|                 bà |
+|                 là |
+|                 ià |
+|                 to |
+|                 sà |
+|                 Gà |
+|                 aà |
+| --à             Sà |
+|                 tà |
+|                 mà |
+|                 aà |
+|                 eà |
++--------------------+
++- Commands ---------+
+| switch   Switch    |
+|          the       |
+|          default   |
+|          profile   |
+|          for all   |
+|          commands. |
+| profile  Manage    |
+|          authentià |
+|          profiles  |
++--------------------+
+

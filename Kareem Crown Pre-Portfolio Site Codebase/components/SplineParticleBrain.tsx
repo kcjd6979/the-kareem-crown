@@ -1,14 +1,35 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 export const SplineParticleBrain = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isInView) return;
     const timer = setTimeout(() => {
       if (!isLoaded) {
         // We don't necessarily set hasError here because the iframe might still be loading
@@ -21,8 +42,8 @@ export const SplineParticleBrain = () => {
   }, [isLoaded]);
 
   return (
-    <div className="spline-brain-container relative overflow-hidden bg-[#0a0a1a]/50 border border-[#DAA520]/30 rounded-2xl shadow-[0_0_50px_rgba(218,165,32,0.15)]">
-      {!hasError ? (
+    <div className="spline-brain-container relative overflow-hidden bg-[#0a0a1a]/50 border border-[#DAA520]/30 rounded-2xl shadow-[0_0_50px_rgba(218,165,32,0.15)]" ref={containerRef}>
+      {!hasError && isInView ? (
         <>
           <div
             className="spline-canvas-wrapper w-full h-[600px]"
@@ -77,7 +98,7 @@ export const SplineParticleBrain = () => {
       ) : (
         <div className="spline-fallback flex flex-col items-center justify-center min-h-[600px]">
           <div className="fallback-robot-icon relative w-[200px] h-[200px]">
-             <svg viewBox="0 0 200 200" className="w-full h-full text-[#DAA520]">
+            <svg viewBox="0 0 200 200" className="w-full h-full text-[#DAA520]">
               <rect x="70" y="80" width="60" height="80" rx="8" fill="none" stroke="currentColor" strokeWidth="2" />
               <circle cx="85" cy="100" r="5" fill="currentColor" />
               <circle cx="115" cy="100" r="5" fill="currentColor" />

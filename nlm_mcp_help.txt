@@ -1,0 +1,34 @@
+usage: notebooklm-mcp [-h] [--transport {stdio,http,sse}] [--host HOST]
+                      [--port PORT] [--path PATH] [--stateless] [--debug]
+                      [--query-timeout QUERY_TIMEOUT]
+
+NotebookLM MCP Server
+
+options:
+  -h, --help            show this help message and exit
+  --transport, -t {stdio,http,sse}
+                        Transport protocol (default: stdio)
+  --host, -H HOST       Host to bind for HTTP/SSE (default: 127.0.0.1)
+  --port, -p PORT       Port for HTTP/SSE transport (default: 8000)
+  --path PATH           MCP endpoint path for HTTP (default: /mcp)
+  --stateless           Enable stateless mode for horizontal scaling
+  --debug               Enable debug logging
+  --query-timeout QUERY_TIMEOUT
+                        Query timeout in seconds (default: 120.0)
+
+Environment Variables:
+  NOTEBOOKLM_MCP_TRANSPORT     Transport type (stdio, http, sse)
+  NOTEBOOKLM_MCP_HOST          Host to bind (default: 127.0.0.1)
+  NOTEBOOKLM_MCP_PORT          Port to listen on (default: 8000)
+  NOTEBOOKLM_MCP_PATH          MCP endpoint path (default: /mcp)
+  NOTEBOOKLM_MCP_STATELESS     Enable stateless mode for scaling (true/false)
+  NOTEBOOKLM_MCP_DEBUG         Enable debug logging (true/false)
+  NOTEBOOKLM_HL                Interface language and default artifact language (default: en)
+  NOTEBOOKLM_QUERY_TIMEOUT     Query timeout in seconds (default: 120.0)
+
+Examples:
+  notebooklm-mcp                              # Default stdio transport
+  notebooklm-mcp --transport http             # HTTP on localhost:8000
+  notebooklm-mcp --transport http --port 3000 # HTTP on custom port
+  notebooklm-mcp --debug                      # Enable debug logging
+        
