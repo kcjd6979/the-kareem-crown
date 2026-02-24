@@ -158,6 +158,7 @@ export default function RocketCursor({ isEnabled = true }: { isEnabled?: boolean
             width: '10px',
             height: '80px',
             background: 'linear-gradient(to top, rgba(255, 215, 0, 0.6), rgba(255, 215, 0, 0.1), transparent)',
+            mixBlendMode: 'screen' as const,
             filter: 'blur(6px)',
             opacity: beamOpacity,
             scaleY: beamScaleY,
@@ -172,6 +173,7 @@ export default function RocketCursor({ isEnabled = true }: { isEnabled?: boolean
             width: '10px',
             height: '80px',
             background: 'linear-gradient(to top, rgba(255, 215, 0, 0.6), rgba(255, 215, 0, 0.1), transparent)',
+            mixBlendMode: 'screen' as const,
             filter: 'blur(6px)',
             opacity: beamOpacity,
             scaleY: beamScaleY,
@@ -187,6 +189,7 @@ export default function RocketCursor({ isEnabled = true }: { isEnabled?: boolean
             width: '40px',
             height: '120px',
             background: 'conic-gradient(from 0deg at 50% 100%, rgba(255, 215, 0, 0.25) -15deg, transparent 15deg)',
+            mixBlendMode: 'screen' as const,
             filter: 'blur(10px)',
             opacity: beamOpacity,
             scaleY: beamScaleY,
@@ -197,7 +200,7 @@ export default function RocketCursor({ isEnabled = true }: { isEnabled?: boolean
           {/* Pointed tip faces UP (top of element = front/direction of travel)
               Rounded base at bottom = rear where thrusters attach */}
           <Image
-            src="/gold-pen-tip-4k.webp"
+            src="/assets/gold-pen-tip-4k.webp"
             alt=""
             width={32}
             height={80}

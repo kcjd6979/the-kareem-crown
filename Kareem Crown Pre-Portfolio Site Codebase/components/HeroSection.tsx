@@ -41,16 +41,16 @@ const OrbitingPlanet = ({
   useEffect(() => {
     const unsubscribe = time.on("change", (t) => {
       const angle = t * angularVelocity + (startAngle * Math.PI) / 180;
-      
+
       // Calculate x and y based on orbit radius using trigonometry
       x.set(Math.cos(angle) * orbitRadius);
       y.set(Math.sin(angle) * orbitRadius);
-      
+
       // 3D rotation effect - flip based on orbit position
       // This creates the illusion of seeing front/back as planet orbits
       const rotationAngle = Math.cos(angle) * 180; // Flip from -180 to 180
       rotateY.set(rotationAngle);
-      
+
       // Subtle X rotation for depth perception
       rotateX.set(Math.sin(angle) * 15);
     });
@@ -59,7 +59,7 @@ const OrbitingPlanet = ({
 
   // Get responsive scale based on window size
   const [scale, setScale] = useState(responsiveScale.desktop);
-  
+
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -67,7 +67,7 @@ const OrbitingPlanet = ({
       else if (width < 1024) setScale(responsiveScale.tablet);
       else setScale(responsiveScale.desktop);
     };
-    
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -106,7 +106,7 @@ const OrbitingPlanet = ({
           zIndex: zIndex - 1,
         }}
       />
-      
+
       {/* Inner glow layer */}
       <motion.div
         className="absolute inset-0 rounded-full pointer-events-none"
@@ -121,7 +121,7 @@ const OrbitingPlanet = ({
           zIndex: zIndex - 0.5,
         }}
       />
-      
+
       {/* Planet container with 3D rotation */}
       <motion.div
         style={{
@@ -155,7 +155,7 @@ const OrbitingPlanet = ({
           }}
         />
       </motion.div>
-      
+
       {/* Specular highlight (light reflection) */}
       <motion.div
         className="absolute pointer-events-none"
@@ -195,11 +195,25 @@ const HeroSection = () => {
   const mouseX = useSpring(x, { stiffness: 80, damping: 12 });
   const mouseY = useSpring(y, { stiffness: 80, damping: 12 });
 
-  // Dynamic movement - sun follows mouse direction
-  const rotateX = useTransform(mouseY, [-300, 300], [-12, 12]);
-  const rotateY = useTransform(mouseX, [-400, 400], [15, -15]);
   const translateX = useTransform(mouseX, [-400, 400], [-40, 40]);
   const translateY = useTransform(mouseY, [-300, 300], [-25, 25]);
+
+  // Quaternion/Robust 3D tilt logic to prevent gimbal jitter
+  const rotate3D = useTransform(() => {
+    const currX = mouseX.get();
+    const currY = mouseY.get();
+    const distance = Math.hypot(currX, currY);
+    if (distance < 0.1) return 'rotate3d(1, 0, 0, 0deg)';
+    const maxRadius = 600; // soft clamping threshold
+    const clampedDist = Math.min(distance, maxRadius);
+    const angle = (clampedDist / maxRadius) * 18; // 18 degree max spherical tilt
+    // Axis is perpendicular to movement vector
+    const axisX = -(currY / distance);
+    const axisY = currX / distance;
+    return `rotate3d(${axisX.toFixed(3)}, ${axisY.toFixed(3)}, 0, ${angle.toFixed(2)}deg)`;
+  });
+
+  const combinedTransform = useMotionTemplate`translate3d(${translateX}px, ${translateY}px, 0) ${rotate3D}`;
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -273,10 +287,10 @@ const HeroSection = () => {
 
   return (
     // Mobile-first responsive container
-    <div 
+    <div
       className="hero-section relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000"
-      style={{ 
-        paddingTop: '0px', 
+      style={{
+        paddingTop: '0px',
         paddingBottom: '5vh',
         // Responsive padding for different screen sizes
         paddingLeft: 'env(safe-area-inset-left)',
@@ -285,7 +299,7 @@ const HeroSection = () => {
     >
       {/* === SOLAR SYSTEM CONTAINER === */}
       {/* Centered in viewport, contains sun + orbiting planets */}
-      <div 
+      <div
         className="relative flex items-center justify-center"
         style={{
           width: '100%',
@@ -294,21 +308,17 @@ const HeroSection = () => {
           height: '800px',
         }}
       >
-        
+
         {/* === THE SUN: Personal Brand Logo === */}
         <motion.div
           className="relative z-20 hero-logo-container"
           style={{
-            rotateX,
-            rotateY,
-            x: translateX,
-            y: translateY,
+            transform: combinedTransform,
             transformStyle: "preserve-3d",
-            // transform: 'scale(896.0, 832.0)', // Removed potentially broken scale
           }}
         >
           <Image
-            src="/kc-logo-black-crown.webp"
+            src="/assets/kareem-crown-personal-brand-logo-4k.webp"
             alt="The Kareem Crown personal brand logo - The Sun"
             width={400}
             height={400}
@@ -332,10 +342,10 @@ const HeroSection = () => {
             responsiveScale={planet.scale}
           />
         ))}
-        
+
         {/* === ORBITAL PATH VISUALS (Subtle rings for visual reference) === */}
         {/* Inner orbit path (180px) */}
-        <div 
+        <div
           className="absolute border border-white/6 rounded-full pointer-events-none"
           style={{
             width: '360px', // 2 * 180
@@ -344,7 +354,7 @@ const HeroSection = () => {
           }}
         />
         {/* Second orbit path (240px) */}
-        <div 
+        <div
           className="absolute border border-white/8 rounded-full pointer-events-none"
           style={{
             width: '480px', // 2 * 240
@@ -353,7 +363,7 @@ const HeroSection = () => {
           }}
         />
         {/* Third orbit path (320px) */}
-        <div 
+        <div
           className="absolute border border-white/6 rounded-full pointer-events-none"
           style={{
             width: '640px', // 2 * 320
@@ -362,7 +372,7 @@ const HeroSection = () => {
           }}
         />
         {/* Fourth orbit path (420px) */}
-        <div 
+        <div
           className="absolute border border-white/4 rounded-full pointer-events-none"
           style={{
             width: '840px', // 2 * 420
@@ -371,7 +381,7 @@ const HeroSection = () => {
           }}
         />
         {/* Far outer orbit path (520px) */}
-        <div 
+        <div
           className="absolute border border-white/2 rounded-full pointer-events-none"
           style={{
             width: '1040px', // 2 * 520
@@ -392,7 +402,7 @@ const HeroSection = () => {
         className="flex flex-col items-center z-10 w-full max-w-4xl gap-[2vh]"
         style={{ marginTop: '-80px' }} // Pull title closer to solar system
       >
-        <h1 
+        <h1
           className="text-center text-5xl md:text-7xl font-playfair font-black mt-0 mb-0 text-white tracking-wide"
           style={{
             textShadow: '0 2px 10px rgba(255,255,255,0.3), 0 0 30px rgba(255,255,255,0.1)',
@@ -403,7 +413,7 @@ const HeroSection = () => {
       </motion.div>
 
       {/* === OVERHEAD GOLD CROWN LIGHT === */}
-      <div 
+      <div
         className="absolute pointer-events-none z-0"
         style={{
           left: '50%',
@@ -418,7 +428,7 @@ const HeroSection = () => {
 
       {/* === SEAMLESS FADE TO NEXT SECTION === */}
       <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-b from-transparent via-black/50 to-black pointer-events-none" />
-      
+
     </div>
   );
 };
