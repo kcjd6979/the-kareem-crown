@@ -91,7 +91,7 @@ const LogoStorySection: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen bg-black py-20 overflow-hidden"
+      className="relative min-h-screen bg-transparent py-20 overflow-hidden"
     >
       {/* Ambient Background Effects - Midas Gold Only (No Purple/Teal) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -200,11 +200,10 @@ const LogoStorySection: React.FC = () => {
                       }}
                       whileHover={{ scale: 1.2 }}
                       onClick={() => setActiveElement(element.id)}
-                      className={`absolute w-6 h-6 rounded-full border-2 transition-all duration-300 ${
-                        activeElement === element.id
+                      className={`absolute w-6 h-6 rounded-full border-2 transition-all duration-300 ${activeElement === element.id
                           ? "bg-[#D4AF37] border-[#D4AF37] shadow-lg shadow-[#D4AF37]/50"
                           : "bg-black/80 border-[#D4AF37]/50 hover:border-[#D4AF37]"
-                      }`}
+                        }`}
                       style={{
                         left: `${leftPos}%`,
                         top: `${topPos}%`,
@@ -242,11 +241,10 @@ const LogoStorySection: React.FC = () => {
                   delay: 0.1 * index,
                   ease: "easeOut" as const,
                 }}
-                className={`p-5 rounded-xl border transition-all duration-500 cursor-pointer ${
-                  activeElement === element.id
+                className={`p-5 rounded-xl border transition-all duration-500 cursor-pointer ${activeElement === element.id
                     ? "border-[#D4AF37]/50 bg-[#D4AF37]/5 shadow-lg shadow-[#D4AF37]/10"
                     : "border-white/10 bg-black/30 hover:border-white/20"
-                }`}
+                  }`}
                 onClick={() => setActiveElement(element.id)}
               >
                 <div className="flex items-start space-x-4">

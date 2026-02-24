@@ -64,7 +64,7 @@ const aiTools: AITool[] = [
 
 export const AIToolsSection = () => {
   return (
-    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-black overflow-hidden">
+    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-transparent overflow-hidden">
       {/* Background Effects - Midas Gold only, no purple/teal */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#D4AF37]/3 rounded-full blur-3xl" />

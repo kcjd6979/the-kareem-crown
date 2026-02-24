@@ -51,7 +51,7 @@ const MeetTheForge = () => {
   const [activePersona, setActivePersona] = useState<string | null>(null);
 
   return (
-    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-black overflow-hidden" style={{ backgroundColor: '#0a0a1a' }}>
+    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-transparent overflow-hidden">
 
       {/* Background Effects - The Void */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
