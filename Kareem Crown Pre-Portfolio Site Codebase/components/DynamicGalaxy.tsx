@@ -125,7 +125,7 @@ export const DynamicGalaxy = () => {
     }, []);
 
     return (
-        <div className="fixed inset-0 w-full h-full pointer-events-none z-[-2] overflow-hidden bg-transparent">
+        <div className="fixed inset-0 w-full h-full pointer-events-none z-[-50] overflow-hidden bg-transparent">
 
             {/* 1. TWINKLING STARFIELD */}
             {stars.map((star) => (

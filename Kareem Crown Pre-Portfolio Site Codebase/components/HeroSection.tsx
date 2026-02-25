@@ -301,7 +301,7 @@ const HeroSection = () => {
       <div
         className="absolute top-0 left-0 w-full h-[80vh] pointer-events-none z-0"
         style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.15) 30%, transparent 70%)',
+          background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 30%, transparent 70%)',
           mixBlendMode: 'screen'
         }}
       />
@@ -430,7 +430,7 @@ const HeroSection = () => {
           transform: 'translateX(-50%)',
           width: '400px',
           height: '250px',
-          background: 'radial-gradient(ellipse at center top, rgba(212, 175, 55, 0.18) 0%, rgba(212, 175, 55, 0.06) 40%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center top, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 40%, transparent 70%)',
           filter: 'blur(15px)',
         }}
       />
