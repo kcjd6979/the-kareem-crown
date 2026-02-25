@@ -95,21 +95,22 @@ export default function RocketCursor({ isEnabled = true }: { isEnabled?: boolean
         * { cursor: none !important; }
       `}</style>
 
-      {/* ═══ 1. INSTANT CLICKER (Zero-Latency Input Point) ═══ */}
+      {/* ═══ 1. INSTANT CLICKER (Zero-Latency Input Point - Intensified Payload) ═══ */}
       <motion.div
         style={{
           position: 'absolute',
           left: 0, top: 0,
           x: mouseX,
           y: mouseY,
-          width: '8px',
-          height: '8px',
-          marginLeft: '-4px',
-          marginTop: '-4px',
-          backgroundColor: '#FFD700',
+          width: '12px',
+          height: '12px',
+          marginLeft: '-6px',
+          marginTop: '-6px',
+          backgroundColor: '#FFDF00', // Brighter, purer gold core
           borderRadius: '50%',
-          border: '1px solid rgba(255, 255, 255, 0.8)',
-          boxShadow: '0 0 12px #FFD700, 0 0 4px #FFF',
+          border: '1px solid rgba(255, 255, 255, 0.9)',
+          // Supercharged glow: sharp inner ring, wide bright mid-ring, massive soft outer falloff
+          boxShadow: '0 0 10px #FFFFFF, 0 0 30px #FFD700, 0 0 60px rgba(212, 175, 55, 0.6), 0 0 100px rgba(212, 175, 55, 0.3)',
           zIndex: 10001,
         }}
       />

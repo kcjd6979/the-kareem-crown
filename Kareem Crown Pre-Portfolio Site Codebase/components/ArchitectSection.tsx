@@ -7,8 +7,8 @@ import { SplineParticleBrain } from './SplineParticleBrain';
 
 export const ArchitectSection = () => {
   return (
-    <section className="architect-section" id="architect">
-      <div className="architect-container">
+    <section className="architect-section bg-transparent section-under-light relative" id="architect">
+      <div className="architect-container relative z-10">
         <h2 className="section-title">Connect with The Architect</h2>
 
         <div className="architect-grid">

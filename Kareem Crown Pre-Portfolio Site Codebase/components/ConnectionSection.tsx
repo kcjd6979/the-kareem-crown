@@ -14,8 +14,7 @@ export const ConnectionSection = () => {
   return (
     <section
       id="uplink"
-      className="relative w-full min-h-screen py-20 overflow-hidden"
-      style={{ backgroundColor: '#0a0a1a' }}
+      className="relative w-full min-h-screen py-20 bg-transparent section-under-light overflow-hidden"
     >
       {/* Background Grid / Data Stream Effect */}
       <div className="absolute inset-0 pointer-events-none opacity-20">

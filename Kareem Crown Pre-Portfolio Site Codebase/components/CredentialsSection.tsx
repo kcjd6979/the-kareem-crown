@@ -80,9 +80,9 @@ export const CredentialsSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-gradient-to-b from-obsidian-black via-jet-black-soft/50 to-obsidian-black overflow-hidden">
+    <section className="relative min-h-screen py-20 px-4 md:px-8 bg-transparent section-under-light overflow-hidden">
       {/* Background Effects - Midas Gold only */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-midas-gold-glossy/3 to-transparent" />
       </div>
 
@@ -130,9 +130,8 @@ export const CredentialsSection = () => {
 
               {/* Top Colored Line */}
               <div
-                className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-xl transition-all duration-300 ${
-                  hoveredItem === item.id ? "w-full" : "w-1/2"
-                } ${colors.text.replace("text-", "bg-")}`}
+                className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-xl transition-all duration-300 ${hoveredItem === item.id ? "w-full" : "w-1/2"
+                  } ${colors.text.replace("text-", "bg-")}`}
               />
 
               {/* Icon */}

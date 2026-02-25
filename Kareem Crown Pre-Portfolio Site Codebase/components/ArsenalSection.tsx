@@ -153,11 +153,10 @@ function Carousel() {
 
 export const ArsenalSection = () => {
   return (
-    <section className="relative w-full h-[80vh] bg-obsidian-black flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative w-full h-[80vh] bg-transparent section-under-light flex flex-col items-center justify-center overflow-hidden">
 
       {/* Background Gradients */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-black via-transparent to-black z-10" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-indigo-900/20 rounded-full blur-[120px]" />
       </div>
 

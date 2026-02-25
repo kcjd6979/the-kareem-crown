@@ -288,7 +288,7 @@ const HeroSection = () => {
   return (
     // Mobile-first responsive container
     <div
-      className="hero-section relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000"
+      className="hero-section relative flex flex-col items-center justify-center w-full min-h-screen perspective-1000 bg-transparent section-under-light"
       style={{
         paddingTop: '0px',
         paddingBottom: '5vh',
@@ -297,6 +297,15 @@ const HeroSection = () => {
         paddingRight: 'env(safe-area-inset-right)',
       }}
     >
+      {/* === UNIVERSAL OVERHEAD LAMP === */}
+      <div
+        className="absolute top-0 left-0 w-full h-[80vh] pointer-events-none z-0"
+        style={{
+          background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.15) 30%, transparent 70%)',
+          mixBlendMode: 'screen'
+        }}
+      />
+
       {/* === SOLAR SYSTEM CONTAINER === */}
       {/* Centered in viewport, contains sun + orbiting planets */}
       <div

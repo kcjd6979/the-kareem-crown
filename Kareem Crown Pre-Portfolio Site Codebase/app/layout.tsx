@@ -15,6 +15,8 @@ const merriweather = Merriweather({
   variable: '--font-merriweather',
 });
 
+import { DynamicGalaxy } from "@/components/DynamicGalaxy";
+
 export const metadata: Metadata = {
   title: "The Kareem Crown: An Arsenal of Proof",
   description: "The pre-portfolio of Kareem Daniel, an AI Systems Architect who orchestrates proprietary, automated systems.",
@@ -28,10 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${merriweather.variable} font-merriweather`}>
-        {/* 3-Layer Parallax Star Field */}
-        <div className="star-layer-1" />
-        <div className="star-layer-2" />
-        <div className="star-layer-3" />
+        {/* Dynamic Living Galaxy Wallpaper */}
+        <DynamicGalaxy />
 
         <RocketCursor />
         {children}

@@ -91,11 +91,10 @@ const LogoStorySection: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen bg-transparent py-20 overflow-hidden"
+      className="relative min-h-screen bg-transparent section-under-light py-20 overflow-hidden"
     >
       {/* Ambient Background Effects - Midas Gold Only (No Purple/Teal) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black via-[#0A0A0A]/50 to-black" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-[0]">
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[#D4AF37]/3 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#B6862C]/3 rounded-full blur-[100px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#C0C0C0]/3 rounded-full blur-[150px]" />
@@ -201,8 +200,8 @@ const LogoStorySection: React.FC = () => {
                       whileHover={{ scale: 1.2 }}
                       onClick={() => setActiveElement(element.id)}
                       className={`absolute w-6 h-6 rounded-full border-2 transition-all duration-300 ${activeElement === element.id
-                          ? "bg-[#D4AF37] border-[#D4AF37] shadow-lg shadow-[#D4AF37]/50"
-                          : "bg-black/80 border-[#D4AF37]/50 hover:border-[#D4AF37]"
+                        ? "bg-[#D4AF37] border-[#D4AF37] shadow-lg shadow-[#D4AF37]/50"
+                        : "bg-black/80 border-[#D4AF37]/50 hover:border-[#D4AF37]"
                         }`}
                       style={{
                         left: `${leftPos}%`,
@@ -242,8 +241,8 @@ const LogoStorySection: React.FC = () => {
                   ease: "easeOut" as const,
                 }}
                 className={`p-5 rounded-xl border transition-all duration-500 cursor-pointer ${activeElement === element.id
-                    ? "border-[#D4AF37]/50 bg-[#D4AF37]/5 shadow-lg shadow-[#D4AF37]/10"
-                    : "border-white/10 bg-black/30 hover:border-white/20"
+                  ? "border-[#D4AF37]/50 bg-[#D4AF37]/5 shadow-lg shadow-[#D4AF37]/10"
+                  : "border-white/10 bg-black/30 hover:border-white/20"
                   }`}
                 onClick={() => setActiveElement(element.id)}
               >
