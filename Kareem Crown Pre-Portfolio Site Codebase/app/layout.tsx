@@ -28,6 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${merriweather.variable} font-merriweather`}>
+        {/* 3-Layer Parallax Star Field */}
+        <div className="star-layer-1" />
+        <div className="star-layer-2" />
+        <div className="star-layer-3" />
+
         <RocketCursor />
         {children}
       </body>

@@ -58,13 +58,8 @@ const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
 
   return (
     <>
-      {/* 3-Layer Parallax Star Field */}
-      <div className="star-layer-1" />
-      <div className="star-layer-2" />
-      <div className="star-layer-3" />
+      {/* Custom Rocket Cursor System is handled in layout.tsx */}
 
-      {/* Custom Rocket Cursor System - Primary Handler */}
-      <RocketCursor isEnabled={isCustomCursorEnabled} />
 
       {/* Accessibility Toggle */}
       <AccessibilityToggle
