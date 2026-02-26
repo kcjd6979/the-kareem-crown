@@ -50,7 +50,7 @@ export const logVisitor = async (entryPoint: string = 'kareem-crown') => {
         }
 
         return visitorId;
-    } catch (err) {
-        console.error('Fingerprint logging failed:', err);
+    } catch (err: any) {
+        console.error("🛑 ORACLE_ERROR:", err.message, err.details || err);
     }
 };
